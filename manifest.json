@@ -112,10 +112,10 @@
             "1-buster": {},
             "1.16": {},
             "1.16-buster": {},
-            "1.16.6": {},
-            "1.16.6-1": {},
-            "1.16.6-1-buster": {},
-            "1.16.6-buster": {},
+            "1.16.7": {},
+            "1.16.7-1": {},
+            "1.16.7-1-buster": {},
+            "1.16.7-buster": {},
             "buster": {},
             "latest": {}
           },
@@ -125,7 +125,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.16.6-1-buster-amd64": {}
+                "1.16.7-1-buster-amd64": {}
               }
             }
           ]
@@ -135,8 +135,8 @@
           "sharedTags": {
             "1-stretch": {},
             "1.16-stretch": {},
-            "1.16.6-1-stretch": {},
-            "1.16.6-stretch": {},
+            "1.16.7-1-stretch": {},
+            "1.16.7-stretch": {},
             "stretch": {}
           },
           "platforms": [
@@ -145,7 +145,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "1.16.6-1-stretch-amd64": {}
+                "1.16.7-1-stretch-amd64": {}
               }
             }
           ]
@@ -155,8 +155,8 @@
           "sharedTags": {
             "1-windowsservercore-1809": {},
             "1.16-windowsservercore-1809": {},
-            "1.16.6-1-windowsservercore-1809": {},
-            "1.16.6-windowsservercore-1809": {},
+            "1.16.7-1-windowsservercore-1809": {},
+            "1.16.7-windowsservercore-1809": {},
             "windowsservercore-1809": {}
           },
           "platforms": [
@@ -165,7 +165,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-1809",
               "tags": {
-                "1.16.6-1-windowsservercore-1809-amd64": {}
+                "1.16.7-1-windowsservercore-1809-amd64": {}
               }
             }
           ]
@@ -175,21 +175,21 @@
           "sharedTags": {
             "1-nanoserver-1809": {},
             "1.16-nanoserver-1809": {},
-            "1.16.6-1-nanoserver-1809": {},
-            "1.16.6-nanoserver-1809": {},
+            "1.16.7-1-nanoserver-1809": {},
+            "1.16.7-nanoserver-1809": {},
             "nanoserver-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.16.6-1-windowsservercore-1809-amd64",
+                "DOWNLOADER_TAG": "1.16.7-1-windowsservercore-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "dockerfile": "src/microsoft/1.16/windows/nanoserver-1809",
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "1.16.6-1-nanoserver-1809-amd64": {}
+                "1.16.7-1-nanoserver-1809-amd64": {}
               }
             }
           ]
@@ -199,8 +199,8 @@
           "sharedTags": {
             "1-windowsservercore-ltsc2016": {},
             "1.16-windowsservercore-ltsc2016": {},
-            "1.16.6-1-windowsservercore-ltsc2016": {},
-            "1.16.6-windowsservercore-ltsc2016": {},
+            "1.16.7-1-windowsservercore-ltsc2016": {},
+            "1.16.7-windowsservercore-ltsc2016": {},
             "windowsservercore-ltsc2016": {}
           },
           "platforms": [
@@ -209,7 +209,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2016",
               "tags": {
-                "1.16.6-1-windowsservercore-ltsc2016-amd64": {}
+                "1.16.7-1-windowsservercore-ltsc2016-amd64": {}
               }
             }
           ]

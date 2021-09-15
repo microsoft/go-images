@@ -17,7 +17,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.15.14
+ENV GOLANG_VERSION 1.15.16
 
 RUN set -eux; \
 	\
@@ -25,8 +25,8 @@ RUN set -eux; \
 	url=; \
 	case "${dpkgArch##*-}" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.15/20210817.4/go.20210817.4.linux-amd64.tar.gz'; \
-			sha256='d41c43eb83bf7ff1dde69b80bd5253708fdf19b4a14aae6124e8aeacd2cec1a7'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/dagood/manifest-1.16/20210908.1/go.20210908.1.linux-amd64.tar.gz'; \
+			sha256='abcdef'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$dpkgArch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
