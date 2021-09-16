@@ -28,6 +28,7 @@
       "windows/windowsservercore-ltsc2016"
     ],
     "version": "1.15.14",
+    "revision": "",
     "preferredVariant": "buster"
   },
   "1.16": {
@@ -37,18 +38,18 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "a8080642bb567175d31bc92cb7438ea2640d53b8254b220a52e05c92fd48cb12",
+        "sha256": "b90509127134480092edaa167a3fc19ca1776e1a337bff32d93c689fd75ff089",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20210817.5/go.20210817.5.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/dagood/manifest-1.16/20210915.5/go.20210915.5.linux-amd64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "b5b392dcf303f3332fb3829e8ba5c5c428e3a233a5a50eb139df551d5aca591b",
+        "sha256": "868ea7e69d12795194dfafaaa96a9a52dd10275689af99aac0208cfde582ea13",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20210817.5/go.20210817.5.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/dagood/manifest-1.16/20210915.5/go.20210915.5.windows-amd64.zip"
       }
     },
     "variants": [
@@ -58,7 +59,8 @@
       "windows/nanoserver-1809",
       "windows/windowsservercore-ltsc2016"
     ],
-    "version": "1.16.6",
+    "version": "1.16.7",
+    "revision": "1",
     "preferredMajor": true,
     "preferredMinor": true,
     "preferredVariant": "buster"
