@@ -22,3 +22,17 @@ generating the Dockerfiles.
 
 Use the `/eng/update-dockerfiles.sh` script to generate the Dockerfiles based on
 this `versions.json` file.
+
+This file is also used to generate `/manifest.json`, the file that drives the
+.NET Docker build infrastructure used to build our Docker images. This means
+there are some extra things to consider:
+* The order of the `variants` array is critical: it must be in dependency order.
+  For example, `windows/nanoserver-1809` depends on
+  `windows/windowsservercore-1809`, so nanoserver must be later than
+  windowsservercore.
+* The `preferredMajor` key refers to `1` in `1.16.6`, and should only exist
+  once. It determines the version to tag `latest`.
+* The `preferredMinor` key refers to `1.16` in `1.16.6`, and should only exist
+  once per major version. It determines the version to tag `1`.
+* The `preferredVariant` key determines the platform to use in tags that don't
+  include a specific platform, like `1.16.6` (vs. `1.16.6-buster`).
