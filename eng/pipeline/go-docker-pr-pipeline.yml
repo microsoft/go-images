@@ -2,7 +2,7 @@ trigger: none
 pr:
   branches:
     include:
-      - microsoft/docker-images
+      - microsoft/*
 
 variables:
   - template: variables/common.yml
