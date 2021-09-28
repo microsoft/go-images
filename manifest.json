@@ -6,7 +6,7 @@
   "repos": [
     {
       "id": "golang",
-      "name": "oss/go/golang/alpha",
+      "name": "oss/go/microsoft/alpha/golang",
       "images": [
         {
           "productVersion": "1.15",
