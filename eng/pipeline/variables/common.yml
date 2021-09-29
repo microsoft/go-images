@@ -14,7 +14,7 @@ variables:
   value: 2
 - name: officialBranches
   # list multiple branches as "'branch1', 'branch2', etc."
-  value: "'microsoft/docker-images','docker'"
+  value: "'microsoft/main'"
 - name: manifest
   value: manifest.json
 
