@@ -7,8 +7,8 @@ variables:
 # https://github.com/microsoft/go/issues/157 tracks enabling publishImageInfo.
 - name: publishImageInfo
   value: false
-# https://github.com/microsoft/go/issues/192 tracks enabling ingestImageInfo.
-- name: ingestImageInfo
+# https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
+- name: ingestKustoImageInfo
   value: false
 - name: productVersionComponents
   value: 2
@@ -17,8 +17,6 @@ variables:
   value: "'microsoft/docker-images','docker'"
 - name: manifest
   value: manifest.json
-- name: testScriptPath
-  value: 'eng/run-tests.ps1'
 
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - group: go-docker-common
