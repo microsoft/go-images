@@ -53,16 +53,16 @@ RUN $newPath = ('{0}\bin;C:\go\bin;{1}' -f $env:GOPATH, $env:PATH); \
 	[Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::Machine);
 # doing this first to share cache across versions more aggressively
 
-ENV GOLANG_VERSION 1.16.6
+ENV GOLANG_VERSION 1.16.8
 
-RUN $url = 'https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20210817.5/go.20210817.5.windows-amd64.zip'; \
+RUN $url = 'https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20210929.6/go.20210929.6.windows-amd64.zip'; \
 	Write-Host ('Downloading {0} ...' -f $url); \
 # NO MICROSOFT_UPSTREAM: Use TLS 1.2: required by the microsoft/go build storage account.
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
 # END NO MICROSOFT_UPSTREAM
 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; \
 	\
-	$sha256 = 'b5b392dcf303f3332fb3829e8ba5c5c428e3a233a5a50eb139df551d5aca591b'; \
+	$sha256 = '3aa82e731ccd3aad8c4896d3a017d5e6054ead914332abe9e0f7215ffe6183e5'; \
 	Write-Host ('Verifying sha256 ({0}) ...' -f $sha256); \
 	if ((Get-FileHash go.zip -Algorithm sha256).Hash -ne $sha256) { \
 		Write-Host 'FAILED!'; \
