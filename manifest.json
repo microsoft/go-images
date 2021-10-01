@@ -108,16 +108,12 @@
         {
           "productVersion": "1.16",
           "sharedTags": {
-            "1": {},
-            "1-buster": {},
             "1.16": {},
             "1.16-buster": {},
             "1.16.8": {},
             "1.16.8-1": {},
             "1.16.8-1-buster": {},
-            "1.16.8-buster": {},
-            "buster": {},
-            "latest": {}
+            "1.16.8-buster": {}
           },
           "platforms": [
             {
@@ -133,11 +129,9 @@
         {
           "productVersion": "1.16",
           "sharedTags": {
-            "1-stretch": {},
             "1.16-stretch": {},
             "1.16.8-1-stretch": {},
-            "1.16.8-stretch": {},
-            "stretch": {}
+            "1.16.8-stretch": {}
           },
           "platforms": [
             {
@@ -153,11 +147,9 @@
         {
           "productVersion": "1.16",
           "sharedTags": {
-            "1-windowsservercore-1809": {},
             "1.16-windowsservercore-1809": {},
             "1.16.8-1-windowsservercore-1809": {},
-            "1.16.8-windowsservercore-1809": {},
-            "windowsservercore-1809": {}
+            "1.16.8-windowsservercore-1809": {}
           },
           "platforms": [
             {
@@ -173,11 +165,9 @@
         {
           "productVersion": "1.16",
           "sharedTags": {
-            "1-nanoserver-1809": {},
             "1.16-nanoserver-1809": {},
             "1.16.8-1-nanoserver-1809": {},
-            "1.16.8-nanoserver-1809": {},
-            "nanoserver-1809": {}
+            "1.16.8-nanoserver-1809": {}
           },
           "platforms": [
             {
@@ -197,11 +187,9 @@
         {
           "productVersion": "1.16",
           "sharedTags": {
-            "1-windowsservercore-ltsc2016": {},
             "1.16-windowsservercore-ltsc2016": {},
             "1.16.8-1-windowsservercore-ltsc2016": {},
-            "1.16.8-windowsservercore-ltsc2016": {},
-            "windowsservercore-ltsc2016": {}
+            "1.16.8-windowsservercore-ltsc2016": {}
           },
           "platforms": [
             {
@@ -210,6 +198,179 @@
               "osVersion": "windowsservercore-ltsc2016",
               "tags": {
                 "1.16.8-1-windowsservercore-ltsc2016-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1": {},
+            "1-bullseye": {},
+            "1.17": {},
+            "1.17-bullseye": {},
+            "1.17.1": {},
+            "1.17.1-1": {},
+            "1.17.1-1-bullseye": {},
+            "1.17.1-bullseye": {},
+            "bullseye": {},
+            "latest": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17/bullseye",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "1.17.1-1-bullseye-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-buster": {},
+            "1.17-buster": {},
+            "1.17.1-1-buster": {},
+            "1.17.1-buster": {},
+            "buster": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17/buster",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "1.17.1-1-buster-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-stretch": {},
+            "1.17-stretch": {},
+            "1.17.1-1-stretch": {},
+            "1.17.1-stretch": {},
+            "stretch": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17/stretch",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "1.17.1-1-stretch-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-windowsservercore-ltsc2022": {},
+            "1.17-windowsservercore-ltsc2022": {},
+            "1.17.1-1-windowsservercore-ltsc2022": {},
+            "1.17.1-windowsservercore-ltsc2022": {},
+            "windowsservercore-ltsc2022": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-ltsc2022",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2022",
+              "tags": {
+                "1.17.1-1-windowsservercore-ltsc2022-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-windowsservercore-1809": {},
+            "1.17-windowsservercore-1809": {},
+            "1.17.1-1-windowsservercore-1809": {},
+            "1.17.1-windowsservercore-1809": {},
+            "windowsservercore-1809": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-1809",
+              "os": "windows",
+              "osVersion": "windowsservercore-1809",
+              "tags": {
+                "1.17.1-1-windowsservercore-1809-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-windowsservercore-ltsc2016": {},
+            "1.17-windowsservercore-ltsc2016": {},
+            "1.17.1-1-windowsservercore-ltsc2016": {},
+            "1.17.1-windowsservercore-ltsc2016": {},
+            "windowsservercore-ltsc2016": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-ltsc2016",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2016",
+              "tags": {
+                "1.17.1-1-windowsservercore-ltsc2016-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-nanoserver-ltsc2022": {},
+            "1.17-nanoserver-ltsc2022": {},
+            "1.17.1-1-nanoserver-ltsc2022": {},
+            "1.17.1-nanoserver-ltsc2022": {},
+            "nanoserver-ltsc2022": {}
+          },
+          "platforms": [
+            {
+              "buildArgs": {
+                "DOWNLOADER_TAG": "1.17.1-1-windowsservercore-ltsc2022-amd64",
+                "REPO": "$(Repo:golang)"
+              },
+              "dockerfile": "src/microsoft/1.17/windows/nanoserver-ltsc2022",
+              "os": "windows",
+              "osVersion": "nanoserver-ltsc2022",
+              "tags": {
+                "1.17.1-1-nanoserver-ltsc2022-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-nanoserver-1809": {},
+            "1.17-nanoserver-1809": {},
+            "1.17.1-1-nanoserver-1809": {},
+            "1.17.1-nanoserver-1809": {},
+            "nanoserver-1809": {}
+          },
+          "platforms": [
+            {
+              "buildArgs": {
+                "DOWNLOADER_TAG": "1.17.1-1-windowsservercore-1809-amd64",
+                "REPO": "$(Repo:golang)"
+              },
+              "dockerfile": "src/microsoft/1.17/windows/nanoserver-1809",
+              "os": "windows",
+              "osVersion": "nanoserver-1809",
+              "tags": {
+                "1.17.1-1-nanoserver-1809-amd64": {}
               }
             }
           ]

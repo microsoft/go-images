@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/windows/servercore:1809
+FROM mcr.microsoft.com/windows/servercore:ltsc2016
 
 # $ProgressPreference: https://github.com/PowerShell/PowerShell/issues/2138#issuecomment-251261324
 SHELL ["powershell", "-Command", "$ErrorActionPreference = 'Stop'; $ProgressPreference = 'SilentlyContinue';"]
@@ -43,24 +43,24 @@ RUN Write-Host ('Downloading {0} ...' -f $env:GIT_DOWNLOAD_URL); \
 	\
 	Write-Host 'Complete.';
 
-# ideally, this would be C:\go to match Linux a bit closer, but C:\go was the default install path for Go itself on Windows
-ENV GOPATH C:\\gopath
-# (https://golang.org/cl/283600)
+# for 1.17+, we'll follow the (new) Go upstream default for install (https://golang.org/cl/283600), which frees up C:\go to be the default GOPATH and thus match the Linux images more closely (https://github.com/docker-library/golang/issues/288)
+ENV GOPATH C:\\go
+# HOWEVER, please note that it is the Go upstream intention to remove GOPATH support entirely: https://blog.golang.org/go116-module-changes
 
 # PATH isn't actually set in the Docker image, so we have to set it from within the container
-RUN $newPath = ('{0}\bin;C:\go\bin;{1}' -f $env:GOPATH, $env:PATH); \
+RUN $newPath = ('{0}\bin;C:\Program Files\Go\bin;{1}' -f $env:GOPATH, $env:PATH); \
 	Write-Host ('Updating PATH: {0}' -f $newPath); \
 	[Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::Machine);
 # doing this first to share cache across versions more aggressively
 
-ENV GOLANG_VERSION 1.15.15
+ENV GOLANG_VERSION 1.17.1
 
-RUN $url = 'https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.15/20210929.4/go.20210929.4.windows-amd64.zip'; \
+RUN $url = 'https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20210929.5/go.20210929.5.windows-amd64.zip'; \
 	Write-Host ('Downloading {0} ...' -f $url); \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; \
 	\
-	$sha256 = 'd5fc13664fb0d7d00154cdfb1fcb80da8755f9d773e3f367e7fb4ab71bbb70c5'; \
+	$sha256 = 'cab3bc0e3f292e26979a4fac7f6beaa849793ab4179f3926f36397b76999cd3b'; \
 	Write-Host ('Verifying sha256 ({0}) ...' -f $sha256); \
 	if ((Get-FileHash go.zip -Algorithm sha256).Hash -ne $sha256) { \
 		Write-Host 'FAILED!'; \
@@ -69,6 +69,9 @@ RUN $url = 'https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/rel
 	\
 	Write-Host 'Expanding ...'; \
 	Expand-Archive go.zip -DestinationPath C:\; \
+	\
+	Write-Host 'Moving ...'; \
+	Move-Item -Path C:\go -Destination 'C:\Program Files\Go'; \
 	\
 	Write-Host 'Removing ...'; \
 	Remove-Item go.zip -Force; \

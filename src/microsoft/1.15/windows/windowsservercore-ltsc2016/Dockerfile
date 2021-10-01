@@ -57,9 +57,7 @@ ENV GOLANG_VERSION 1.15.15
 
 RUN $url = 'https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.15/20210929.4/go.20210929.4.windows-amd64.zip'; \
 	Write-Host ('Downloading {0} ...' -f $url); \
-# NO MICROSOFT_UPSTREAM: Use TLS 1.2: required by the microsoft/go build storage account.
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
-# END NO MICROSOFT_UPSTREAM
 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; \
 	\
 	$sha256 = 'd5fc13664fb0d7d00154cdfb1fcb80da8755f9d773e3f367e7fb4ab71bbb70c5'; \
