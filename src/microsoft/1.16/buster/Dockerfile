@@ -27,8 +27,8 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20211020.5/go.20211020.5.linux-amd64.tar.gz'; \
-			sha256='788f1036942c0aff5d5bbe6d7040108a4e266bb5989ab39f4ce7a9f2a5d7f256'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20211101.1/go.20211101.1.linux-amd64.tar.gz'; \
+			sha256='8c07171b73ac25a1d63785fbe96eecb214b4839f67f07d3aa16b1be66b86a09c'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
