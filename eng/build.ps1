@@ -1,5 +1,9 @@
 #!/usr/bin/env pwsh
 param(
+    # Version of Go to filter by.
+    # This is '*' in upstream, but empty here to work around an issue when building on Linux: https://github.com/dotnet/dotnet-docker/issues/3288
+    [string]$Version = "",
+
     # Name of OS to filter by
     [string]$OS,
 
@@ -18,6 +22,7 @@ param(
 
 # Build the product images.
 & $PSScriptRoot/common/build.ps1 `
+    -Version $Version `
     -OS $OS `
     -Architecture $Architecture `
     -Paths $Paths `

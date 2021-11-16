@@ -3,13 +3,11 @@ trigger:
   branches:
     include:
       - microsoft/*
+      - dev/official/*
 pr: none
 
 variables:
   - template: variables/common.yml
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
-    parameters:
-      buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
-      noCache: true
+  - template: stages/build-test-publish-repo.yml
