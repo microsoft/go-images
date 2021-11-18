@@ -4,6 +4,12 @@
 	;
 	def alpine_version:
 		env.variant | ltrimstr("alpine")
+	;
+	def is_cbl_mariner:
+		env.variant | startswith("cbl-mariner")
+	;
+	def cbl_mariner_version:
+		env.variant | ltrimstr("cbl-mariner")
 -}}
 {{ if is_alpine then ( -}}
 FROM alpine:{{ alpine_version }}
@@ -14,6 +20,26 @@ RUN apk add --no-cache ca-certificates
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+{{ ) elif is_cbl_mariner then ( -}}
+FROM cblmariner.azurecr.io/base/core:{{ cbl_mariner_version }}
+
+RUN tdnf install -y \
+		binutils \
+		gcc \
+		glibc \
+		glibc-devel \
+		kernel-headers \
+{{
+	if .templateArgs.fips then (
+-}}
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		openssl-devel \
+{{
+	) else "" end
+-}}
+	; \
+	tdnf clean all
+
 {{ ) else ( -}}
 FROM buildpack-deps:{{ env.variant }}-scm
 
@@ -26,6 +52,14 @@ RUN set -eux; \
 		libc6-dev \
 		make \
 		pkg-config \
+{{
+	if .templateArgs.fips then (
+-}}
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		libssl-dev \
+{{
+	) else "" end
+-}}
 	; \
 	rm -rf /var/lib/apt/lists/*
 {{ ) end -}}
@@ -46,6 +80,10 @@ ENV GOLANG_VERSION {{ .version }}
 				ppc64le: "ppc64le",
 				s390x: "s390x",
 			}
+		elif is_cbl_mariner then
+			{
+				amd64: "x86_64",
+			}
 		else
 			{
 				amd64: "amd64",
@@ -63,6 +101,8 @@ RUN set -eux; \
 {{ if is_alpine then ( -}}
 	apk add --no-cache --virtual .fetch-deps gnupg; \
 	arch="$(apk --print-arch)"; \
+{{ ) elif is_cbl_mariner then ( -}}
+	arch="$(uname -m)"; \
 {{ ) else ( -}}
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 {{ ) end -}}

@@ -9,212 +9,13 @@
       "name": "oss/go/microsoft/alpha/golang",
       "images": [
         {
-          "productVersion": "1.15",
-          "sharedTags": {
-            "1.15": {},
-            "1.15-buster": {},
-            "1.15.15": {},
-            "1.15.15-1": {},
-            "1.15.15-1-buster": {},
-            "1.15.15-buster": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.15/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.15.15-1-buster-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.15",
-          "sharedTags": {
-            "1.15-stretch": {},
-            "1.15.15-1-stretch": {},
-            "1.15.15-stretch": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.15/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.15.15-1-stretch-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.15",
-          "sharedTags": {
-            "1.15-windowsservercore-1809": {},
-            "1.15.15-1-windowsservercore-1809": {},
-            "1.15.15-windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.15/windows/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "1.15.15-1-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.15",
-          "sharedTags": {
-            "1.15-nanoserver-1809": {},
-            "1.15.15-1-nanoserver-1809": {},
-            "1.15.15-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.15.15-1-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "dockerfile": "src/microsoft/1.15/windows/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.15.15-1-nanoserver-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.15",
-          "sharedTags": {
-            "1.15-windowsservercore-ltsc2016": {},
-            "1.15.15-1-windowsservercore-ltsc2016": {},
-            "1.15.15-windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.15/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "1.15.15-1-windowsservercore-ltsc2016-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.16",
-          "sharedTags": {
-            "1.16": {},
-            "1.16-buster": {},
-            "1.16.9": {},
-            "1.16.9-1": {},
-            "1.16.9-1-buster": {},
-            "1.16.9-buster": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.16/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.16.9-1-buster-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.16",
-          "sharedTags": {
-            "1.16-stretch": {},
-            "1.16.9-1-stretch": {},
-            "1.16.9-stretch": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.16/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.16.9-1-stretch-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.16",
-          "sharedTags": {
-            "1.16-windowsservercore-1809": {},
-            "1.16.9-1-windowsservercore-1809": {},
-            "1.16.9-windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.16/windows/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "1.16.9-1-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.16",
-          "sharedTags": {
-            "1.16-nanoserver-1809": {},
-            "1.16.9-1-nanoserver-1809": {},
-            "1.16.9-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.16.9-1-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "dockerfile": "src/microsoft/1.16/windows/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.16.9-1-nanoserver-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.16",
-          "sharedTags": {
-            "1.16-windowsservercore-ltsc2016": {},
-            "1.16.9-1-windowsservercore-ltsc2016": {},
-            "1.16.9-windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.16/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "1.16.9-1-windowsservercore-ltsc2016-amd64": {}
-              }
-            }
-          ]
-        },
-        {
           "productVersion": "1.17",
           "sharedTags": {
-            "1": {},
-            "1-bullseye": {},
-            "1.17": {},
-            "1.17-bullseye": {},
-            "1.17.2": {},
-            "1.17.2-1": {},
-            "1.17.2-1-bullseye": {},
-            "1.17.2-bullseye": {},
-            "bullseye": {},
-            "latest": {}
+            "dev-fips-1-bullseye": {},
+            "dev-fips-1.17-bullseye": {},
+            "dev-fips-1.17.2-1-bullseye": {},
+            "dev-fips-1.17.2-bullseye": {},
+            "dev-fips-bullseye": {}
           },
           "platforms": [
             {
@@ -222,7 +23,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.17.2-1-bullseye-amd64": {}
+                "dev-fips-1.17.2-1-bullseye-amd64": {}
               }
             }
           ]
@@ -230,11 +31,11 @@
         {
           "productVersion": "1.17",
           "sharedTags": {
-            "1-buster": {},
-            "1.17-buster": {},
-            "1.17.2-1-buster": {},
-            "1.17.2-buster": {},
-            "buster": {}
+            "dev-fips-1-buster": {},
+            "dev-fips-1.17-buster": {},
+            "dev-fips-1.17.2-1-buster": {},
+            "dev-fips-1.17.2-buster": {},
+            "dev-fips-buster": {}
           },
           "platforms": [
             {
@@ -242,7 +43,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.17.2-1-buster-amd64": {}
+                "dev-fips-1.17.2-1-buster-amd64": {}
               }
             }
           ]
@@ -250,11 +51,11 @@
         {
           "productVersion": "1.17",
           "sharedTags": {
-            "1-stretch": {},
-            "1.17-stretch": {},
-            "1.17.2-1-stretch": {},
-            "1.17.2-stretch": {},
-            "stretch": {}
+            "dev-fips-1-stretch": {},
+            "dev-fips-1.17-stretch": {},
+            "dev-fips-1.17.2-1-stretch": {},
+            "dev-fips-1.17.2-stretch": {},
+            "dev-fips-stretch": {}
           },
           "platforms": [
             {
@@ -262,7 +63,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "1.17.2-1-stretch-amd64": {}
+                "dev-fips-1.17.2-1-stretch-amd64": {}
               }
             }
           ]
@@ -270,107 +71,24 @@
         {
           "productVersion": "1.17",
           "sharedTags": {
-            "1-windowsservercore-ltsc2022": {},
-            "1.17-windowsservercore-ltsc2022": {},
-            "1.17.2-1-windowsservercore-ltsc2022": {},
-            "1.17.2-windowsservercore-ltsc2022": {},
-            "windowsservercore-ltsc2022": {}
+            "dev-fips-1": {},
+            "dev-fips-1-cbl-mariner1.0.20211027": {},
+            "dev-fips-1.17": {},
+            "dev-fips-1.17-cbl-mariner1.0.20211027": {},
+            "dev-fips-1.17.2": {},
+            "dev-fips-1.17.2-1": {},
+            "dev-fips-1.17.2-1-cbl-mariner1.0.20211027": {},
+            "dev-fips-1.17.2-cbl-mariner1.0.20211027": {},
+            "dev-fips-cbl-mariner1.0.20211027": {},
+            "dev-fips-latest": {}
           },
           "platforms": [
             {
-              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-ltsc2022",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2022",
+              "dockerfile": "src/microsoft/1.17/cbl-mariner1.0.20211027",
+              "os": "linux",
+              "osVersion": "cbl-mariner1.0.20211027",
               "tags": {
-                "1.17.2-1-windowsservercore-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1-windowsservercore-1809": {},
-            "1.17-windowsservercore-1809": {},
-            "1.17.2-1-windowsservercore-1809": {},
-            "1.17.2-windowsservercore-1809": {},
-            "windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "1.17.2-1-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1-windowsservercore-ltsc2016": {},
-            "1.17-windowsservercore-ltsc2016": {},
-            "1.17.2-1-windowsservercore-ltsc2016": {},
-            "1.17.2-windowsservercore-ltsc2016": {},
-            "windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "1.17.2-1-windowsservercore-ltsc2016-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1-nanoserver-ltsc2022": {},
-            "1.17-nanoserver-ltsc2022": {},
-            "1.17.2-1-nanoserver-ltsc2022": {},
-            "1.17.2-nanoserver-ltsc2022": {},
-            "nanoserver-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.17.2-1-windowsservercore-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "dockerfile": "src/microsoft/1.17/windows/nanoserver-ltsc2022",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2022",
-              "tags": {
-                "1.17.2-1-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1-nanoserver-1809": {},
-            "1.17-nanoserver-1809": {},
-            "1.17.2-1-nanoserver-1809": {},
-            "1.17.2-nanoserver-1809": {},
-            "nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.17.2-1-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "dockerfile": "src/microsoft/1.17/windows/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.17.2-1-nanoserver-1809-amd64": {}
+                "dev-fips-1.17.2-1-cbl-mariner1.0.20211027-amd64": {}
               }
             }
           ]
