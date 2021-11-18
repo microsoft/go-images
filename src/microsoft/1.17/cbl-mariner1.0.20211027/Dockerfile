@@ -97,6 +97,15 @@ RUN set -eux; \
 		; \
 	fi; \
 	\
+	# We downloaded a FIPS/OpenSSL version of Go that may have been built with a different version
+	# of OpenSSL than we have installed in this image. That makes them incompatible and Go will fail
+	# to load OpenSSL. To fix this, recompile the boring/OpenSSL package on the current system. Also
+	# recompile commands so "go run", "go build" and other commands work under FIPS mode.
+	#
+	# Note that in microsoft/go-images, we always download a prebuilt copy of Go, so we don't need
+	# to worry about checking "$build" here to avoid unnecessary work.
+	/usr/local/go/bin/go install -a crypto/internal/boring cmd; \
+	\
 	go version
 
 ENV GOPATH /go
