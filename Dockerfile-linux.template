@@ -10,6 +10,10 @@
 	;
 	def cbl_mariner_version:
 		env.variant | ltrimstr("cbl-mariner")
+	;
+
+	def is_fips:
+		(.tagPrefix // "") | contains("fips")
 -}}
 {{ if is_alpine then ( -}}
 FROM alpine:{{ alpine_version }}
@@ -30,7 +34,7 @@ RUN tdnf install -y \
 		glibc-devel \
 		kernel-headers \
 {{
-	if .templateArgs.fips then (
+	if is_fips then (
 -}}
 		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
 		openssl-devel \
@@ -53,7 +57,7 @@ RUN set -eux; \
 		make \
 		pkg-config \
 {{
-	if .templateArgs.fips then (
+	if is_fips then (
 -}}
 		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
 		libssl-dev \
@@ -235,7 +239,7 @@ RUN set -eux; \
 		; \
 	fi; \
 	\
-{{ if .templateArgs.fips then ( -}}
+{{ if is_fips then ( -}}
 	# We downloaded a FIPS/OpenSSL version of Go that may have been built with a different version
 	# of OpenSSL than we have installed in this image. That makes them incompatible and Go will fail
 	# to load OpenSSL. To fix this, recompile the boring/OpenSSL package on the current system. Also

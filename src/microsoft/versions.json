@@ -30,9 +30,6 @@
     "preferredMajor": true,
     "preferredMinor": true,
     "preferredVariant": "cbl-mariner1.0.20211027",
-    "tagPrefix": "dev-fips-",
-    "templateArgs": {
-      "fips": true
-    }
+    "tagPrefix": "dev-fips-"
   }
 }
