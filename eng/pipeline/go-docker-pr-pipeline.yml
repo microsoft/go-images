@@ -12,7 +12,8 @@ stages:
   - template: stages/build-test-publish-repo.yml
     parameters:
       extraParameters:
-        # "variables.x" syntax only gets correct values in pipeline file and need to be passed down.
+        # "variables.x" template expression only gets the correct value in this pipeline file. In a
+        # stage template, it returns an empty string. So, evaluate it here and pass it through.
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
         buildMatrixType: platformVersionedOs
