@@ -1,14 +1,12 @@
 # Create Go Docker image build and publish stages.
 parameters:
-  extraParameters: []
+  extraParameters: {}
 
 stages:
   - template: ../../common/templates/stages/build-test-publish-repo.yml
     parameters:
       buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
       noCache: true
-      internalProjectName: ${{ variables.internalProjectName }}
-      publicProjectName: ${{ variables.publicProjectName }}
       # Template paths must be relative to the YAML job that executes them
       customBuildInitSteps:
         - template: ../../../pipeline/steps/set-public-source-branch-var.yml
