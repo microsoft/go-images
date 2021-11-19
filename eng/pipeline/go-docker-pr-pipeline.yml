@@ -12,4 +12,7 @@ stages:
   - template: stages/build-test-publish-repo.yml
     parameters:
       extraParameters:
+        # "variables.x" syntax only gets correct values in pipeline file and need to be passed down.
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}
         buildMatrixType: platformVersionedOs
