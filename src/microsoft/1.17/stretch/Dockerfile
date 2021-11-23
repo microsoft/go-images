@@ -15,6 +15,8 @@ RUN set -eux; \
 		libc6-dev \
 		make \
 		pkg-config \
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		libssl-dev \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
@@ -27,8 +29,8 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20211101.4/go.20211101.4.linux-amd64.tar.gz'; \
-			sha256='b81aa30e422b17a952fb190349e8abd4d1a4ec2d4e1486f0144c0bfbbfa39425'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20211117.1/go.20211117.1.linux-amd64.tar.gz'; \
+			sha256='292714f3715a84cc90519f22d45b403d1dfc80c7014273603b93c526dce3e30a'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -96,6 +98,15 @@ RUN set -eux; \
 			/usr/local/go/src/cmd/dist/dist \
 		; \
 	fi; \
+	\
+	# We downloaded a FIPS/OpenSSL version of Go that may have been built with a different version
+	# of OpenSSL than we have installed in this image. That makes them incompatible and Go will fail
+	# to load OpenSSL. To fix this, recompile the boring/OpenSSL package on the current system. Also
+	# recompile commands so "go run", "go build" and other commands work under FIPS mode.
+	#
+	# Note that in microsoft/go-images, we always download a prebuilt copy of Go, so we don't need
+	# to worry about checking "$build" here to avoid unnecessary work.
+	/usr/local/go/bin/go install -a crypto/internal/boring cmd; \
 	\
 	go version
 
