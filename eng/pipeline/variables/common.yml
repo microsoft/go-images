@@ -24,7 +24,7 @@ variables:
 
 - name: officialBranches
   # list multiple branches as "'branch1', 'branch2', etc."
-  value: "'microsoft/main'"
+  value: "'microsoft/main','dev/official/go1.17-openssl-fips'"
 
 - name: manifest
   value: manifest.json
