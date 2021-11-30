@@ -33,6 +33,7 @@ RUN tdnf install -y \
 		glibc \
 		glibc-devel \
 		kernel-headers \
+		iana-etc \
 {{
 	if is_fips then (
 -}}
