@@ -22,15 +22,15 @@ RUN set -eux; \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.17.2
+ENV GOLANG_VERSION 1.17.5
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20211117.1/go.20211117.1.linux-amd64.tar.gz'; \
-			sha256='292714f3715a84cc90519f22d45b403d1dfc80c7014273603b93c526dce3e30a'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20211215.4/go.20211215.4.linux-amd64.tar.gz'; \
+			sha256='f9e54c5dbb0d8d05b74c688db0ba7170a9c264debba1245cc046b1317e701965'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \

@@ -13,8 +13,8 @@
           "sharedTags": {
             "dev-fips-1-bullseye": {},
             "dev-fips-1.17-bullseye": {},
-            "dev-fips-1.17.2-1-bullseye": {},
-            "dev-fips-1.17.2-bullseye": {},
+            "dev-fips-1.17.5-1-bullseye": {},
+            "dev-fips-1.17.5-bullseye": {},
             "dev-fips-bullseye": {}
           },
           "platforms": [
@@ -23,7 +23,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "dev-fips-1.17.2-1-bullseye-amd64": {}
+                "dev-fips-1.17.5-1-bullseye-amd64": {}
               }
             }
           ]
@@ -33,8 +33,8 @@
           "sharedTags": {
             "dev-fips-1-buster": {},
             "dev-fips-1.17-buster": {},
-            "dev-fips-1.17.2-1-buster": {},
-            "dev-fips-1.17.2-buster": {},
+            "dev-fips-1.17.5-1-buster": {},
+            "dev-fips-1.17.5-buster": {},
             "dev-fips-buster": {}
           },
           "platforms": [
@@ -43,7 +43,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "dev-fips-1.17.2-1-buster-amd64": {}
+                "dev-fips-1.17.5-1-buster-amd64": {}
               }
             }
           ]
@@ -53,8 +53,8 @@
           "sharedTags": {
             "dev-fips-1-stretch": {},
             "dev-fips-1.17-stretch": {},
-            "dev-fips-1.17.2-1-stretch": {},
-            "dev-fips-1.17.2-stretch": {},
+            "dev-fips-1.17.5-1-stretch": {},
+            "dev-fips-1.17.5-stretch": {},
             "dev-fips-stretch": {}
           },
           "platforms": [
@@ -63,7 +63,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "dev-fips-1.17.2-1-stretch-amd64": {}
+                "dev-fips-1.17.5-1-stretch-amd64": {}
               }
             }
           ]
@@ -75,10 +75,10 @@
             "dev-fips-1-cbl-mariner1.0.20211027": {},
             "dev-fips-1.17": {},
             "dev-fips-1.17-cbl-mariner1.0.20211027": {},
-            "dev-fips-1.17.2": {},
-            "dev-fips-1.17.2-1": {},
-            "dev-fips-1.17.2-1-cbl-mariner1.0.20211027": {},
-            "dev-fips-1.17.2-cbl-mariner1.0.20211027": {},
+            "dev-fips-1.17.5": {},
+            "dev-fips-1.17.5-1": {},
+            "dev-fips-1.17.5-1-cbl-mariner1.0.20211027": {},
+            "dev-fips-1.17.5-cbl-mariner1.0.20211027": {},
             "dev-fips-cbl-mariner1.0.20211027": {},
             "dev-fips-latest": {}
           },
@@ -88,7 +88,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0.20211027",
               "tags": {
-                "dev-fips-1.17.2-1-cbl-mariner1.0.20211027-amd64": {}
+                "dev-fips-1.17.5-1-cbl-mariner1.0.20211027-amd64": {}
               }
             }
           ]
