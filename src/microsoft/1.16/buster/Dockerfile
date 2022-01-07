@@ -20,15 +20,15 @@ RUN set -eux; \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.16.12
+ENV GOLANG_VERSION 1.16.13
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20211222.1/go.20211222.1.linux-amd64.tar.gz'; \
-			sha256='34f273ba771298aeef5aa5313a5aee1e92d14c134a7842879b9beab2ae948253'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220107.1/go.20220107.1.linux-amd64.tar.gz'; \
+			sha256='566a39844dc1fef994bd189806cdc0ce87ba0f0a5e3e3e8ba1a1bcbb22059acc'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
