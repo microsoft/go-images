@@ -21,15 +21,15 @@ RUN tdnf install -y \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.17.5
+ENV GOLANG_VERSION 1.17.6
 
 RUN set -eux; \
 	arch="$(uname -m)"; \
 	url=; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20220110.1/go.20220110.1.linux-amd64.tar.gz'; \
-			sha256='ded2ae7b24c3056caaa5814e0205effe1e589bdbeff4e0a04b429e161f091b64'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20220110.3/go.20220110.3.linux-amd64.tar.gz'; \
+			sha256='785636e3c5fe3388a27e1f79695df3b2e8e9bb417c72f2084001e69fd7c60242'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
