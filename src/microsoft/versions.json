@@ -70,18 +70,18 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "d76e6a2055c762aca65841db405b05414c8fa70271002308ea716c53984c370c",
+        "sha256": "b5a2e59c0e116c0b36768c7c7a3520b56e088721792ac1908e5faea1112d55b4",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220113.4/go.20220113.4.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220125.1/go.20220125.1.linux-amd64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "db58e9f36a5b3c31ac5e842de7ccd118e9bbf4caf02a2f3b09307f778c938932",
+        "sha256": "54773faf4b3ba569e0dfbbd247961ad0071e4502598351630e0f3b41bc16c385",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220113.4/go.20220113.4.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220125.1/go.20220125.1.windows-amd64.zip"
       }
     },
     "variants": [
