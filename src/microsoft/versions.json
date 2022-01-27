@@ -6,17 +6,17 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "56edc376eeb524878ab92fe3e96a5be1739790b3ac56e4b67bb4b3cac87837fa",
+        "sha256": "7a05a14bd9b1f7730499dd9011cc1e795a616f28e362b4da9b290cc4885b9217",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20220117.1/go.20220117.1.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20220127.2/go.20220127.2.linux-amd64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "3710c51c40f0bdef8c752762ebfde677e8b11a68d7edd289f797a89a53fd8bc8",
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20220117.1/go.20220117.1.windows-amd64.zip"
+        "sha256": "f32b103d22548841889806fc16d54a3179121149c70749355b38ee0bb7c44a7b",
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev/official/go1.17-openssl-fips/20220127.2/go.20220127.2.windows-amd64.zip"
       }
     },
     "variants": [
