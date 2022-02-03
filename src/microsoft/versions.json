@@ -99,5 +99,26 @@
     "preferredMajor": true,
     "preferredMinor": true,
     "preferredVariant": "bullseye"
+  },
+  "1.17-fips": {
+    "arches": {
+      "amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "linux"
+        },
+        "sha256": "7fb05af800e2af224bcf03e5bf9d89cece7ff486a26aea85a8fe198c14781aa0",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220131.4/go.20220131.4.linux-amd64.tar.gz"
+      }
+    },
+    "variants": [
+      "cbl-mariner1.0.20211027"
+    ],
+    "version": "1.17.6",
+    "revision": "1",
+    "preferredMinor": true,
+    "preferredVariant": "cbl-mariner1.0.20211027",
+    "branchSuffix": "-fips"
   }
 }

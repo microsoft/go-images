@@ -374,6 +374,29 @@
               }
             }
           ]
+        },
+        {
+          "productVersion": "1.17",
+          "sharedTags": {
+            "1-fips": {},
+            "1-fips-cbl-mariner1.0.20211027": {},
+            "1.17-fips": {},
+            "1.17-fips-cbl-mariner1.0.20211027": {},
+            "1.17.6-1-fips": {},
+            "1.17.6-1-fips-cbl-mariner1.0.20211027": {},
+            "1.17.6-fips": {},
+            "1.17.6-fips-cbl-mariner1.0.20211027": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0.20211027",
+              "os": "linux",
+              "osVersion": "cbl-mariner1.0.20211027",
+              "tags": {
+                "1.17.6-1-fips-cbl-mariner1.0.20211027-amd64": {}
+              }
+            }
+          ]
         }
       ]
     }

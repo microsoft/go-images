@@ -1,31 +1,10 @@
-{{
-	def is_alpine:
-		env.variant | startswith("alpine")
-	;
-	def alpine_version:
-		env.variant | ltrimstr("alpine")
-	;
-	def is_cbl_mariner:
-		env.variant | startswith("cbl-mariner")
-	;
-	def cbl_mariner_version:
-		env.variant | ltrimstr("cbl-mariner")
-	;
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
 
-	def is_fips:
-		(.branchSuffix // "") | contains("fips")
--}}
-{{ if is_alpine then ( -}}
-FROM alpine:{{ alpine_version }}
-
-RUN apk add --no-cache ca-certificates
-
-# set up nsswitch.conf for Go's "netgo" implementation
-# - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
-# - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
-RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
-{{ ) elif is_cbl_mariner then ( -}}
-FROM cblmariner.azurecr.io/base/core:{{ cbl_mariner_version }}
+FROM cblmariner.azurecr.io/base/core:1.0.20211027
 
 RUN tdnf install -y \
 		binutils \
@@ -34,130 +13,41 @@ RUN tdnf install -y \
 		glibc-devel \
 		kernel-headers \
 		iana-etc \
-{{
-	if is_fips then (
--}}
 		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
 		openssl-devel \
-{{
-	) else "" end
--}}
 	; \
 	tdnf clean all
 
-{{ ) else ( -}}
-FROM buildpack-deps:{{ env.variant }}-scm
-
-# install cgo-related dependencies
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		g++ \
-		gcc \
-		libc6-dev \
-		make \
-		pkg-config \
-{{
-	if is_fips then (
--}}
-		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
-		libssl-dev \
-{{
-	) else "" end
--}}
-	; \
-	rm -rf /var/lib/apt/lists/*
-{{ ) end -}}
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION {{ .version }}
+ENV GOLANG_VERSION 1.17.6
 
-{{
-	def os_arches:
-		if is_alpine then
-			{
-				amd64: "x86_64",
-				arm32v6: "armhf",
-				arm32v7: "armv7",
-				arm64v8: "aarch64",
-				i386: "x86",
-				ppc64le: "ppc64le",
-				s390x: "s390x",
-			}
-		elif is_cbl_mariner then
-			{
-				amd64: "x86_64",
-			}
-		else
-			{
-				amd64: "amd64",
-				arm32v5: "armel",
-				arm32v7: "armhf",
-				arm64v8: "arm64",
-				i386: "i386",
-				mips64le: "mips64el",
-				ppc64le: "ppc64el",
-				s390x: "s390x",
-			}
-		end
--}}
 RUN set -eux; \
-{{ if is_alpine then ( -}}
-	apk add --no-cache --virtual .fetch-deps gnupg; \
-	arch="$(apk --print-arch)"; \
-{{ ) elif is_cbl_mariner then ( -}}
 	arch="$(uname -m)"; \
-{{ ) else ( -}}
-	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
-{{ ) end -}}
 	url=; \
 	case "$arch" in \
-{{
-	[
-		.arches | to_entries[]
-		| select(.value.supported)
-		| .key as $bashbrewArch
-		| (
-			os_arches
-			| .[$bashbrewArch] // empty
-		) as $osArch
-		| .value
-		| (
--}}
-		{{ $osArch | @sh }}) \
-{{ if .url and (is_alpine | not) then ( -}}
-			url={{ .url | @sh }}; \
-			sha256={{ .sha256 | @sh }}; \
-{{ ) else ( -}}
-			export {{ .env | to_entries | map(.key + "=" + (.value | @sh)) | join(" ") }}; \
-{{ ) end -}}
+		'x86_64') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220131.4/go.20220131.4.linux-amd64.tar.gz'; \
+			sha256='7fb05af800e2af224bcf03e5bf9d89cece7ff486a26aea85a8fe198c14781aa0'; \
 			;; \
-{{
-		)
-	] | add
--}}
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
 	build=; \
 	if [ -z "$url" ]; then \
 # https://github.com/golang/go/issues/38536#issuecomment-616897960
 		build=1; \
-		url={{ .arches.src.url | @sh }}; \
-		sha256={{ .arches.src.sha256 | @sh }}; \
-{{ if is_alpine then ( -}}
-# the precompiled binaries published by Go upstream are not compatible with Alpine, so we always build from source here 😅
-{{ ) else ( -}}
+		url=null; \
+		sha256=null; \
 		echo >&2; \
 		echo >&2 "warning: current architecture ($arch) does not have a compatible Go binary release; will be building from source"; \
 		echo >&2; \
-{{ ) end -}}
 	fi; \
 	\
 # NO MICROSOFT_UPSTREAM: Change ".asc" to ".sig" to match the filename we publish. https://github.com/microsoft/go/issues/181
 	wget -O go.tgz.asc "$url.sig" --progress=dot:giga; \
 # END NO MICROSOFT_UPSTREAM
-	wget -O go.tgz "$url"{{ if is_alpine then "" else " --progress=dot:giga" end }}; \
+	wget -O go.tgz "$url" --progress=dot:giga; \
 	echo "$sha256 *go.tgz" | sha256sum -c -; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
@@ -178,18 +68,9 @@ RUN set -eux; \
 	rm go.tgz; \
 	\
 	if [ -n "$build" ]; then \
-{{ if is_alpine then ( -}}
-		apk add --no-cache --virtual .build-deps \
-			bash \
-			gcc \
-			go \
-			musl-dev \
-		; \
-{{ ) else ( -}}
 		savedAptMark="$(apt-mark showmanual)"; \
 		apt-get update; \
 		apt-get install -y --no-install-recommends golang-go; \
-{{ ) end -}}
 		\
 		( \
 			cd /usr/local/go/src; \
@@ -198,14 +79,10 @@ RUN set -eux; \
 			./make.bash; \
 		); \
 		\
-{{ if is_alpine then ( -}}
-		apk del --no-network .build-deps; \
-{{ ) else ( -}}
 		apt-mark auto '.*' > /dev/null; \
 		apt-mark manual $savedAptMark > /dev/null; \
 		apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 		rm -rf /var/lib/apt/lists/*; \
-{{ ) end -}}
 		\
 # pre-compile the standard library, just like the official binary release tarballs do
 		go install std; \
@@ -223,10 +100,6 @@ RUN set -eux; \
 		; \
 	fi; \
 	\
-{{ if is_alpine then ( -}}
-	apk del --no-network .fetch-deps; \
-	\
-{{ ) else "" end -}}
 	go version
 
 ENV GOPATH /go
