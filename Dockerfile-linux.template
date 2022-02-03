@@ -4,6 +4,16 @@
 	;
 	def alpine_version:
 		env.variant | ltrimstr("alpine")
+	;
+	def is_cbl_mariner:
+		env.variant | startswith("cbl-mariner")
+	;
+	def cbl_mariner_version:
+		env.variant | ltrimstr("cbl-mariner")
+	;
+
+	def is_fips:
+		(.tagPrefix // "") | contains("fips")
 -}}
 {{ if is_alpine then ( -}}
 FROM alpine:{{ alpine_version }}
@@ -14,6 +24,27 @@ RUN apk add --no-cache ca-certificates
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+{{ ) elif is_cbl_mariner then ( -}}
+FROM cblmariner.azurecr.io/base/core:{{ cbl_mariner_version }}
+
+RUN tdnf install -y \
+		binutils \
+		gcc \
+		glibc \
+		glibc-devel \
+		kernel-headers \
+		iana-etc \
+{{
+	if is_fips then (
+-}}
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		openssl-devel \
+{{
+	) else "" end
+-}}
+	; \
+	tdnf clean all
+
 {{ ) else ( -}}
 FROM buildpack-deps:{{ env.variant }}-scm
 
@@ -26,6 +57,14 @@ RUN set -eux; \
 		libc6-dev \
 		make \
 		pkg-config \
+{{
+	if is_fips then (
+-}}
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		libssl-dev \
+{{
+	) else "" end
+-}}
 	; \
 	rm -rf /var/lib/apt/lists/*
 {{ ) end -}}
@@ -46,6 +85,10 @@ ENV GOLANG_VERSION {{ .version }}
 				ppc64le: "ppc64le",
 				s390x: "s390x",
 			}
+		elif is_cbl_mariner then
+			{
+				amd64: "x86_64",
+			}
 		else
 			{
 				amd64: "amd64",
@@ -63,6 +106,8 @@ RUN set -eux; \
 {{ if is_alpine then ( -}}
 	apk add --no-cache --virtual .fetch-deps gnupg; \
 	arch="$(apk --print-arch)"; \
+{{ ) elif is_cbl_mariner then ( -}}
+	arch="$(uname -m)"; \
 {{ ) else ( -}}
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 {{ ) end -}}
@@ -178,6 +223,17 @@ RUN set -eux; \
 		; \
 	fi; \
 	\
+{{ if is_fips then ( -}}
+	# We downloaded a FIPS/OpenSSL version of Go that may have been built with a different version
+	# of OpenSSL than we have installed in this image. That makes them incompatible and Go will fail
+	# to load OpenSSL. To fix this, recompile the boring/OpenSSL package on the current system. Also
+	# recompile commands so "go run", "go build" and other commands work under FIPS mode.
+	#
+	# Note that in microsoft/go-images, we always download a prebuilt copy of Go, so we don't need
+	# to worry about checking "$build" here to avoid unnecessary work.
+	/usr/local/go/bin/go install -a crypto/internal/boring cmd; \
+	\
+{{ ) else "" end -}}
 {{ if is_alpine then ( -}}
 	apk del --no-network .fetch-deps; \
 	\
