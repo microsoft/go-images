@@ -1,0 +1,34 @@
+# The "publicSourceBranch" variable is used by .NET Docker infra templates as part of the image info
+# filename in dotnet/versions. This is used to cache metadata about the results of previous builds
+# to allow features like skipping builds of unchanged images. So, simplify "microsoft/main" to
+# "main" and "microsoft/nightly" to "nightly". For PRs, use "main" as the image info source unless
+# the PR is merging into "nightly". Also handle dev branch targets.
+#
+# See https://github.com/dotnet/dotnet-docker/blob/480e62a/eng/pipelines/steps/set-public-source-branch-var.yml
+steps:
+- powershell: |
+    # Make simple string vars for source branch and PR branch (or empty string if not a PR).
+    $s = "$(sourceBranch)"
+    $pr = $env:SYSTEM_PULLREQUEST_TARGETBRANCH
+    if (-not $pr) {
+        $pr = ""
+    }
+
+    if ($pr.StartsWith("dev/official/")) {
+        $publicSourceBranch = $pr
+    }
+    elseif ($s.StartsWith("dev/official/")) {
+        $publicSourceBranch = $s
+    }
+    elseif ($s -eq "microsoft/nightly" -or $pr -eq "microsoft/nightly") {
+        $publicSourceBranch = "nightly"
+    }
+    else {
+        $publicSourceBranch = "main"
+    }
+
+    # Make branch usable as filename. E.g. change "dev/official/feature" to "dev-official-feature".
+    $publicSourceBranch = $publicSourceBranch -replace "/","-"
+
+    echo "##vso[task.setvariable variable=publicSourceBranch]$publicSourceBranch"
+  displayName: Set Public Source Branch Var

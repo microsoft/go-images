@@ -4,6 +4,16 @@
 	;
 	def alpine_version:
 		env.variant | ltrimstr("alpine")
+	;
+	def is_cbl_mariner:
+		env.variant | startswith("cbl-mariner")
+	;
+	def cbl_mariner_version:
+		env.variant | ltrimstr("cbl-mariner")
+	;
+
+	def is_fips:
+		(.branchSuffix // "") | contains("fips")
 -}}
 {{ if is_alpine then ( -}}
 FROM alpine:{{ alpine_version }}
@@ -14,6 +24,27 @@ RUN apk add --no-cache ca-certificates
 # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
 # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
 RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
+{{ ) elif is_cbl_mariner then ( -}}
+FROM cblmariner.azurecr.io/base/core:{{ cbl_mariner_version }}
+
+RUN tdnf install -y \
+		binutils \
+		gcc \
+		glibc \
+		glibc-devel \
+		kernel-headers \
+		iana-etc \
+{{
+	if is_fips then (
+-}}
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		openssl-devel \
+{{
+	) else "" end
+-}}
+	; \
+	tdnf clean all
+
 {{ ) else ( -}}
 FROM buildpack-deps:{{ env.variant }}-scm
 
@@ -26,6 +57,14 @@ RUN set -eux; \
 		libc6-dev \
 		make \
 		pkg-config \
+{{
+	if is_fips then (
+-}}
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		libssl-dev \
+{{
+	) else "" end
+-}}
 	; \
 	rm -rf /var/lib/apt/lists/*
 {{ ) end -}}
@@ -46,6 +85,10 @@ ENV GOLANG_VERSION {{ .version }}
 				ppc64le: "ppc64le",
 				s390x: "s390x",
 			}
+		elif is_cbl_mariner then
+			{
+				amd64: "x86_64",
+			}
 		else
 			{
 				amd64: "amd64",
@@ -63,6 +106,8 @@ RUN set -eux; \
 {{ if is_alpine then ( -}}
 	apk add --no-cache --virtual .fetch-deps gnupg; \
 	arch="$(apk --print-arch)"; \
+{{ ) elif is_cbl_mariner then ( -}}
+	arch="$(uname -m)"; \
 {{ ) else ( -}}
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 {{ ) end -}}
@@ -122,7 +167,9 @@ RUN set -eux; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
 # END NO MICROSOFT_UPSTREAM
 # https://www.google.com/linuxrepositories/
-	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC EC91 7721 F63B D38B 4796'; \
+	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
+# let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
+	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
 	gpg --batch --verify go.tgz.asc go.tgz; \
 	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" go.tgz.asc; \
@@ -148,26 +195,7 @@ RUN set -eux; \
 			cd /usr/local/go/src; \
 # set GOROOT_BOOTSTRAP + GOHOST* such that we can build Go successfully
 			export GOROOT_BOOTSTRAP="$(go env GOROOT)" GOHOSTOS="$GOOS" GOHOSTARCH="$GOARCH"; \
-{{
-	def need_386_hack:
-		is_alpine and alpine_version == "3.13"
--}}
-{{ if need_386_hack then ( -}}
-			if [ -n "${GO386:-}" ]; then \
-# https://github.com/docker-library/golang/issues/359 -> https://github.com/golang/go/issues/44500
-# Go 1.16 + Alpine 3.13 == Go 1.15 bootstrap
-# (once Alpine 3.13 goes away, we can remove this)
-				GO386= ./bootstrap.bash; \
-				export GOROOT_BOOTSTRAP="/usr/local/go-$GOOS-$GOARCH-bootstrap"; \
-				"$GOROOT_BOOTSTRAP/bin/go" version; \
-			fi; \
-{{ ) else "" end -}}
 			./make.bash; \
-{{ if need_386_hack then ( -}}
-			if [ -n "${GO386:-}" ]; then \
-				rm -rf "$GOROOT_BOOTSTRAP"; \
-			fi; \
-{{ ) else "" end -}}
 		); \
 		\
 {{ if is_alpine then ( -}}

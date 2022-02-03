@@ -142,14 +142,13 @@ for version in "${versions[@]}"; do
 			"buster",
 			"stretch",
 			(
-				"3.14",
-				"3.13"
+				"3.15",
+				"3.14"
 			| "alpine" + .),
 			if .arches | has("windows-amd64") then
 				(
 					"ltsc2022",
-					"1809",
-					"ltsc2016"
+					"1809"
 				| "windows/windowsservercore-" + .),
 				(
 					"ltsc2022",

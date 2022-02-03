@@ -3,13 +3,17 @@ trigger:
   branches:
     include:
       - microsoft/*
+      - dev/official/*
 pr: none
 
 variables:
   - template: variables/common.yml
 
 stages:
-  - template: ../common/templates/stages/build-test-publish-repo.yml
+  - template: stages/build-test-publish-repo.yml
     parameters:
-      buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
-      noCache: true
+      extraParameters:
+        # "variables.x" template expression only gets the correct value in this pipeline file. In a
+        # stage template, it returns an empty string. So, evaluate it here and pass it through.
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}

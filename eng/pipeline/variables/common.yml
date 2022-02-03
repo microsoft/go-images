@@ -1,7 +1,18 @@
 variables:
 - template: ../../common/templates/variables/common.yml
+
+- name: publicProjectName
+  value: public
+- name: internalProjectName
+  value: internal
+
+- name: commonVersionsImageInfoPath
+  value: build-info/docker
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
+- name: officialRepoPrefix
+  value: public/
+
 - name: publishReadme
   value: false
 # https://github.com/microsoft/go/issues/157 tracks enabling publishImageInfo.
@@ -10,21 +21,27 @@ variables:
 # https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
 - name: ingestKustoImageInfo
   value: false
-- name: productVersionComponents
-  value: 2
+
 - name: officialBranches
   # list multiple branches as "'branch1', 'branch2', etc."
   value: "'microsoft/main'"
+
 - name: manifest
   value: manifest.json
+
+# dotnet/versions repo path info is used in shared templates. Even though we aren't publishing
+# there, it needs to be specified to avoid pipeline errors when the variable is referenced in tasks.
+- name: gitHubVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
+- name: azdoVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
 
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - group: go-docker-common
   - group: go-docker-secrets
   - group: go-docker-shared-DotNet-Docker-Secrets
 
-# Map go-docker secrets onto the dotnet-docker secret names that the templates assume we're using.
-- name: BotAccount-dotnet-docker-acr-bot-password
+- name: acr.password
   value: $(BotAccount-golang-docker-acr-bot-password)
-- name: app-dotnetdockerbuild-client-secret
+- name: acr.servicePrincipalPassword
   value: $(GolangDockerBuild)
