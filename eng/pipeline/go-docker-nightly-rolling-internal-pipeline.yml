@@ -1,11 +1,15 @@
-trigger: none
-pr:
+trigger:
+  batch: true
   branches:
     include:
-      - microsoft/main
+      - microsoft/nightly
+      - dev/official/*
+pr: none
 
 variables:
   - template: variables/common.yml
+    parameters:
+      nightly: true
 
 stages:
   - template: stages/build-test-publish-repo.yml
@@ -15,4 +19,3 @@ stages:
         # stage template, it returns an empty string. So, evaluate it here and pass it through.
         internalProjectName: ${{ variables.internalProjectName }}
         publicProjectName: ${{ variables.publicProjectName }}
-        buildMatrixType: platformVersionedOs

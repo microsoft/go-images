@@ -1,3 +1,6 @@
+parameters:
+  nightly: false
+
 variables:
 - template: ../../common/templates/variables/common.yml
 
@@ -11,7 +14,12 @@ variables:
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
 - name: officialRepoPrefix
-  value: public/
+  ${{ if eq(parameters.nightly, false) }}:
+    # Publish to "public/", which will be detected by MCR trigger.
+    value: public/
+  ${{ if eq(parameters.nightly, true) }}:
+    # In the nightly branch, publish to ACR only. The prefix doesn't need to match MCR expectations.
+    value: nightly/
 
 - name: publishReadme
   value: false
@@ -24,7 +32,10 @@ variables:
 
 - name: officialBranches
   # list multiple branches as "'branch1', 'branch2', etc."
-  value: "'microsoft/main'"
+  ${{ if eq(parameters.nightly, false) }}:
+    value: "'microsoft/main'"
+  ${{ if eq(parameters.nightly, true) }}:
+    value: "'nightly'"
 
 - name: manifest
   value: manifest.json
@@ -37,7 +48,10 @@ variables:
   value: ${{ variables.commonVersionsImageInfoPath }}
 
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
-  - group: go-docker-common
+  - ${{ if eq(parameters.nightly, false) }}:
+    - group: go-docker-common
+  - ${{ if eq(parameters.nightly, true) }}:
+    - group: go-docker-common-nightly
   - group: go-docker-secrets
   - group: go-docker-shared-DotNet-Docker-Secrets
 
