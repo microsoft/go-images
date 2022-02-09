@@ -56,6 +56,9 @@ variables:
   - group: go-docker-shared-DotNet-Docker-Secrets
 
 - name: acr.password
-  value: $(BotAccount-golang-docker-acr-bot-password)
+  ${{ if eq(parameters.nightly, false) }}:
+    value: $(BotAccount-golang-docker-acr-bot-password)
+  ${{ if eq(parameters.nightly, true) }}:
+    value: $(BotAccount-golang-docker-acr-public-bot-password)
 - name: acr.servicePrincipalPassword
   value: $(GolangDockerBuild)
