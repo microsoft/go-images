@@ -13,8 +13,6 @@ RUN tdnf install -y \
 		glibc-devel \
 		kernel-headers \
 		iana-etc \
-		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
-		openssl-devel \
 	; \
 	tdnf clean all
 

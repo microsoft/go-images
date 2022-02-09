@@ -376,16 +376,16 @@
           ]
         },
         {
-          "productVersion": "1.17",
+          "productVersion": "1.17-fips",
           "sharedTags": {
-            "1-fips": {},
-            "1-fips-cbl-mariner1.0.20211027": {},
+            "1": {},
+            "1-cbl-mariner1.0.20211027": {},
             "1.17-fips": {},
             "1.17-fips-cbl-mariner1.0.20211027": {},
-            "1.17.6-1-fips": {},
-            "1.17.6-1-fips-cbl-mariner1.0.20211027": {},
-            "1.17.6-fips": {},
-            "1.17.6-fips-cbl-mariner1.0.20211027": {}
+            "1.17.6": {},
+            "1.17.6-1": {},
+            "1.17.6-1-cbl-mariner1.0.20211027": {},
+            "1.17.6-cbl-mariner1.0.20211027": {}
           },
           "platforms": [
             {
@@ -393,7 +393,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0.20211027",
               "tags": {
-                "1.17.6-1-fips-cbl-mariner1.0.20211027-amd64": {}
+                "1.17.6-1-cbl-mariner1.0.20211027-amd64": {}
               }
             }
           ]

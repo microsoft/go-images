@@ -38,18 +38,18 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "9cc5c06ef45bbf1025e6332116433fc8bc377da70bbd41befb71859eb99909fe",
+        "sha256": "62de2b8b15538fff273e82e6ea371db5a30e2382df1fe1ec847c136e6d738fd3",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220131.3/go.20220131.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220209.4/go.20220209.4.linux-amd64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "2b1a8e9bb2ba7a18abaa008f92d288ee9bfabd6feade937e70f2ac1fce1dc8b2",
+        "sha256": "0022901fca31b25749a93b84809c257ac9a6ef8eb1b9a3062cfdb26e4312e63c",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220131.3/go.20220131.3.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220209.4/go.20220209.4.windows-amd64.zip"
       }
     },
     "variants": [
@@ -118,7 +118,6 @@
     "version": "1.17.6",
     "revision": "1",
     "preferredMinor": true,
-    "preferredVariant": "cbl-mariner1.0.20211027",
-    "branchSuffix": "-fips"
+    "preferredVariant": "cbl-mariner1.0.20211027"
   }
 }
