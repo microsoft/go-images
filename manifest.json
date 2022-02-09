@@ -379,21 +379,21 @@
           "productVersion": "1.17",
           "sharedTags": {
             "1-fips": {},
-            "1-fips-cbl-mariner1.0.20211027": {},
+            "1-fips-cbl-mariner1.0": {},
             "1.17-fips": {},
-            "1.17-fips-cbl-mariner1.0.20211027": {},
+            "1.17-fips-cbl-mariner1.0": {},
             "1.17.6-1-fips": {},
-            "1.17.6-1-fips-cbl-mariner1.0.20211027": {},
+            "1.17.6-1-fips-cbl-mariner1.0": {},
             "1.17.6-fips": {},
-            "1.17.6-fips-cbl-mariner1.0.20211027": {}
+            "1.17.6-fips-cbl-mariner1.0": {}
           },
           "platforms": [
             {
-              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0.20211027",
+              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0",
               "os": "linux",
-              "osVersion": "cbl-mariner1.0.20211027",
+              "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.17.6-1-fips-cbl-mariner1.0.20211027-amd64": {}
+                "1.17.6-1-fips-cbl-mariner1.0-amd64": {}
               }
             }
           ]

@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM cblmariner.azurecr.io/base/core:1.0.20211027
+FROM cblmariner.azurecr.io/base/core:1.0
 
 RUN tdnf install -y \
 		binutils \

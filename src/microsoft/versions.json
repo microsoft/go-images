@@ -113,12 +113,12 @@
       }
     },
     "variants": [
-      "cbl-mariner1.0.20211027"
+      "cbl-mariner1.0"
     ],
     "version": "1.17.6",
     "revision": "1",
     "preferredMinor": true,
-    "preferredVariant": "cbl-mariner1.0.20211027",
+    "preferredVariant": "cbl-mariner1.0",
     "branchSuffix": "-fips"
   }
 }
