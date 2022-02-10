@@ -1,36 +1,4 @@
 {
-  "1.15": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "0649ef5fcfe0526030a26484ed2a8f5ee7a4a101602b81db5075b99e4089ec30",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.15/20220113.3/go.20220113.3.linux-amd64.tar.gz"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "5ab12679fe9e86af787c5421fcb071867b84faf6e7d2f9fbbeebcaa119232387",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.15/20220113.3/go.20220113.3.windows-amd64.zip"
-      }
-    },
-    "variants": [
-      "buster",
-      "stretch",
-      "windows/windowsservercore-1809",
-      "windows/nanoserver-1809",
-      "windows/windowsservercore-ltsc2016"
-    ],
-    "version": "1.15.15",
-    "revision": "1",
-    "preferredVariant": "buster"
-  },
   "1.16": {
     "arches": {
       "amd64": {
@@ -113,12 +81,12 @@
       }
     },
     "variants": [
-      "cbl-mariner1.0.20211027"
+      "cbl-mariner1.0"
     ],
     "version": "1.17.6",
     "revision": "1",
     "preferredMinor": true,
-    "preferredVariant": "cbl-mariner1.0.20211027",
+    "preferredVariant": "cbl-mariner1.0",
     "branchSuffix": "-fips"
   }
 }

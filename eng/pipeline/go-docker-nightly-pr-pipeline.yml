@@ -2,10 +2,13 @@ trigger: none
 pr:
   branches:
     include:
-      - microsoft/main
+      - microsoft/nightly
+      - dev/official/*
 
 variables:
   - template: variables/common.yml
+    parameters:
+      nightly: true
 
 stages:
   - template: stages/build-test-publish-repo.yml

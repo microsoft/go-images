@@ -4,31 +4,32 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:stretch-scm
+FROM cblmariner.azurecr.io/base/core:1.0
 
-# install cgo-related dependencies
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		g++ \
+RUN tdnf install -y \
+		binutils \
 		gcc \
-		libc6-dev \
-		make \
-		pkg-config \
+		glibc \
+		glibc-devel \
+		kernel-headers \
+		iana-etc \
+		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
+		openssl-devel \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	tdnf clean all
+
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.15.15
+ENV GOLANG_VERSION 1.17.6
 
 RUN set -eux; \
-	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+	arch="$(uname -m)"; \
 	url=; \
 	case "$arch" in \
-		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.15/20220113.3/go.20220113.3.linux-amd64.tar.gz'; \
-			sha256='0649ef5fcfe0526030a26484ed2a8f5ee7a4a101602b81db5075b99e4089ec30'; \
+		'x86_64') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220131.4/go.20220131.4.linux-amd64.tar.gz'; \
+			sha256='7fb05af800e2af224bcf03e5bf9d89cece7ff486a26aea85a8fe198c14781aa0'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \

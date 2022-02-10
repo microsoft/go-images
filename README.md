@@ -9,9 +9,9 @@ See [eng/README.md](eng/README.md) for information about the infrastructure.
 
 To view the list of available tags:
 
-* Microsoft Container Registry API: https://mcr.microsoft.com/v2/oss/go/microsoft/alpha/golang/tags/list
+* Microsoft Container Registry API: https://mcr.microsoft.com/v2/oss/go/microsoft/golang/tags/list
   * The full tag URL is `mcr.microsoft.com/{name}:{tag}`
-* AZCU Indexer (Microsoft auth required): https://azcuindexer.azurewebsites.net/repositories/oss/go/microsoft/alpha/golang
+* AZCU Indexer (Microsoft auth required): https://azcuindexer.azurewebsites.net/repositories/oss/go/microsoft/golang
   * Click on a tag name to copy the full tag URL to your clipboard
 
 ## Contributing

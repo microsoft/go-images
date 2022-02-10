@@ -1,9 +1,4 @@
-trigger:
-  batch: true
-  branches:
-    include:
-      - microsoft/*
-      - dev/official/*
+trigger: none
 pr: none
 
 variables:
