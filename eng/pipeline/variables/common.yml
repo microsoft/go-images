@@ -35,7 +35,7 @@ variables:
   ${{ if eq(parameters.nightly, false) }}:
     value: "'microsoft/main'"
   ${{ if eq(parameters.nightly, true) }}:
-    value: "'nightly'"
+    value: "'microsoft/nightly'"
 
 - name: manifest
   value: manifest.json
