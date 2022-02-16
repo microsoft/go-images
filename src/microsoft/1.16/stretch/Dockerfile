@@ -27,8 +27,8 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220209.9/go.20220209.9.linux-amd64.tar.gz'; \
-			sha256='190381cc3dff2453d3f7eddf74a8fae49b30317d840b78b0086b394a4f5f28fc'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220215.1/go.20220215.1.linux-amd64.tar.gz'; \
+			sha256='dbb155d91f44638c81d36b2565aede1605deedf01740a1c4b10fd275d61a0673'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -82,11 +82,6 @@ RUN set -eux; \
 		apt-mark manual $savedAptMark > /dev/null; \
 		apt-get purge -y --auto-remove -o APT::AutoRemove::RecommendsImportant=false; \
 		rm -rf /var/lib/apt/lists/*; \
-		\
-# pre-compile the standard library, just like the official binary release tarballs do
-		go install std; \
-# go install: -race is only supported on linux/amd64, linux/ppc64le, linux/arm64, freebsd/amd64, netbsd/amd64, darwin/amd64 and windows/amd64
-#		go install -race std; \
 		\
 # remove a few intermediate / bootstrapping files the official binary release tarballs do not contain
 		rm -rf \
