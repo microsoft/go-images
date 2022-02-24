@@ -1,9 +1,14 @@
 # Docker images containing the Microsoft build of Go
 
-This repository is derived from https://github.com/docker-library/golang, and
-has been changed to build within Microsoft infrastructure and deliver the
-Microsoft build of Go produced by the
-[microsoft/go](https://github.com/microsoft/go) repository.
+This repository creates Docker images that contain the Microsoft build of Go
+produced by the [microsoft/go](https://github.com/microsoft/go) repository. The
+tags are published on the Microsoft Container Registry (MCR) in the
+`oss/go/microsoft/golang` repository.
+
+The submodule named `go` contains the source code for the official Golang image
+repository, https://github.com/docker-library/golang. The submodule contains
+templates that this repository uses to create the Dockerfiles that contain the
+Microsoft build of Go.
 
 See [eng/README.md](eng/README.md) for information about the infrastructure.
 
