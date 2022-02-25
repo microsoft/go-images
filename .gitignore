@@ -3,3 +3,6 @@
 # The ImageBuilder tool from .NET Docker copies binaries to this location temporarily during the
 # build. Ignore it for clean local builds.
 /.Microsoft.DotNet.ImageBuilder/
+
+# Artifacts from Go patching tools.
+/eng/artifacts/

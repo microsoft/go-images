@@ -4,19 +4,11 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-# NO MICROSOFT_UPSTREAM: Add "downloader" stage to make the Dockerfile work with .NET Docker infra.
-#
-# Docker doesn't support ARGs in "COPY --from", so we use ARGs to define a stage that "--from" can
-# reference later. We don't do anything at all in this stage: we're just creating it to declare a
-# stage name that we can reference later.
-# * https://github.com/docker/for-mac/issues/2155
-# * https://github.com/moby/moby/issues/34482
 ARG REPO=mcr.microsoft.com/oss/go/microsoft/golang
 # It's easy to download Go and install it in server core, but not nanoserver. So, to build
 # nanoserver, copy over the server core installation.
 ARG DOWNLOADER_TAG=1.16.14-windowsservercore-1809
 FROM $REPO:$DOWNLOADER_TAG AS downloader
-# END NO MICROSOFT_UPSTREAM
 
 FROM mcr.microsoft.com/windows/nanoserver:1809
 
@@ -38,7 +30,6 @@ USER ContainerUser
 ENV GOLANG_VERSION 1.16.14
 
 # Docker's Windows path parsing is absolutely *cursed*; please just trust me on this one -Tianon
-# NO MICROSOFT_UPSTREAM: Use "downloader" stage defined earlier.
 COPY --from=downloader ["C:\\\\go","C:\\\\go"]
 RUN go version
 

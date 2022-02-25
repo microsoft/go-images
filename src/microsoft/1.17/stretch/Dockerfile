@@ -27,8 +27,8 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220215.2/go.20220215.2.linux-amd64.tar.gz'; \
-			sha256='f6b229872daf22e6eb1e5ad44612b04f331e007d643ec7c79f57dd378a7f495e'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220218.1/go.20220218.1.linux-amd64.tar.gz'; \
+			sha256='daec57d58f6a5c745d3369df45013a015b2a0c536dc46ed8c36f1fd199e622fd'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -43,18 +43,14 @@ RUN set -eux; \
 		echo >&2; \
 	fi; \
 	\
-# NO MICROSOFT_UPSTREAM: Change ".asc" to ".sig" to match the filename we publish. https://github.com/microsoft/go/issues/181
-	wget -O go.tgz.asc "$url.sig" --progress=dot:giga; \
-# END NO MICROSOFT_UPSTREAM
+	wget -O go.tgz.asc "$url.sig"; \
 	wget -O go.tgz "$url" --progress=dot:giga; \
 	echo "$sha256 *go.tgz" | sha256sum -c -; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
-# NO MICROSOFT_UPSTREAM: Grab the public key used for the Microsoft builds of Go. https://github.com/microsoft/go/issues/47
 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-# END NO MICROSOFT_UPSTREAM
 # https://www.google.com/linuxrepositories/
 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
 # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
