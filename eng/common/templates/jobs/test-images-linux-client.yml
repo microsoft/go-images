@@ -1,0 +1,24 @@
+parameters:
+  name: null
+  pool: {}
+  matrix: {}
+  testJobTimeout: 60
+  preBuildValidation: false
+  internalProjectName: null
+
+jobs:
+- job: ${{ parameters.name }}
+  ${{ if eq(parameters.preBuildValidation, 'false') }}:
+    condition: and(succeeded(), ${{ parameters.matrix }})
+    dependsOn: GenerateTestMatrix
+    strategy:
+      matrix: $[ ${{ parameters.matrix }} ]
+  ${{ if eq(parameters.preBuildValidation, 'true') }}:
+    condition: and(succeeded(), ne(variables.testScriptPath, ''))
+  pool: ${{ parameters.pool }}
+  timeoutInMinutes: ${{ parameters.testJobTimeout }}
+  steps:
+  - template: ../steps/test-images-linux-client.yml
+    parameters:
+      preBuildValidation: ${{ parameters.preBuildValidation }}
+      internalProjectName: ${{ parameters.internalProjectName }}

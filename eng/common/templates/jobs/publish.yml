@@ -1,0 +1,124 @@
+parameters:
+  pool: {}
+  internalProjectName: null
+  customInitSteps: []
+  customPublishVariables: []
+
+jobs:
+- job: Publish
+  pool: ${{ parameters.pool }}
+  variables:
+  - name: imageBuilder.commonCmdArgs
+    value: >
+      --manifest '$(manifest)'
+      --registry-override '$(acr.server)'
+      $(manifestVariables)
+      $(imageBuilder.queueArgs)
+  - ${{ parameters.customPublishVariables }}
+  steps:
+  - template: ../steps/init-docker-linux.yml
+  - ${{ parameters.customInitSteps }}
+  - template: ../steps/validate-branch.yml
+    parameters:
+      internalProjectName: ${{ parameters.internalProjectName }}
+  - template: ../steps/download-build-artifact.yml
+    parameters:
+      targetPath: $(Build.ArtifactStagingDirectory)
+      artifactName: image-info
+  - template: ../steps/set-image-info-path-var.yml
+    parameters:
+      publicSourceBranch: $(publicSourceBranch)
+  - template: ../steps/set-dry-run.yml
+  - script: echo $(sourceBuildId) > $(Build.ArtifactStagingDirectory)/source-build-id.txt
+    displayName: Write Source Build ID to File
+  - publish: $(Build.ArtifactStagingDirectory)/source-build-id.txt
+    artifact: source-build-id
+    displayName: Publish Source Build ID Artifact
+  - script: echo "##vso[task.setvariable variable=imageQueueTime]$(date --rfc-2822)"
+    displayName: Set Publish Variables
+  - script: >
+      $(runImageBuilderCmd) trimUnchangedPlatforms
+      '$(artifactsPath)/image-info.json'
+    displayName: Trim Unchanged Images
+  - script: >
+      $(runImageBuilderCmd) copyAcrImages
+      '$(acr.servicePrincipalName)'
+      '$(acr.servicePrincipalPassword)'
+      '$(acr.servicePrincipalTenant)'
+      '$(acr.subscription)'
+      '$(acr.resourceGroup)'
+      '$(stagingRepoPrefix)'
+      --os-type '*'
+      --architecture '*'
+      --repo-prefix '$(publishRepoPrefix)'
+      --image-info '$(artifactsPath)/image-info.json'
+      $(dryRunArg)
+      $(imageBuilder.pathArgs)
+      $(imageBuilder.commonCmdArgs)
+    displayName: Copy Images
+  - script: >
+      $(runImageBuilderCmd) publishManifest
+      '$(artifactsPath)/image-info.json'
+      --repo-prefix '$(publishRepoPrefix)'
+      --registry-creds '$(acr.server)=$(acr.userName);$(acr.password)'
+      --os-type '*'
+      --architecture '*'
+      $(dryRunArg)
+      $(imageBuilder.pathArgs)
+      $(imageBuilder.commonCmdArgs)
+    displayName: Publish Manifest
+  - publish: $(Build.ArtifactStagingDirectory)/image-info.json
+    artifact: image-info-final-$(System.JobAttempt)
+    displayName: Publish Image Info File Artifact
+  - template: ../steps/wait-for-mcr-image-ingestion.yml
+    parameters:
+      imageInfoPath: '$(artifactsPath)/image-info.json'
+      minQueueTime: $(imageQueueTime)
+      dryRunArg: $(dryRunArg)
+      condition: succeeded()
+  - template: ../steps/publish-readmes.yml
+    parameters:
+      dryRunArg: $(dryRunArg)
+      condition: and(succeeded(), eq(variables['publishReadme'], 'true'))
+  - script: >
+      $(runImageBuilderCmd) publishImageInfo
+      '$(artifactsPath)/image-info.json'
+      '$(gitHubVersionsRepoInfo.userName)'
+      '$(gitHubVersionsRepoInfo.email)'
+      '$(gitHubVersionsRepoInfo.accessToken)'
+      '$(azdoVersionsRepoInfo.accessToken)'
+      '$(azdoVersionsRepoInfo.org)'
+      '$(azdoVersionsRepoInfo.project)'
+      --git-owner '$(gitHubVersionsRepoInfo.org)'
+      --git-repo '$(gitHubVersionsRepoInfo.repo)'
+      --git-branch '$(gitHubVersionsRepoInfo.branch)'
+      --git-path '$(gitHubImageInfoVersionsPath)'
+      --azdo-repo '$(azdoVersionsRepoInfo.repo)'
+      --azdo-branch '$(azdoVersionsRepoInfo.branch)'
+      --azdo-path '$(azdoImageInfoVersionsPath)'
+      $(dryRunArg)
+      $(imageBuilder.commonCmdArgs)
+    displayName: Publish Image Info
+    # NO MICROSOFT_UPSTREAM: Add a condition that allows us to disable image info publish from the
+    # root pipeline. Enabling this publish tracked by https://github.com/microsoft/go/issues/157.
+    # Related issue about this step running unconditionally and seeming to require that the versions
+    # repo already have an image-info file: https://github.com/dotnet/docker-tools/issues/832.
+    condition: and(succeeded(), ne(variables['publishImageInfo'], 'false'))
+    # END NO MICROSOFT_UPSTREAM
+  - script: >
+      $(runImageBuilderCmd) ingestKustoImageInfo
+      '$(artifactsPath)/image-info.json'
+      '$(kusto.cluster)'
+      '$(kusto.database)'
+      '$(kusto.imageTable)'
+      '$(kusto.layerTable)'
+      '$(kusto.servicePrincipalName)'
+      '$(kusto.servicePrincipalPassword)'
+      '$(kusto.servicePrincipalTenant)'
+      --os-type '*'
+      --architecture '*'
+      $(dryRunArg)
+      $(imageBuilder.commonCmdArgs)
+    displayName: Ingest Kusto Image Info
+    condition: and(succeeded(), eq(variables['ingestKustoImageInfo'], 'true'))
+  - template: ../steps/cleanup-docker-linux.yml

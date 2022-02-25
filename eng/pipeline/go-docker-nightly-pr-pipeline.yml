@@ -1,0 +1,21 @@
+trigger: none
+pr:
+  branches:
+    include:
+      - microsoft/nightly
+      - dev/official/*
+
+variables:
+  - template: variables/common.yml
+    parameters:
+      nightly: true
+
+stages:
+  - template: stages/build-test-publish-repo.yml
+    parameters:
+      extraParameters:
+        # "variables.x" template expression only gets the correct value in this pipeline file. In a
+        # stage template, it returns an empty string. So, evaluate it here and pass it through.
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}
+        buildMatrixType: platformVersionedOs

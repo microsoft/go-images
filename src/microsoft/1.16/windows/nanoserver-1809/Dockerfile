@@ -1,0 +1,36 @@
+#
+# NOTE: THIS DOCKERFILE IS GENERATED VIA "apply-templates.sh"
+#
+# PLEASE DO NOT EDIT IT DIRECTLY.
+#
+
+ARG REPO=mcr.microsoft.com/oss/go/microsoft/golang
+# It's easy to download Go and install it in server core, but not nanoserver. So, to build
+# nanoserver, copy over the server core installation.
+ARG DOWNLOADER_TAG=1.16.14-windowsservercore-1809
+FROM $REPO:$DOWNLOADER_TAG AS downloader
+
+FROM mcr.microsoft.com/windows/nanoserver:1809
+
+SHELL ["cmd", "/S", "/C"]
+
+# no Git installed (intentionally)
+#  -- Nano Server is "Windows Slim"
+
+# ideally, this would be C:\go to match Linux a bit closer, but C:\go was the default install path for Go itself on Windows
+ENV GOPATH C:\\gopath
+# (https://golang.org/cl/283600)
+
+# PATH isn't actually set in the Docker image, so we have to set it from within the container
+USER ContainerAdministrator
+RUN setx /m PATH "%GOPATH%\bin;C:\go\bin;%PATH%"
+USER ContainerUser
+# doing this first to share cache across versions more aggressively
+
+ENV GOLANG_VERSION 1.16.14
+
+# Docker's Windows path parsing is absolutely *cursed*; please just trust me on this one -Tianon
+COPY --from=downloader ["C:\\\\go","C:\\\\go"]
+RUN go version
+
+WORKDIR $GOPATH

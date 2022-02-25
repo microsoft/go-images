@@ -1,0 +1,93 @@
+parameters:
+  preBuildValidation: false
+  internalProjectName: null
+  condition: true
+
+steps:
+- template: init-docker-linux.yml
+  parameters:
+    setupImageBuilder: false
+    setupTestRunner: true
+    cleanupDocker: ${{ eq(variables['System.TeamProject'], parameters.internalProjectName) }}
+    condition: ${{ parameters.condition }}
+- script: |
+    echo "##vso[task.setvariable variable=testRunner.container]testrunner-$(Build.BuildId)-$(System.JobId)"
+
+    optionalTestArgs=""
+    if [ "${{ parameters.preBuildValidation }}" == "true" ]; then
+      optionalTestArgs="$optionalTestArgs -TestCategories pre-build"
+    else
+      if [ "${{ variables['System.TeamProject'] }}" == "${{ parameters.internalProjectName }}" ]; then
+        optionalTestArgs="$optionalTestArgs -PullImages -Registry $(acr.server) -RepoPrefix $(stagingRepoPrefix) -ImageInfoPath $(artifactsPath)/image-info/image-info.json"
+      fi
+      if [ "$REPOTESTARGS" != "" ]; then
+        optionalTestArgs="$optionalTestArgs $REPOTESTARGS"
+      fi
+    fi
+    echo "##vso[task.setvariable variable=optionalTestArgs]$optionalTestArgs"
+  displayName: Set Test Variables
+  condition: and(succeeded(), ${{ parameters.condition }})
+- script: >
+    docker run -t -d
+    -v /var/run/docker.sock:/var/run/docker.sock
+    -v $(Build.ArtifactStagingDirectory):$(artifactsPath)
+    -e RUNNING_TESTS_IN_CONTAINER=true 
+    --name $(testRunner.container)
+    $(imageNames.testRunner.withrepo)
+  displayName: Start Test Runner Container
+  condition: and(succeeded(), ${{ parameters.condition }})
+- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+  - script: >
+      docker exec $(testRunner.container) pwsh
+      -File $(engCommonRelativePath)/Invoke-WithRetry.ps1
+      "docker login -u $(acr.userName) -p $(acr.password) $(acr.server)"
+    displayName: Docker login
+    condition: and(succeeded(), ${{ parameters.condition }})
+  - ${{ if eq(parameters.preBuildValidation, 'false') }}:
+    - template: ../steps/download-build-artifact.yml
+      parameters:
+        targetPath: $(Build.ArtifactStagingDirectory)
+        condition: ${{ parameters.condition }}
+- script: >
+    docker exec $(testRunner.container) pwsh
+    -File $(testScriptPath)
+    -Version '$(productVersion)'
+    -OS '$(osVariant)'
+    -Architecture '$(architecture)'
+    $(optionalTestArgs)
+  displayName: Test Images
+  condition: and(succeeded(), ${{ parameters.condition }})
+- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+  - script: docker exec $(testRunner.container) docker logout $(acr.server)
+    displayName: Docker logout
+    condition: and(always(), ${{ parameters.condition }})
+    continueOnError: true
+- script: >
+    docker cp
+    $(testRunner.container):/repo/$(testResultsDirectory)
+    $(Common.TestResultsDirectory)/.
+  displayName: Copy Test Results
+  condition: and(always(), ${{ parameters.condition }})
+  continueOnError: true
+- task: PublishTestResults@2
+  displayName: Publish Test Results
+  condition: and(always(), ${{ parameters.condition }})
+  continueOnError: true
+  inputs:
+    testRunner: vSTest
+    testResultsFiles: '**/*.trx'
+    searchFolder: $(Common.TestResultsDirectory)
+    mergeTestResults: true
+    publishRunAttachments: true
+    ${{ if eq(parameters.preBuildValidation, 'false') }}:
+      testRunTitle: $(productVersion) $(osVariant) $(architecture)
+    ${{ if eq(parameters.preBuildValidation, 'true') }}:
+      testRunTitle: Pre-Build Validation
+- script: docker rm -f $(testRunner.container)
+  displayName: Cleanup TestRunner Container
+  condition: and(always(), ${{ parameters.condition }})
+  continueOnError: true
+- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+  - template: cleanup-docker-linux.yml
+    parameters:
+      condition: ${{ parameters.condition }}

@@ -1,0 +1,64 @@
+parameters:
+  nightly: false
+
+variables:
+- template: ../../common/templates/variables/common.yml
+
+- name: publicProjectName
+  value: public
+- name: internalProjectName
+  value: internal
+
+- name: commonVersionsImageInfoPath
+  value: build-info/docker
+- name: publicGitRepoUri
+  value: https://github.com/microsoft/go
+- name: officialRepoPrefix
+  ${{ if eq(parameters.nightly, false) }}:
+    # Publish to "public/", which will be detected by MCR trigger.
+    value: public/
+  ${{ if eq(parameters.nightly, true) }}:
+    # In the nightly branch, publish to ACR only. The prefix doesn't need to match MCR expectations.
+    value: nightly/
+
+- name: publishReadme
+  value: false
+# https://github.com/microsoft/go/issues/157 tracks enabling publishImageInfo.
+- name: publishImageInfo
+  value: false
+# https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
+- name: ingestKustoImageInfo
+  value: false
+
+- name: officialBranches
+  # list multiple branches as "'branch1', 'branch2', etc."
+  ${{ if eq(parameters.nightly, false) }}:
+    value: "'microsoft/main'"
+  ${{ if eq(parameters.nightly, true) }}:
+    value: "'microsoft/nightly'"
+
+- name: manifest
+  value: manifest.json
+
+# dotnet/versions repo path info is used in shared templates. Even though we aren't publishing
+# there, it needs to be specified to avoid pipeline errors when the variable is referenced in tasks.
+- name: gitHubVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
+- name: azdoVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
+
+- ${{ if eq(variables['System.TeamProject'], 'internal') }}:
+  - ${{ if eq(parameters.nightly, false) }}:
+    - group: go-docker-common
+  - ${{ if eq(parameters.nightly, true) }}:
+    - group: go-docker-common-nightly
+  - group: go-docker-secrets
+  - group: go-docker-shared-DotNet-Docker-Secrets
+
+- name: acr.password
+  ${{ if eq(parameters.nightly, false) }}:
+    value: $(BotAccount-golang-docker-acr-bot-password)
+  ${{ if eq(parameters.nightly, true) }}:
+    value: $(BotAccount-golang-docker-acr-public-bot-password)
+- name: acr.servicePrincipalPassword
+  value: $(GolangDockerBuild)
