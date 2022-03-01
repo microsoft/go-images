@@ -1,23 +1,37 @@
 # Docker images containing the Microsoft build of Go
 
-This repository creates Docker images that contain the Microsoft build of Go
-produced by the [microsoft/go](https://github.com/microsoft/go) repository. The
-tags are published on the Microsoft Container Registry (MCR) in the
-`oss/go/microsoft/golang` repository.
+This repository creates Docker images that contain the Microsoft build of Go produced by the [microsoft/go](https://github.com/microsoft/go) repository. The tags are published on the Microsoft Container Registry (MCR) in the `oss/go/microsoft/golang` repository.
 
-The submodule named `go` contains the source code for the official Golang image
-repository, https://github.com/docker-library/golang. The submodule contains
-templates that this repository uses to create the Dockerfiles that contain the
-Microsoft build of Go.
+In general, the microsoft/go-images tag names match those available for the [Docker Hub golang official image](https://hub.docker.com/_/golang). To switch from the official image to one on MCR, it may be possible to simply prepend `mcr.microsoft.com/oss/go/microsoft/` to the official image you would normally use.
 
-See [eng/README.md](eng/README.md) for information about the infrastructure.
+This tag is recommended for general build scenarios:
 
-To view the list of available tags:
+```
+mcr.microsoft.com/oss/go/microsoft/golang:1.17-bullseye
+```
 
-* Microsoft Container Registry API: https://mcr.microsoft.com/v2/oss/go/microsoft/golang/tags/list
+If you need to build a FIPS-compatible app, use a `fips` tag, such as:
+
+```
+mcr.microsoft.com/oss/go/microsoft/golang:1.17-fips-cbl-mariner1.0
+```
+
+For more information about building FIPS-compatible Go apps with the Microsoft Go tools, visit [the FIPS readme](https://github.com/microsoft/go/tree/microsoft/dev.boringcrypto.go1.17/eng/doc/fips) and [user guide](https://github.com/microsoft/go/blob/microsoft/dev.boringcrypto.go1.17/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
+
+To view the full list of available Go tags in MCR:
+
+* Use the [Microsoft Container Registry API](https://mcr.microsoft.com/v2/oss/go/microsoft/golang/tags/list)
   * The full tag URL is `mcr.microsoft.com/{name}:{tag}`
-* AZCU Indexer (Microsoft auth required): https://azcuindexer.azurewebsites.net/repositories/oss/go/microsoft/golang
+* Visit the [AZCU Indexer](https://azcuindexer.azurewebsites.net/repositories/oss/go/microsoft/golang) (*Microsoft internal auth required*)
   * Click on a tag name to copy the full tag URL to your clipboard
+
+See [Tags of microsoft/go-images](docs/tags.md) for more information about tag names and support.
+
+## Is this repository a fork?
+
+We think it's accurate to call this repository a fork of the official Golang image repository, [docker-library/golang](https://github.com/docker-library/golang). See [microsoft/go#is-this-repository-a-fork](https://github.com/microsoft/go#is-this-repository-a-fork) for more details why.
+
+The submodule named `go` contains the official image source code. The templates in `go` are used to create the Dockerfiles in this repo, at [`src/microsoft`](src/microsoft). See the [eng README file](eng) for more information about this repository's infrastructure.
 
 ## Contributing
 
