@@ -29,7 +29,7 @@ See [Tags of microsoft/go-images](docs/tags.md) for more information about tag n
 
 ## Is this repository a fork?
 
-We think it's accurate to call this repository a fork of the official Golang image repository, [docker-library/golang](https://github.com/docker-library/golang). See [microsoft/go#is-this-repository-a-fork](https://github.com/microsoft/go#is-this-repository-a-fork) for more details why.
+We think it's accurate to call this repository a fork of the official Golang image repository, [docker-library/golang](https://github.com/docker-library/golang). The branches here do not share Git ancestry with docker-library/golang. However, the repository serves the same purpose as a Git fork: maintaining a modified version of the Go source code over time.
 
 The submodule named `go` contains the official image source code. The templates in `go` are used to create the Dockerfiles in this repo, at [`src/microsoft`](src/microsoft). See the [eng README file](eng) for more information about this repository's infrastructure.
 
