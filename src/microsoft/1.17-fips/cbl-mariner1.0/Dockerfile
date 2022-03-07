@@ -21,7 +21,7 @@ RUN tdnf install -y \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.17.7
+ENV GOLANG_VERSION 1.17.8
 
 RUN set -eux; \
 	arch="$(uname -m)"; \

@@ -91,7 +91,7 @@
     "variants": [
       "cbl-mariner1.0"
     ],
-    "version": "1.17.7",
+    "version": "1.17.8",
     "revision": "1",
     "preferredMinor": true,
     "preferredVariant": "cbl-mariner1.0",
