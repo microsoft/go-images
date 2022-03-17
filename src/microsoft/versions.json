@@ -1,36 +1,4 @@
 {
-  "1.16": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "7fae02d8b3786d1beb7e9e31640bb452a13c55d41f35009bcc89d9310366cb82",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220303.1/go.20220303.1.linux-amd64.tar.gz"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "cb97c4b905d29e5084d9315cb9fe7ea4a764e63081ce3238bff9da6c109a4a68",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.16/20220303.1/go.20220303.1.windows-amd64.zip"
-      }
-    },
-    "variants": [
-      "buster",
-      "stretch",
-      "windows/windowsservercore-1809",
-      "windows/nanoserver-1809",
-      "windows/windowsservercore-ltsc2016"
-    ],
-    "version": "1.16.15",
-    "revision": "1",
-    "preferredVariant": "buster"
-  },
   "1.17": {
     "arches": {
       "amd64": {
@@ -64,8 +32,6 @@
     ],
     "version": "1.17.8",
     "revision": "1",
-    "preferredMajor": true,
-    "preferredMinor": true,
     "preferredVariant": "bullseye"
   },
   "1.17-fips": {
@@ -92,6 +58,71 @@
       "cbl-mariner1.0"
     ],
     "version": "1.17.8",
+    "revision": "1",
+    "preferredVariant": "cbl-mariner1.0",
+    "branchSuffix": "-fips"
+  },
+  "1.18": {
+    "arches": {
+      "amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "linux"
+        },
+        "sha256": "b5ed9d893fb12934daf41edea40b15c4b43533761665d8c61a00d666c8d341ef",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220315.1/go.20220315.1.linux-amd64.tar.gz"
+      },
+      "windows-amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "windows"
+        },
+        "sha256": "5100de35f79dcb259aa01121b75b4d019869aebc9bc959a8c8873f8865f1ff59",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220315.1/go.20220315.1.windows-amd64.zip"
+      }
+    },
+    "variants": [
+      "bullseye",
+      "buster",
+      "stretch",
+      "windows/windowsservercore-ltsc2022",
+      "windows/windowsservercore-1809",
+      "windows/windowsservercore-ltsc2016",
+      "windows/nanoserver-ltsc2022",
+      "windows/nanoserver-1809"
+    ],
+    "version": "1.18.0",
+    "revision": "1",
+    "preferredMajor": true,
+    "preferredMinor": true,
+    "preferredVariant": "bullseye"
+  },
+  "1.18-fips": {
+    "arches": {
+      "amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "linux"
+        },
+        "sha256": "5a9074b309dbaa30faff98f1fcffd4488c39e4cb1398832908bbd4b57ef92873",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220316.2/go.20220316.2.linux-amd64.tar.gz"
+      },
+      "windows-amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "windows"
+        },
+        "sha256": "b07dac951f9dd4fbf9677e92d9ac320bf1486f313d49f16bcef5fd1696ab91c2",
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220316.2/go.20220316.2.windows-amd64.zip"
+      }
+    },
+    "variants": [
+      "cbl-mariner1.0"
+    ],
+    "version": "1.18.0",
     "revision": "1",
     "preferredMinor": true,
     "preferredVariant": "cbl-mariner1.0",
