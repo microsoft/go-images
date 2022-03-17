@@ -166,8 +166,6 @@
         {
           "productVersion": "1.17",
           "sharedTags": {
-            "1-fips": {},
-            "1-fips-cbl-mariner1.0": {},
             "1.17-fips": {},
             "1.17-fips-cbl-mariner1.0": {},
             "1.17.8-1-fips": {},
@@ -355,6 +353,29 @@
               "osVersion": "nanoserver-1809",
               "tags": {
                 "1.18.0-1-nanoserver-1809-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.18",
+          "sharedTags": {
+            "1-fips": {},
+            "1-fips-cbl-mariner1.0": {},
+            "1.18-fips": {},
+            "1.18-fips-cbl-mariner1.0": {},
+            "1.18.0-1-fips": {},
+            "1.18.0-1-fips-cbl-mariner1.0": {},
+            "1.18.0-fips": {},
+            "1.18.0-fips-cbl-mariner1.0": {}
+          },
+          "platforms": [
+            {
+              "dockerfile": "src/microsoft/1.18-fips/cbl-mariner1.0",
+              "os": "linux",
+              "osVersion": "cbl-mariner1.0",
+              "tags": {
+                "1.18.0-1-fips-cbl-mariner1.0-amd64": {}
               }
             }
           ]
