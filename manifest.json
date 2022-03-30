@@ -168,8 +168,8 @@
           "sharedTags": {
             "1.17-fips": {},
             "1.17-fips-cbl-mariner1.0": {},
-            "1.17.8-1-fips": {},
-            "1.17.8-1-fips-cbl-mariner1.0": {},
+            "1.17.8-2-fips": {},
+            "1.17.8-2-fips-cbl-mariner1.0": {},
             "1.17.8-fips": {},
             "1.17.8-fips-cbl-mariner1.0": {}
           },
@@ -179,7 +179,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.17.8-1-fips-cbl-mariner1.0-amd64": {}
+                "1.17.8-2-fips-cbl-mariner1.0-amd64": {}
               }
             }
           ]
@@ -364,8 +364,8 @@
             "1-fips-cbl-mariner1.0": {},
             "1.18-fips": {},
             "1.18-fips-cbl-mariner1.0": {},
-            "1.18.0-1-fips": {},
-            "1.18.0-1-fips-cbl-mariner1.0": {},
+            "1.18.0-2-fips": {},
+            "1.18.0-2-fips-cbl-mariner1.0": {},
             "1.18.0-fips": {},
             "1.18.0-fips-cbl-mariner1.0": {}
           },
@@ -375,7 +375,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.18.0-1-fips-cbl-mariner1.0-amd64": {}
+                "1.18.0-2-fips-cbl-mariner1.0-amd64": {}
               }
             }
           ]
