@@ -17,7 +17,7 @@ reference later.
  1 file changed, 7 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-windows-nanoserver.template b/Dockerfile-windows-nanoserver.template
-index be196ac..aaecdb5 100644
+index 6fd53f6..8e3ecb3 100644
 --- a/Dockerfile-windows-nanoserver.template
 +++ b/Dockerfile-windows-nanoserver.template
 @@ -1,3 +1,9 @@
@@ -30,12 +30,12 @@ index be196ac..aaecdb5 100644
  FROM mcr.microsoft.com/windows/{{ env.windowsVariant }}:{{ env.windowsRelease }}
  
  SHELL ["cmd", "/S", "/C"]
-@@ -32,7 +38,7 @@ USER ContainerUser
+@@ -18,7 +24,7 @@ USER ContainerUser
  ENV GOLANG_VERSION {{ .version }}
  
  # Docker's Windows path parsing is absolutely *cursed*; please just trust me on this one -Tianon
--COPY --from=golang:{{ .version }}-windowsservercore-{{ env.windowsRelease }} {{
-+COPY --from=downloader {{
- 	install_directory
- 	| gsub("\\\\"; "\\\\")
- 	| [ . , . ]
+-COPY --from=golang:{{ .version }}-windowsservercore-{{ env.windowsRelease }} ["C:\\\\Program Files\\\\Go","C:\\\\Program Files\\\\Go"]
++COPY --from=downloader ["C:\\\\Program Files\\\\Go","C:\\\\Program Files\\\\Go"]
+ RUN go version
+ 
+ WORKDIR $GOPATH
