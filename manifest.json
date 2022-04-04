@@ -223,7 +223,6 @@
             },
             {
               "architecture": "arm64",
-              "variant": "v8",
               "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
@@ -468,7 +467,6 @@
             },
             {
               "architecture": "arm64",
-              "variant": "v8",
               "dockerfile": "src/microsoft/1.18-fips/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
