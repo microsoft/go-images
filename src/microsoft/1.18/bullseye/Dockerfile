@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:stretch-scm
+FROM buildpack-deps:bullseye-scm
 
 # install cgo-related dependencies
 RUN set -eux; \
@@ -20,15 +20,15 @@ RUN set -eux; \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.17.8
+ENV GOLANG_VERSION 1.18.0
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220303.3/go.20220303.3.linux-amd64.tar.gz'; \
-			sha256='fa8a829cf00f9370ba2032335700e3d65e1c58b0ff5bea1cd72145d2d1a51631'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220315.1/go.20220315.1.linux-amd64.tar.gz'; \
+			sha256='b5ed9d893fb12934daf41edea40b15c4b43533761665d8c61a00d666c8d341ef'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
