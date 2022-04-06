@@ -6,13 +6,13 @@ parameters:
   internalProjectName: null
   publicProjectName: null
   buildMatrixCustomBuildLegGroupArgs: ""
+  testMatrixCustomBuildLegGroupArgs: ""
   customBuildInitSteps: []
   customPublishInitSteps: []
   windowsAmdBuildJobTimeout: 60
   windowsAmdTestJobTimeout: 60
   linuxAmdBuildJobTimeout: 60
-  linuxAmd64Pool:
-    vmImage: $(defaultLinuxAmd64PoolImage)
+  linuxAmd64Pool: ""
   buildMatrixType: platformDependencyGraph
   testMatrixType: platformVersionedOs
 
@@ -23,8 +23,27 @@ stages:
     internalProjectName: ${{ parameters.internalProjectName }}
     publicProjectName: ${{ parameters.publicProjectName }}
     buildMatrixCustomBuildLegGroupArgs: ${{ parameters.buildMatrixCustomBuildLegGroupArgs }}
+    testMatrixCustomBuildLegGroupArgs: ${{ parameters.testMatrixCustomBuildLegGroupArgs }}
     customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
-    customPublishInitSteps: ${{ parameters.customPublishInitSteps }}
+    customPublishInitSteps:
+    - pwsh: |
+        # When reporting the repo name in the publish notification, we don't want to include
+        # the org part of the repo name (e.g. we want "dotnet-docker", not "dotnet-dotnet-docker").
+        # This also accounts for the different separators between AzDO and GitHub repo names.
+
+        $repoName = "$(Build.Repository.Name)"
+
+        $orgSeparatorIndex = $repoName.IndexOf("/")
+        if ($orgSeparatorIndex -eq -1) {
+          $orgSeparatorIndex = $repoName.IndexOf("-")
+        }
+
+        if ($orgSeparatorIndex -ge 0) {
+          $repoName = $repoName.Substring($orgSeparatorIndex + 1)
+        }
+        echo "##vso[task.setvariable variable=publishNotificationRepoName]$repoName"
+      displayName: "Set Custom Repo Name Var"
+    - ${{ parameters.customPublishInitSteps }}
     windowsAmdBuildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
     windowsAmdTestJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
     linuxAmdBuildJobTimeout: ${{ parameters.linuxAmdBuildJobTimeout }}
@@ -38,25 +57,26 @@ stages:
       customPublishVariables:
       - group: DotNet-AllOrgs-Darc-Pats
 
-    linuxAmd64Pool: ${{ parameters.linuxAmd64Pool }}
+    linuxAmd64Pool:
+      ${{ if ne(parameters.linuxAmd64Pool, '') }}:
+        ${{ parameters.linuxAmd64Pool }}
+      ${{ elseif eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+        vmImage: $(defaultLinuxAmd64PoolImage)
+      ${{ elseif eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+        name: NetCore1ESPool-Internal
+        demands: ImageOverride -equals Build.Ubuntu.1804.Amd64
+    
     linuxArm64Pool:
-        ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
-          name: DotNetCore-Docker-Public
-        ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
-          name: DotNetCore-Docker
-        demands:
-        - Agent.OS -equals linux
-        - Agent.OSArchitecture -equals ARM64
+      ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+        name: DotNetCore-Docker-Public
+      ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+        name: Docker-Linux-Arm-Internal
     linuxArm32Pool:
-        ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
-          name: DotNetCore-Docker-Public
-        ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
-          name: DotNetCore-Docker
-        demands:
-        - Agent.OS -equals linux
-        - Agent.OSArchitecture -equals ARM64
+      ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+        name: DotNetCore-Docker-Public
+      ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+        name: Docker-Linux-Arm-Internal
     windows2016Pool: Docker-2016-${{ variables['System.TeamProject'] }}
     windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
-    windows2004Pool: Docker-2004-${{ variables['System.TeamProject'] }}
     windows20H2Pool: Docker-20H2-${{ variables['System.TeamProject'] }}
     windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}
