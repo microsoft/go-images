@@ -33,8 +33,6 @@ parameters:
     vmImage: $(defaultWindows2016PoolImage)
   windows1809Pool:
     vmImage: $(defaultWindows1809PoolImage)
-  windows2004Pool:
-    vmImage: $(defaultWindows2004PoolImage)
   windows20H2Pool:
     vmImage: $(defaultWindows20H2PoolImage)
   windows2022Pool:
@@ -85,9 +83,9 @@ stages:
       publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
   - template: ../jobs/build-images.yml
     parameters:
-      name: Linux_arm64v8
+      name: Linux_arm64
       pool: ${{ parameters.linuxArm64Pool }}
-      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.LinuxArm64v8']
+      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.LinuxArm64']
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
@@ -98,9 +96,9 @@ stages:
       publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
   - template: ../jobs/build-images.yml
     parameters:
-      name: Linux_arm32v7
+      name: Linux_arm32
       pool: ${{ parameters.linuxArm32Pool }}
-      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.LinuxArm32v7']
+      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.LinuxArm32']
       dockerClientOS: linux
       buildJobTimeout: ${{ parameters.linuxArmBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
@@ -114,19 +112,6 @@ stages:
       name: Windows1809_amd64
       pool: ${{ parameters.windows1809Pool }}
       matrix: dependencies.GenerateBuildMatrix.outputs['matrix.Windows1809Amd64']
-      dockerClientOS: windows
-      buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
-      customInitSteps: ${{ parameters.customBuildInitSteps }}
-      noCache: ${{ parameters.noCache }}
-      internalProjectName: ${{ parameters.internalProjectName }}
-      publicProjectName: ${{ parameters.publicProjectName }}
-      internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
-      publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-  - template: ../jobs/build-images.yml
-    parameters:
-      name: Windows2004_amd64
-      pool: ${{ parameters.windows2004Pool }}
-      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.Windows2004Amd64']
       dockerClientOS: windows
       buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
@@ -183,6 +168,8 @@ stages:
   condition: and(succeeded(), contains(variables['stages'], 'build'))
   jobs:
   - template: ../jobs/post-build.yml
+    parameters:
+      pool: ${{ parameters.linuxAmd64Pool }}
 
 ################################################################################
 # Test Images
@@ -220,16 +207,16 @@ stages:
         internalProjectName: ${{ parameters.internalProjectName }}
     - template: ../jobs/test-images-linux-client.yml
       parameters:
-        name: Linux_arm64v8
+        name: Linux_arm64
         pool: ${{ parameters.linuxArm64Pool }}
-        matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm64v8']
+        matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm64']
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
     - template: ../jobs/test-images-linux-client.yml
       parameters:
-        name: Linux_arm32v7
+        name: Linux_arm32
         pool: ${{ parameters.linuxArm32Pool }}
-        matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm32v7']
+        matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm32']
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
     - template: ../jobs/test-images-windows-client.yml
@@ -237,13 +224,6 @@ stages:
         name: Windows1809_amd64
         pool: ${{ parameters.windows1809Pool }}
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.Windows1809Amd64']
-        testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
-        internalProjectName: ${{ parameters.internalProjectName }}
-    - template: ../jobs/test-images-windows-client.yml
-      parameters:
-        name: Windows2004_amd64
-        pool: ${{ parameters.windows2004Pool }}
-        matrix: dependencies.GenerateTestMatrix.outputs['matrix.Windows2004Amd64']
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
     - template: ../jobs/test-images-windows-client.yml
@@ -278,31 +258,33 @@ stages:
     dependsOn: Post_Build
   condition: "
     and(
-      contains(variables['stages'], 'publish'),
-      or(
+      not(canceled()),
+      and(
+        contains(variables['stages'], 'publish'),
         or(
-          and(
-            and(
-              contains(variables['stages'], 'build'),
-              succeeded('Post_Build')),
-            and(
-              contains(variables['stages'], 'test'),
-              in(dependencies.Test.result, 'Succeeded', 'SucceededWithIssues', 'Skipped'))),
           or(
             and(
-              not(contains(variables['stages'], 'build')),
+              and(
+                contains(variables['stages'], 'build'),
+                succeeded('Post_Build')),
               and(
                 contains(variables['stages'], 'test'),
                 in(dependencies.Test.result, 'Succeeded', 'SucceededWithIssues', 'Skipped'))),
-            and(
-              not(contains(variables['stages'], 'test')),
+            or(
               and(
-                contains(variables['stages'], 'build'),
-                succeeded('Post_Build'))))),
-        not(
-          or(
-            contains(variables['stages'], 'build'),
-            contains(variables['stages'], 'test')))))"
+                not(contains(variables['stages'], 'build')),
+                and(
+                  contains(variables['stages'], 'test'),
+                  in(dependencies.Test.result, 'Succeeded', 'SucceededWithIssues', 'Skipped'))),
+              and(
+                not(contains(variables['stages'], 'test')),
+                and(
+                  contains(variables['stages'], 'build'),
+                  succeeded('Post_Build'))))),
+          not(
+            or(
+              contains(variables['stages'], 'build'),
+              contains(variables['stages'], 'test'))))))"
   jobs:
   - template: ../jobs/publish.yml
     parameters:
