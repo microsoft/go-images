@@ -4,11 +4,11 @@ Date: Fri, 11 Feb 2022 18:07:18 -0600
 Subject: [PATCH] Add Mariner support with FIPS dependency flag
 
 ---
- Dockerfile-linux.template | 45 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 45 insertions(+)
+ Dockerfile-linux.template | 48 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 48 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index c300098..ee0c959 100644
+index a79ec02..106f1d0 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,6 +4,16 @@
@@ -71,18 +71,21 @@ index c300098..ee0c959 100644
  	; \
  	rm -rf /var/lib/apt/lists/*
  {{ ) end -}}
-@@ -46,6 +85,10 @@ ENV GOLANG_VERSION {{ .version }}
+@@ -46,6 +85,13 @@ ENV GOLANG_VERSION {{ .version }}
  				ppc64le: "ppc64le",
  				s390x: "s390x",
  			}
 +		elif is_cbl_mariner then
 +			{
 +				amd64: "x86_64",
++				arm32v6: "armhf",
++				arm32v7: "armv7",
++				arm64v8: "aarch64",
 +			}
  		else
  			{
  				amd64: "amd64",
-@@ -63,6 +106,8 @@ RUN set -eux; \
+@@ -63,6 +109,8 @@ RUN set -eux; \
  {{ if is_alpine then ( -}}
  	apk add --no-cache --virtual .fetch-deps gnupg; \
  	arch="$(apk --print-arch)"; \
