@@ -6,27 +6,27 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "5014d7ce47db6c70a1d18340deb33e45c802746ba7e7498f42dfbd8a310fb8c8",
+        "sha256": "54af8ed5c858365fb424a8cd1fa258a209e334699a6f88c051784bf06df11676",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220330.1/go.20220330.1.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220412.2/go.20220412.2.linux-amd64.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "0df2e76bfc2f61e44daf05d9ba8171fb46c6ee8ebb088593b6a4cd408c151e9b",
+        "sha256": "d5aa78c1316bbb5c0638da9624f698aada990628e2321716b0b289084a1c08aa",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220330.1/go.20220330.1.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220412.2/go.20220412.2.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "68c32ee9f6460035915a16f318eb6e03dfc4428d2ec9f5251c427b429ad44a44",
+        "sha256": "dac299d353e8963ea0d0019064b0861ef4cb938ef5ec6a77a2a5da6e0aa1700b",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220330.1/go.20220330.1.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220412.2/go.20220412.2.windows-amd64.zip"
       }
     },
     "variants": [
@@ -39,7 +39,7 @@
       "windows/nanoserver-ltsc2022",
       "windows/nanoserver-1809"
     ],
-    "version": "1.17.8",
+    "version": "1.17.9",
     "revision": "1",
     "preferredVariant": "bullseye"
   },
@@ -87,27 +87,27 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "ecd5cdd9a3c8ec2d57170c8c4daa7c55309c96e4f186aa79709ccb5aab4a2f40",
+        "sha256": "0ecd8a6b43ae3e993eedddde6141a7785fc65d1cc8a322c6e67fa02420a883fd",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220330.3/go.20220330.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220412.1/go.20220412.1.linux-amd64.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "e640c8cc2eddc11d6d7b8bd7936797f62641eacee57c1e3f7e90381bcb4b33eb",
+        "sha256": "7965396729a9efb2d166e9b33eb142629f9c505240c4e373bbd783cf5f8af61a",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220330.3/go.20220330.3.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220412.1/go.20220412.1.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "13fe9c56edf90884b963b95f12dd9019fbf77e051ee96cd73943ad67c141e652",
+        "sha256": "43a319ba7aa6a015771e34f87f1aff66e2a5ce76480c2832cc930786b6939e8f",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220330.3/go.20220330.3.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220412.1/go.20220412.1.windows-amd64.zip"
       }
     },
     "variants": [
@@ -120,7 +120,7 @@
       "windows/nanoserver-ltsc2022",
       "windows/nanoserver-1809"
     ],
-    "version": "1.18.0",
+    "version": "1.18.1",
     "revision": "1",
     "preferredMajor": true,
     "preferredMinor": true,
