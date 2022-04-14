@@ -50,33 +50,33 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "d43858b283a32b75cf34d27bcc9fe5452df1257e0345e68eb0177e8daaa03853",
+        "sha256": "97dbef56d8fd0928eafc7f2762f2dca07a05c0de44ca5434778aba8ab91c456f",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.1/go.20220414.1.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.4/go.20220414.4.linux-amd64.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "f84104eb43132a1a4183259da7f18584a4caee8a3c80023338c52ed6edb6d0d1",
+        "sha256": "6fccfc0515bcf3cc138b0888cb99bf066a62571bbd0ba4b09da242564e659dc7",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.1/go.20220414.1.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.4/go.20220414.4.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "b00ca9a27bef7ad29d60aa23da887fb97b237a47452910df8c61b143070765e2",
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.1/go.20220414.1.windows-amd64.zip"
+        "sha256": "35821193f534bf9681f98e61346211534c6edd3fcbdbec972337c4cc68ca806c",
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.4/go.20220414.4.windows-amd64.zip"
       }
     },
     "variants": [
       "cbl-mariner1.0"
     ],
-    "version": "1.17.8",
-    "revision": "2",
+    "version": "1.17.9",
+    "revision": "1",
     "preferredVariant": "cbl-mariner1.0",
     "branchSuffix": "-fips"
   },
