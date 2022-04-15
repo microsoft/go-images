@@ -50,33 +50,33 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "0342dd738eb1a7e2ed5840e32b1c1a80dc5efac449c3d785339bca875f4a2567",
+        "sha256": "97dbef56d8fd0928eafc7f2762f2dca07a05c0de44ca5434778aba8ab91c456f",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220407.3/go.20220407.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.4/go.20220414.4.linux-amd64.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "632756bf5f84c115d8f8fdfab649a396f029a13878bedb0783f6a0e3b3962790",
+        "sha256": "6fccfc0515bcf3cc138b0888cb99bf066a62571bbd0ba4b09da242564e659dc7",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220407.3/go.20220407.3.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.4/go.20220414.4.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "94d41f1982839ee336918a544d3576122dd366977a8050a652874efeed45e393",
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220407.3/go.20220407.3.windows-amd64.zip"
+        "sha256": "35821193f534bf9681f98e61346211534c6edd3fcbdbec972337c4cc68ca806c",
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220414.4/go.20220414.4.windows-amd64.zip"
       }
     },
     "variants": [
       "cbl-mariner1.0"
     ],
-    "version": "1.17.8",
-    "revision": "2",
+    "version": "1.17.9",
+    "revision": "1",
     "preferredVariant": "cbl-mariner1.0",
     "branchSuffix": "-fips"
   },
@@ -133,33 +133,33 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "52227bc6cdaec6f2a3c47e9b89b9c311be4e49456c90efb8b996e4266e5128cc",
+        "sha256": "7b28ca61502d7034c32e0a03ecde15847db4ad323c2be88a14f3f6ffc065bff7",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220407.1/go.20220407.1.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220414.3/go.20220414.3.linux-amd64.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "7ab29e484046d3cb214c1ff83a66f33f4d89641542373d123f4a1a99ba280e2a",
+        "sha256": "cb253fa9ec98bab0901b54ec031f3e985e3376c637c43d78ef56388af64e7f9f",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220407.1/go.20220407.1.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220414.3/go.20220414.3.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "9ab80428df6b32d8b178b1f6cb454411441dfc72d72293b33f43059cedbd5679",
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220407.1/go.20220407.1.windows-amd64.zip"
+        "sha256": "f16f31d942271c0d8afbb3776753dd8dbe56ea40aa8c6a43056cccf183207200",
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220414.3/go.20220414.3.windows-amd64.zip"
       }
     },
     "variants": [
       "cbl-mariner1.0"
     ],
-    "version": "1.18.0",
-    "revision": "2",
+    "version": "1.18.1",
+    "revision": "1",
     "preferredMinor": true,
     "preferredVariant": "cbl-mariner1.0",
     "branchSuffix": "-fips"

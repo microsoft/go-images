@@ -21,19 +21,19 @@ RUN tdnf install -y \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.18.0
+ENV GOLANG_VERSION 1.18.1
 
 RUN set -eux; \
 	arch="$(uname -m)"; \
 	url=; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220407.1/go.20220407.1.linux-amd64.tar.gz'; \
-			sha256='52227bc6cdaec6f2a3c47e9b89b9c311be4e49456c90efb8b996e4266e5128cc'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220414.3/go.20220414.3.linux-amd64.tar.gz'; \
+			sha256='7b28ca61502d7034c32e0a03ecde15847db4ad323c2be88a14f3f6ffc065bff7'; \
 			;; \
 		'aarch64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220407.1/go.20220407.1.linux-arm64.tar.gz'; \
-			sha256='7ab29e484046d3cb214c1ff83a66f33f4d89641542373d123f4a1a99ba280e2a'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220414.3/go.20220414.3.linux-arm64.tar.gz'; \
+			sha256='cb253fa9ec98bab0901b54ec031f3e985e3376c637c43d78ef56388af64e7f9f'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
