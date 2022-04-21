@@ -535,6 +535,15 @@
               }
             },
             {
+              "architecture": "arm",
+              "dockerfile": "src/microsoft/1.18-fips/cbl-mariner1.0",
+              "os": "linux",
+              "osVersion": "cbl-mariner1.0",
+              "tags": {
+                "1.18.1-1-fips-cbl-mariner1.0-arm32v7": {}
+              }
+            },
+            {
               "architecture": "arm64",
               "dockerfile": "src/microsoft/1.18-fips/cbl-mariner1.0",
               "os": "linux",
