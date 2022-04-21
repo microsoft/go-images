@@ -17,6 +17,7 @@
           "GOOS": "linux"
         },
         "sha256": "7447167ba3ea6d062d2fab5841d874e7c3710070f6b0f85d9c48f1943833e22e",
+        "supported": true,
         "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.17/20220420.3/go.20220420.3.linux-armv6l.tar.gz"
       },
       "arm64v8": {
@@ -116,6 +117,7 @@
           "GOOS": "linux"
         },
         "sha256": "fcce5540ea86052c7d1549f6f89ab3265ebbbd09eb807d8b6c298deafb1c0f82",
+        "supported": true,
         "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220420.4/go.20220420.4.linux-armv6l.tar.gz"
       },
       "arm64v8": {

@@ -30,6 +30,10 @@ RUN set -eux; \
 			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220420.4/go.20220420.4.linux-amd64.tar.gz'; \
 			sha256='43befa6ecc764854df12ed00672b84ae7f19d0cceed4ce23807cb106f0b067f5'; \
 			;; \
+		'armhf') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220420.4/go.20220420.4.linux-armv6l.tar.gz'; \
+			sha256='fcce5540ea86052c7d1549f6f89ab3265ebbbd09eb807d8b6c298deafb1c0f82'; \
+			;; \
 		'arm64') \
 			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220420.4/go.20220420.4.linux-arm64.tar.gz'; \
 			sha256='870d1794b2de1a6f0604e2c3cf19604d0d7c6f6247f3a544b8a64ec44f8b24d7'; \
