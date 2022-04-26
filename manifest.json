@@ -37,6 +37,16 @@
               "tags": {
                 "1.17.9-1-bullseye-arm64v8": {}
               }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.17/bullseye",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "1.17.9-1-bullseye-arm32v7": {}
+              }
             }
           ]
         },
@@ -66,6 +76,16 @@
               "tags": {
                 "1.17.9-1-buster-arm64v8": {}
               }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.17/buster",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "1.17.9-1-buster-arm32v7": {}
+              }
             }
           ]
         },
@@ -94,6 +114,16 @@
               "osVersion": "stretch",
               "tags": {
                 "1.17.9-1-stretch-arm64v8": {}
+              }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.17/stretch",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "1.17.9-1-stretch-arm32v7": {}
               }
             }
           ]
@@ -227,7 +257,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.17.9-1-fips-cbl-mariner1.0-arm64": {}
+                "1.17.9-1-fips-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
@@ -265,6 +295,16 @@
               "tags": {
                 "1.18.1-1-bullseye-arm64v8": {}
               }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.18/bullseye",
+              "os": "linux",
+              "osVersion": "bullseye",
+              "tags": {
+                "1.18.1-1-bullseye-arm32v7": {}
+              }
             }
           ]
         },
@@ -296,6 +336,16 @@
               "tags": {
                 "1.18.1-1-buster-arm64v8": {}
               }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.18/buster",
+              "os": "linux",
+              "osVersion": "buster",
+              "tags": {
+                "1.18.1-1-buster-arm32v7": {}
+              }
             }
           ]
         },
@@ -326,6 +376,16 @@
               "osVersion": "stretch",
               "tags": {
                 "1.18.1-1-stretch-arm64v8": {}
+              }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.18/stretch",
+              "os": "linux",
+              "osVersion": "stretch",
+              "tags": {
+                "1.18.1-1-stretch-arm32v7": {}
               }
             }
           ]
@@ -471,7 +531,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.18.1-1-fips-cbl-mariner1.0-arm64": {}
+                "1.18.1-1-fips-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
