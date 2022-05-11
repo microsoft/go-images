@@ -71,7 +71,6 @@
           "GOOS": "linux"
         },
         "sha256": "a005d33c2fdeb2eaae8189950bd41ea42f58630cbbbcb1f9ada55bdccf82e1bc",
-        "supported": true,
         "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220510.5/go.20220510.5.linux-armv6l.tar.gz"
       },
       "arm64v8": {
@@ -174,7 +173,6 @@
           "GOOS": "linux"
         },
         "sha256": "d60044bc75ae1a613a44d5263f6e0388b5a6aa376ebfe077c08e1a908ccea547",
-        "supported": true,
         "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220510.6/go.20220510.6.linux-armv6l.tar.gz"
       },
       "arm64v8": {

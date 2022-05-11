@@ -252,15 +252,6 @@
               }
             },
             {
-              "architecture": "arm",
-              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.17.10-1-fips-cbl-mariner1.0-arm32v7": {}
-              }
-            },
-            {
               "architecture": "arm64",
               "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0",
               "os": "linux",
@@ -532,15 +523,6 @@
               "osVersion": "cbl-mariner1.0",
               "tags": {
                 "1.18.2-1-fips-cbl-mariner1.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "dockerfile": "src/microsoft/1.18-fips/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.18.2-1-fips-cbl-mariner1.0-arm32v7": {}
               }
             },
             {

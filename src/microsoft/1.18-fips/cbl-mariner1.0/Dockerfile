@@ -31,10 +31,6 @@ RUN set -eux; \
 			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220510.6/go.20220510.6.linux-amd64.tar.gz'; \
 			sha256='eb92d491af5b718d6161c5a86b79473770647c3d0db1f0866418842d0dadaa93'; \
 			;; \
-		'armv7') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220510.6/go.20220510.6.linux-armv6l.tar.gz'; \
-			sha256='d60044bc75ae1a613a44d5263f6e0388b5a6aa376ebfe077c08e1a908ccea547'; \
-			;; \
 		'aarch64') \
 			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220510.6/go.20220510.6.linux-arm64.tar.gz'; \
 			sha256='e0256e419dc9e2a3be28fe0176772056e7531655db4a466826a388808df16c35'; \
