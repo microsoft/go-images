@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:bullseye-scm
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm
 
 # install cgo-related dependencies
 RUN set -eux; \

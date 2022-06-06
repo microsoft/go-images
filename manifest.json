@@ -1,5 +1,7 @@
 {
-  "readme": "README.md",
+  "readme": {
+    "path": "README.md"
+  },
   "registry": "mcr.microsoft.com",
   "variables": {},
   "includes": [],

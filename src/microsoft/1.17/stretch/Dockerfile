@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:stretch-scm
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:stretch-scm
 
 # install cgo-related dependencies
 RUN set -eux; \
