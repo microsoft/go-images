@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM cblmariner.azurecr.io/base/core:1.0
+FROM cblmariner.azurecr.io/base/core:2.0
 
 RUN tdnf install -y \
 		binutils \
@@ -23,19 +23,19 @@ RUN tdnf install -y \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.18.3
+ENV GOLANG_VERSION 1.17.11
 
 RUN set -eux; \
 	arch="$(uname -m)"; \
 	url=; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220602.6/go.20220602.6.linux-amd64.tar.gz'; \
-			sha256='48c7751dde281bdbf83224c7cb20381a4b3b9e1c7948d096dc1a9cdce8422f84'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220602.4/go.20220602.4.linux-amd64.tar.gz'; \
+			sha256='20f5466978a739fb8c6672fedbd47ef1602511367860869915ebbdbdb0ded741'; \
 			;; \
 		'aarch64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20220602.6/go.20220602.6.linux-arm64.tar.gz'; \
-			sha256='0e3888b6a4cd1a9148344f8d6f3f1568c240d1e829c00c7dc154af293db5690e'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220602.4/go.20220602.4.linux-arm64.tar.gz'; \
+			sha256='c2b392b9fe30ecef3d545b11cb4e7fafcf4c704fccab9e5fe67f7a40fc942e1c'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
