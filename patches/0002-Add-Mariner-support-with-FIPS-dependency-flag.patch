@@ -4,11 +4,11 @@ Date: Fri, 11 Feb 2022 18:07:18 -0600
 Subject: [PATCH] Add Mariner support with FIPS dependency flag
 
 ---
- Dockerfile-linux.template | 48 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 48 insertions(+)
+ Dockerfile-linux.template | 56 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 56 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index a79ec02..106f1d0 100644
+index 1b0639f..9130e4f 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,6 +4,16 @@
@@ -28,7 +28,7 @@ index a79ec02..106f1d0 100644
  -}}
  {{ if is_alpine then ( -}}
  FROM alpine:{{ alpine_version }}
-@@ -14,6 +24,27 @@ RUN apk add --no-cache ca-certificates
+@@ -14,6 +24,29 @@ RUN apk add --no-cache ca-certificates
  # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
  # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
  RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
@@ -40,8 +40,10 @@ index a79ec02..106f1d0 100644
 +		gcc \
 +		glibc \
 +		glibc-devel \
-+		kernel-headers \
 +		iana-etc \
++		kernel-headers \
++		tar \
++		wget \
 +{{
 +	if is_fips then (
 +-}}
@@ -56,7 +58,7 @@ index a79ec02..106f1d0 100644
  {{ ) else ( -}}
  FROM buildpack-deps:{{ env.variant }}-scm
  
-@@ -26,6 +57,14 @@ RUN set -eux; \
+@@ -26,6 +59,14 @@ RUN set -eux; \
  		libc6-dev \
  		make \
  		pkg-config \
@@ -71,7 +73,7 @@ index a79ec02..106f1d0 100644
  	; \
  	rm -rf /var/lib/apt/lists/*
  {{ ) end -}}
-@@ -46,6 +85,13 @@ ENV GOLANG_VERSION {{ .version }}
+@@ -46,6 +87,13 @@ ENV GOLANG_VERSION {{ .version }}
  				ppc64le: "ppc64le",
  				s390x: "s390x",
  			}
@@ -85,7 +87,7 @@ index a79ec02..106f1d0 100644
  		else
  			{
  				amd64: "amd64",
-@@ -63,6 +109,8 @@ RUN set -eux; \
+@@ -63,6 +111,8 @@ RUN set -eux; \
  {{ if is_alpine then ( -}}
  	apk add --no-cache --virtual .fetch-deps gnupg; \
  	arch="$(apk --print-arch)"; \
@@ -94,3 +96,20 @@ index a79ec02..106f1d0 100644
  {{ ) else ( -}}
  	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
  {{ ) end -}}
+@@ -117,10 +167,16 @@ RUN set -eux; \
+ 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
+ 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
+ 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
++{{ if is_cbl_mariner then ( -}}
++# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
++# import. In microsoft/go-images, we use a manually imported key anyway.
++# See https://github.com/microsoft/CBL-Mariner/issues/3142
++{{ ) else ( -}}
+ # https://www.google.com/linuxrepositories/
+ 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
+ # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
+ 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
++{{ ) end -}}
+ 	gpg --batch --verify go.tgz.asc go.tgz; \
+ 	gpgconf --kill all; \
+ 	rm -rf "$GNUPGHOME" go.tgz.asc; \

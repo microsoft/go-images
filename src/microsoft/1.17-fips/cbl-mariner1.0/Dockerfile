@@ -11,8 +11,10 @@ RUN tdnf install -y \
 		gcc \
 		glibc \
 		glibc-devel \
-		kernel-headers \
 		iana-etc \
+		kernel-headers \
+		tar \
+		wget \
 		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
 		openssl-devel \
 	; \
@@ -56,10 +58,9 @@ RUN set -eux; \
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-# https://www.google.com/linuxrepositories/
-	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
-# let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
-	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
+# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
+# import. In microsoft/go-images, we use a manually imported key anyway.
+# See https://github.com/microsoft/CBL-Mariner/issues/3142
 	gpg --batch --verify go.tgz.asc go.tgz; \
 	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" go.tgz.asc; \
