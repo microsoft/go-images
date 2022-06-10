@@ -1,0 +1,22 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
+Date: Fri, 3 Jun 2022 12:26:05 -0500
+Subject: [PATCH] Use MCR mirror for buildpack-deps
+
+---
+ Dockerfile-linux.template | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
+index e83d5ab..f661a6b 100644
+--- a/Dockerfile-linux.template
++++ b/Dockerfile-linux.template
+@@ -46,7 +46,7 @@ RUN tdnf install -y \
+ 	tdnf clean all
+ 
+ {{ ) else ( -}}
+-FROM buildpack-deps:{{ env.variant }}-scm
++FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:{{ env.variant }}-scm
+ 
+ # install cgo-related dependencies
+ RUN set -eux; \
