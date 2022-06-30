@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM buildpack-deps:buster-scm
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:buster-scm
 
 # install cgo-related dependencies
 RUN set -eux; \
