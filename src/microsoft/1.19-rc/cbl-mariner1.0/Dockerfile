@@ -4,39 +4,40 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:stretch-scm
+FROM cblmariner.azurecr.io/base/core:1.0
 
-# install cgo-related dependencies
-RUN set -eux; \
-	apt-get update; \
-	apt-get install -y --no-install-recommends \
-		g++ \
+RUN tdnf install -y \
+		binutils \
 		gcc \
-		libc6-dev \
-		make \
-		pkg-config \
+		glibc \
+		glibc-devel \
+		iana-etc \
+		kernel-headers \
+		tar \
+		wget \
 	; \
-	rm -rf /var/lib/apt/lists/*
+	tdnf clean all
+
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION main
+ENV GOLANG_VERSION 1.19.0rc1
 
 RUN set -eux; \
-	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+	arch="$(uname -m)"; \
 	url=; \
 	case "$arch" in \
-		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-amd64.tar.gz'; \
-			sha256='12b1a5d4bf89cefef2cd921c65ba9ddb818b15eea5ee0b180db79ee9bc165b1f'; \
+		'x86_64') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220707.1/go.20220707.1.linux-amd64.tar.gz'; \
+			sha256='561752824515c50999a0ee8828bcd90b360bba73cb7a3fd47537e4b65110cd2a'; \
 			;; \
-		'armhf') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-armv6l.tar.gz'; \
-			sha256='f9042b01220bd6ae7adb3e09717569443a3a99507f6941c205cae277e3cad22c'; \
+		'armv7') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220707.1/go.20220707.1.linux-armv6l.tar.gz'; \
+			sha256='12fe50a0989348f7bd9f7b78729cbcc57f8d479d79230d5dd0a19741e29e3aac'; \
 			;; \
-		'arm64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-arm64.tar.gz'; \
-			sha256='9b4a78aa4395d6a724261ec822c452c07f96d7af9d52b5d04d0f5b71e0e5a283'; \
+		'aarch64') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220707.1/go.20220707.1.linux-arm64.tar.gz'; \
+			sha256='5e692d55cafb9078136adf49906c93ba2d1513d705a26a71a7213ee127380c43'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -59,10 +60,9 @@ RUN set -eux; \
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-# https://www.google.com/linuxrepositories/
-	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
-# let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
-	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
+# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
+# import. In microsoft/go-images, we use a manually imported key anyway.
+# See https://github.com/microsoft/CBL-Mariner/issues/3142
 	gpg --batch --verify go.tgz.asc go.tgz; \
 	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" go.tgz.asc; \
