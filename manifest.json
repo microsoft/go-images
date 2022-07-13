@@ -300,8 +300,8 @@
             "1.18": {},
             "1.18-bullseye": {},
             "1.18.4": {},
-            "1.18.4-1": {},
-            "1.18.4-1-bullseye": {},
+            "1.18.4-2": {},
+            "1.18.4-2-bullseye": {},
             "1.18.4-bullseye": {},
             "bullseye": {},
             "latest": {}
@@ -313,7 +313,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.18.4-1-bullseye-amd64": {}
+                "1.18.4-2-bullseye-amd64": {}
               }
             },
             {
@@ -323,7 +323,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.18.4-1-bullseye-arm64v8": {}
+                "1.18.4-2-bullseye-arm64v8": {}
               }
             },
             {
@@ -333,7 +333,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.18.4-1-bullseye-arm32v7": {}
+                "1.18.4-2-bullseye-arm32v7": {}
               }
             }
           ]
@@ -343,7 +343,7 @@
           "sharedTags": {
             "1-buster": {},
             "1.18-buster": {},
-            "1.18.4-1-buster": {},
+            "1.18.4-2-buster": {},
             "1.18.4-buster": {},
             "buster": {}
           },
@@ -354,7 +354,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.18.4-1-buster-amd64": {}
+                "1.18.4-2-buster-amd64": {}
               }
             },
             {
@@ -364,7 +364,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.18.4-1-buster-arm64v8": {}
+                "1.18.4-2-buster-arm64v8": {}
               }
             },
             {
@@ -374,7 +374,7 @@
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.18.4-1-buster-arm32v7": {}
+                "1.18.4-2-buster-arm32v7": {}
               }
             }
           ]
@@ -384,7 +384,7 @@
           "sharedTags": {
             "1-stretch": {},
             "1.18-stretch": {},
-            "1.18.4-1-stretch": {},
+            "1.18.4-2-stretch": {},
             "1.18.4-stretch": {},
             "stretch": {}
           },
@@ -395,7 +395,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "1.18.4-1-stretch-amd64": {}
+                "1.18.4-2-stretch-amd64": {}
               }
             },
             {
@@ -405,7 +405,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "1.18.4-1-stretch-arm64v8": {}
+                "1.18.4-2-stretch-arm64v8": {}
               }
             },
             {
@@ -415,7 +415,7 @@
               "os": "linux",
               "osVersion": "stretch",
               "tags": {
-                "1.18.4-1-stretch-arm32v7": {}
+                "1.18.4-2-stretch-arm32v7": {}
               }
             }
           ]
@@ -425,7 +425,7 @@
           "sharedTags": {
             "1-windowsservercore-ltsc2022": {},
             "1.18-windowsservercore-ltsc2022": {},
-            "1.18.4-1-windowsservercore-ltsc2022": {},
+            "1.18.4-2-windowsservercore-ltsc2022": {},
             "1.18.4-windowsservercore-ltsc2022": {},
             "windowsservercore-ltsc2022": {}
           },
@@ -436,7 +436,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "1.18.4-1-windowsservercore-ltsc2022-amd64": {}
+                "1.18.4-2-windowsservercore-ltsc2022-amd64": {}
               }
             }
           ]
@@ -446,7 +446,7 @@
           "sharedTags": {
             "1-windowsservercore-1809": {},
             "1.18-windowsservercore-1809": {},
-            "1.18.4-1-windowsservercore-1809": {},
+            "1.18.4-2-windowsservercore-1809": {},
             "1.18.4-windowsservercore-1809": {},
             "windowsservercore-1809": {}
           },
@@ -457,7 +457,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-1809",
               "tags": {
-                "1.18.4-1-windowsservercore-1809-amd64": {}
+                "1.18.4-2-windowsservercore-1809-amd64": {}
               }
             }
           ]
@@ -467,7 +467,7 @@
           "sharedTags": {
             "1-windowsservercore-ltsc2016": {},
             "1.18-windowsservercore-ltsc2016": {},
-            "1.18.4-1-windowsservercore-ltsc2016": {},
+            "1.18.4-2-windowsservercore-ltsc2016": {},
             "1.18.4-windowsservercore-ltsc2016": {},
             "windowsservercore-ltsc2016": {}
           },
@@ -478,7 +478,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2016",
               "tags": {
-                "1.18.4-1-windowsservercore-ltsc2016-amd64": {}
+                "1.18.4-2-windowsservercore-ltsc2016-amd64": {}
               }
             }
           ]
@@ -488,14 +488,14 @@
           "sharedTags": {
             "1-nanoserver-ltsc2022": {},
             "1.18-nanoserver-ltsc2022": {},
-            "1.18.4-1-nanoserver-ltsc2022": {},
+            "1.18.4-2-nanoserver-ltsc2022": {},
             "1.18.4-nanoserver-ltsc2022": {},
             "nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.18.4-1-windowsservercore-ltsc2022-amd64",
+                "DOWNLOADER_TAG": "1.18.4-2-windowsservercore-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -503,7 +503,7 @@
               "os": "windows",
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
-                "1.18.4-1-nanoserver-ltsc2022-amd64": {}
+                "1.18.4-2-nanoserver-ltsc2022-amd64": {}
               }
             }
           ]
@@ -513,14 +513,14 @@
           "sharedTags": {
             "1-nanoserver-1809": {},
             "1.18-nanoserver-1809": {},
-            "1.18.4-1-nanoserver-1809": {},
+            "1.18.4-2-nanoserver-1809": {},
             "1.18.4-nanoserver-1809": {},
             "nanoserver-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.18.4-1-windowsservercore-1809-amd64",
+                "DOWNLOADER_TAG": "1.18.4-2-windowsservercore-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -528,7 +528,7 @@
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "1.18.4-1-nanoserver-1809-amd64": {}
+                "1.18.4-2-nanoserver-1809-amd64": {}
               }
             }
           ]
