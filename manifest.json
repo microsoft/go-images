@@ -722,15 +722,6 @@
               }
             },
             {
-              "architecture": "arm",
-              "dockerfile": "src/microsoft/1.19-rc/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.19.0rc1-1-cbl-mariner2.0-arm32v7": {}
-              }
-            },
-            {
               "architecture": "arm64",
               "dockerfile": "src/microsoft/1.19-rc/cbl-mariner2.0",
               "os": "linux",
@@ -898,19 +889,6 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "1.19.0rc1-1-fips-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.19.0rc1-1-cbl-mariner2.0-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.19.0rc1-1-fips-cbl-mariner2.0-arm32v7": {}
               }
             },
             {
@@ -1148,15 +1126,6 @@
               }
             },
             {
-              "architecture": "arm",
-              "dockerfile": "src/microsoft/main/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "main-cbl-mariner2.0-arm32v7": {}
-              }
-            },
-            {
               "architecture": "arm64",
               "dockerfile": "src/microsoft/main/cbl-mariner2.0",
               "os": "linux",
@@ -1316,19 +1285,6 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "main-fips-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-cbl-mariner2.0-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "dockerfile": "src/microsoft/main/fips-linux/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "main-fips-cbl-mariner2.0-arm32v7": {}
               }
             },
             {
