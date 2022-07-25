@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:stretch-scm
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:buster-scm
 
 # install cgo-related dependencies
 RUN set -eux; \
@@ -20,23 +20,23 @@ RUN set -eux; \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION main
+ENV GOLANG_VERSION 1.19.0rc1
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-amd64.tar.gz'; \
-			sha256='12b1a5d4bf89cefef2cd921c65ba9ddb818b15eea5ee0b180db79ee9bc165b1f'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220707.1/go.20220707.1.linux-amd64.tar.gz'; \
+			sha256='561752824515c50999a0ee8828bcd90b360bba73cb7a3fd47537e4b65110cd2a'; \
 			;; \
 		'armhf') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-armv6l.tar.gz'; \
-			sha256='f9042b01220bd6ae7adb3e09717569443a3a99507f6941c205cae277e3cad22c'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220707.1/go.20220707.1.linux-armv6l.tar.gz'; \
+			sha256='12fe50a0989348f7bd9f7b78729cbcc57f8d479d79230d5dd0a19741e29e3aac'; \
 			;; \
 		'arm64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-arm64.tar.gz'; \
-			sha256='9b4a78aa4395d6a724261ec822c452c07f96d7af9d52b5d04d0f5b71e0e5a283'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220707.1/go.20220707.1.linux-arm64.tar.gz'; \
+			sha256='5e692d55cafb9078136adf49906c93ba2d1513d705a26a71a7213ee127380c43'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
