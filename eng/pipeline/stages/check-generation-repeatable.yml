@@ -1,0 +1,35 @@
+# Check that Dockerfile generation using "dockerupdate" is repeatable. This makes sure the patches
+# apply to the current submodule commit, the manifest.json file is up to date, versions.json is
+# valid, and the Dockerfiles are generated correctly, all using a known version of "dockerupdate".
+stages:
+  - stage: Repeatability
+    dependsOn: []
+    jobs:
+      - job: Test
+        pool:
+          # This is a utility job: use generic recent LTS.
+          vmImage: ubuntu-20.04
+        workspace:
+          clean: all
+        steps:
+          - template: ../steps/checkout-unix-task.yml
+
+          - task: GoTool@0
+            inputs:
+              version: 1.18
+
+          # Install the update command with the version in eng/ci-tools.
+          - script: go install github.com/microsoft/go-infra/cmd/dockerupdate
+            displayName: Install dockerupdate
+            workingDirectory: $(Build.SourcesDirectory)/eng/ci-tools
+
+          - script: $(go env GOPATH)/bin/dockerupdate
+            displayName: Run dockerupdate
+
+          - script: |
+              set -eux
+              # Add files, so new untracked files don't evade detection.
+              git add .
+              # Exit code 1 = differences, 0 = no differences.
+              git diff --cached --exit-code -- src manifest.json
+            displayName: Ensure no changes
