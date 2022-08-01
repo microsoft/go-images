@@ -238,10 +238,10 @@
           "sharedTags": {
             "1.17-fips": {},
             "1.17-fips-cbl-mariner1.0": {},
-            "1.17.11-1-fips": {},
-            "1.17.11-1-fips-cbl-mariner1.0": {},
-            "1.17.11-fips": {},
-            "1.17.11-fips-cbl-mariner1.0": {}
+            "1.17.13-1-fips": {},
+            "1.17.13-1-fips-cbl-mariner1.0": {},
+            "1.17.13-fips": {},
+            "1.17.13-fips-cbl-mariner1.0": {}
           },
           "platforms": [
             {
@@ -250,7 +250,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.17.11-1-fips-cbl-mariner1.0-amd64": {}
+                "1.17.13-1-fips-cbl-mariner1.0-amd64": {}
               }
             },
             {
@@ -259,7 +259,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.17.11-1-fips-cbl-mariner1.0-arm64v8": {}
+                "1.17.13-1-fips-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
@@ -268,8 +268,8 @@
           "productVersion": "1.17",
           "sharedTags": {
             "1.17-fips-cbl-mariner2.0": {},
-            "1.17.11-1-fips-cbl-mariner2.0": {},
-            "1.17.11-fips-cbl-mariner2.0": {}
+            "1.17.13-1-fips-cbl-mariner2.0": {},
+            "1.17.13-fips-cbl-mariner2.0": {}
           },
           "platforms": [
             {
@@ -278,7 +278,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.17.11-1-fips-cbl-mariner2.0-amd64": {}
+                "1.17.13-1-fips-cbl-mariner2.0-amd64": {}
               }
             },
             {
@@ -287,7 +287,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.17.11-1-fips-cbl-mariner2.0-arm64v8": {}
+                "1.17.13-1-fips-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
