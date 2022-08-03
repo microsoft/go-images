@@ -4,38 +4,39 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM cblmariner.azurecr.io/base/core:1.0
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm
 
-RUN tdnf install -y \
-		binutils \
+# install cgo-related dependencies
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends \
+		g++ \
 		gcc \
-		glibc \
-		glibc-devel \
-		iana-etc \
-		kernel-headers \
-		tar \
-		wget \
-		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
-		openssl-devel \
+		libc6-dev \
+		make \
+		pkg-config \
 	; \
-	tdnf clean all
-
+	rm -rf /var/lib/apt/lists/*
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.17.13
+ENV GOLANG_VERSION 1.19.0
 
 RUN set -eux; \
-	arch="$(uname -m)"; \
+	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
-		'x86_64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220801.10/go.20220801.10.linux-amd64.tar.gz'; \
-			sha256='1df52caf11804a63503c92bc4977ff77fa2b13638e9831728306702f14cbb112'; \
+		'amd64') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220802.4/go.20220802.4.linux-amd64.tar.gz'; \
+			sha256='d87ab5e2de6794ecf9e1e25a9b0b3f861f3826d27182eb3e0338efb26a7b3513'; \
 			;; \
-		'aarch64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.17/20220801.10/go.20220801.10.linux-arm64.tar.gz'; \
-			sha256='59c7c3e6f6229908102ed722d51fdd10f241501c3c3258a41fafd382eb1c70c4'; \
+		'armhf') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220802.4/go.20220802.4.linux-armv6l.tar.gz'; \
+			sha256='0b02064957c02b000bcc034305b150f4d3ba58dede6fb99dd1de0d2b7219a841'; \
+			;; \
+		'arm64') \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20220802.4/go.20220802.4.linux-arm64.tar.gz'; \
+			sha256='aa2e61f9da2e07199ca06f4a414f5ef623305e7c172370ca3dcbc64ec8d9894f'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -58,9 +59,10 @@ RUN set -eux; \
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
-# import. In microsoft/go-images, we use a manually imported key anyway.
-# See https://github.com/microsoft/CBL-Mariner/issues/3142
+# https://www.google.com/linuxrepositories/
+	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
+# let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
+	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
 	gpg --batch --verify go.tgz.asc go.tgz; \
 	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" go.tgz.asc; \
