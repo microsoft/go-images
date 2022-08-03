@@ -8,7 +8,7 @@ Subject: [PATCH] Add Mariner support with FIPS dependency flag
  1 file changed, 56 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 1b0639f..9130e4f 100644
+index d3edb012fdd768..44297b197089c8 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,6 +4,16 @@
@@ -30,7 +30,7 @@ index 1b0639f..9130e4f 100644
  FROM alpine:{{ alpine_version }}
 @@ -14,6 +24,29 @@ RUN apk add --no-cache ca-certificates
  # - https://github.com/golang/go/blob/go1.9.1/src/net/conf.go#L194-L275
- # - docker run --rm debian:stretch grep '^hosts:' /etc/nsswitch.conf
+ # - docker run --rm debian grep '^hosts:' /etc/nsswitch.conf
  RUN [ ! -e /etc/nsswitch.conf ] && echo 'hosts: files dns' > /etc/nsswitch.conf
 +{{ ) elif is_cbl_mariner then ( -}}
 +FROM cblmariner.azurecr.io/base/core:{{ cbl_mariner_version }}
