@@ -7,16 +7,16 @@ In general, the microsoft/go-images tag names match those available for the [Doc
 This tag is recommended for general build scenarios:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.17-bullseye
+mcr.microsoft.com/oss/go/microsoft/golang:1.19-bullseye
 ```
 
 If you need to build a FIPS-compatible app, use a `fips` tag, such as:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.17-fips-cbl-mariner1.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.19-fips-cbl-mariner1.0
 ```
 
-For more information about building FIPS-compatible Go apps with the Microsoft Go tools, visit [the FIPS readme](https://github.com/microsoft/go/tree/microsoft/dev.boringcrypto.go1.17/eng/doc/fips) and [user guide](https://github.com/microsoft/go/blob/microsoft/dev.boringcrypto.go1.17/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
+For more information about building FIPS-compatible Go apps with the Microsoft Go tools, visit [the FIPS readme](https://github.com/microsoft/go/tree/microsoft/main/eng/doc/fips) and [user guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
 
 To view the full list of available Go tags in MCR:
 

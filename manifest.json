@@ -11,288 +11,6 @@
       "name": "oss/go/microsoft/golang",
       "images": [
         {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17": {},
-            "1.17-bullseye": {},
-            "1.17.13": {},
-            "1.17.13-1": {},
-            "1.17.13-1-bullseye": {},
-            "1.17.13-bullseye": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.17.13-1-bullseye-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.17/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.17.13-1-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.17/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.17.13-1-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-buster": {},
-            "1.17.13-1-buster": {},
-            "1.17.13-buster": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.17.13-1-buster-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.17/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.17.13-1-buster-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.17/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.17.13-1-buster-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-stretch": {},
-            "1.17.13-1-stretch": {},
-            "1.17.13-stretch": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.17.13-1-stretch-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.17/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.17.13-1-stretch-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.17/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.17.13-1-stretch-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-windowsservercore-ltsc2022": {},
-            "1.17.13-1-windowsservercore-ltsc2022": {},
-            "1.17.13-windowsservercore-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-ltsc2022",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2022",
-              "tags": {
-                "1.17.13-1-windowsservercore-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-windowsservercore-1809": {},
-            "1.17.13-1-windowsservercore-1809": {},
-            "1.17.13-windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "1.17.13-1-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-windowsservercore-ltsc2016": {},
-            "1.17.13-1-windowsservercore-ltsc2016": {},
-            "1.17.13-windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "1.17.13-1-windowsservercore-ltsc2016-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-nanoserver-ltsc2022": {},
-            "1.17.13-1-nanoserver-ltsc2022": {},
-            "1.17.13-nanoserver-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.17.13-1-windowsservercore-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/windows/nanoserver-ltsc2022",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2022",
-              "tags": {
-                "1.17.13-1-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-nanoserver-1809": {},
-            "1.17.13-1-nanoserver-1809": {},
-            "1.17.13-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.17.13-1-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17/windows/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.17.13-1-nanoserver-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-fips": {},
-            "1.17-fips-cbl-mariner1.0": {},
-            "1.17.13-1-fips": {},
-            "1.17.13-1-fips-cbl-mariner1.0": {},
-            "1.17.13-fips": {},
-            "1.17.13-fips-cbl-mariner1.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.17.13-1-fips-cbl-mariner1.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.17.13-1-fips-cbl-mariner1.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.17",
-          "sharedTags": {
-            "1.17-fips-cbl-mariner2.0": {},
-            "1.17.13-1-fips-cbl-mariner2.0": {},
-            "1.17.13-fips-cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.17.13-1-fips-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/microsoft/1.17-fips/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.17.13-1-fips-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
           "productVersion": "1.18",
           "sharedTags": {
             "1": {},
@@ -375,47 +93,6 @@
               "osVersion": "buster",
               "tags": {
                 "1.18.5-1-buster-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.18",
-          "sharedTags": {
-            "1-stretch": {},
-            "1.18-stretch": {},
-            "1.18.5-1-stretch": {},
-            "1.18.5-stretch": {},
-            "stretch": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.18/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.18.5-1-stretch-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.18/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.18.5-1-stretch-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.18/stretch",
-              "os": "linux",
-              "osVersion": "stretch",
-              "tags": {
-                "1.18.5-1-stretch-arm32v7": {}
               }
             }
           ]
@@ -596,801 +273,415 @@
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc": {},
-            "1.19-rc-bullseye": {},
-            "1.19.0rc2": {},
-            "1.19.0rc2-1": {},
-            "1.19.0rc2-1-bullseye": {},
-            "1.19.0rc2-bullseye": {}
+            "1.19": {},
+            "1.19-bullseye": {},
+            "1.19.0": {},
+            "1.19.0-1": {},
+            "1.19.0-1-bullseye": {},
+            "1.19.0-bullseye": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/bullseye",
+              "dockerfile": "src/microsoft/1.19/bullseye",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.0rc2-1-bullseye-amd64": {}
+                "1.19.0-1-bullseye-amd64": {}
               }
             },
             {
               "architecture": "arm64",
               "variant": "v8",
-              "dockerfile": "src/microsoft/1.19-rc/bullseye",
+              "dockerfile": "src/microsoft/1.19/bullseye",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.0rc2-1-bullseye-arm64v8": {}
+                "1.19.0-1-bullseye-arm64v8": {}
               }
             },
             {
               "architecture": "arm",
               "variant": "v7",
-              "dockerfile": "src/microsoft/1.19-rc/bullseye",
+              "dockerfile": "src/microsoft/1.19/bullseye",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.0rc2-1-bullseye-arm32v7": {}
+                "1.19.0-1-bullseye-arm32v7": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-buster": {},
-            "1.19.0rc2-1-buster": {},
-            "1.19.0rc2-buster": {}
+            "1.19-buster": {},
+            "1.19.0-1-buster": {},
+            "1.19.0-buster": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/buster",
+              "dockerfile": "src/microsoft/1.19/buster",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.19.0rc2-1-buster-amd64": {}
+                "1.19.0-1-buster-amd64": {}
               }
             },
             {
               "architecture": "arm64",
               "variant": "v8",
-              "dockerfile": "src/microsoft/1.19-rc/buster",
+              "dockerfile": "src/microsoft/1.19/buster",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.19.0rc2-1-buster-arm64v8": {}
+                "1.19.0-1-buster-arm64v8": {}
               }
             },
             {
               "architecture": "arm",
               "variant": "v7",
-              "dockerfile": "src/microsoft/1.19-rc/buster",
+              "dockerfile": "src/microsoft/1.19/buster",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.19.0rc2-1-buster-arm32v7": {}
+                "1.19.0-1-buster-arm32v7": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-cbl-mariner1.0": {},
-            "1.19.0rc2-1-cbl-mariner1.0": {},
-            "1.19.0rc2-cbl-mariner1.0": {}
+            "1.19-cbl-mariner1.0": {},
+            "1.19.0-1-cbl-mariner1.0": {},
+            "1.19.0-cbl-mariner1.0": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/cbl-mariner1.0",
+              "dockerfile": "src/microsoft/1.19/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.0rc2-1-cbl-mariner1.0-amd64": {}
+                "1.19.0-1-cbl-mariner1.0-amd64": {}
               }
             },
             {
               "architecture": "arm64",
-              "dockerfile": "src/microsoft/1.19-rc/cbl-mariner1.0",
+              "dockerfile": "src/microsoft/1.19/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.0rc2-1-cbl-mariner1.0-arm64v8": {}
+                "1.19.0-1-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-cbl-mariner2.0": {},
-            "1.19.0rc2-1-cbl-mariner2.0": {},
-            "1.19.0rc2-cbl-mariner2.0": {}
+            "1.19-cbl-mariner2.0": {},
+            "1.19.0-1-cbl-mariner2.0": {},
+            "1.19.0-cbl-mariner2.0": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/cbl-mariner2.0",
+              "dockerfile": "src/microsoft/1.19/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.0rc2-1-cbl-mariner2.0-amd64": {}
+                "1.19.0-1-cbl-mariner2.0-amd64": {}
               }
             },
             {
               "architecture": "arm64",
-              "dockerfile": "src/microsoft/1.19-rc/cbl-mariner2.0",
+              "dockerfile": "src/microsoft/1.19/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.0rc2-1-cbl-mariner2.0-arm64v8": {}
+                "1.19.0-1-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-fips-bullseye": {},
-            "1.19.0rc2-1-fips-bullseye": {},
-            "1.19.0rc2-fips-bullseye": {}
+            "1.19-fips-bullseye": {},
+            "1.19.0-1-fips-bullseye": {},
+            "1.19.0-fips-bullseye": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-bullseye-amd64",
+                "FROM_TAG": "1.19.0-1-bullseye-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/bullseye",
+              "dockerfile": "src/microsoft/1.19/fips-linux/bullseye",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.0rc2-1-fips-bullseye-amd64": {}
+                "1.19.0-1-fips-bullseye-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-bullseye-arm64v8",
+                "FROM_TAG": "1.19.0-1-bullseye-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
               "variant": "v8",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/bullseye",
+              "dockerfile": "src/microsoft/1.19/fips-linux/bullseye",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.0rc2-1-fips-bullseye-arm64v8": {}
+                "1.19.0-1-fips-bullseye-arm64v8": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-bullseye-arm32v7",
+                "FROM_TAG": "1.19.0-1-bullseye-arm32v7",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm",
               "variant": "v7",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/bullseye",
+              "dockerfile": "src/microsoft/1.19/fips-linux/bullseye",
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.0rc2-1-fips-bullseye-arm32v7": {}
+                "1.19.0-1-fips-bullseye-arm32v7": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-fips-buster": {},
-            "1.19.0rc2-1-fips-buster": {},
-            "1.19.0rc2-fips-buster": {}
+            "1.19-fips-buster": {},
+            "1.19.0-1-fips-buster": {},
+            "1.19.0-fips-buster": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-buster-amd64",
+                "FROM_TAG": "1.19.0-1-buster-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/buster",
+              "dockerfile": "src/microsoft/1.19/fips-linux/buster",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.19.0rc2-1-fips-buster-amd64": {}
+                "1.19.0-1-fips-buster-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-buster-arm64v8",
+                "FROM_TAG": "1.19.0-1-buster-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
               "variant": "v8",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/buster",
+              "dockerfile": "src/microsoft/1.19/fips-linux/buster",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.19.0rc2-1-fips-buster-arm64v8": {}
+                "1.19.0-1-fips-buster-arm64v8": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-buster-arm32v7",
+                "FROM_TAG": "1.19.0-1-buster-arm32v7",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm",
               "variant": "v7",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/buster",
+              "dockerfile": "src/microsoft/1.19/fips-linux/buster",
               "os": "linux",
               "osVersion": "buster",
               "tags": {
-                "1.19.0rc2-1-fips-buster-arm32v7": {}
+                "1.19.0-1-fips-buster-arm32v7": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-fips-cbl-mariner1.0": {},
-            "1.19.0rc2-1-fips-cbl-mariner1.0": {},
-            "1.19.0rc2-fips-cbl-mariner1.0": {}
+            "1.19-fips-cbl-mariner1.0": {},
+            "1.19.0-1-fips-cbl-mariner1.0": {},
+            "1.19.0-fips-cbl-mariner1.0": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-cbl-mariner1.0-amd64",
+                "FROM_TAG": "1.19.0-1-cbl-mariner1.0-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/cbl-mariner1.0",
+              "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.0rc2-1-fips-cbl-mariner1.0-amd64": {}
+                "1.19.0-1-fips-cbl-mariner1.0-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-cbl-mariner1.0-arm64v8",
+                "FROM_TAG": "1.19.0-1-cbl-mariner1.0-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/cbl-mariner1.0",
+              "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.0rc2-1-fips-cbl-mariner1.0-arm64v8": {}
+                "1.19.0-1-fips-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-fips-cbl-mariner2.0": {},
-            "1.19.0rc2-1-fips-cbl-mariner2.0": {},
-            "1.19.0rc2-fips-cbl-mariner2.0": {}
+            "1.19-fips-cbl-mariner2.0": {},
+            "1.19.0-1-fips-cbl-mariner2.0": {},
+            "1.19.0-fips-cbl-mariner2.0": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-cbl-mariner2.0-amd64",
+                "FROM_TAG": "1.19.0-1-cbl-mariner2.0-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/cbl-mariner2.0",
+              "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.0rc2-1-fips-cbl-mariner2.0-amd64": {}
+                "1.19.0-1-fips-cbl-mariner2.0-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.0rc2-1-cbl-mariner2.0-arm64v8",
+                "FROM_TAG": "1.19.0-1-cbl-mariner2.0-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
-              "dockerfile": "src/microsoft/1.19-rc/fips-linux/cbl-mariner2.0",
+              "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.0rc2-1-fips-cbl-mariner2.0-arm64v8": {}
+                "1.19.0-1-fips-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-windowsservercore-ltsc2022": {},
-            "1.19.0rc2-1-windowsservercore-ltsc2022": {},
-            "1.19.0rc2-windowsservercore-ltsc2022": {}
+            "1.19-windowsservercore-ltsc2022": {},
+            "1.19.0-1-windowsservercore-ltsc2022": {},
+            "1.19.0-windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/windows/windowsservercore-ltsc2022",
+              "dockerfile": "src/microsoft/1.19/windows/windowsservercore-ltsc2022",
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "1.19.0rc2-1-windowsservercore-ltsc2022-amd64": {}
+                "1.19.0-1-windowsservercore-ltsc2022-amd64": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-windowsservercore-1809": {},
-            "1.19.0rc2-1-windowsservercore-1809": {},
-            "1.19.0rc2-windowsservercore-1809": {}
+            "1.19-windowsservercore-1809": {},
+            "1.19.0-1-windowsservercore-1809": {},
+            "1.19.0-windowsservercore-1809": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/windows/windowsservercore-1809",
+              "dockerfile": "src/microsoft/1.19/windows/windowsservercore-1809",
               "os": "windows",
               "osVersion": "windowsservercore-1809",
               "tags": {
-                "1.19.0rc2-1-windowsservercore-1809-amd64": {}
+                "1.19.0-1-windowsservercore-1809-amd64": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-windowsservercore-ltsc2016": {},
-            "1.19.0rc2-1-windowsservercore-ltsc2016": {},
-            "1.19.0rc2-windowsservercore-ltsc2016": {}
+            "1.19-windowsservercore-ltsc2016": {},
+            "1.19.0-1-windowsservercore-ltsc2016": {},
+            "1.19.0-windowsservercore-ltsc2016": {}
           },
           "platforms": [
             {
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/windows/windowsservercore-ltsc2016",
+              "dockerfile": "src/microsoft/1.19/windows/windowsservercore-ltsc2016",
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2016",
               "tags": {
-                "1.19.0rc2-1-windowsservercore-ltsc2016-amd64": {}
+                "1.19.0-1-windowsservercore-ltsc2016-amd64": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-nanoserver-ltsc2022": {},
-            "1.19.0rc2-1-nanoserver-ltsc2022": {},
-            "1.19.0rc2-nanoserver-ltsc2022": {}
+            "1.19-nanoserver-ltsc2022": {},
+            "1.19.0-1-nanoserver-ltsc2022": {},
+            "1.19.0-nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.19.0rc2-1-windowsservercore-ltsc2022-amd64",
+                "DOWNLOADER_TAG": "1.19.0-1-windowsservercore-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/windows/nanoserver-ltsc2022",
+              "dockerfile": "src/microsoft/1.19/windows/nanoserver-ltsc2022",
               "os": "windows",
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
-                "1.19.0rc2-1-nanoserver-ltsc2022-amd64": {}
+                "1.19.0-1-nanoserver-ltsc2022-amd64": {}
               }
             }
           ]
         },
         {
-          "productVersion": "1.19-rc",
+          "productVersion": "1.19",
           "sharedTags": {
-            "1.19-rc-nanoserver-1809": {},
-            "1.19.0rc2-1-nanoserver-1809": {},
-            "1.19.0rc2-nanoserver-1809": {}
+            "1.19-nanoserver-1809": {},
+            "1.19.0-1-nanoserver-1809": {},
+            "1.19.0-nanoserver-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.19.0rc2-1-windowsservercore-1809-amd64",
+                "DOWNLOADER_TAG": "1.19.0-1-windowsservercore-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19-rc/windows/nanoserver-1809",
+              "dockerfile": "src/microsoft/1.19/windows/nanoserver-1809",
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "1.19.0rc2-1-nanoserver-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main": {},
-            "main-bullseye": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "main-bullseye-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/main/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "main-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/main/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "main-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-buster": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "main-buster-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/main/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "main-buster-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/main/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "main-buster-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-cbl-mariner1.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "main-cbl-mariner1.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/microsoft/main/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "main-cbl-mariner1.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "main-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "dockerfile": "src/microsoft/main/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "main-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-fips-bullseye": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-bullseye-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/fips-linux/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "main-fips-bullseye-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-bullseye-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/main/fips-linux/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "main-fips-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-bullseye-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/main/fips-linux/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "main-fips-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-fips-buster": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-buster-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "main-fips-buster-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-buster-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/main/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "main-fips-buster-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-buster-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/main/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "main-fips-buster-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-fips-cbl-mariner1.0": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-cbl-mariner1.0-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/fips-linux/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "main-fips-cbl-mariner1.0-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-cbl-mariner1.0-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "dockerfile": "src/microsoft/main/fips-linux/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "main-fips-cbl-mariner1.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-fips-cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-cbl-mariner2.0-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/fips-linux/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "main-fips-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "main-cbl-mariner2.0-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "dockerfile": "src/microsoft/main/fips-linux/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "main-fips-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-windowsservercore-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/windows/windowsservercore-ltsc2022",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2022",
-              "tags": {
-                "main-windowsservercore-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/windows/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "main-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "main-windowsservercore-ltsc2016-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-nanoserver-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "main-windowsservercore-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/windows/nanoserver-ltsc2022",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2022",
-              "tags": {
-                "main-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "42.42",
-          "sharedTags": {
-            "main-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "main-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/main/windows/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "main-nanoserver-1809-amd64": {}
+                "1.19.0-1-nanoserver-1809-amd64": {}
               }
             }
           ]
