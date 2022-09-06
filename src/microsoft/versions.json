@@ -6,9 +6,9 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "baa47bfc048deb3ee1bd6a9b9183c7506d053bdd31354297ea5660a35b79090e",
+        "sha256": "c5499d911477e5aaf7b8fee6e73084457fd463e29f41771d4cd64ae7ae94c781",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.3/go.20220906.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.6/go.20220906.6.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -16,27 +16,27 @@
           "GOARM": "7",
           "GOOS": "linux"
         },
-        "sha256": "88ca762ab4974891fd8d8f3718f772d9fa97767b7697208e03f93b8dbbbcc330",
+        "sha256": "bdc07e29f46e9d51121cc1431d1de2e12d26eacfef2cd975af5d7a867393f2f7",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.3/go.20220906.3.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.6/go.20220906.6.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "0863260b7d11587bdf47cbc528d31f903d0a71af22815b2f03375b6041dbea2b",
+        "sha256": "fd57db04fd645edcea5c0fb69f0a6b0c5ac964e0f4048cc2eca904c7b5c9163e",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.3/go.20220906.3.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.6/go.20220906.6.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "d4f08ac69754d50ee0b9a763030aa6bbf71316d0692ca07cabdbfff568dddf3c",
+        "sha256": "e085fa7f8a6e86351e83c76c3010a8d1ef08cb5b2a2d5b290aad1235d29fab44",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.3/go.20220906.3.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20220906.6/go.20220906.6.windows-amd64.zip"
       }
     },
     "variants": [
@@ -48,7 +48,7 @@
       "windows/nanoserver-ltsc2022",
       "windows/nanoserver-1809"
     ],
-    "version": "1.18.5",
+    "version": "1.18.6",
     "revision": "1",
     "preferredMajor": true,
     "preferredMinor": true,
