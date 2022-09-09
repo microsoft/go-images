@@ -7,7 +7,9 @@ parameters:
   publicProjectName: null
   buildMatrixCustomBuildLegGroupArgs: ""
   testMatrixCustomBuildLegGroupArgs: ""
+  customCopyBaseImagesInitSteps: []
   customBuildInitSteps: []
+  customTestInitSteps: []
   customPublishInitSteps: []
   windowsAmdBuildJobTimeout: 60
   windowsAmdTestJobTimeout: 60
@@ -24,7 +26,9 @@ stages:
     publicProjectName: ${{ parameters.publicProjectName }}
     buildMatrixCustomBuildLegGroupArgs: ${{ parameters.buildMatrixCustomBuildLegGroupArgs }}
     testMatrixCustomBuildLegGroupArgs: ${{ parameters.testMatrixCustomBuildLegGroupArgs }}
+    customCopyBaseImagesInitSteps: ${{ parameters.customCopyBaseImagesInitSteps}}
     customBuildInitSteps: ${{ parameters.customBuildInitSteps }}
+    customTestInitSteps: ${{ parameters.customTestInitSteps }}
     customPublishInitSteps:
     - pwsh: |
         # When reporting the repo name in the publish notification, we don't want to include
@@ -78,5 +82,4 @@ stages:
         name: Docker-Linux-Arm-Internal
     windows2016Pool: Docker-2016-${{ variables['System.TeamProject'] }}
     windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
-    windows20H2Pool: Docker-20H2-${{ variables['System.TeamProject'] }}
     windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}
