@@ -13,11 +13,11 @@ variables:
   value: build-info/docker
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
-- name: officialRepoPrefix
+- name: officialRepoPrefixes
   ${{ if eq(parameters.nightly, false) }}:
     # Publish to "public/", which will be detected by MCR trigger.
-    value: public/
-  ${{ if eq(parameters.nightly, true) }}:
+    value: public/,private/internal/
+  ${{ else }}:
     # In the nightly branch, publish to ACR only. The prefix doesn't need to match MCR expectations.
     value: nightly/
 
