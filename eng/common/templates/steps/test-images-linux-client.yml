@@ -2,14 +2,16 @@ parameters:
   preBuildValidation: false
   internalProjectName: null
   condition: true
+  customInitSteps: []
 
 steps:
 - template: init-docker-linux.yml
   parameters:
     setupImageBuilder: false
     setupTestRunner: true
-    cleanupDocker: ${{ eq(variables['System.TeamProject'], parameters.internalProjectName) }}
+    cleanupDocker: ${{ and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}
     condition: ${{ parameters.condition }}
+- ${{ parameters.customInitSteps }}
 - script: |
     echo "##vso[task.setvariable variable=testRunner.container]testrunner-$(Build.BuildId)-$(System.JobId)"
 
@@ -17,7 +19,7 @@ steps:
     if [ "${{ parameters.preBuildValidation }}" == "true" ]; then
       optionalTestArgs="$optionalTestArgs -TestCategories pre-build"
     else
-      if [ "${{ variables['System.TeamProject'] }}" == "${{ parameters.internalProjectName }}" ]; then
+      if [ "${{ variables['System.TeamProject'] }}" == "${{ parameters.internalProjectName }}" ] && [ "${{ variables['Build.Reason'] }}" != "PullRequest" ]; then
         optionalTestArgs="$optionalTestArgs -PullImages -Registry $(acr.server) -RepoPrefix $(stagingRepoPrefix) -ImageInfoPath $(artifactsPath)/image-info/image-info.json"
       fi
       if [ "$REPOTESTARGS" != "" ]; then
@@ -36,7 +38,7 @@ steps:
     $(imageNames.testRunner.withrepo)
   displayName: Start Test Runner Container
   condition: and(succeeded(), ${{ parameters.condition }})
-- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+- ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
   - script: >
       docker exec $(testRunner.container) pwsh
       -File $(engCommonRelativePath)/Invoke-WithRetry.ps1
@@ -48,16 +50,21 @@ steps:
       parameters:
         targetPath: $(Build.ArtifactStagingDirectory)
         condition: ${{ parameters.condition }}
-- script: >
-    docker exec $(testRunner.container) pwsh
-    -File $(testScriptPath)
+- template: parse-os-versions.yml
+- powershell: >
+    $(test.init);
+    docker exec
+    $(testRunner.options)
+    $(testRunner.container)
+    pwsh
+    -Command "$(testScriptPath)
     -Version '$(productVersion)'
-    -OS '$(osVariant)'
+    -OSVersions $(osVersionsArrayInitStr)
     -Architecture '$(architecture)'
-    $(optionalTestArgs)
+    $(optionalTestArgs)"
   displayName: Test Images
   condition: and(succeeded(), ${{ parameters.condition }})
-- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+- ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
   - script: docker exec $(testRunner.container) docker logout $(acr.server)
     displayName: Docker logout
     condition: and(always(), ${{ parameters.condition }})
@@ -80,14 +87,14 @@ steps:
     mergeTestResults: true
     publishRunAttachments: true
     ${{ if eq(parameters.preBuildValidation, 'false') }}:
-      testRunTitle: $(productVersion) $(osVariant) $(architecture)
+      testRunTitle: $(productVersion) $(osVersionsDisplayName) $(architecture)
     ${{ if eq(parameters.preBuildValidation, 'true') }}:
       testRunTitle: Pre-Build Validation
 - script: docker rm -f $(testRunner.container)
   displayName: Cleanup TestRunner Container
   condition: and(always(), ${{ parameters.condition }})
   continueOnError: true
-- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+- ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
   - template: cleanup-docker-linux.yml
     parameters:
       condition: ${{ parameters.condition }}
