@@ -13,12 +13,13 @@ variables:
   value: build-info/docker
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
-- name: officialRepoPrefix
+- name: officialRepoPrefixes
   ${{ if eq(parameters.nightly, false) }}:
-    # Publish to "public/", which will be detected by MCR trigger.
-    value: public/
-  ${{ if eq(parameters.nightly, true) }}:
-    # In the nightly branch, publish to ACR only. The prefix doesn't need to match MCR expectations.
+    # Publish to "public/" or "private/internal/". Tags under these repo prefixes will be detected
+    # by MAR triggers and publish our images on the associated registry.
+    value: public/,private/internal/
+  ${{ else }}:
+    # In the nightly branch, publish to ACR only. The prefix doesn't need to match MAR expectations.
     value: nightly/
 
 - name: publishReadme

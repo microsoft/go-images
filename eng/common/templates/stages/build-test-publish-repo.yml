@@ -3,7 +3,9 @@ parameters:
   testMatrixType: platformVersionedOs
   buildMatrixCustomBuildLegGroupArgs: ""
   testMatrixCustomBuildLegGroupArgs: ""
+  customCopyBaseImagesInitSteps: []
   customBuildInitSteps: []
+  customTestInitSteps: []
   customPublishInitSteps: []
   customPublishVariables: []
   
@@ -33,8 +35,6 @@ parameters:
     vmImage: $(defaultWindows2016PoolImage)
   windows1809Pool:
     vmImage: $(defaultWindows1809PoolImage)
-  windows20H2Pool:
-    vmImage: $(defaultWindows20H2PoolImage)
   windows2022Pool:
     vmImage: $(defaultWindows2022PoolImage)
 
@@ -53,12 +53,23 @@ stages:
       testJobTimeout: ${{ parameters.linuxAmdTestJobTimeout }}
       preBuildValidation: true
       internalProjectName: ${{ parameters.internalProjectName }}
+      customInitSteps:
+        - ${{ parameters.customTestInitSteps }}
+        # These variables are normally set by the matrix. Since this test job is not generated
+        # by a matrix, we need to set them manually. They can be set to empty values since their
+        # values aren't actually used for the pre-build tests.
+        - powershell: |
+            echo "##vso[task.setvariable variable=productVersion]"
+            echo "##vso[task.setvariable variable=osVersions]"
+            echo "##vso[task.setvariable variable=architecture]"
+          displayName: Initialize Test Variables
   - template: ../jobs/copy-base-images.yml
     parameters:
       name: CopyBaseImages
       pool: ${{ parameters.linuxAmd64Pool }}
       additionalOptions: "--manifest '$(manifest)' $(manifestVariables)"
       publicProjectName: ${{ parameters.publicProjectName }}
+      customInitSteps: ${{ parameters.customCopyBaseImagesInitSteps}}
   - template: ../jobs/generate-matrix.yml
     parameters:
       matrixType: ${{ parameters.buildMatrixType }}
@@ -122,19 +133,6 @@ stages:
       publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
   - template: ../jobs/build-images.yml
     parameters:
-      name: Windows20H2_amd64
-      pool: ${{ parameters.windows20H2Pool }}
-      matrix: dependencies.GenerateBuildMatrix.outputs['matrix.Windows20H2Amd64']
-      dockerClientOS: windows
-      buildJobTimeout: ${{ parameters.windowsAmdBuildJobTimeout }}
-      customInitSteps: ${{ parameters.customBuildInitSteps }}
-      noCache: ${{ parameters.noCache }}
-      internalProjectName: ${{ parameters.internalProjectName }}
-      publicProjectName: ${{ parameters.publicProjectName }}
-      internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
-      publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-  - template: ../jobs/build-images.yml
-    parameters:
       name: Windows2022_amd64
       pool: ${{ parameters.windows2022Pool }}
       matrix: dependencies.GenerateBuildMatrix.outputs['matrix.WindowsLtsc2022Amd64']
@@ -174,7 +172,7 @@ stages:
 ################################################################################
 # Test Images
 ################################################################################
-- ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+- ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
   - stage: Test
     dependsOn: Post_Build
     condition: "
@@ -205,6 +203,7 @@ stages:
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxAmd64']
         testJobTimeout: ${{ parameters.linuxAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
+        customInitSteps: ${{ parameters.customTestInitSteps }}
     - template: ../jobs/test-images-linux-client.yml
       parameters:
         name: Linux_arm64
@@ -212,6 +211,7 @@ stages:
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm64']
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
+        customInitSteps: ${{ parameters.customTestInitSteps }}
     - template: ../jobs/test-images-linux-client.yml
       parameters:
         name: Linux_arm32
@@ -219,6 +219,7 @@ stages:
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.LinuxArm32']
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
+        customInitSteps: ${{ parameters.customTestInitSteps }}
     - template: ../jobs/test-images-windows-client.yml
       parameters:
         name: Windows1809_amd64
@@ -226,13 +227,7 @@ stages:
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.Windows1809Amd64']
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
-    - template: ../jobs/test-images-windows-client.yml
-      parameters:
-        name: Windows20H2_amd64
-        pool: ${{ parameters.windows20H2Pool }}
-        matrix: dependencies.GenerateTestMatrix.outputs['matrix.Windows20H2Amd64']
-        testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
-        internalProjectName: ${{ parameters.internalProjectName }}
+        customInitSteps: ${{ parameters.customTestInitSteps }}
     - template: ../jobs/test-images-windows-client.yml
       parameters:
         name: Windows2022_amd64
@@ -240,6 +235,7 @@ stages:
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.WindowsLtsc2022Amd64']
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
+        customInitSteps: ${{ parameters.customTestInitSteps }}
     - template: ../jobs/test-images-windows-client.yml
       parameters:
         name: WindowsLtsc2016_amd64
@@ -247,14 +243,15 @@ stages:
         matrix: dependencies.GenerateTestMatrix.outputs['matrix.WindowsLtsc2016Amd64']
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
+        customInitSteps: ${{ parameters.customTestInitSteps }}
 
 ################################################################################
 # Publish Images
 ################################################################################
 - stage: Publish
-  ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
+  ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
     dependsOn: Test
-  ${{ if eq(variables['System.TeamProject'], parameters.publicProjectName) }}:
+  ${{ else }}:
     dependsOn: Post_Build
   condition: "
     and(
