@@ -33,12 +33,12 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20221004.10/go.20221004.10.linux-amd64.tar.gz'; \
-			sha256='b6fd9e9d84e729ed238167e824661361684fa63d9017a416f3190381dbdaf5fc'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20221006.3/go.20221006.3.linux-amd64.tar.gz'; \
+			sha256='19afeed3ca4b22fe17a1c4543b5fe2f4ce297f8ba7abab60b9c8010ed116ae42'; \
 			;; \
 		'aarch64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20221004.10/go.20221004.10.linux-arm64.tar.gz'; \
-			sha256='dc7f3eb7a5181b5c52d8e3e3dee88074a36c5624d10ebd8af27e501bdbbdd568'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20221006.3/go.20221006.3.linux-arm64.tar.gz'; \
+			sha256='468c118fb6b51865d28e65413a88efe3b98dba999669ba96c1bbe990907c68cc'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
