@@ -161,6 +161,65 @@
     "revision": "1",
     "preferredVariant": "bullseye"
   },
+  "1.20-rc": {
+    "arches": {
+      "amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "linux"
+        },
+        "sha256": "626e4e5483e342ef030e9382f3dbbd70bddf2fb389adaee7fe30dd2d7ca45537",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230127.2/go.20230127.2.linux-amd64.tar.gz"
+      },
+      "arm32v7": {
+        "env": {
+          "GOARCH": "arm",
+          "GOARM": "7",
+          "GOOS": "linux"
+        },
+        "sha256": "4d5c9f2698f4fba24c797889ebe205701b794e52e34b7504e44e609152d8d710",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230127.2/go.20230127.2.linux-armv6l.tar.gz"
+      },
+      "arm64v8": {
+        "env": {
+          "GOARCH": "arm64",
+          "GOOS": "linux"
+        },
+        "sha256": "b9682b63780d8c95ce97289217f426a1baa2c597f97eb5865884685b84f034a1",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230127.2/go.20230127.2.linux-arm64.tar.gz"
+      },
+      "windows-amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "windows"
+        },
+        "sha256": "3da740ad797b93f61a9a7177357eb83425704ce40363312723e5c65a7c57c45b",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230127.2/go.20230127.2.windows-amd64.zip"
+      }
+    },
+    "variants": [
+      "bullseye",
+      "buster",
+      "cbl-mariner1.0",
+      "cbl-mariner2.0",
+      "fips-linux/bullseye",
+      "fips-linux/buster",
+      "fips-linux/cbl-mariner1.0",
+      "fips-linux/cbl-mariner2.0",
+      "windows/windowsservercore-ltsc2022",
+      "windows/windowsservercore-1809",
+      "windows/windowsservercore-ltsc2016",
+      "windows/nanoserver-ltsc2022",
+      "windows/nanoserver-1809"
+    ],
+    "version": "1.20.0rc3",
+    "revision": "1",
+    "preferredVariant": "bullseye"
+  },
   "main": {
     "arches": {
       "amd64": {
