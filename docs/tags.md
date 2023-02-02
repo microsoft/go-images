@@ -12,16 +12,16 @@ In general, we don't recommend using these in Dockerfile `FROM` statements. It p
 
 Examples:
 
-* `1.19.7-1-bullseye-amd64`
-* `1.19.7-1-fips-cbl-mariner1.0-amd64`
+* `1.20.0-1-bullseye-amd64`
+* `1.20.0-1-fips-cbl-mariner1.0-amd64`
 
-> This document uses `1.19.7-1` as a placeholder for *the most recent release of Microsoft Go*. Check MAR for the actual latest tag versions and available OS/Distros.
+> This document uses `1.20.0-1` as a placeholder for *the most recent release of Microsoft Go*. Check MAR for the actual latest tag versions and available OS/Distros.
 
 # Shared tags
 
 A *shared tag* references images for multiple platforms. When used in a Dockerfile or a Docker command, Docker downloads the correct image for the current platform from the list of images pointed to by the shared tag. Shared tags are generally manifest tags.
 
-In some cases there is no single correct choice: the `1.19` tag could download a CBL-Mariner image or a Debian Bullseye image, and could download `1.19.7-1` or `1.19.2-1`. The shared tags represent our recommendation for that particular tag name.
+In some cases there is no single correct choice: the `1.20` tag could download a CBL-Mariner image or a Debian Bullseye image. The shared tags represent our recommendation for that particular tag name.
 
 The Go shared tags have these characteristics:
 
@@ -31,8 +31,8 @@ The Go shared tags have these characteristics:
 
 Examples:
 
-* `1.19-bullseye`
-* `1.19-fips-cbl-mariner1.0`
+* `1.20-bullseye`
+* `1.20-fips-cbl-mariner1.0`
 * `1`
 
 # Tag parts
@@ -52,8 +52,6 @@ Examples:
 If a tag includes `-fips`, that indicates that Go build commands inside the container will set the `GOEXPERIMENT` environment variable to use a FIPS-compatible crypto backend by default. Be careful: this isn't the only step necessary to build a FIPS-compliant app. See the [FIPS readme] for more information about `GOEXPERIMENT` and FIPS.
 
 You don't need to use a `-fips` tag to build a FIPS-compliant app: you can use the non`-fips` image and set `GOEXPERIMENT` yourself. The Go toolset is the same in both images. We provide a `-fips` tag to minimize the changes necessary to make an existing Dockerfile build a FIPS-compliant app.
-
-**In Go 1.18 and earlier**, the `-fips` image contained a different branch of Go that was capable of building FIPS-compliant apps, and non`-fips` tags weren't able to build FIPS-compliant apps. `GOEXPERIMENT` was not involved in producing FIPS apps at this time. See the [FIPS readme] for more details.
 
 # Tag lifecycle
 
