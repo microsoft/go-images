@@ -109,9 +109,9 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "daa9993fa7082dd40be195bbdc94dfb2d4f27ce0d3143299f745921fe630053d",
+        "sha256": "2334a3f31ff12a89231efa9d21bd537c3054e62ed28596a08c73aef2993f455e",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.1/go.20230214.1.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.2/go.20230214.2.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -119,27 +119,27 @@
           "GOARM": "7",
           "GOOS": "linux"
         },
-        "sha256": "7b1b40e40ab291d9522f25313038bf25d42dd098e2a3f5cee8002f28524edf21",
+        "sha256": "1491d6c59d193c3a37feeddf314b52807ca81113492c01b41951cc18d2d3666c",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.1/go.20230214.1.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.2/go.20230214.2.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "35f587c12fc8c6b1331ae6cdeeab850b3712586dc053b79188558713946a24af",
+        "sha256": "0774e6966b20dc7a4a088a33b6e7b84553d59f5484c6b353bab2790456768661",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.1/go.20230214.1.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.2/go.20230214.2.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "33c3733ff2531886be766834c3818414d575bf1f828ff0fdc3a17e6b327b3267",
+        "sha256": "a1e529c4d360f63acb51c660b8998ad5e3a3226c2257d8821913d5aa6c306108",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.1/go.20230214.1.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230214.2/go.20230214.2.windows-amd64.zip"
       }
     },
     "variants": [
