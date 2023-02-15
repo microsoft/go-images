@@ -118,6 +118,7 @@
             },
             {
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.19/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
@@ -148,6 +149,7 @@
             },
             {
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.19/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
@@ -292,6 +294,7 @@
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
@@ -330,6 +333,7 @@
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
@@ -552,6 +556,7 @@
             },
             {
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.20/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
@@ -580,6 +585,7 @@
             },
             {
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.20/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
@@ -718,6 +724,7 @@
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.20/fips-linux/cbl-mariner1.0",
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
@@ -754,6 +761,7 @@
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
+              "variant": "v8",
               "dockerfile": "src/microsoft/1.20/fips-linux/cbl-mariner2.0",
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
