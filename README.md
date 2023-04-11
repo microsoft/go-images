@@ -26,8 +26,9 @@ When building a containerized FIPS-compliant app, in general we recommend using 
 
 To view the full list of available Go tags in MAR:
 
-* Visit the [AZCU Indexer](https://azcuindexer.azurewebsites.net/repositories/oss/go/microsoft/golang) (*Microsoft internal auth required*)
-  * Click on a tag name to copy the full tag URL to your clipboard
+* Visit [`golang` on the MAR Discovery Portal][MAR] (*Microsoft internal auth required*)
+  * You must be currently signed into the MAR discovery portal with Microsoft internal auth to see the golang image. If you see a "not found" page, make sure you are signed in at the top-right corner of the MAR page, **then close the tab and click the [`golang`][MAR] link again**.
+  * Go to the `Tags` tab to find a filterable list of tags and expand one to see the command to use to pull it.
 * Use the [Microsoft Artifact Registry API](https://mcr.microsoft.com/v2/oss/go/microsoft/golang/tags/list)
   * The full tag URL is `mcr.microsoft.com/{name}:{tag}`
 
@@ -64,3 +65,4 @@ Use of Microsoft trademarks or logos in modified versions of this project must n
 Any use of third-party trademarks or logos are subject to those third-party's policies.
 
 [FIPS readme]: https://github.com/microsoft/go/tree/microsoft/main/eng/doc/fips
+[MAR]: https://mcr.microsoft.com/en-us/product/oss/go/microsoft/golang/about
