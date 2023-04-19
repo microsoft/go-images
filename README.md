@@ -6,6 +6,10 @@ The images produced by this repository are for general use within Microsoft and 
 
 For more information about building FIPS-compatible Go apps with the Microsoft Go tools, visit the [FIPS readme] and [user guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
 
+## Support
+
+GitHub issues for microsoft/go-images are maintained in the [microsoft/go](https://github.com/microsoft/go) project. For help and questions about the Microsoft Go images, please [file an issue in microsoft/go](https://github.com/microsoft/go/issues/new/choose).
+
 ## Recommended tags
 
 In general, the microsoft/go-images tag names match those available for the official images. To switch from the official image to one on MCR, it may be possible to simply prepend `mcr.microsoft.com/oss/go/microsoft/` to the official image you would normally use.
