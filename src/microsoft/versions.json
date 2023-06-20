@@ -40,12 +40,12 @@
       }
     },
     "variants": [
+      "bookworm",
       "bullseye",
-      "buster",
       "cbl-mariner1.0",
       "cbl-mariner2.0",
+      "fips-linux/bookworm",
       "fips-linux/bullseye",
-      "fips-linux/buster",
       "fips-linux/cbl-mariner1.0",
       "fips-linux/cbl-mariner2.0",
       "windows/windowsservercore-ltsc2022",
@@ -58,7 +58,7 @@
     "revision": "1",
     "preferredMajor": true,
     "preferredMinor": true,
-    "preferredVariant": "bullseye"
+    "preferredVariant": "bookworm"
   },
   "1.20": {
     "arches": {
@@ -101,12 +101,12 @@
       }
     },
     "variants": [
+      "bookworm",
       "bullseye",
-      "buster",
       "cbl-mariner1.0",
       "cbl-mariner2.0",
+      "fips-linux/bookworm",
       "fips-linux/bullseye",
-      "fips-linux/buster",
       "fips-linux/cbl-mariner1.0",
       "fips-linux/cbl-mariner2.0",
       "windows/windowsservercore-ltsc2022",
@@ -117,6 +117,6 @@
     ],
     "version": "1.20.5",
     "revision": "1",
-    "preferredVariant": "bullseye"
+    "preferredVariant": "bookworm"
   }
 }
