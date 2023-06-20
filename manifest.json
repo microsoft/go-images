@@ -14,15 +14,56 @@
           "productVersion": "1.19",
           "sharedTags": {
             "1": {},
-            "1-bullseye": {},
+            "1-bookworm": {},
             "1.19": {},
-            "1.19-bullseye": {},
+            "1.19-bookworm": {},
             "1.19.10": {},
             "1.19.10-1": {},
+            "1.19.10-1-bookworm": {},
+            "1.19.10-bookworm": {},
+            "bookworm": {},
+            "latest": {}
+          },
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.19/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.19.10-1-bookworm-amd64": {}
+              }
+            },
+            {
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.19/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.19.10-1-bookworm-arm64v8": {}
+              }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.19/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.19.10-1-bookworm-arm32v7": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.19",
+          "sharedTags": {
+            "1-bullseye": {},
+            "1.19-bullseye": {},
             "1.19.10-1-bullseye": {},
             "1.19.10-bullseye": {},
-            "bullseye": {},
-            "latest": {}
+            "bullseye": {}
           },
           "platforms": [
             {
@@ -52,47 +93,6 @@
               "osVersion": "bullseye",
               "tags": {
                 "1.19.10-1-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.19",
-          "sharedTags": {
-            "1-buster": {},
-            "1.19-buster": {},
-            "1.19.10-1-buster": {},
-            "1.19.10-buster": {},
-            "buster": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.19.10-1-buster-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.19/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.19.10-1-buster-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.19/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.19.10-1-buster-arm32v7": {}
               }
             }
           ]
@@ -162,6 +162,59 @@
         {
           "productVersion": "1.19",
           "sharedTags": {
+            "1-fips-bookworm": {},
+            "1.19-fips-bookworm": {},
+            "1.19.10-1-fips-bookworm": {},
+            "1.19.10-fips-bookworm": {},
+            "fips-bookworm": {}
+          },
+          "platforms": [
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.19.10-1-bookworm-amd64",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.19/fips-linux/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.19.10-1-fips-bookworm-amd64": {}
+              }
+            },
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.19.10-1-bookworm-arm64v8",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.19/fips-linux/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.19.10-1-fips-bookworm-arm64v8": {}
+              }
+            },
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.19.10-1-bookworm-arm32v7",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.19/fips-linux/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.19.10-1-fips-bookworm-arm32v7": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.19",
+          "sharedTags": {
             "1-fips-bullseye": {},
             "1.19-fips-bullseye": {},
             "1.19.10-1-fips-bullseye": {},
@@ -208,59 +261,6 @@
               "osVersion": "bullseye",
               "tags": {
                 "1.19.10-1-fips-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.19",
-          "sharedTags": {
-            "1-fips-buster": {},
-            "1.19-fips-buster": {},
-            "1.19.10-1-fips-buster": {},
-            "1.19.10-fips-buster": {},
-            "fips-buster": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.19.10-1-buster-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.19.10-1-fips-buster-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.19.10-1-buster-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.19/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.19.10-1-fips-buster-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.19.10-1-buster-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.19/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.19.10-1-fips-buster-arm32v7": {}
               }
             }
           ]
@@ -460,9 +460,48 @@
           "productVersion": "1.20",
           "sharedTags": {
             "1.20": {},
-            "1.20-bullseye": {},
+            "1.20-bookworm": {},
             "1.20.5": {},
             "1.20.5-1": {},
+            "1.20.5-1-bookworm": {},
+            "1.20.5-bookworm": {}
+          },
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.20/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.20.5-1-bookworm-amd64": {}
+              }
+            },
+            {
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.20/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.20.5-1-bookworm-arm64v8": {}
+              }
+            },
+            {
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.20/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.20.5-1-bookworm-arm32v7": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.20",
+          "sharedTags": {
+            "1.20-bullseye": {},
             "1.20.5-1-bullseye": {},
             "1.20.5-bullseye": {}
           },
@@ -494,45 +533,6 @@
               "osVersion": "bullseye",
               "tags": {
                 "1.20.5-1-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.20",
-          "sharedTags": {
-            "1.20-buster": {},
-            "1.20.5-1-buster": {},
-            "1.20.5-buster": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.20/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.20.5-1-buster-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.20/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.20.5-1-buster-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.20/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.20.5-1-buster-arm32v7": {}
               }
             }
           ]
@@ -598,6 +598,57 @@
         {
           "productVersion": "1.20",
           "sharedTags": {
+            "1.20-fips-bookworm": {},
+            "1.20.5-1-fips-bookworm": {},
+            "1.20.5-fips-bookworm": {}
+          },
+          "platforms": [
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.20.5-1-bookworm-amd64",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.20/fips-linux/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.20.5-1-fips-bookworm-amd64": {}
+              }
+            },
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.20.5-1-bookworm-arm64v8",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.20/fips-linux/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.20.5-1-fips-bookworm-arm64v8": {}
+              }
+            },
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.20.5-1-bookworm-arm32v7",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "arm",
+              "variant": "v7",
+              "dockerfile": "src/microsoft/1.20/fips-linux/bookworm",
+              "os": "linux",
+              "osVersion": "bookworm",
+              "tags": {
+                "1.20.5-1-fips-bookworm-arm32v7": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.20",
+          "sharedTags": {
             "1.20-fips-bullseye": {},
             "1.20.5-1-fips-bullseye": {},
             "1.20.5-fips-bullseye": {}
@@ -642,57 +693,6 @@
               "osVersion": "bullseye",
               "tags": {
                 "1.20.5-1-fips-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.20",
-          "sharedTags": {
-            "1.20-fips-buster": {},
-            "1.20.5-1-fips-buster": {},
-            "1.20.5-fips-buster": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.20.5-1-buster-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.20/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.20.5-1-fips-buster-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.20.5-1-buster-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.20/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.20.5-1-fips-buster-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.20.5-1-buster-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.20/fips-linux/buster",
-              "os": "linux",
-              "osVersion": "buster",
-              "tags": {
-                "1.20.5-1-fips-buster-arm32v7": {}
               }
             }
           ]
