@@ -1,0 +1,14 @@
+# This is a copy of https://github.com/dotnet/dotnet-docker/blob/4e1b99dc7c62a3f4833a17b5a5ea298ae57b445b/eng/pipelines/steps/set-imagebuilder-build-args-var.yml
+# Skipping validation lets us avoid build breaks when Mariner changes how the platform is represented:
+# - https://github.com/microsoft/CBL-Mariner/issues/5008
+# - https://github.com/microsoft/CBL-Mariner/issues/4856
+steps:
+- powershell: |
+    $imageBuilderBuildArgs = $env:IMAGEBUILDERBUILDARGS
+    # Disable platform checks for CBL-Mariner on ARM64 due to https://github.com/dotnet/dotnet-docker/issues/3520
+    if ("$(osVersions)".Contains("cbl-mariner") -and "$(architecture)" -eq "arm64") {
+      $imageBuilderBuildArgs += " --skip-platform-check"
+    }
+
+    echo "##vso[task.setvariable variable=imageBuilderBuildArgs]$imageBuilderBuildArgs"
+  displayName: Set Custom ImageBuilder Build Args

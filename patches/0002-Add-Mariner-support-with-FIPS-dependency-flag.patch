@@ -8,7 +8,7 @@ Subject: [PATCH] Add Mariner support with FIPS dependency flag
  1 file changed, 59 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index aeb574520db76e..0f2fb19517a060 100644
+index 291f460f8981e0..9202f97701231e 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,11 +4,47 @@
@@ -31,7 +31,7 @@ index aeb574520db76e..0f2fb19517a060 100644
  
  RUN apk add --no-cache ca-certificates
 +{{ ) elif is_cbl_mariner then ( -}}
-+FROM cblmariner.azurecr.io/base/core:{{ cbl_mariner_version }}
++FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }}
 +
 +RUN tdnf install -y \
 +		binutils \

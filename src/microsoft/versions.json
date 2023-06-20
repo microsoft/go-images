@@ -1,107 +1,4 @@
 {
-  "1.18": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "54e52c08ebbb8b4eb9c8c1ac8cbc0627e52bc036c59f1961bd2b00e52be75fa5",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20230110.2/go.20230110.2.linux-amd64.tar.gz"
-      },
-      "arm32v7": {
-        "env": {
-          "GOARCH": "arm",
-          "GOARM": "7",
-          "GOOS": "linux"
-        },
-        "sha256": "1f238f3ff8fa48b320e1d2ebd864ab09fabd3715153eaada48d92ae0f39b147a",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20230110.2/go.20230110.2.linux-armv6l.tar.gz"
-      },
-      "arm64v8": {
-        "env": {
-          "GOARCH": "arm64",
-          "GOOS": "linux"
-        },
-        "sha256": "3f3c7d5e7c8ea49231074cf31e97750e0fc6dfd3b91e2ac05ccca9ca167e0fa2",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20230110.2/go.20230110.2.linux-arm64.tar.gz"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "4875aac7b06b864d4c044e25b288c169a6eced58378f18223accf69edcb9fbb9",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.18/20230110.2/go.20230110.2.windows-amd64.zip"
-      }
-    },
-    "variants": [
-      "bullseye",
-      "buster",
-      "windows/windowsservercore-ltsc2022",
-      "windows/windowsservercore-1809",
-      "windows/windowsservercore-ltsc2016",
-      "windows/nanoserver-ltsc2022",
-      "windows/nanoserver-1809"
-    ],
-    "version": "1.18.10",
-    "revision": "1",
-    "preferredMajor": true,
-    "preferredMinor": true,
-    "preferredVariant": "bullseye"
-  },
-  "1.18-fips": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "6e401b87caaa50f5e30aacfa4ef03ff52ffa86ad2fa6cc9f8088684ac0291a9b",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20230111.4/go.20230111.4.linux-amd64.tar.gz"
-      },
-      "arm32v7": {
-        "env": {
-          "GOARCH": "arm",
-          "GOARM": "7",
-          "GOOS": "linux"
-        },
-        "sha256": "011bf15cf0de01c1a32b0fa441eac63f3f7f0b7f135ead53f53fb00b68fcbeec",
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20230111.4/go.20230111.4.linux-armv6l.tar.gz"
-      },
-      "arm64v8": {
-        "env": {
-          "GOARCH": "arm64",
-          "GOOS": "linux"
-        },
-        "sha256": "e7f0567cbd1afc51fbdd98daf0f7c4c4c319118f34c3ec12539b39fab723b1b4",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20230111.4/go.20230111.4.linux-arm64.tar.gz"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "b9c12544ace23d0d73c61929a1be79ff09b7316c8593b6777acc469c926d090f",
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/dev.boringcrypto.go1.18/20230111.4/go.20230111.4.windows-amd64.zip"
-      }
-    },
-    "variants": [
-      "cbl-mariner1.0",
-      "cbl-mariner2.0"
-    ],
-    "version": "1.18.10",
-    "revision": "1",
-    "preferredMinor": true,
-    "preferredVariant": "cbl-mariner1.0",
-    "branchSuffix": "-fips"
-  },
   "1.19": {
     "arches": {
       "amd64": {
@@ -109,9 +6,9 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "b66d907a02d59cc35cdf5076f05408c5cc6bb292515327e5b4d26bec58328871",
+        "sha256": "bacc82f5ee5b38f47cde06e965404bcdd1502372e806af0acb9a5bcdc80b7fa1",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230131.2/go.20230131.2.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230606.2/go.20230606.2.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -119,27 +16,27 @@
           "GOARM": "7",
           "GOOS": "linux"
         },
-        "sha256": "b87ce2687690ac27ba0f444d06e40a9cf9bf9997c53d979dee45e69515518959",
+        "sha256": "3122b80f4c9073abb83f83ba0ea569024bac33205fd3a63a3ad4092bc6ae09e9",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230131.2/go.20230131.2.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230606.2/go.20230606.2.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "55fbb6e3bd3c7768e03ddf72ff6b4658f9861168181bc5fc70a696b3c7985e0c",
+        "sha256": "c204b86edfcb1c134a6cf4c803aa5f577dd759cb4266a3bab93ce83ef0c4f4d8",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230131.2/go.20230131.2.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230606.2/go.20230606.2.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "2c5690137f4797bebb2d829b0a90923bd261f314cd223cfb09aa7a8323283caa",
+        "sha256": "31e38a6f00f38d67b780e1e5722b17ddd711e08e65e2a9d6e4cede0a8aea54d2",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230131.2/go.20230131.2.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230606.2/go.20230606.2.windows-amd64.zip"
       }
     },
     "variants": [
@@ -157,20 +54,22 @@
       "windows/nanoserver-ltsc2022",
       "windows/nanoserver-1809"
     ],
-    "version": "1.19.5",
+    "version": "1.19.10",
     "revision": "1",
+    "preferredMajor": true,
+    "preferredMinor": true,
     "preferredVariant": "bullseye"
   },
-  "1.20-rc": {
+  "1.20": {
     "arches": {
       "amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "f2f0785ba9e6f1eaff4af09326a7681c217594ca13dad341abb44f29fbbf6cd5",
+        "sha256": "7d83def2ad5e7c0db918e9a5770866475759b3bd1e490b9faff4ade9eb9449e2",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230131.3/go.20230131.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230606.4/go.20230606.4.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -178,27 +77,27 @@
           "GOARM": "7",
           "GOOS": "linux"
         },
-        "sha256": "39fd3d2da90cbbec91207d0072010003ce8d4363729f2d56203419ce8e777360",
+        "sha256": "59acb9727a3ad00e2a48738eb8707d1f40e3da9fc9d0642341fa7321b38f5a92",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230131.3/go.20230131.3.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230606.4/go.20230606.4.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "8c4d91d68182b91b46de166032d27943d52eccc91ec31520297132cd753c5690",
+        "sha256": "ed17e766f95cabefeca2affecb1f6e0622552eb88050183005c3cdfdea4eafc1",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230131.3/go.20230131.3.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230606.4/go.20230606.4.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "c4ab75eda4c7faa520c4898d521831fc5a58950f86e260d6c0481e90f10fb3dd",
+        "sha256": "8cdf7c6c48bc433e9b1b2e24b408b04d89ff8e2cef5d50001d2c4f522f9f955e",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230131.3/go.20230131.3.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230606.4/go.20230606.4.windows-amd64.zip"
       }
     },
     "variants": [
@@ -216,66 +115,8 @@
       "windows/nanoserver-ltsc2022",
       "windows/nanoserver-1809"
     ],
-    "version": "1.20.0rc3",
+    "version": "1.20.5",
     "revision": "1",
-    "preferredVariant": "bullseye"
-  },
-  "main": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "12b1a5d4bf89cefef2cd921c65ba9ddb818b15eea5ee0b180db79ee9bc165b1f",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-amd64.tar.gz"
-      },
-      "arm32v7": {
-        "env": {
-          "GOARCH": "arm",
-          "GOARM": "7",
-          "GOOS": "linux"
-        },
-        "sha256": "f9042b01220bd6ae7adb3e09717569443a3a99507f6941c205cae277e3cad22c",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-armv6l.tar.gz"
-      },
-      "arm64v8": {
-        "env": {
-          "GOARCH": "arm64",
-          "GOOS": "linux"
-        },
-        "sha256": "9b4a78aa4395d6a724261ec822c452c07f96d7af9d52b5d04d0f5b71e0e5a283",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.linux-arm64.tar.gz"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "d0f207282aedb80236251c4e443793164c5445bf922223e9631f49b233491ef9",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/main/20220530.1/go.20220530.1.windows-amd64.zip"
-      }
-    },
-    "variants": [
-      "bullseye",
-      "buster",
-      "cbl-mariner1.0",
-      "cbl-mariner2.0",
-      "fips-linux/bullseye",
-      "fips-linux/buster",
-      "fips-linux/cbl-mariner1.0",
-      "fips-linux/cbl-mariner2.0",
-      "windows/windowsservercore-ltsc2022",
-      "windows/windowsservercore-1809",
-      "windows/windowsservercore-ltsc2016",
-      "windows/nanoserver-ltsc2022",
-      "windows/nanoserver-1809"
-    ],
-    "version": "main",
     "preferredVariant": "bullseye"
   }
 }
