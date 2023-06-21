@@ -72,8 +72,14 @@ RUN set -eux; \
 	\
 	if [ -n "$build" ]; then \
 		savedAptMark="$(apt-mark showmanual)"; \
-		apt-get update; \
-		apt-get install -y --no-install-recommends golang-go; \
+# add backports for newer go version for bootstrap build: https://github.com/golang/go/issues/44505
+		( \
+			. /etc/os-release; \
+			echo "deb https://deb.debian.org/debian $VERSION_CODENAME-backports main" > /etc/apt/sources.list.d/backports.list; \
+			\
+			apt-get update; \
+			apt-get install -y --no-install-recommends -t "$VERSION_CODENAME-backports" golang-go; \
+		); \
 		\
 		export GOCACHE='/tmp/gocache'; \
 		\
@@ -105,5 +111,5 @@ RUN set -eux; \
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH
-RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
 WORKDIR $GOPATH
