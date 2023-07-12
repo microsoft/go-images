@@ -388,27 +388,6 @@
         {
           "productVersion": "1.19",
           "sharedTags": {
-            "1-windowsservercore-ltsc2016": {},
-            "1.19-windowsservercore-ltsc2016": {},
-            "1.19.11-1-windowsservercore-ltsc2016": {},
-            "1.19.11-windowsservercore-ltsc2016": {},
-            "windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "1.19.11-1-windowsservercore-ltsc2016-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.19",
-          "sharedTags": {
             "1-nanoserver-ltsc2022": {},
             "1.19-nanoserver-ltsc2022": {},
             "1.19.11-1-nanoserver-ltsc2022": {},
@@ -805,25 +784,6 @@
               "osVersion": "windowsservercore-1809",
               "tags": {
                 "1.20.6-1-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.20",
-          "sharedTags": {
-            "1.20-windowsservercore-ltsc2016": {},
-            "1.20.6-1-windowsservercore-ltsc2016": {},
-            "1.20.6-windowsservercore-ltsc2016": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.20/windows/windowsservercore-ltsc2016",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2016",
-              "tags": {
-                "1.20.6-1-windowsservercore-ltsc2016-amd64": {}
               }
             }
           ]
