@@ -60,6 +60,7 @@ stages:
         # values aren't actually used for the pre-build tests.
         - powershell: |
             echo "##vso[task.setvariable variable=productVersion]"
+            echo "##vso[task.setvariable variable=imageBuilderPaths]"
             echo "##vso[task.setvariable variable=osVersions]"
             echo "##vso[task.setvariable variable=architecture]"
           displayName: Initialize Test Variables
@@ -67,7 +68,7 @@ stages:
     parameters:
       name: CopyBaseImages
       pool: ${{ parameters.linuxAmd64Pool }}
-      additionalOptions: "--manifest '$(manifest)' $(manifestVariables)"
+      additionalOptions: "--manifest '$(manifest)' $(imageBuilder.pathArgs) $(manifestVariables)"
       publicProjectName: ${{ parameters.publicProjectName }}
       customInitSteps: ${{ parameters.customCopyBaseImagesInitSteps}}
   - template: ../jobs/generate-matrix.yml
