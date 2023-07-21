@@ -8,7 +8,7 @@ Subject: [PATCH] Add Mariner support with FIPS dependency flag
  1 file changed, 59 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 291f460f8981e0..9202f97701231e 100644
+index 3d8ddc4235a658..0bc708016e8b10 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,11 +4,47 @@

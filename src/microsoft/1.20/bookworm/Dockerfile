@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm
+FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bookworm-scm
 
 # install cgo-related dependencies
 RUN set -eux; \
@@ -20,23 +20,23 @@ RUN set -eux; \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.21.0rc2
+ENV GOLANG_VERSION 1.20.6
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.linux-amd64.tar.gz'; \
-			sha256='53eba1283ab6ec4d19dd8a3885ca15a3571a0957ce0bd9b02d189f4d1e944ca4'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230711.2/go.20230711.2.linux-amd64.tar.gz'; \
+			sha256='e57a8881631ba6990638b58c79ed80480f28dd2e8a7e0d0708eb2ef380538702'; \
 			;; \
 		'armhf') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.linux-armv6l.tar.gz'; \
-			sha256='f7cbdd4242867b566d3b91eb06f9458d79e44e22cc5053cc6a6db36450a72f2a'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230711.2/go.20230711.2.linux-armv6l.tar.gz'; \
+			sha256='aa9be2baf9ca5f56703579a3f8d42272399948874023985573c9daa1f36a5489'; \
 			;; \
 		'arm64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.linux-arm64.tar.gz'; \
-			sha256='eb7d9753a131386253e22bcf34035079b2de9e12aa826d9d6576a49a2c136a3b'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230711.2/go.20230711.2.linux-arm64.tar.gz'; \
+			sha256='c197027d235fabbb1fa1f07080493edb543cd31264f42e35e6e8b394e37e9456'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -105,5 +105,5 @@ RUN set -eux; \
 
 ENV GOPATH /go
 ENV PATH $GOPATH/bin:$PATH
-RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 777 "$GOPATH"
+RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
 WORKDIR $GOPATH
