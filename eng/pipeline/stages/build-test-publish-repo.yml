@@ -28,7 +28,13 @@ stages:
       # https://github.com/dotnet/docker-tools/issues/905
       windows2016Pool: Docker-2016-${{ variables['System.TeamProject'] }}
       windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
-      windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}
+      windows2022Pool:
+        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
+          name: NetCore-Public
+          demands: ImageOverride -equals 1es-windows-2022-open
+        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+          name: NetCore1ESPool-Svc-Internal
+          demands: ImageOverride -equals 1es-windows-2022
 
       ${{ each pair in parameters.extraParameters }}:
         ${{ pair.key }}: ${{ pair.value }}
