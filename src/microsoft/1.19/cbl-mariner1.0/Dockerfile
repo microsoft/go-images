@@ -31,16 +31,16 @@ RUN set -eux; \
 	url=; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.4/go.20230802.4.linux-amd64.tar.gz'; \
-			sha256='71ee3f2f7f5b518081ac2a90248d6d3ef8cd2fa1594bae706cde4ecf5c63e149'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.linux-amd64.tar.gz'; \
+			sha256='bfea583c76bfa9405c0eb793f4ff3c6555035d6c93931f8fa7f2128c8107498f'; \
 			;; \
 		'armv7') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.4/go.20230802.4.linux-armv6l.tar.gz'; \
-			sha256='5577073ca75dd5c4a23e5c425cb7790eeb99be697cf4755eb2ff8986ed7e8175'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.linux-armv6l.tar.gz'; \
+			sha256='620369fe40e7b67bafbc0ff7a1668bf21b8025f4e7205b271bbf91fe86e26926'; \
 			;; \
 		'aarch64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.4/go.20230802.4.linux-arm64.tar.gz'; \
-			sha256='9ffaeb14222c9e92a1f8ddea14669515097ee6025f4a7c8b2c5bc6fcc97422d6'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.linux-arm64.tar.gz'; \
+			sha256='34565108e59f52eba2b4dafd46e4472cebe38678b520d49feda0f2917be4152f'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
