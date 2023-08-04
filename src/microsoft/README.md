@@ -8,12 +8,20 @@ version. For more information, see [/eng/README.md](/eng/README.md).
 
 ### `jq-template.awk`
 A checked-in copy of a file containing utility `awk` code. It's downloaded from
-the internet by the root `/apply-templates.sh` script. To avoid this network
+the internet by upstream's `apply-templates.sh` script. To avoid this network
 dependency while running an update, we check in the file, instead.
 
-To update `jq-template.awk`, run `/apply-templates.sh`, then copy
-`/.jq-template.awk` to `/src/microsoft/jq-template.awk`. The symptoms of this
-file falling out of date are not known, as of writing.
+To update `jq-template.awk`, make sure the submodule is up to date and run this
+from the root of this repository:
+
+```
+cd go
+./apply-templates.sh
+cp .jq-template.awk ../src/microsoft/jq-template.awk
+```
+
+The symptoms of this file falling out of date are not well-defined. In one case,
+updating it dramatically improved Dockerfile generation performance.
 
 ### `versions.json`
 Contains information about the Microsoft builds of Go in the format
