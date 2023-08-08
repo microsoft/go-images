@@ -116,5 +116,63 @@
     "version": "1.20.7",
     "revision": "1",
     "preferredVariant": "bookworm"
+  },
+  "1.21": {
+    "arches": {
+      "amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "linux"
+        },
+        "sha256": "5f243234425c2686c67b81f335b6325055cbab527c21fa1a27e578fdfe937dd7",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230808.2/go.20230808.2.linux-amd64.tar.gz"
+      },
+      "arm32v7": {
+        "env": {
+          "GOARCH": "arm",
+          "GOARM": "7",
+          "GOOS": "linux"
+        },
+        "sha256": "72d3e1caf8ee39a8734affffbe35f11fb55976b310b92b89a33fe169c370eda1",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230808.2/go.20230808.2.linux-armv6l.tar.gz"
+      },
+      "arm64v8": {
+        "env": {
+          "GOARCH": "arm64",
+          "GOOS": "linux"
+        },
+        "sha256": "3f50f17e4e2a9eb311c6857779bbe2443d1e51e2341d32891f285f4589353de5",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230808.2/go.20230808.2.linux-arm64.tar.gz"
+      },
+      "windows-amd64": {
+        "env": {
+          "GOARCH": "amd64",
+          "GOOS": "windows"
+        },
+        "sha256": "6253f4a70f1820a089de3cdf46cb0ed98d0c5f2d075a4248dbd68b51d701be3c",
+        "supported": true,
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230808.2/go.20230808.2.windows-amd64.zip"
+      }
+    },
+    "variants": [
+      "bookworm",
+      "bullseye",
+      "cbl-mariner1.0",
+      "cbl-mariner2.0",
+      "fips-linux/bookworm",
+      "fips-linux/bullseye",
+      "fips-linux/cbl-mariner1.0",
+      "fips-linux/cbl-mariner2.0",
+      "windows/windowsservercore-ltsc2022",
+      "windows/windowsservercore-1809",
+      "windows/nanoserver-ltsc2022",
+      "windows/nanoserver-1809"
+    ],
+    "version": "1.21.0",
+    "revision": "1",
+    "preferredVariant": "bookworm"
   }
 }
