@@ -13,10 +13,10 @@ stages:
           # This is a utility job: use generic recent LTS.
           ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
             name: NetCore-Public
-            demands: ImageOverride -equals build.ubuntu.2204.amd64.open
+            demands: ImageOverride -equals 1es-ubuntu-2004-open
           ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
             name: NetCore1ESPool-Internal
-            demands: ImageOverride -equals build.ubuntu.2204.amd64
+            demands: ImageOverride -equals 1es-ubuntu-2004
         workspace:
           clean: all
         steps:
