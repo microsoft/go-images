@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
+Date: Wed, 1 Jun 2022 12:03:45 -0500
+Subject: [PATCH] Add support for "fips-linux/*" and "fips/*" variants in
+ microsoft/go-images
+
+---
+ apply-templates.sh | 8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+diff --git a/apply-templates.sh b/apply-templates.sh
+index d9df4fd592c7b0..1167bf65546950 100755
+--- a/apply-templates.sh
++++ b/apply-templates.sh
+@@ -42,6 +42,14 @@ for version; do
+ 		export variant
+ 
+ 		case "$dir" in
++			fips-linux/*)
++				template="Dockerfile-fips-linux.template"
++				;;
++
++			fips/* | windows/fips/*)
++				template="Dockerfile-fips.template"
++				;;
++
+ 			windows/*)
+ 				windowsVariant="${variant%%-*}" # "windowsservercore", "nanoserver"
+ 				windowsRelease="${variant#$windowsVariant-}" # "ltsc2022", "1809", etc
