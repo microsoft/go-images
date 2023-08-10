@@ -23,7 +23,7 @@ mcr.microsoft.com/oss/go/microsoft/golang:1.20-bullseye
 If you need to build a FIPS-compliant app, use a `fips` tag, such as:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.20-fips-cbl-mariner1.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.20-fips-cbl-mariner2.0
 ```
 
 When building a containerized FIPS-compliant app, in general we recommend using a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/) that uses our `fips` tag in the builder stage and copies the built Go app into a minimal CBL-Mariner container to produce the final image.
