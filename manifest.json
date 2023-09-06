@@ -348,10 +348,10 @@
           "sharedTags": {
             "1.21": {},
             "1.21-bookworm": {},
-            "1.21.0": {},
-            "1.21.0-2": {},
-            "1.21.0-2-bookworm": {},
-            "1.21.0-bookworm": {}
+            "1.21.1": {},
+            "1.21.1-1": {},
+            "1.21.1-1-bookworm": {},
+            "1.21.1-bookworm": {}
           },
           "platforms": [
             {
@@ -360,7 +360,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.21.0-2-bookworm-amd64": {}
+                "1.21.1-1-bookworm-amd64": {}
               }
             },
             {
@@ -370,7 +370,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.21.0-2-bookworm-arm64v8": {}
+                "1.21.1-1-bookworm-arm64v8": {}
               }
             },
             {
@@ -380,7 +380,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.21.0-2-bookworm-arm32v7": {}
+                "1.21.1-1-bookworm-arm32v7": {}
               }
             }
           ]
@@ -389,8 +389,8 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-bullseye": {},
-            "1.21.0-2-bullseye": {},
-            "1.21.0-bullseye": {}
+            "1.21.1-1-bullseye": {},
+            "1.21.1-bullseye": {}
           },
           "platforms": [
             {
@@ -399,7 +399,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.21.0-2-bullseye-amd64": {}
+                "1.21.1-1-bullseye-amd64": {}
               }
             },
             {
@@ -409,7 +409,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.21.0-2-bullseye-arm64v8": {}
+                "1.21.1-1-bullseye-arm64v8": {}
               }
             },
             {
@@ -419,7 +419,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.21.0-2-bullseye-arm32v7": {}
+                "1.21.1-1-bullseye-arm32v7": {}
               }
             }
           ]
@@ -428,8 +428,8 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-cbl-mariner2.0": {},
-            "1.21.0-2-cbl-mariner2.0": {},
-            "1.21.0-cbl-mariner2.0": {}
+            "1.21.1-1-cbl-mariner2.0": {},
+            "1.21.1-cbl-mariner2.0": {}
           },
           "platforms": [
             {
@@ -438,7 +438,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.21.0-2-cbl-mariner2.0-amd64": {}
+                "1.21.1-1-cbl-mariner2.0-amd64": {}
               }
             },
             {
@@ -448,7 +448,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.21.0-2-cbl-mariner2.0-arm64v8": {}
+                "1.21.1-1-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
@@ -457,13 +457,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-bookworm": {},
-            "1.21.0-2-fips-bookworm": {},
-            "1.21.0-fips-bookworm": {}
+            "1.21.1-1-fips-bookworm": {},
+            "1.21.1-fips-bookworm": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-bookworm-amd64",
+                "FROM_TAG": "1.21.1-1-bookworm-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -471,12 +471,12 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.21.0-2-fips-bookworm-amd64": {}
+                "1.21.1-1-fips-bookworm-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-bookworm-arm64v8",
+                "FROM_TAG": "1.21.1-1-bookworm-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -485,12 +485,12 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.21.0-2-fips-bookworm-arm64v8": {}
+                "1.21.1-1-fips-bookworm-arm64v8": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-bookworm-arm32v7",
+                "FROM_TAG": "1.21.1-1-bookworm-arm32v7",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm",
@@ -499,7 +499,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.21.0-2-fips-bookworm-arm32v7": {}
+                "1.21.1-1-fips-bookworm-arm32v7": {}
               }
             }
           ]
@@ -508,13 +508,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-bullseye": {},
-            "1.21.0-2-fips-bullseye": {},
-            "1.21.0-fips-bullseye": {}
+            "1.21.1-1-fips-bullseye": {},
+            "1.21.1-fips-bullseye": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-bullseye-amd64",
+                "FROM_TAG": "1.21.1-1-bullseye-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -522,12 +522,12 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.21.0-2-fips-bullseye-amd64": {}
+                "1.21.1-1-fips-bullseye-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-bullseye-arm64v8",
+                "FROM_TAG": "1.21.1-1-bullseye-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -536,12 +536,12 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.21.0-2-fips-bullseye-arm64v8": {}
+                "1.21.1-1-fips-bullseye-arm64v8": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-bullseye-arm32v7",
+                "FROM_TAG": "1.21.1-1-bullseye-arm32v7",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm",
@@ -550,7 +550,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.21.0-2-fips-bullseye-arm32v7": {}
+                "1.21.1-1-fips-bullseye-arm32v7": {}
               }
             }
           ]
@@ -559,13 +559,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-cbl-mariner2.0": {},
-            "1.21.0-2-fips-cbl-mariner2.0": {},
-            "1.21.0-fips-cbl-mariner2.0": {}
+            "1.21.1-1-fips-cbl-mariner2.0": {},
+            "1.21.1-fips-cbl-mariner2.0": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-cbl-mariner2.0-amd64",
+                "FROM_TAG": "1.21.1-1-cbl-mariner2.0-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -573,12 +573,12 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.21.0-2-fips-cbl-mariner2.0-amd64": {}
+                "1.21.1-1-fips-cbl-mariner2.0-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-cbl-mariner2.0-arm64v8",
+                "FROM_TAG": "1.21.1-1-cbl-mariner2.0-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -587,7 +587,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.21.0-2-fips-cbl-mariner2.0-arm64v8": {}
+                "1.21.1-1-fips-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
@@ -596,8 +596,8 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-windowsservercore-ltsc2022": {},
-            "1.21.0-2-windowsservercore-ltsc2022": {},
-            "1.21.0-windowsservercore-ltsc2022": {}
+            "1.21.1-1-windowsservercore-ltsc2022": {},
+            "1.21.1-windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
@@ -606,7 +606,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "1.21.0-2-windowsservercore-ltsc2022-amd64": {}
+                "1.21.1-1-windowsservercore-ltsc2022-amd64": {}
               }
             }
           ]
@@ -615,8 +615,8 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-windowsservercore-1809": {},
-            "1.21.0-2-windowsservercore-1809": {},
-            "1.21.0-windowsservercore-1809": {}
+            "1.21.1-1-windowsservercore-1809": {},
+            "1.21.1-windowsservercore-1809": {}
           },
           "platforms": [
             {
@@ -625,7 +625,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-1809",
               "tags": {
-                "1.21.0-2-windowsservercore-1809-amd64": {}
+                "1.21.1-1-windowsservercore-1809-amd64": {}
               }
             }
           ]
@@ -634,13 +634,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-nanoserver-ltsc2022": {},
-            "1.21.0-2-nanoserver-ltsc2022": {},
-            "1.21.0-nanoserver-ltsc2022": {}
+            "1.21.1-1-nanoserver-ltsc2022": {},
+            "1.21.1-nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.21.0-2-windowsservercore-ltsc2022-amd64",
+                "DOWNLOADER_TAG": "1.21.1-1-windowsservercore-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -648,7 +648,7 @@
               "os": "windows",
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
-                "1.21.0-2-nanoserver-ltsc2022-amd64": {}
+                "1.21.1-1-nanoserver-ltsc2022-amd64": {}
               }
             }
           ]
@@ -657,13 +657,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-nanoserver-1809": {},
-            "1.21.0-2-nanoserver-1809": {},
-            "1.21.0-nanoserver-1809": {}
+            "1.21.1-1-nanoserver-1809": {},
+            "1.21.1-nanoserver-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.21.0-2-windowsservercore-1809-amd64",
+                "DOWNLOADER_TAG": "1.21.1-1-windowsservercore-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -671,7 +671,7 @@
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "1.21.0-2-nanoserver-1809-amd64": {}
+                "1.21.1-1-nanoserver-1809-amd64": {}
               }
             }
           ]
@@ -680,13 +680,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-windowsservercore-ltsc2022": {},
-            "1.21.0-2-fips-windowsservercore-ltsc2022": {},
-            "1.21.0-fips-windowsservercore-ltsc2022": {}
+            "1.21.1-1-fips-windowsservercore-ltsc2022": {},
+            "1.21.1-fips-windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-windowsservercore-ltsc2022-amd64",
+                "FROM_TAG": "1.21.1-1-windowsservercore-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -694,7 +694,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "1.21.0-2-fips-windowsservercore-ltsc2022-amd64": {}
+                "1.21.1-1-fips-windowsservercore-ltsc2022-amd64": {}
               }
             }
           ]
@@ -703,13 +703,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-windowsservercore-1809": {},
-            "1.21.0-2-fips-windowsservercore-1809": {},
-            "1.21.0-fips-windowsservercore-1809": {}
+            "1.21.1-1-fips-windowsservercore-1809": {},
+            "1.21.1-fips-windowsservercore-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-windowsservercore-1809-amd64",
+                "FROM_TAG": "1.21.1-1-windowsservercore-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -717,7 +717,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-1809",
               "tags": {
-                "1.21.0-2-fips-windowsservercore-1809-amd64": {}
+                "1.21.1-1-fips-windowsservercore-1809-amd64": {}
               }
             }
           ]
@@ -726,13 +726,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-nanoserver-ltsc2022": {},
-            "1.21.0-2-fips-nanoserver-ltsc2022": {},
-            "1.21.0-fips-nanoserver-ltsc2022": {}
+            "1.21.1-1-fips-nanoserver-ltsc2022": {},
+            "1.21.1-fips-nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-nanoserver-ltsc2022-amd64",
+                "FROM_TAG": "1.21.1-1-nanoserver-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -740,7 +740,7 @@
               "os": "windows",
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
-                "1.21.0-2-fips-nanoserver-ltsc2022-amd64": {}
+                "1.21.1-1-fips-nanoserver-ltsc2022-amd64": {}
               }
             }
           ]
@@ -749,13 +749,13 @@
           "productVersion": "1.21",
           "sharedTags": {
             "1.21-fips-nanoserver-1809": {},
-            "1.21.0-2-fips-nanoserver-1809": {},
-            "1.21.0-fips-nanoserver-1809": {}
+            "1.21.1-1-fips-nanoserver-1809": {},
+            "1.21.1-fips-nanoserver-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.21.0-2-nanoserver-1809-amd64",
+                "FROM_TAG": "1.21.1-1-nanoserver-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -763,7 +763,7 @@
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "1.21.0-2-fips-nanoserver-1809-amd64": {}
+                "1.21.1-1-fips-nanoserver-1809-amd64": {}
               }
             }
           ]
