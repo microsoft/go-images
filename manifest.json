@@ -17,10 +17,10 @@
             "1-bookworm": {},
             "1.19": {},
             "1.19-bookworm": {},
-            "1.19.12": {},
-            "1.19.12-1": {},
-            "1.19.12-1-bookworm": {},
-            "1.19.12-bookworm": {},
+            "1.19.13": {},
+            "1.19.13-1": {},
+            "1.19.13-1-bookworm": {},
+            "1.19.13-bookworm": {},
             "bookworm": {},
             "latest": {}
           },
@@ -31,7 +31,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.19.12-1-bookworm-amd64": {}
+                "1.19.13-1-bookworm-amd64": {}
               }
             },
             {
@@ -41,7 +41,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.19.12-1-bookworm-arm64v8": {}
+                "1.19.13-1-bookworm-arm64v8": {}
               }
             },
             {
@@ -51,7 +51,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.19.12-1-bookworm-arm32v7": {}
+                "1.19.13-1-bookworm-arm32v7": {}
               }
             }
           ]
@@ -61,8 +61,8 @@
           "sharedTags": {
             "1-bullseye": {},
             "1.19-bullseye": {},
-            "1.19.12-1-bullseye": {},
-            "1.19.12-bullseye": {},
+            "1.19.13-1-bullseye": {},
+            "1.19.13-bullseye": {},
             "bullseye": {}
           },
           "platforms": [
@@ -72,7 +72,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.12-1-bullseye-amd64": {}
+                "1.19.13-1-bullseye-amd64": {}
               }
             },
             {
@@ -82,7 +82,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.12-1-bullseye-arm64v8": {}
+                "1.19.13-1-bullseye-arm64v8": {}
               }
             },
             {
@@ -92,7 +92,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.12-1-bullseye-arm32v7": {}
+                "1.19.13-1-bullseye-arm32v7": {}
               }
             }
           ]
@@ -102,8 +102,8 @@
           "sharedTags": {
             "1-cbl-mariner1.0": {},
             "1.19-cbl-mariner1.0": {},
-            "1.19.12-1-cbl-mariner1.0": {},
-            "1.19.12-cbl-mariner1.0": {},
+            "1.19.13-1-cbl-mariner1.0": {},
+            "1.19.13-cbl-mariner1.0": {},
             "cbl-mariner1.0": {}
           },
           "platforms": [
@@ -113,7 +113,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.12-1-cbl-mariner1.0-amd64": {}
+                "1.19.13-1-cbl-mariner1.0-amd64": {}
               }
             },
             {
@@ -123,7 +123,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.12-1-cbl-mariner1.0-arm64v8": {}
+                "1.19.13-1-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
@@ -133,8 +133,8 @@
           "sharedTags": {
             "1-cbl-mariner2.0": {},
             "1.19-cbl-mariner2.0": {},
-            "1.19.12-1-cbl-mariner2.0": {},
-            "1.19.12-cbl-mariner2.0": {},
+            "1.19.13-1-cbl-mariner2.0": {},
+            "1.19.13-cbl-mariner2.0": {},
             "cbl-mariner2.0": {}
           },
           "platforms": [
@@ -144,7 +144,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.12-1-cbl-mariner2.0-amd64": {}
+                "1.19.13-1-cbl-mariner2.0-amd64": {}
               }
             },
             {
@@ -154,7 +154,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.12-1-cbl-mariner2.0-arm64v8": {}
+                "1.19.13-1-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
@@ -164,14 +164,14 @@
           "sharedTags": {
             "1-fips-bookworm": {},
             "1.19-fips-bookworm": {},
-            "1.19.12-1-fips-bookworm": {},
-            "1.19.12-fips-bookworm": {},
+            "1.19.13-1-fips-bookworm": {},
+            "1.19.13-fips-bookworm": {},
             "fips-bookworm": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-bookworm-amd64",
+                "FROM_TAG": "1.19.13-1-bookworm-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -179,12 +179,12 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.19.12-1-fips-bookworm-amd64": {}
+                "1.19.13-1-fips-bookworm-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-bookworm-arm64v8",
+                "FROM_TAG": "1.19.13-1-bookworm-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -193,12 +193,12 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.19.12-1-fips-bookworm-arm64v8": {}
+                "1.19.13-1-fips-bookworm-arm64v8": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-bookworm-arm32v7",
+                "FROM_TAG": "1.19.13-1-bookworm-arm32v7",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm",
@@ -207,7 +207,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.19.12-1-fips-bookworm-arm32v7": {}
+                "1.19.13-1-fips-bookworm-arm32v7": {}
               }
             }
           ]
@@ -217,14 +217,14 @@
           "sharedTags": {
             "1-fips-bullseye": {},
             "1.19-fips-bullseye": {},
-            "1.19.12-1-fips-bullseye": {},
-            "1.19.12-fips-bullseye": {},
+            "1.19.13-1-fips-bullseye": {},
+            "1.19.13-fips-bullseye": {},
             "fips-bullseye": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-bullseye-amd64",
+                "FROM_TAG": "1.19.13-1-bullseye-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -232,12 +232,12 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.12-1-fips-bullseye-amd64": {}
+                "1.19.13-1-fips-bullseye-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-bullseye-arm64v8",
+                "FROM_TAG": "1.19.13-1-bullseye-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -246,12 +246,12 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.12-1-fips-bullseye-arm64v8": {}
+                "1.19.13-1-fips-bullseye-arm64v8": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-bullseye-arm32v7",
+                "FROM_TAG": "1.19.13-1-bullseye-arm32v7",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm",
@@ -260,7 +260,7 @@
               "os": "linux",
               "osVersion": "bullseye",
               "tags": {
-                "1.19.12-1-fips-bullseye-arm32v7": {}
+                "1.19.13-1-fips-bullseye-arm32v7": {}
               }
             }
           ]
@@ -270,14 +270,14 @@
           "sharedTags": {
             "1-fips-cbl-mariner1.0": {},
             "1.19-fips-cbl-mariner1.0": {},
-            "1.19.12-1-fips-cbl-mariner1.0": {},
-            "1.19.12-fips-cbl-mariner1.0": {},
+            "1.19.13-1-fips-cbl-mariner1.0": {},
+            "1.19.13-fips-cbl-mariner1.0": {},
             "fips-cbl-mariner1.0": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-cbl-mariner1.0-amd64",
+                "FROM_TAG": "1.19.13-1-cbl-mariner1.0-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -285,12 +285,12 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.12-1-fips-cbl-mariner1.0-amd64": {}
+                "1.19.13-1-fips-cbl-mariner1.0-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-cbl-mariner1.0-arm64v8",
+                "FROM_TAG": "1.19.13-1-cbl-mariner1.0-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -299,7 +299,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner1.0",
               "tags": {
-                "1.19.12-1-fips-cbl-mariner1.0-arm64v8": {}
+                "1.19.13-1-fips-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]
@@ -309,14 +309,14 @@
           "sharedTags": {
             "1-fips-cbl-mariner2.0": {},
             "1.19-fips-cbl-mariner2.0": {},
-            "1.19.12-1-fips-cbl-mariner2.0": {},
-            "1.19.12-fips-cbl-mariner2.0": {},
+            "1.19.13-1-fips-cbl-mariner2.0": {},
+            "1.19.13-fips-cbl-mariner2.0": {},
             "fips-cbl-mariner2.0": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-cbl-mariner2.0-amd64",
+                "FROM_TAG": "1.19.13-1-cbl-mariner2.0-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -324,12 +324,12 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.12-1-fips-cbl-mariner2.0-amd64": {}
+                "1.19.13-1-fips-cbl-mariner2.0-amd64": {}
               }
             },
             {
               "buildArgs": {
-                "FROM_TAG": "1.19.12-1-cbl-mariner2.0-arm64v8",
+                "FROM_TAG": "1.19.13-1-cbl-mariner2.0-arm64v8",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "arm64",
@@ -338,7 +338,7 @@
               "os": "linux",
               "osVersion": "cbl-mariner2.0",
               "tags": {
-                "1.19.12-1-fips-cbl-mariner2.0-arm64v8": {}
+                "1.19.13-1-fips-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
@@ -348,8 +348,8 @@
           "sharedTags": {
             "1-windowsservercore-ltsc2022": {},
             "1.19-windowsservercore-ltsc2022": {},
-            "1.19.12-1-windowsservercore-ltsc2022": {},
-            "1.19.12-windowsservercore-ltsc2022": {},
+            "1.19.13-1-windowsservercore-ltsc2022": {},
+            "1.19.13-windowsservercore-ltsc2022": {},
             "windowsservercore-ltsc2022": {}
           },
           "platforms": [
@@ -359,7 +359,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "1.19.12-1-windowsservercore-ltsc2022-amd64": {}
+                "1.19.13-1-windowsservercore-ltsc2022-amd64": {}
               }
             }
           ]
@@ -369,8 +369,8 @@
           "sharedTags": {
             "1-windowsservercore-1809": {},
             "1.19-windowsservercore-1809": {},
-            "1.19.12-1-windowsservercore-1809": {},
-            "1.19.12-windowsservercore-1809": {},
+            "1.19.13-1-windowsservercore-1809": {},
+            "1.19.13-windowsservercore-1809": {},
             "windowsservercore-1809": {}
           },
           "platforms": [
@@ -380,7 +380,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-1809",
               "tags": {
-                "1.19.12-1-windowsservercore-1809-amd64": {}
+                "1.19.13-1-windowsservercore-1809-amd64": {}
               }
             }
           ]
@@ -390,14 +390,14 @@
           "sharedTags": {
             "1-nanoserver-ltsc2022": {},
             "1.19-nanoserver-ltsc2022": {},
-            "1.19.12-1-nanoserver-ltsc2022": {},
-            "1.19.12-nanoserver-ltsc2022": {},
+            "1.19.13-1-nanoserver-ltsc2022": {},
+            "1.19.13-nanoserver-ltsc2022": {},
             "nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.19.12-1-windowsservercore-ltsc2022-amd64",
+                "DOWNLOADER_TAG": "1.19.13-1-windowsservercore-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -405,7 +405,7 @@
               "os": "windows",
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
-                "1.19.12-1-nanoserver-ltsc2022-amd64": {}
+                "1.19.13-1-nanoserver-ltsc2022-amd64": {}
               }
             }
           ]
@@ -415,14 +415,14 @@
           "sharedTags": {
             "1-nanoserver-1809": {},
             "1.19-nanoserver-1809": {},
-            "1.19.12-1-nanoserver-1809": {},
-            "1.19.12-nanoserver-1809": {},
+            "1.19.13-1-nanoserver-1809": {},
+            "1.19.13-nanoserver-1809": {},
             "nanoserver-1809": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.19.12-1-windowsservercore-1809-amd64",
+                "DOWNLOADER_TAG": "1.19.13-1-windowsservercore-1809-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -430,7 +430,7 @@
               "os": "windows",
               "osVersion": "nanoserver-1809",
               "tags": {
-                "1.19.12-1-nanoserver-1809-amd64": {}
+                "1.19.13-1-nanoserver-1809-amd64": {}
               }
             }
           ]
