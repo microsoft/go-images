@@ -100,37 +100,6 @@
         {
           "productVersion": "1.19",
           "sharedTags": {
-            "1-cbl-mariner1.0": {},
-            "1.19-cbl-mariner1.0": {},
-            "1.19.13-1-cbl-mariner1.0": {},
-            "1.19.13-cbl-mariner1.0": {},
-            "cbl-mariner1.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.19.13-1-cbl-mariner1.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.19/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.19.13-1-cbl-mariner1.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.19",
-          "sharedTags": {
             "1-cbl-mariner2.0": {},
             "1.19-cbl-mariner2.0": {},
             "1.19.13-1-cbl-mariner2.0": {},
@@ -261,45 +230,6 @@
               "osVersion": "bullseye",
               "tags": {
                 "1.19.13-1-fips-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.19",
-          "sharedTags": {
-            "1-fips-cbl-mariner1.0": {},
-            "1.19-fips-cbl-mariner1.0": {},
-            "1.19.13-1-fips-cbl-mariner1.0": {},
-            "1.19.13-fips-cbl-mariner1.0": {},
-            "fips-cbl-mariner1.0": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.19.13-1-cbl-mariner1.0-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.19.13-1-fips-cbl-mariner1.0-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.19.13-1-cbl-mariner1.0-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.19/fips-linux/cbl-mariner1.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner1.0",
-              "tags": {
-                "1.19.13-1-fips-cbl-mariner1.0-arm64v8": {}
               }
             }
           ]

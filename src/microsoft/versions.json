@@ -42,11 +42,9 @@
     "variants": [
       "bookworm",
       "bullseye",
-      "cbl-mariner1.0",
       "cbl-mariner2.0",
       "fips-linux/bookworm",
       "fips-linux/bullseye",
-      "fips-linux/cbl-mariner1.0",
       "fips-linux/cbl-mariner2.0",
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809",
