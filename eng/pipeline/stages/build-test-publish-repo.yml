@@ -16,12 +16,12 @@ stages:
       # Specific pools for arm builds.
       linuxArm64Pool:
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
-          name: DotNetCoreDocker-Public
+          name: Docker-Linux-Arm-Public
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: Docker-Linux-Arm-Internal
       linuxArm32Pool:
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
-          name: DotNetCoreDocker-Public
+          name: Docker-Linux-Arm-Public
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: Docker-Linux-Arm-Internal
       # On Windows, 'docker login' is incompatible with 'manifest-tool' unless we use these pools.
