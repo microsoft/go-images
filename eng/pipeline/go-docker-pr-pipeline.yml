@@ -17,3 +17,7 @@ stages:
         publicProjectName: ${{ variables.publicProjectName }}
         buildMatrixType: platformVersionedOs
   - template: stages/check-generation-repeatable.yml
+    parameters:
+      extraParameters:
+        internalProjectName: ${{ variables.internalProjectName }}
+        publicProjectName: ${{ variables.publicProjectName }}
