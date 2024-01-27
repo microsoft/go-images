@@ -1,6 +1,9 @@
 # Check that Dockerfile generation using "dockerupdate" is repeatable. This makes sure the patches
 # apply to the current submodule commit, the manifest.json file is up to date, versions.json is
 # valid, and the Dockerfiles are generated correctly, all using a known version of "dockerupdate".
+parameters:
+  extraParameters: {}
+
 stages:
   - stage: Repeatability
     dependsOn: []
@@ -8,7 +11,12 @@ stages:
       - job: Test
         pool:
           # This is a utility job: use generic recent LTS.
-          vmImage: ubuntu-20.04
+          ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
+            name: NetCore-Public
+            demands: ImageOverride -equals 1es-ubuntu-2004-open
+          ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+            name: NetCore1ESPool-Internal
+            demands: ImageOverride -equals 1es-ubuntu-2004
         workspace:
           clean: all
         steps:

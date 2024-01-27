@@ -13,7 +13,7 @@ In general, we don't recommend using these in Dockerfile `FROM` statements. It p
 Examples:
 
 * `1.20.0-1-bullseye-amd64`
-* `1.20.0-1-fips-cbl-mariner1.0-amd64`
+* `1.20.0-1-fips-cbl-mariner2.0-amd64`
 
 > This document uses `1.20.0-1` as a placeholder for *the most recent release of Microsoft Go*. Check MAR for the actual latest tag versions and available OS/Distros.
 
@@ -32,7 +32,7 @@ The Go shared tags have these characteristics:
 Examples:
 
 * `1.20-bullseye`
-* `1.20-fips-cbl-mariner1.0`
+* `1.20-fips-cbl-mariner2.0`
 * `1`
 
 # Tag parts

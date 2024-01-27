@@ -1,64 +1,4 @@
 {
-  "1.19": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "bfea583c76bfa9405c0eb793f4ff3c6555035d6c93931f8fa7f2128c8107498f",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.linux-amd64.tar.gz"
-      },
-      "arm32v7": {
-        "env": {
-          "GOARCH": "arm",
-          "GOARM": "7",
-          "GOOS": "linux"
-        },
-        "sha256": "620369fe40e7b67bafbc0ff7a1668bf21b8025f4e7205b271bbf91fe86e26926",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.linux-armv6l.tar.gz"
-      },
-      "arm64v8": {
-        "env": {
-          "GOARCH": "arm64",
-          "GOOS": "linux"
-        },
-        "sha256": "34565108e59f52eba2b4dafd46e4472cebe38678b520d49feda0f2917be4152f",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.linux-arm64.tar.gz"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "2718d484abc748c943391a461dbe9ba790eaf02a7c97a6e24321d9dac124b21d",
-        "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.19/20230802.5/go.20230802.5.windows-amd64.zip"
-      }
-    },
-    "variants": [
-      "bookworm",
-      "bullseye",
-      "cbl-mariner1.0",
-      "cbl-mariner2.0",
-      "fips-linux/bookworm",
-      "fips-linux/bullseye",
-      "fips-linux/cbl-mariner1.0",
-      "fips-linux/cbl-mariner2.0",
-      "windows/windowsservercore-ltsc2022",
-      "windows/windowsservercore-1809",
-      "windows/nanoserver-ltsc2022",
-      "windows/nanoserver-1809"
-    ],
-    "version": "1.19.12",
-    "revision": "1",
-    "preferredMajor": true,
-    "preferredMinor": true,
-    "preferredVariant": "bookworm"
-  },
   "1.20": {
     "arches": {
       "amd64": {
@@ -66,9 +6,9 @@
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "78ed8d134f8cd05d11d06f22f53d5d0068a27b839895b745d988c1c11fb44b05",
+        "sha256": "6c54b203ea8c97c58193d12c8ab728a564fed3bff2fb20c2a43d3965607c3133",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230802.2/go.20230802.2.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20240111.4/go.20240111.4.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -76,57 +16,55 @@
           "GOARM": "7",
           "GOOS": "linux"
         },
-        "sha256": "60b53aefa89cfb12fceea6bbbe63c79f36fe7972956272e9b4c3ccb6a9e1a893",
+        "sha256": "3e9f616e5e80fe66cbd1bd828ff6eaee0bc459b8ade681827d811f10a5a2099f",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230802.2/go.20230802.2.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20240111.4/go.20240111.4.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "dee08369c18aeae2b5e5d8b57b27c07082f2a9eca382d31ff70140da65c1b138",
+        "sha256": "4f29f90c61505148d7ae179a185eba70a8bcf63ad4317e6902713c6428da7431",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230802.2/go.20230802.2.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20240111.4/go.20240111.4.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "bce7fb40125d65036d1ba60a4471962c13ec44d29ca22aa7cd45dfac5f3743ab",
+        "sha256": "7c59d6bb7fcc4c036c70a345282f6cfe3716c87ccc67b9e3ef4422ca098463b0",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20230802.2/go.20230802.2.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.20/20240111.4/go.20240111.4.windows-amd64.zip"
       }
     },
     "variants": [
       "bookworm",
       "bullseye",
-      "cbl-mariner1.0",
       "cbl-mariner2.0",
       "fips-linux/bookworm",
       "fips-linux/bullseye",
-      "fips-linux/cbl-mariner1.0",
       "fips-linux/cbl-mariner2.0",
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809",
       "windows/nanoserver-ltsc2022",
       "windows/nanoserver-1809"
     ],
-    "version": "1.20.7",
+    "version": "1.20.13",
     "revision": "1",
     "preferredVariant": "bookworm"
   },
-  "1.21-rc": {
+  "1.21": {
     "arches": {
       "amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "linux"
         },
-        "sha256": "53eba1283ab6ec4d19dd8a3885ca15a3571a0957ce0bd9b02d189f4d1e944ca4",
+        "sha256": "f1cc0eb3760e3067b129ea90fedc138d13eae1e17d4297724ed79ff8d158c15d",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240111.3/go.20240111.3.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -134,37 +72,35 @@
           "GOARM": "7",
           "GOOS": "linux"
         },
-        "sha256": "f7cbdd4242867b566d3b91eb06f9458d79e44e22cc5053cc6a6db36450a72f2a",
+        "sha256": "8b1ebf9ecce9a9d6b84371d6420cb7394abc6017440def1aef45a7e2212ea40d",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240111.3/go.20240111.3.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "linux"
         },
-        "sha256": "eb7d9753a131386253e22bcf34035079b2de9e12aa826d9d6576a49a2c136a3b",
+        "sha256": "c413c80aaaa79023bc27cc3d9265ac0b3f4eb55f17a86813b58530a392471bd0",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240111.3/go.20240111.3.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "fc4b4e0475180fb77a8def52265585751820545641b8ad0d392598ac51ac0060",
+        "sha256": "3c9b6bc07a8fbc70ffd064c6feadf3ec8ada97fe6488be86f7f43a06ed7d2823",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20230717.3/go.20230717.3.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240111.3/go.20240111.3.windows-amd64.zip"
       }
     },
     "variants": [
       "bookworm",
       "bullseye",
-      "cbl-mariner1.0",
       "cbl-mariner2.0",
       "fips/bookworm",
       "fips/bullseye",
-      "fips/cbl-mariner1.0",
       "fips/cbl-mariner2.0",
       "windows/windowsservercore-ltsc2022",
       "windows/windowsservercore-1809",
@@ -175,7 +111,7 @@
       "windows/fips/nanoserver-ltsc2022",
       "windows/fips/nanoserver-1809"
     ],
-    "version": "1.21.0rc2",
+    "version": "1.21.6",
     "revision": "1",
     "preferredVariant": "bookworm"
   }
