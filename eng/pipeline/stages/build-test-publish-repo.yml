@@ -15,11 +15,17 @@ stages:
         - template: ../../../pipeline/steps/set-public-source-branch-var.yml
       # Specific pools for arm builds.
       linuxArm64Pool:
+        image: Mariner-2-Docker-ARM64
+        os: linux
+        hostArchitecture: Arm64
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
           name: Docker-Linux-Arm-Public
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: Docker-Linux-Arm-Internal
       linuxArm32Pool:
+        image: Mariner-2-Docker-ARM64
+        os: linux
+        hostArchitecture: Arm64
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
           name: Docker-Linux-Arm-Public
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
@@ -27,8 +33,20 @@ stages:
       # On Windows, 'docker login' is incompatible with 'manifest-tool' unless we use these pools.
       # https://github.com/dotnet/docker-tools/issues/905
       windows2016Pool: Docker-2016-${{ variables['System.TeamProject'] }}
-      windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
-      windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}
+      ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
+        windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
+      ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+        windows1809Pool:
+          name: NetCore1ESPool-Internal
+          image: 1es-windows-2019
+          os: windows
+      ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
+        windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}
+      ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+        windows2022Pool:
+          name: NetCore1ESPool-Internal
+          image: 1es-windows-2022
+          os: windows
       # Use 1ES pools to avoid contention in AzDO hosted pools.
       linuxAmd64Pool:
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
@@ -36,7 +54,8 @@ stages:
           demands: ImageOverride -equals build.ubuntu.2204.amd64.open
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: NetCore1ESPool-Internal
-          demands: ImageOverride -equals build.ubuntu.2204.amd64
+          image: 1es-ubuntu-2204
+          os: linux
 
       ${{ each pair in parameters.extraParameters }}:
         ${{ pair.key }}: ${{ pair.value }}

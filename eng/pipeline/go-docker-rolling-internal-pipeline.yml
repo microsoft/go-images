@@ -4,11 +4,29 @@ pr: none
 variables:
   - template: variables/common.yml
 
-stages:
-  - template: stages/build-test-publish-repo.yml
-    parameters:
-      extraParameters:
-        # "variables.x" template expression only gets the correct value in this pipeline file. In a
-        # stage template, it returns an empty string. So, evaluate it here and pass it through.
-        internalProjectName: ${{ variables.internalProjectName }}
-        publicProjectName: ${{ variables.publicProjectName }}
+resources:
+  repositories:
+    - repository: 1ESPipelineTemplates
+      type: git
+      name: 1ESPipelineTemplates/1ESPipelineTemplates
+      ref: refs/tags/release
+
+extends:
+  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  parameters:
+    sdl:
+      sourceAnalysisPool:
+        name: NetCore1ESPool-Svc-Internal
+        image: 1es-windows-2022
+        os: windows
+      tsa:
+        enabled: true
+        configFile: $(Build.SourcesDirectory)/eng/compliance/tsaoptions.json
+    stages:
+      - template: stages/build-test-publish-repo.yml
+        parameters:
+          extraParameters:
+            # "variables.x" template expression only gets the correct value in this pipeline file. In a
+            # stage template, it returns an empty string. So, evaluate it here and pass it through.
+            internalProjectName: ${{ variables.internalProjectName }}
+            publicProjectName: ${{ variables.publicProjectName }}
