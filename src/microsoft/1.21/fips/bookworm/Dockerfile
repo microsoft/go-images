@@ -11,7 +11,7 @@
 # build tools. If they build the non-FIPS images with the obvious tags, this "from" should line up.
 # The .NET Docker build infrastructure replaces the ARGs with arch-specific values, etc.
 ARG REPO=mcr.microsoft.com/oss/go/microsoft/golang
-ARG FROM_TAG=1.21.8-2-bookworm
+ARG FROM_TAG=1.21.8-3-bookworm
 
 FROM $REPO:$FROM_TAG
 
