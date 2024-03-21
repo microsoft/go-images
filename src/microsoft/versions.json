@@ -124,7 +124,7 @@
         },
         "sha256": "2928adebf5139a4ed9365145357b5d4cd72c4de68b773bea76a6013e27589229",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.3/go1.22.1-20240321.3.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.7/go1.22.1-20240321.7.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -134,7 +134,7 @@
         },
         "sha256": "9ab24e136fcf71d32f9024be641f6bb4dc95f7e81ddd29a3134aa431d32aea42",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.3/go1.22.1-20240321.3.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.7/go1.22.1-20240321.7.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
@@ -143,16 +143,16 @@
         },
         "sha256": "b74664c8d5466ca3c9e3ed460c773608b532bc623643e4916c5a8bc790084bd8",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.3/go1.22.1-20240321.3.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.7/go1.22.1-20240321.7.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "e1152b4b75a1c5d912611764d21f791d00aa51016f4d38fccb7c430841236081",
+        "sha256": "e2ddf161dc0de71c2e99a9c6f5247affd143d7d6216c4b70f97f2d3d78f3dab8",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.3/go1.22.1-20240321.3.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240321.7/go1.22.1-20240321.7.windows-amd64.zip"
       }
     },
     "variants": [
@@ -172,7 +172,7 @@
       "windows/fips/nanoserver-1809"
     ],
     "version": "1.22.1",
-    "revision": "2",
+    "revision": "3",
     "preferredVariant": "bookworm"
   }
 }
