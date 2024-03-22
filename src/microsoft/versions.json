@@ -57,7 +57,9 @@
     ],
     "version": "1.21.8",
     "revision": "3",
-    "preferredVariant": "bookworm"
+    "preferredVariant": "bookworm",
+    "preferredMinor": true,
+    "preferredMajor": true
   },
   "1.22": {
     "arches": {

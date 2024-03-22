@@ -13,12 +13,16 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1": {},
+            "1-bookworm": {},
             "1.21": {},
             "1.21-bookworm": {},
             "1.21.8": {},
             "1.21.8-3": {},
             "1.21.8-3-bookworm": {},
-            "1.21.8-bookworm": {}
+            "1.21.8-bookworm": {},
+            "bookworm": {},
+            "latest": {}
           },
           "platforms": [
             {
@@ -55,9 +59,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-bullseye": {},
             "1.21-bullseye": {},
             "1.21.8-3-bullseye": {},
-            "1.21.8-bullseye": {}
+            "1.21.8-bullseye": {},
+            "bullseye": {}
           },
           "platforms": [
             {
@@ -94,9 +100,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-cbl-mariner2.0": {},
             "1.21-cbl-mariner2.0": {},
             "1.21.8-3-cbl-mariner2.0": {},
-            "1.21.8-cbl-mariner2.0": {}
+            "1.21.8-cbl-mariner2.0": {},
+            "cbl-mariner2.0": {}
           },
           "platforms": [
             {
@@ -123,9 +131,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-bookworm": {},
             "1.21-fips-bookworm": {},
             "1.21.8-3-fips-bookworm": {},
-            "1.21.8-fips-bookworm": {}
+            "1.21.8-fips-bookworm": {},
+            "fips-bookworm": {}
           },
           "platforms": [
             {
@@ -174,9 +184,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-bullseye": {},
             "1.21-fips-bullseye": {},
             "1.21.8-3-fips-bullseye": {},
-            "1.21.8-fips-bullseye": {}
+            "1.21.8-fips-bullseye": {},
+            "fips-bullseye": {}
           },
           "platforms": [
             {
@@ -225,9 +237,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-cbl-mariner2.0": {},
             "1.21-fips-cbl-mariner2.0": {},
             "1.21.8-3-fips-cbl-mariner2.0": {},
-            "1.21.8-fips-cbl-mariner2.0": {}
+            "1.21.8-fips-cbl-mariner2.0": {},
+            "fips-cbl-mariner2.0": {}
           },
           "platforms": [
             {
@@ -262,9 +276,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-windowsservercore-ltsc2022": {},
             "1.21-windowsservercore-ltsc2022": {},
             "1.21.8-3-windowsservercore-ltsc2022": {},
-            "1.21.8-windowsservercore-ltsc2022": {}
+            "1.21.8-windowsservercore-ltsc2022": {},
+            "windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
@@ -281,9 +297,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-windowsservercore-1809": {},
             "1.21-windowsservercore-1809": {},
             "1.21.8-3-windowsservercore-1809": {},
-            "1.21.8-windowsservercore-1809": {}
+            "1.21.8-windowsservercore-1809": {},
+            "windowsservercore-1809": {}
           },
           "platforms": [
             {
@@ -300,9 +318,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-nanoserver-ltsc2022": {},
             "1.21-nanoserver-ltsc2022": {},
             "1.21.8-3-nanoserver-ltsc2022": {},
-            "1.21.8-nanoserver-ltsc2022": {}
+            "1.21.8-nanoserver-ltsc2022": {},
+            "nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
@@ -323,9 +343,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-nanoserver-1809": {},
             "1.21-nanoserver-1809": {},
             "1.21.8-3-nanoserver-1809": {},
-            "1.21.8-nanoserver-1809": {}
+            "1.21.8-nanoserver-1809": {},
+            "nanoserver-1809": {}
           },
           "platforms": [
             {
@@ -346,9 +368,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-windowsservercore-ltsc2022": {},
             "1.21-fips-windowsservercore-ltsc2022": {},
             "1.21.8-3-fips-windowsservercore-ltsc2022": {},
-            "1.21.8-fips-windowsservercore-ltsc2022": {}
+            "1.21.8-fips-windowsservercore-ltsc2022": {},
+            "fips-windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
@@ -369,9 +393,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-windowsservercore-1809": {},
             "1.21-fips-windowsservercore-1809": {},
             "1.21.8-3-fips-windowsservercore-1809": {},
-            "1.21.8-fips-windowsservercore-1809": {}
+            "1.21.8-fips-windowsservercore-1809": {},
+            "fips-windowsservercore-1809": {}
           },
           "platforms": [
             {
@@ -392,9 +418,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-nanoserver-ltsc2022": {},
             "1.21-fips-nanoserver-ltsc2022": {},
             "1.21.8-3-fips-nanoserver-ltsc2022": {},
-            "1.21.8-fips-nanoserver-ltsc2022": {}
+            "1.21.8-fips-nanoserver-ltsc2022": {},
+            "fips-nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
@@ -415,9 +443,11 @@
         {
           "productVersion": "1.21",
           "sharedTags": {
+            "1-fips-nanoserver-1809": {},
             "1.21-fips-nanoserver-1809": {},
             "1.21.8-3-fips-nanoserver-1809": {},
-            "1.21.8-fips-nanoserver-1809": {}
+            "1.21.8-fips-nanoserver-1809": {},
+            "fips-nanoserver-1809": {}
           },
           "platforms": [
             {
