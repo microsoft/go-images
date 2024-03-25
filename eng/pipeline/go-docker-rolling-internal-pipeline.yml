@@ -22,6 +22,7 @@ extends:
       tsa:
         enabled: true
         configFile: $(Build.SourcesDirectory)/eng/compliance/tsaoptions.json
+      codeql:
     stages:
       - template: stages/build-test-publish-repo.yml
         parameters:
