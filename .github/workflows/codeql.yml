@@ -2,9 +2,9 @@ name: "CodeQL"
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "microsoft/main", "microsoft/nightly" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "microsoft/main", "microsoft/nightly" ]
   schedule:
     - cron: '16 3 * * 2'
 
