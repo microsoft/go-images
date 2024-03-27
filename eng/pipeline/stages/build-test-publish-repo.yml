@@ -15,21 +15,21 @@ stages:
         - template: ../../../pipeline/steps/set-public-source-branch-var.yml
       # Specific pools for arm builds.
       linuxArm64Pool:
-        image: Mariner-2-Docker-ARM64
         os: linux
         hostArchitecture: Arm64
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
           name: Docker-Linux-Arm-Public
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+          image: Mariner-2-Docker-ARM64
           name: Docker-Linux-Arm-Internal
       linuxArm32Pool:
-        image: Mariner-2-Docker-ARM64
         os: linux
         hostArchitecture: Arm64
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
           name: Docker-Linux-Arm-Public
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: Docker-Linux-Arm-Internal
+          image: Mariner-2-Docker-ARM64
       # On Windows, 'docker login' is incompatible with 'manifest-tool' unless we use these pools.
       # https://github.com/dotnet/docker-tools/issues/905
       windows2016Pool: Docker-2016-${{ variables['System.TeamProject'] }}
