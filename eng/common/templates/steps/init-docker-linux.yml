@@ -1,7 +1,7 @@
 parameters:
   setupImageBuilder: true
   setupTestRunner: false
-  cleanupDocker: true
+  cleanupDocker: false
   condition: true
 
 steps:
@@ -16,7 +16,7 @@ steps:
   # Cleanup Docker Resources
   ################################################################################
 - ${{ if eq(parameters.cleanupDocker, 'true') }}:
-  - template: cleanup-docker-linux.yml
+  - template: /eng/common/templates/steps/cleanup-docker-linux.yml@self
     parameters:
       condition: ${{ parameters.condition }}
 
