@@ -3,63 +3,71 @@ parameters:
   extraParameters: {}
 
 stages:
-  - template: ../../common/templates/stages/build-test-publish-repo.yml
+  - template: /eng/common/templates/stages/build-test-publish-repo.yml@self
     parameters:
       buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
       noCache: true
       # Template paths must be relative to the YAML job that executes them
       customBuildInitSteps:
-        - template: ../../../pipeline/steps/set-imagebuilder-build-args-var.yml
-        - template: ../../../pipeline/steps/set-public-source-branch-var.yml
+        - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
+        - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
       customPublishInitSteps:
-        - template: ../../../pipeline/steps/set-public-source-branch-var.yml
-      # Specific pools for arm builds.
+        - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+
+      # Linux AMD64
+      linuxAmd64Pool:
+        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
+          name: NetCore-Public
+          demands: ImageOverride -equals build.ubuntu.2204.amd64.open
+        ${{ elseif eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+          name: NetCore1ESPool-Internal
+          image: 1es-ubuntu-2204
+          os: linux
+
+      # Linux ARM64
       linuxArm64Pool:
         os: linux
         hostArchitecture: Arm64
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
           name: Docker-Linux-Arm-Public
-        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
-          image: Mariner-2-Docker-ARM64
+        ${{ elseif eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: Docker-Linux-Arm-Internal
+          image: Mariner-2-Docker-ARM64
+
+      # Linux ARM32
       linuxArm32Pool:
         os: linux
         hostArchitecture: Arm64
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
           name: Docker-Linux-Arm-Public
-        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+        ${{ elseif eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
           name: Docker-Linux-Arm-Internal
           image: Mariner-2-Docker-ARM64
-      # On Windows, 'docker login' is incompatible with 'manifest-tool' unless we use these pools.
-      # https://github.com/dotnet/docker-tools/issues/905
+
+      # Windows 2016
       windows2016Pool:
         os: windows
         name: Docker-2016-${{ variables['System.TeamProject'] }}
         ${{ if eq(variables['System.TeamProject'], parameters.internalProjectName) }}:
           image: Server2016-NESDockerBuilds-PT
+
+      # Windows 2019 (1809)
       ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
         windows1809Pool: Docker-1809-${{ variables['System.TeamProject'] }}
-      ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+      ${{ elseif eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
         windows1809Pool:
           name: NetCore1ESPool-Internal
           image: 1es-windows-2019
           os: windows
+
+      # Windows 2022
       ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
         windows2022Pool: Docker-2022-${{ variables['System.TeamProject'] }}
-      ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
+      ${{ elseif eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
         windows2022Pool:
           name: NetCore1ESPool-Internal
           image: 1es-windows-2022
           os: windows
-      # Use 1ES pools to avoid contention in AzDO hosted pools.
-      linuxAmd64Pool:
-        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
-          name: NetCore-Public
-          demands: ImageOverride -equals build.ubuntu.2204.amd64.open
-        ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
-          name: NetCore1ESPool-Internal
-          image: 1es-ubuntu-2204
-          os: linux
 
       ${{ each pair in parameters.extraParameters }}:
         ${{ pair.key }}: ${{ pair.value }}
