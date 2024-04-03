@@ -1,14 +1,14 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
 Date: Fri, 11 Feb 2022 18:07:18 -0600
-Subject: [PATCH] Add Mariner support with FIPS dependency flag
+Subject: [PATCH] Add Mariner, FIPS, package upgrade
 
 ---
- Dockerfile-linux.template | 62 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 62 insertions(+)
+ Dockerfile-linux.template | 66 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 66 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 1c8c549b281edc..cda83dcbfcdea4 100644
+index 1c8c549b281edc..58392a2e0d3205 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,9 +4,21 @@
@@ -73,14 +73,16 @@ index 1c8c549b281edc..cda83dcbfcdea4 100644
  	gpg --batch --verify go.tgz.asc go.tgz; \
  	gpgconf --kill all; \
  	rm -rf "$GNUPGHOME" go.tgz.asc; \
-@@ -142,6 +169,33 @@ RUN set -eux; \
+@@ -142,18 +169,57 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates
 +{{ ) elif is_cbl_mariner then ( -}}
 +FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }}
 +
-+RUN tdnf update -y; \
++RUN set -eux; \
++# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
++	tdnf update -y; \
 +	tdnf install -y \
 +		binutils \
 +		gcc \
@@ -107,7 +109,14 @@ index 1c8c549b281edc..cda83dcbfcdea4 100644
  {{ ) else ( -}}
  FROM buildpack-deps:{{ env.variant }}-scm
  
-@@ -154,6 +208,14 @@ RUN set -eux; \
+ # install cgo-related dependencies
+ RUN set -eux; \
+ 	apt-get update; \
++# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
++	apt-get upgrade -y; \
+ 	apt-get install -y --no-install-recommends \
+ 		g++ \
+ 		gcc \
  		libc6-dev \
  		make \
  		pkg-config \
