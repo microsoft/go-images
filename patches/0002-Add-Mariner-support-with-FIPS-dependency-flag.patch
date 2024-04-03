@@ -4,14 +4,14 @@ Date: Fri, 11 Feb 2022 18:07:18 -0600
 Subject: [PATCH] Add Mariner support with FIPS dependency flag
 
 ---
- Dockerfile-linux.template | 60 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 60 insertions(+)
+ Dockerfile-linux.template | 62 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 62 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 3d8ddc4235a658..4430ee28c990cb 100644
+index 1c8c549b281edc..cda83dcbfcdea4 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -4,11 +4,48 @@
+@@ -4,9 +4,21 @@
  	;
  	def alpine_version:
  		env.variant | ltrimstr("alpine")
@@ -27,6 +27,53 @@ index 3d8ddc4235a658..4430ee28c990cb 100644
 +		(.branchSuffix // "") | contains("fips")
  -}}
  {{ if is_alpine then ( -}}
+ FROM alpine:{{ alpine_version }} AS build
++{{ ) elif is_cbl_mariner then ( -}}
++FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }}
+ {{ ) else ( -}}
+ FROM buildpack-deps:{{ env.variant }}-scm AS build
+ {{ ) end -}}
+@@ -30,6 +42,13 @@ ENV GOLANG_VERSION {{ .version }}
+ 				riscv64: "riscv64",
+ 				s390x: "s390x",
+ 			}
++		elif is_cbl_mariner then
++			{
++				amd64: "x86_64",
++				arm32v6: "armhf",
++				arm32v7: "armv7",
++				arm64v8: "aarch64",
++			}
+ 		else
+ 			{
+ 				# https://salsa.debian.org/dpkg-team/dpkg/-/blob/main/data/cputable
+@@ -59,6 +78,8 @@ RUN set -eux; \
+ 		tar \
+ 	; \
+ 	arch="$(apk --print-arch)"; \
++{{ ) elif is_cbl_mariner then ( -}}
++	arch="$(uname -m)"; \
+ {{ ) else ( -}}
+ 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+ {{ ) end -}}
+@@ -95,10 +116,16 @@ RUN set -eux; \
+ 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
+ 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
+ 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
++{{ if is_cbl_mariner then ( -}}
++# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
++# import. In microsoft/go-images, we use a manually imported key anyway.
++# See https://github.com/microsoft/CBL-Mariner/issues/3142
++{{ ) else ( -}}
+ # https://www.google.com/linuxrepositories/
+ 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
+ # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
+ 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
++{{ ) end -}}
+ 	gpg --batch --verify go.tgz.asc go.tgz; \
+ 	gpgconf --kill all; \
+ 	rm -rf "$GNUPGHOME" go.tgz.asc; \
+@@ -142,6 +169,33 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates
@@ -60,7 +107,7 @@ index 3d8ddc4235a658..4430ee28c990cb 100644
  {{ ) else ( -}}
  FROM buildpack-deps:{{ env.variant }}-scm
  
-@@ -21,6 +58,14 @@ RUN set -eux; \
+@@ -154,6 +208,14 @@ RUN set -eux; \
  		libc6-dev \
  		make \
  		pkg-config \
@@ -75,43 +122,3 @@ index 3d8ddc4235a658..4430ee28c990cb 100644
  	; \
  	rm -rf /var/lib/apt/lists/*
  {{ ) end -}}
-@@ -41,6 +86,13 @@ ENV GOLANG_VERSION {{ .version }}
- 				ppc64le: "ppc64le",
- 				s390x: "s390x",
- 			}
-+		elif is_cbl_mariner then
-+			{
-+				amd64: "x86_64",
-+				arm32v6: "armhf",
-+				arm32v7: "armv7",
-+				arm64v8: "aarch64",
-+			}
- 		else
- 			{
- 				amd64: "amd64",
-@@ -58,6 +110,8 @@ RUN set -eux; \
- {{ if is_alpine then ( -}}
- 	apk add --no-cache --virtual .fetch-deps gnupg; \
- 	arch="$(apk --print-arch)"; \
-+{{ ) elif is_cbl_mariner then ( -}}
-+	arch="$(uname -m)"; \
- {{ ) else ( -}}
- 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
- {{ ) end -}}
-@@ -112,10 +166,16 @@ RUN set -eux; \
- 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
- 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
- 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-+{{ if is_cbl_mariner then ( -}}
-+# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
-+# import. In microsoft/go-images, we use a manually imported key anyway.
-+# See https://github.com/microsoft/CBL-Mariner/issues/3142
-+{{ ) else ( -}}
- # https://www.google.com/linuxrepositories/
- 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
- # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
- 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
-+{{ ) end -}}
- 	gpg --batch --verify go.tgz.asc go.tgz; \
- 	gpgconf --kill all; \
- 	rm -rf "$GNUPGHOME" go.tgz.asc; \
