@@ -10,12 +10,12 @@ public key from an https Microsoft URL to check the signature against.
  1 file changed, 3 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index cde43a9..c300098 100644
+index 1bfd5d4910a837..1c8c549b281edc 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -109,12 +109,14 @@ RUN set -eux; \
- {{ ) end -}}
- 	fi; \
+@@ -87,12 +87,14 @@ RUN set -eux; \
+ 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
+ 	esac; \
  	\
 -	wget -O go.tgz.asc "$url.asc"; \
 +	wget -O go.tgz.asc "$url.sig"; \

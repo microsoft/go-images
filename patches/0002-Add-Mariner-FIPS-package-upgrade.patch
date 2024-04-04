@@ -1,0 +1,143 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
+Date: Fri, 11 Feb 2022 18:07:18 -0600
+Subject: [PATCH] Add Mariner, FIPS, package upgrade
+
+---
+ Dockerfile-linux.template | 76 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 76 insertions(+)
+
+diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
+index 1c8c549b281edc..b8849cc2142d76 100644
+--- a/Dockerfile-linux.template
++++ b/Dockerfile-linux.template
+@@ -4,9 +4,31 @@
+ 	;
+ 	def alpine_version:
+ 		env.variant | ltrimstr("alpine")
++	;
++	def is_cbl_mariner:
++		env.variant | startswith("cbl-mariner")
++	;
++	def cbl_mariner_version:
++		env.variant | ltrimstr("cbl-mariner")
++	;
++
++	def is_fips:
++		(.branchSuffix // "") | contains("fips")
+ -}}
+ {{ if is_alpine then ( -}}
+ FROM alpine:{{ alpine_version }} AS build
++{{ ) elif is_cbl_mariner then ( -}}
++FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }} AS build
++
++# Dependencies needed to get the Go tarball. We never build Go from source in this Dockerfile.
++RUN set -eux; \
++# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
++	tdnf update -y; \
++	tdnf install -y \
++		tar \
++		wget \
++	; \
++	tdnf clean all
+ {{ ) else ( -}}
+ FROM buildpack-deps:{{ env.variant }}-scm AS build
+ {{ ) end -}}
+@@ -30,6 +52,13 @@ ENV GOLANG_VERSION {{ .version }}
+ 				riscv64: "riscv64",
+ 				s390x: "s390x",
+ 			}
++		elif is_cbl_mariner then
++			{
++				amd64: "x86_64",
++				arm32v6: "armhf",
++				arm32v7: "armv7",
++				arm64v8: "aarch64",
++			}
+ 		else
+ 			{
+ 				# https://salsa.debian.org/dpkg-team/dpkg/-/blob/main/data/cputable
+@@ -59,6 +88,8 @@ RUN set -eux; \
+ 		tar \
+ 	; \
+ 	arch="$(apk --print-arch)"; \
++{{ ) elif is_cbl_mariner then ( -}}
++	arch="$(uname -m)"; \
+ {{ ) else ( -}}
+ 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+ {{ ) end -}}
+@@ -95,10 +126,16 @@ RUN set -eux; \
+ 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
+ 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
+ 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
++{{ if is_cbl_mariner then ( -}}
++# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
++# import. In microsoft/go-images, we use a manually imported key anyway.
++# See https://github.com/microsoft/CBL-Mariner/issues/3142
++{{ ) else ( -}}
+ # https://www.google.com/linuxrepositories/
+ 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
+ # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
+ 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys '2F52 8D36 D67B 69ED F998  D857 78BD 6547 3CB3 BD13'; \
++{{ ) end -}}
+ 	gpg --batch --verify go.tgz.asc go.tgz; \
+ 	gpgconf --kill all; \
+ 	rm -rf "$GNUPGHOME" go.tgz.asc; \
+@@ -142,18 +179,57 @@ RUN set -eux; \
+ FROM alpine:{{ alpine_version }}
+ 
+ RUN apk add --no-cache ca-certificates
++{{ ) elif is_cbl_mariner then ( -}}
++FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }}
++
++RUN set -eux; \
++# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
++	tdnf update -y; \
++	tdnf install -y \
++		binutils \
++		gcc \
++		glibc \
++		glibc-devel \
++		iana-etc \
++		kernel-headers \
++		tar \
++		wget \
++		# To reduce image size, CBL-Mariner image doesn't include full ca-certificates: https://github.com/microsoft/CBL-Mariner/issues/3563
++		# Full certs are expected in a builder-style image (e.g. to fetch dependencies), so install them.
++		ca-certificates \
++{{
++	if is_fips then (
++-}}
++		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
++		openssl-devel \
++{{
++	) else "" end
++-}}
++	; \
++	tdnf clean all
++
+ {{ ) else ( -}}
+ FROM buildpack-deps:{{ env.variant }}-scm
+ 
+ # install cgo-related dependencies
+ RUN set -eux; \
+ 	apt-get update; \
++# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
++	apt-get upgrade -y; \
+ 	apt-get install -y --no-install-recommends \
+ 		g++ \
+ 		gcc \
+ 		libc6-dev \
+ 		make \
+ 		pkg-config \
++{{
++	if is_fips then (
++-}}
++		# Install OpenSSL for headers when building a FIPS-compatible app with Go.
++		libssl-dev \
++{{
++	) else "" end
++-}}
+ 	; \
+ 	rm -rf /var/lib/apt/lists/*
+ {{ ) end -}}
