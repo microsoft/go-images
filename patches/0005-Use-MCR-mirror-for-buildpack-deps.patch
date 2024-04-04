@@ -8,19 +8,19 @@ Subject: [PATCH] Use MCR mirror for buildpack-deps
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 148a7866d0ea32..2e94b17bd367bf 100644
+index b8849cc2142d76..d71d53dde7565e 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -20,7 +20,7 @@ FROM alpine:{{ alpine_version }} AS build
- {{ ) elif is_cbl_mariner then ( -}}
- FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }} AS build
+@@ -30,7 +30,7 @@ RUN set -eux; \
+ 	; \
+ 	tdnf clean all
  {{ ) else ( -}}
 -FROM buildpack-deps:{{ env.variant }}-scm AS build
 +FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:{{ env.variant }}-scm AS build
  {{ ) end -}}
  
  ENV PATH /usr/local/go/bin:$PATH
-@@ -199,7 +199,7 @@ RUN set -eux; \
+@@ -209,7 +209,7 @@ RUN set -eux; \
  	tdnf clean all
  
  {{ ) else ( -}}

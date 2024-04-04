@@ -4,14 +4,14 @@ Date: Fri, 11 Feb 2022 18:07:18 -0600
 Subject: [PATCH] Add Mariner, FIPS, package upgrade
 
 ---
- Dockerfile-linux.template | 66 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 66 insertions(+)
+ Dockerfile-linux.template | 76 +++++++++++++++++++++++++++++++++++++++
+ 1 file changed, 76 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 1c8c549b281edc..148a7866d0ea32 100644
+index 1c8c549b281edc..b8849cc2142d76 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -4,9 +4,21 @@
+@@ -4,9 +4,31 @@
  	;
  	def alpine_version:
  		env.variant | ltrimstr("alpine")
@@ -30,10 +30,20 @@ index 1c8c549b281edc..148a7866d0ea32 100644
  FROM alpine:{{ alpine_version }} AS build
 +{{ ) elif is_cbl_mariner then ( -}}
 +FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }} AS build
++
++# Dependencies needed to get the Go tarball. We never build Go from source in this Dockerfile.
++RUN set -eux; \
++# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
++	tdnf update -y; \
++	tdnf install -y \
++		tar \
++		wget \
++	; \
++	tdnf clean all
  {{ ) else ( -}}
  FROM buildpack-deps:{{ env.variant }}-scm AS build
  {{ ) end -}}
-@@ -30,6 +42,13 @@ ENV GOLANG_VERSION {{ .version }}
+@@ -30,6 +52,13 @@ ENV GOLANG_VERSION {{ .version }}
  				riscv64: "riscv64",
  				s390x: "s390x",
  			}
@@ -47,7 +57,7 @@ index 1c8c549b281edc..148a7866d0ea32 100644
  		else
  			{
  				# https://salsa.debian.org/dpkg-team/dpkg/-/blob/main/data/cputable
-@@ -59,6 +78,8 @@ RUN set -eux; \
+@@ -59,6 +88,8 @@ RUN set -eux; \
  		tar \
  	; \
  	arch="$(apk --print-arch)"; \
@@ -56,7 +66,7 @@ index 1c8c549b281edc..148a7866d0ea32 100644
  {{ ) else ( -}}
  	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
  {{ ) end -}}
-@@ -95,10 +116,16 @@ RUN set -eux; \
+@@ -95,10 +126,16 @@ RUN set -eux; \
  	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
  	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
  	gpg --batch --import microsoft-managed-lang-compiler.asc; \
@@ -73,7 +83,7 @@ index 1c8c549b281edc..148a7866d0ea32 100644
  	gpg --batch --verify go.tgz.asc go.tgz; \
  	gpgconf --kill all; \
  	rm -rf "$GNUPGHOME" go.tgz.asc; \
-@@ -142,18 +169,57 @@ RUN set -eux; \
+@@ -142,18 +179,57 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates

@@ -6,6 +6,16 @@
 
 FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS build
 
+# Dependencies needed to get the Go tarball. We never build Go from source in this Dockerfile.
+RUN set -eux; \
+# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
+	tdnf update -y; \
+	tdnf install -y \
+		tar \
+		wget \
+	; \
+	tdnf clean all
+
 ENV PATH /usr/local/go/bin:$PATH
 
 ENV GOLANG_VERSION 1.21.9
