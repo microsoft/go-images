@@ -1,0 +1,28 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Davis Goodin <dagood@microsoft.com>
+Date: Thu, 4 Apr 2024 10:57:18 -0500
+Subject: [PATCH] Remove "--link" not known by builder
+
+Fix this error in our build:
+
+  dockerfile parse error line 101: Unknown flag: link
+
+This is ok to remove: "--link" in combination with using a multi-stage
+Dockerfile allows upstream to enable smart reuse of image layers, but our build
+infrastructure isn't set up to take advantage of this.
+---
+ Dockerfile-linux.template | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
+index 0e95c066e38cec..39b40e297e05b1 100644
+--- a/Dockerfile-linux.template
++++ b/Dockerfile-linux.template
+@@ -232,6 +232,6 @@ ENV GOTOOLCHAIN=local
+ 
+ ENV GOPATH /go
+ ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
+-COPY --from=build --link /usr/local/go/ /usr/local/go/
++COPY --from=build /usr/local/go/ /usr/local/go/
+ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
+ WORKDIR $GOPATH
