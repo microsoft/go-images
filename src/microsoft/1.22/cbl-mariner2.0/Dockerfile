@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS build
 
 ENV PATH /usr/local/go/bin:$PATH
 
