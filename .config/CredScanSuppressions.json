@@ -1,0 +1,11 @@
+// Set up "local suppressions" using format described in:
+// https://eng.ms/docs/microsoft-security/cloud-ecosystem-security/azure-security/cloudai-security-fundamentals-engineering/cred-bot-trinity/credential-risk-exposure-defense/troubleshoot_guides_archive/local-suppressions
+{
+  "tool": "Credential Scanner",
+  "suppressions": [
+    {
+      "placeholder": "pkg:golang/cloud.google.com/go/apikeys@h1:*",
+      "_justification": "False positive. This string found in SPDX files is the checksum of a Go package used to manipulate API keys and is not an API key."
+    }
+  ]
+}
