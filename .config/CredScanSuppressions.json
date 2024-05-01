@@ -4,8 +4,8 @@
   "tool": "Credential Scanner",
   "suppressions": [
     {
-      "placeholder": "pkg:golang/cloud.google.com/go/apikeys@h1:*",
-      "_justification": "False positive. This string found in SPDX files is the checksum of a Go package used to manipulate API keys and is not an API key."
+      "placeholder": "pkg:golang/*@h1:*",
+      "_justification": "False positive. This string found in SPDX files is the checksum of a Go package. The package name may make it appear to CredScan that a secret value follows, but it doesn't."
     }
   ]
 }
