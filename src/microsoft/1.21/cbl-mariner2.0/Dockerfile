@@ -100,8 +100,9 @@ RUN set -eux; \
 		# To reduce image size, CBL-Mariner image doesn't include full ca-certificates: https://github.com/microsoft/CBL-Mariner/issues/3563
 		# Full certs are expected in a builder-style image (e.g. to fetch dependencies), so install them.
 		ca-certificates \
-		# Azure Pipelines expects "useradd", "groupadd", and "su".
+		# Azure Pipelines expects various tools that would be in a buildpack-deps based image.
 		# These are included by default in Debian but not CBL-Mariner. https://github.com/microsoft/azurelinux/issues/8964
+		git \
 		shadow-utils \
 		util-linux \
 	; \
