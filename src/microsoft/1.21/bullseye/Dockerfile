@@ -8,23 +8,23 @@ FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm AS buil
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.21.9
+ENV GOLANG_VERSION 1.21.10
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240403.5/go.20240403.5.linux-amd64.tar.gz'; \
-			sha256='498b98e793f0d958652bd0f2e369267e80cea9aca99c0c011ce4c402460e35d1'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240507.2/go.20240507.2.linux-amd64.tar.gz'; \
+			sha256='834d8c8ff1af95dab49f359dbc557963cc08e8c73572dc4266a96412acf48491'; \
 			;; \
 		'armhf') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240403.5/go.20240403.5.linux-armv6l.tar.gz'; \
-			sha256='57e07dffc41f7b8af3c939c12b3a3cd27423d1272019c8fee2b559f9300ef623'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240507.2/go.20240507.2.linux-armv6l.tar.gz'; \
+			sha256='fd5dd75c973acbed3542e7ae79cfcd3012f71781133940216b2b7adbf572e9c1'; \
 			;; \
 		'arm64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240403.5/go.20240403.5.linux-arm64.tar.gz'; \
-			sha256='03512c52e5f41c75306963ae572a709407f74fba83ede39085ad2c844edd8e1f'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.21/20240507.2/go.20240507.2.linux-arm64.tar.gz'; \
+			sha256='b11b98901c8eb7736f8559cd066d73d00e1a150e839701d2b4eb3a1b331895ce'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -90,7 +90,7 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-ENV GOLANG_VERSION 1.21.9
+ENV GOLANG_VERSION 1.21.10
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472
