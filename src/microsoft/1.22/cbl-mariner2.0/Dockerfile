@@ -97,11 +97,18 @@ RUN set -eux; \
 		kernel-headers \
 		tar \
 		wget \
-		# To reduce image size, CBL-Mariner image doesn't include full ca-certificates: https://github.com/microsoft/CBL-Mariner/issues/3563
-		# Full certs are expected in a builder-style image (e.g. to fetch dependencies), so install them.
+		\
+		# To reduce image size, the Azure Linux (aka CBL-Mariner) image doesn't include full ca-certificates: https://github.com/microsoft/azurelinux/issues/3563
+		# Full certs are expected in a builder-style image (e.g., to fetch dependencies), so we need to install them.
 		ca-certificates \
-		# Azure Pipelines expects various tools that would be in a buildpack-deps based image.
-		# These are included by default in Debian but not CBL-Mariner. https://github.com/microsoft/azurelinux/issues/8964
+		\
+		# Each of the following packages need to be installed for one or both of these reasons:
+		# - Azure Pipelines specifies it as a requirement to use an image in container jobs: https://learn.microsoft.com/en-us/azure/devops/pipelines/process/container-phases?view=azure-devops
+		# - The package is included in the Debian-based golang image, so installing it here improves compatibility.
+		#
+		# These packages don't need to be installed in a Debian golang Dockerfile because they are included by default in its base image: https://hub.docker.com/_/buildpack-deps/
+		# The mcr.microsoft.com/cbl-mariner/base/core images are optimized for size to make them suitable for deployment, so many development tools aren't included.
+		# There isn't a buildpack-deps analog for Azure Linux: https://github.com/microsoft/azurelinux/issues/8964 (https://devdiv.visualstudio.com/DevDiv/_workitems/edit/2055698)
 		git \
 		shadow-utils \
 		util-linux \
