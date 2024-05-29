@@ -54,7 +54,7 @@ variables:
   - ${{ if eq(parameters.nightly, true) }}:
     - group: go-docker-common-nightly
   - group: go-docker-secrets
-  - group: go-docker-shared-DotNet-Docker-Secrets
+  - group: Dotnet-Docker-Secrets-WIF
 
 - name: acr.password
   ${{ if eq(parameters.nightly, false) }}:
