@@ -130,7 +130,8 @@ jobs:
   - template: /eng/common/templates/steps/run-imagebuilder.yml@self
     parameters:
       displayName: Ingest Kusto Image Info
-      serviceConnection: $(kusto.serviceConnectionName)
+      # Upstream edit: https://github.com/microsoft/go-lab/issues/78 Remove unused service connection that would be unconditionally checked for validity even though this task never runs in go-images.
+      # serviceConnection: $(kusto.serviceConnectionName)
       internalProjectName: ${{ parameters.internalProjectName }}
       condition: and(succeeded(), eq(variables['ingestKustoImageInfo'], 'true'))
       args: >

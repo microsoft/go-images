@@ -8,7 +8,8 @@ steps:
   parameters:
     displayName: Wait for MCR Doc Ingestion
     condition: and(${{ parameters.condition }}, eq(variables['waitForIngestionEnabled'], 'true'))
-    serviceConnection: $(marStatus.serviceConnectionName)
+    # Upstream edit: https://github.com/microsoft/go-lab/issues/78 Remove unused service connection that would be unconditionally checked for validity even though this task never runs in go-images.
+    # serviceConnection: $(marStatus.serviceConnectionName)
     internalProjectName: 'internal'
     args: >
       waitForMcrDocIngestion
