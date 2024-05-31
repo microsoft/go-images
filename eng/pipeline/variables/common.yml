@@ -9,6 +9,10 @@ variables:
 - name: internalProjectName
   value: internal
 
+# Credentials for pulling base images from Docker Hub.
+- name: dockerHubRegistryCreds
+  value: --registry-creds 'docker.io=$(dotnetDockerHubBot.userName);$(BotAccount-dotnet-dockerhub-bot-PAT)'
+
 - name: commonVersionsImageInfoPath
   value: build-info/docker
 - name: publicGitRepoUri
