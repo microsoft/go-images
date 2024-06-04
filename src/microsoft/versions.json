@@ -70,7 +70,7 @@
         },
         "sha256": "2ea3fa766af6a2bf286c8c37d44fbdf3114a5933892f18ec314302a7ad9aad66",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.1/go1.22.4-20240604.1.linux-amd64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.linux-amd64.tar.gz"
       },
       "arm32v7": {
         "env": {
@@ -80,7 +80,7 @@
         },
         "sha256": "6f6206db3720fb2d24cb58cb581192a06c2fdb3b68e37f12cbdfbfb3563e4adc",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.1/go1.22.4-20240604.1.linux-armv6l.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.linux-armv6l.tar.gz"
       },
       "arm64v8": {
         "env": {
@@ -89,16 +89,16 @@
         },
         "sha256": "e825691e5c9210dfa2f3c676a6204d8ff730aaa5356332dd0d95b3ba4c5225f5",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.1/go1.22.4-20240604.1.linux-arm64.tar.gz"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.linux-arm64.tar.gz"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "2bdc83fe57290e6a4f627b2d37e7bd9e145e36c84ebdcd5ccaedb11002791091",
+        "sha256": "466202685c5f0c601f5efcab0ce3c693beec9183cb5ee03c8e2e4140476396c7",
         "supported": true,
-        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.1/go1.22.4-20240604.1.windows-amd64.zip"
+        "url": "https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.windows-amd64.zip"
       }
     },
     "variants": [
