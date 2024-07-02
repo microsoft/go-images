@@ -8,23 +8,23 @@ FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm AS buil
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.22.4
+ENV GOLANG_VERSION 1.22.5
 
 RUN set -eux; \
 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
 	url=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.linux-amd64.tar.gz'; \
-			sha256='2ea3fa766af6a2bf286c8c37d44fbdf3114a5933892f18ec314302a7ad9aad66'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240702.3/go1.22.5-20240702.3.linux-amd64.tar.gz'; \
+			sha256='59963327dc86e8a5f48d9485ed800c26f80b9975c9331736c33005947a02686f'; \
 			;; \
 		'armhf') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.linux-armv6l.tar.gz'; \
-			sha256='6f6206db3720fb2d24cb58cb581192a06c2fdb3b68e37f12cbdfbfb3563e4adc'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240702.3/go1.22.5-20240702.3.linux-armv6l.tar.gz'; \
+			sha256='c641ce883b1967fb5df679ee652ebd2482dcbc14e528b36fea942ab69b4ca2f2'; \
 			;; \
 		'arm64') \
-			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240604.2/go1.22.4-20240604.2.linux-arm64.tar.gz'; \
-			sha256='e825691e5c9210dfa2f3c676a6204d8ff730aaa5356332dd0d95b3ba4c5225f5'; \
+			url='https://dotnetbuildoutput.blob.core.windows.net/golang/microsoft/release-branch.go1.22/20240702.3/go1.22.5-20240702.3.linux-arm64.tar.gz'; \
+			sha256='92078bdb0a2cbe1a5c175b3046427eca30f137b57106157d0696099254bbe03d'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -90,7 +90,7 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-ENV GOLANG_VERSION 1.22.4
+ENV GOLANG_VERSION 1.22.5
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472
