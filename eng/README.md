@@ -22,6 +22,8 @@ root of the repo, or `pwsh build.ps1` in `eng`.
 
 ## Updating the Dockerfiles
 
+### Linux
+
 Get the update tool, and view its help doc:
 
 ```sh
@@ -47,6 +49,32 @@ based on a JSON file, they are also checked in. This is done to match the
 standard approach to Docker: Dockerfiles are *always* checked in, enabling users
 to easily run `docker build .` to reproduce the result without complicated
 repo-specific tooling being involved.
+
+### Windows
+
+[/eng/ci-tools/local.Dockerfile](/eng/ci-tools/local.Dockerfile) sets up a Linux container with the `dockerupdate` dependencies that can be used to easily run the tool on Windows.
+
+Run this command to set it up from the root of the go-images repository:
+
+```sh
+docker build -f eng/ci-tools/local.Dockerfile -t dockerupdate-local eng/ci-tools
+```
+
+Then see the options using the help option:
+
+```sh
+docker run -it --rm -v .:/go-images dockerupdate-local -h
+```
+
+To quickly regenerate the Dockerfiles, discarding changes to the submodule, run:
+
+```sh
+docker run -it --rm -v .:/go-images dockerupdate-local -f
+```
+
+Any relative paths passed to the command are considered local to the repository root.
+Only files that are volume mapped can be referred to.
+In the command above, the entire repository is volume mapped.
 
 ### Updating to a new build of Go
 
