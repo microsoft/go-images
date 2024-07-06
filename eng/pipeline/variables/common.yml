@@ -13,8 +13,6 @@ variables:
 - name: dockerHubRegistryCreds
   value: --registry-creds 'docker.io=$(dotnetDockerHubBot.userName);$(BotAccount-dotnet-dockerhub-bot-PAT)'
 
-- name: commonVersionsImageInfoPath
-  value: build-info/docker
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
 - name: officialRepoPrefixes
@@ -26,11 +24,12 @@ variables:
     # In the nightly branch, publish to ACR only. The prefix doesn't need to match MAR expectations.
     value: nightly/
 
+# Don't publish readme: Microsoft Go images aren't on Docker Hub.
 - name: publishReadme
   value: false
-# https://github.com/microsoft/go/issues/157 tracks enabling publishImageInfo.
+# Publish image info to https://github.com/dotnet/versions/tree/main/build-info
 - name: publishImageInfo
-  value: false
+  value: true
 # https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
 - name: ingestKustoImageInfo
   value: false
@@ -44,13 +43,6 @@ variables:
 
 - name: manifest
   value: manifest.json
-
-# dotnet/versions repo path info is used in shared templates. Even though we aren't publishing
-# there, it needs to be specified to avoid pipeline errors when the variable is referenced in tasks.
-- name: gitHubVersionsRepoInfo.path
-  value: ${{ variables.commonVersionsImageInfoPath }}
-- name: azdoVersionsRepoInfo.path
-  value: ${{ variables.commonVersionsImageInfoPath }}
 
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - ${{ if eq(parameters.nightly, false) }}:
@@ -66,3 +58,28 @@ variables:
     value: $(BotAccount-golang-docker-acr-public-bot-password)
 - name: acr.servicePrincipalPassword
   value: $(GolangDockerBuild)
+
+# Configuration for publishing the image-info JSON file.
+- name: commonVersionsImageInfoPath
+  value: build-info/microsoft/go-images
+
+# Configure image-info publishing.
+# Copied from /eng/common/templates/variables/dotnet/build-test-publish.yml
+- name: gitHubVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
+- name: azdoVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
+- name: gitHubVersionsRepoInfo.org
+  value: dotnet
+- name: gitHubVersionsRepoInfo.repo
+  value: versions
+- name: gitHubVersionsRepoInfo.branch
+  value: main
+- name: gitHubVersionsRepoInfo.path
+  value: ${{ variables.commonVersionsImageInfoPath }}
+- name: gitHubVersionsRepoInfo.accessToken
+  value: $(BotAccount-dotnet-docker-bot-PAT)
+- name: gitHubVersionsRepoInfo.userName
+  value: $(dotnetDockerBot.userName)
+- name: gitHubVersionsRepoInfo.email
+  value: $(dotnetDockerBot.email)
