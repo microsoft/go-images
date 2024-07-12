@@ -1,2 +1,8 @@
 /*/**/Dockerfile       linguist-generated
 /Dockerfile*.template  linguist-language=Dockerfile
+
+# Always check out patch files and Dockerfiles as LF.
+# This improves "git patch" behavior during "dockerupdate" when the repository
+# was checked out on Windows but is being used within WSL or a container.
+*.patch     -text
+Dockerfile* -text
