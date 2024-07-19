@@ -10,19 +10,38 @@ Fix this error in our build:
 This is ok to remove: "--link" in combination with using a multi-stage
 Dockerfile allows upstream to enable smart reuse of image layers, but our build
 infrastructure isn't set up to take advantage of this.
+
+Remove a related check that detects whether any file or directory in Go
+is newer than the expected reproducible timestamp. Extracting a
+Microsoft Go 1.21 tar.gz file results in directories that appear new
+because the entries are in an unexpected order. This isn't important in
+our case because we don't use "--link".
+
+See https://github.com/microsoft/go/issues/1274 for more information
+about the 1.21 tar.gz bug.
 ---
- Dockerfile-linux.template | 2 +-
- 1 file changed, 1 insertion(+), 1 deletion(-)
+ Dockerfile-linux.template | 5 ++---
+ 1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 0e95c066e38cec..39b40e297e05b1 100644
+index 9f0b6ae099a74e..9b8b5ec9eadf63 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -232,6 +232,6 @@ ENV GOTOOLCHAIN=local
+@@ -182,8 +182,7 @@ RUN set -eux; \
+ 	go version; \
+ # make sure our reproducibile timestamp is probably still correct (best-effort inline reproducibility test)
+ 	epoch="$(stat -c '%Y' /target/usr/local/go)"; \
+-	[ "$SOURCE_DATE_EPOCH" = "$epoch" ]; \
+-	find /target -newer /target/usr/local/go -exec sh -c 'ls -ld "$@" && exit "$#"' -- '{}' +
++	[ "$SOURCE_DATE_EPOCH" = "$epoch" ]
  
+ {{ if is_alpine then ( -}}
+ FROM alpine:{{ alpine_version }}
+@@ -265,6 +264,6 @@ ENV GOTOOLCHAIN=local
  ENV GOPATH /go
  ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
--COPY --from=build --link /usr/local/go/ /usr/local/go/
-+COPY --from=build /usr/local/go/ /usr/local/go/
+ # (see notes above about "COPY --link")
+-COPY --from=build --link /target/ /
++COPY --from=build /target/ /
  RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" && chmod -R 1777 "$GOPATH"
  WORKDIR $GOPATH
