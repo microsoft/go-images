@@ -13,6 +13,9 @@ RUN set -eux; \
 	tdnf install -y \
 		tar \
 		wget \
+		# To reduce image size, the Azure Linux (aka CBL-Mariner) image doesn't include full ca-certificates: https://github.com/microsoft/azurelinux/issues/3563
+		# We need ca-certificates here to verify https://download.visualstudio.microsoft.com.
+		ca-certificates \
 	; \
 	tdnf clean all
 
