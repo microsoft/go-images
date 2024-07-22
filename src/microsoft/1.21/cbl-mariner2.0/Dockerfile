@@ -24,23 +24,27 @@ RUN set -eux; \
 	now="$(date '+%s')"; \
 	arch="$(uname -m)"; \
 	url=; \
+	urlSig=; \
 	case "$arch" in \
 		'x86_64') \
 			url='https://download.visualstudio.microsoft.com/download/pr/d7c607b1-7efc-4a9b-86d8-45ea8f1479e2/1a10f1be2fafa3bb318623c216537366/go.20240722.4.linux-amd64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/d7c607b1-7efc-4a9b-86d8-45ea8f1479e2/efd9985d571f6ddf080a8695a7bdb986/go.20240722.4.linux-amd64.tar.gz.sig'; \
 			sha256='27a475b059bf9e2ea1219870ae66eb573fdc5cb4e01dd04cf5140697814be17c'; \
 			;; \
 		'armv7') \
 			url='https://download.visualstudio.microsoft.com/download/pr/d7c607b1-7efc-4a9b-86d8-45ea8f1479e2/c6b56416f39cd09981545ead8ccfe750/go.20240722.4.linux-armv6l.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/d7c607b1-7efc-4a9b-86d8-45ea8f1479e2/9d215a7b9da33c7d5f23b0994743f2c7/go.20240722.4.linux-armv6l.tar.gz.sig'; \
 			sha256='4b6a53719c5dbb0f2eb455d020d4c3b79a96d412a9daeb3deadcc7fdcbd7654f'; \
 			;; \
 		'aarch64') \
 			url='https://download.visualstudio.microsoft.com/download/pr/d7c607b1-7efc-4a9b-86d8-45ea8f1479e2/5dd42460468455ff40378d326789a67b/go.20240722.4.linux-arm64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/d7c607b1-7efc-4a9b-86d8-45ea8f1479e2/41c3b010c79117429cc3a0ed5d39ba09/go.20240722.4.linux-arm64.tar.gz.sig'; \
 			sha256='fc8a1aee9c8d01b5d4da85c9b4e47ef65e2bcfedb50a562c86d2c2b0a0d5cd06'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
 	\
-	wget -O go.tgz.asc "$url.sig"; \
+	wget -O go.tgz.asc "$urlSig"; \
 	wget -O go.tgz "$url" --progress=dot:giga; \
 	echo "$sha256 *go.tgz" | sha256sum -c -; \
 	\
