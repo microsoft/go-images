@@ -3,22 +3,39 @@ From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
 Date: Fri, 11 Feb 2022 18:03:46 -0600
 Subject: [PATCH] Check signature of microsoft/go builds
 
-Change ".asc" to ".sig" to match the filename we publish. Download our
-public key from an https Microsoft URL to check the signature against.
+Microsoft Go artifacts on download.visualstudio.microsoft.com don't
+support ".sig" suffix: the base URL also changes. Use the
+pgpSignatureUrl entry present in the Microsoft Go versions.json instead.
 ---
- Dockerfile-linux.template | 4 +++-
- 1 file changed, 3 insertions(+), 1 deletion(-)
+ Dockerfile-linux.template | 6 +++++-
+ 1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 1bfd5d4910a837..1c8c549b281edc 100644
+index 9c2fb247d2311b..80154991b9f163 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -87,12 +87,14 @@ RUN set -eux; \
+@@ -64,6 +64,7 @@ RUN set -eux; \
+ 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+ {{ ) end -}}
+ 	url=; \
++	urlSig=; \
+ 	case "$arch" in \
+ {{
+ 	[
+@@ -79,6 +80,7 @@ RUN set -eux; \
+ -}}
+ 		{{ $osArch | @sh }}) \
+ 			url={{ .url | @sh }}; \
++			urlSig={{ .pgpSignatureUrl | @sh }}; \
+ 			sha256={{ .sha256 | @sh }}; \
+ 			;; \
+ {{
+@@ -88,12 +90,14 @@ RUN set -eux; \
  		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
  	esac; \
  	\
 -	wget -O go.tgz.asc "$url.asc"; \
-+	wget -O go.tgz.asc "$url.sig"; \
++	wget -O go.tgz.asc "$urlSig"; \
  	wget -O go.tgz "$url"{{ if is_alpine then "" else " --progress=dot:giga" end }}; \
  	echo "$sha256 *go.tgz" | sha256sum -c -; \
  	\
