@@ -2,7 +2,7 @@ module ci-tools
 
 go 1.17
 
-require github.com/microsoft/go-infra v0.0.3
+require github.com/microsoft/go-infra v0.0.4
 
 require (
 	github.com/google/uuid v1.3.0 // indirect
