@@ -2,7 +2,7 @@
 
 This repository creates Docker images that contain the Microsoft build of Go produced by the [microsoft/go](https://github.com/microsoft/go) repository. The tags are published on the Microsoft Artifact Registry (MAR), formerly Microsoft Container Registry (MCR), in the `oss/go/microsoft/golang` repository.
 
-The images produced by this repository are for general use within Microsoft and to produce FIPS-compliant Go apps. For other purposes, we recommend using the [Docker Hub golang official images](https://hub.docker.com/_/golang).
+The images produced by this repository are for general use within Microsoft and to help produce FIPS-compliant Go apps. For other purposes, we recommend using the [Docker Hub golang official images](https://hub.docker.com/_/golang).
 
 For more information about building FIPS-compatible Go apps with the Microsoft Go tools, visit the [FIPS readme] and [user guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
 
@@ -14,19 +14,31 @@ GitHub issues for microsoft/go-images are maintained in the [microsoft/go](https
 
 In general, the microsoft/go-images tag names match those available for the official images. To switch from the official image to one on MCR, it may be possible to simply prepend `mcr.microsoft.com/oss/go/microsoft/` to the official image you would normally use.
 
-This tag is recommended for general build scenarios:
+This tag is recommended for general build scenarios where FIPS compliance is not required:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.21-bullseye
+mcr.microsoft.com/oss/go/microsoft/golang:1.22-cbl-mariner2.0
 ```
 
-If you need to build a FIPS-compliant app, use a `fips` tag, such as:
+To build a FIPS-compliant app, we recommend writing a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/) that uses a `fips` tag in the `build` stage and copies the built Go app into the final stage. We recommend using a minimal CBL-Mariner container for the final stage.
+
+This Azure Linux (Mariner) `fips` tag is recommended for the `build` stage of a Dockerfile:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.21-fips-cbl-mariner2.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.22-fips-cbl-mariner2.0
 ```
 
-When building a containerized FIPS-compliant app, in general we recommend using a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/) that uses our `fips` tag in the builder stage and copies the built Go app into a minimal CBL-Mariner container to produce the final image.
+For the final stage of the multi-stage Dockerfile, an image with a FIPS certified OpenSSL library is necessary. The right image to use may depend on your organization or need to be assembled.
+
+For Microsoft teams building containers, more guidance is available at [Containers Secure Supply Chain - Selecting base images (internal Microsoft link)](https://eng.ms/docs/more/containers-secure-supply-chain/images).
+
+See [What is `-fips`?](docs/tags.md#what-is--fips) for more details about the meaning of `fips` in a tag name.
+
+> [!IMPORTANT]
+> Our `1.22-fips-bullseye` (Debian) tag is capable of building a FIPS compliant Go app, but it contains a copy of OpenSSL that is **not** FIPS certified.
+> It is suitable for a `build` stage, but not for FIPS-compliant deployment.
+
+## Tag organization
 
 To view the full list of available Go tags in MAR:
 
@@ -38,6 +50,7 @@ To view the full list of available Go tags in MAR:
 
 See [Tags of microsoft/go-images](docs/tags.md) for more information about tag support, more tag names, and the purpose of each image.
 
+> [!NOTE]
 > We don't build any Alpine images. See [microsoft/go#446](https://github.com/microsoft/go/issues/446).
 
 ## Is this repository a fork?
