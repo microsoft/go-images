@@ -10,6 +10,8 @@ For more information about building FIPS-compatible Go apps with the Microsoft G
 
 GitHub issues for microsoft/go-images are maintained in the [microsoft/go](https://github.com/microsoft/go) project. For help and questions about the Microsoft Go images, please [file an issue in microsoft/go](https://github.com/microsoft/go/issues/new/choose).
 
+The supported tags in this repository are rebuilt approximately twice a week to update base image and distro package dependencies.
+
 ## Recommended tags
 
 In general, the microsoft/go-images tag names match those available for the official images. To switch from the official image to one on MCR, it may be possible to simply prepend `mcr.microsoft.com/oss/go/microsoft/` to the official image you would normally use.
