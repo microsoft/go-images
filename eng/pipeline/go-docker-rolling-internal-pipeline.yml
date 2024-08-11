@@ -1,5 +1,12 @@
 trigger: none
 pr: none
+schedules:
+  - cron: '0 10 * * Mon,Wed'
+    displayName: Periodic build to refresh dependencies
+    branches:
+      include:
+        - microsoft/main
+    always: true
 
 variables:
   - template: variables/common.yml
