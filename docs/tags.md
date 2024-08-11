@@ -53,6 +53,8 @@ If a tag includes `-fips`, that indicates that Go build commands inside the cont
 
 You don't need to use a `-fips` tag to build a FIPS-compliant app: you can use the non`-fips` image and set `GOEXPERIMENT` yourself. The Go toolset is the same in both images. We provide a `-fips` tag to minimize the changes necessary to make an existing Dockerfile build a FIPS-compliant app.
 
+A tag that includes `-fips` does not necessarily contain a FIPS certified cryptographic module. That is: the container can build a FIPS-compliant app, but may not be able to run it in a FIPS compliant manner.
+
 # Tag lifecycle
 
 The Go versions supported by this repo follow the support lifecycle of [microsoft/go](https://github.com/microsoft/go), which generates the Go binaries used in this repository. OS versions are supported until the OS is EOL. When a tag's Go support or OS support ends, the tag is no longer supported and we delete the Dockerfile when it's convenient to do so.
