@@ -11,469 +11,18 @@
       "name": "oss/go/microsoft/golang",
       "images": [
         {
-          "productVersion": "1.21",
+          "productVersion": "1.22",
           "sharedTags": {
             "1": {},
             "1-bookworm": {},
-            "1.21": {},
-            "1.21-bookworm": {},
-            "1.21.13": {},
-            "1.21.13-1": {},
-            "1.21.13-1-bookworm": {},
-            "1.21.13-bookworm": {},
-            "bookworm": {},
-            "latest": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/bookworm",
-              "os": "linux",
-              "osVersion": "bookworm",
-              "tags": {
-                "1.21.13-1-bookworm-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.21/bookworm",
-              "os": "linux",
-              "osVersion": "bookworm",
-              "tags": {
-                "1.21.13-1-bookworm-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.21/bookworm",
-              "os": "linux",
-              "osVersion": "bookworm",
-              "tags": {
-                "1.21.13-1-bookworm-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-bullseye": {},
-            "1.21-bullseye": {},
-            "1.21.13-1-bullseye": {},
-            "1.21.13-bullseye": {},
-            "bullseye": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.21.13-1-bullseye-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.21/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.21.13-1-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.21/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.21.13-1-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-cbl-mariner2.0": {},
-            "1.21-cbl-mariner2.0": {},
-            "1.21.13-1-cbl-mariner2.0": {},
-            "1.21.13-cbl-mariner2.0": {},
-            "cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.21.13-1-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.21/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.21.13-1-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-bookworm": {},
-            "1.21-fips-bookworm": {},
-            "1.21.13-1-fips-bookworm": {},
-            "1.21.13-fips-bookworm": {},
-            "fips-bookworm": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-bookworm-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/fips/bookworm",
-              "os": "linux",
-              "osVersion": "bookworm",
-              "tags": {
-                "1.21.13-1-fips-bookworm-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-bookworm-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.21/fips/bookworm",
-              "os": "linux",
-              "osVersion": "bookworm",
-              "tags": {
-                "1.21.13-1-fips-bookworm-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-bookworm-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.21/fips/bookworm",
-              "os": "linux",
-              "osVersion": "bookworm",
-              "tags": {
-                "1.21.13-1-fips-bookworm-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-bullseye": {},
-            "1.21-fips-bullseye": {},
-            "1.21.13-1-fips-bullseye": {},
-            "1.21.13-fips-bullseye": {},
-            "fips-bullseye": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-bullseye-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/fips/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.21.13-1-fips-bullseye-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-bullseye-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.21/fips/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.21.13-1-fips-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-bullseye-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.21/fips/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.21.13-1-fips-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-cbl-mariner2.0": {},
-            "1.21-fips-cbl-mariner2.0": {},
-            "1.21.13-1-fips-cbl-mariner2.0": {},
-            "1.21.13-fips-cbl-mariner2.0": {},
-            "fips-cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-cbl-mariner2.0-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/fips/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.21.13-1-fips-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-cbl-mariner2.0-arm64v8",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.21/fips/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.21.13-1-fips-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-windowsservercore-ltsc2022": {},
-            "1.21-windowsservercore-ltsc2022": {},
-            "1.21.13-1-windowsservercore-ltsc2022": {},
-            "1.21.13-windowsservercore-ltsc2022": {},
-            "windowsservercore-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/windowsservercore-ltsc2022",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2022",
-              "tags": {
-                "1.21.13-1-windowsservercore-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-windowsservercore-1809": {},
-            "1.21-windowsservercore-1809": {},
-            "1.21.13-1-windowsservercore-1809": {},
-            "1.21.13-windowsservercore-1809": {},
-            "windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "1.21.13-1-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-nanoserver-ltsc2022": {},
-            "1.21-nanoserver-ltsc2022": {},
-            "1.21.13-1-nanoserver-ltsc2022": {},
-            "1.21.13-nanoserver-ltsc2022": {},
-            "nanoserver-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.21.13-1-windowsservercore-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/nanoserver-ltsc2022",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2022",
-              "tags": {
-                "1.21.13-1-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-nanoserver-1809": {},
-            "1.21-nanoserver-1809": {},
-            "1.21.13-1-nanoserver-1809": {},
-            "1.21.13-nanoserver-1809": {},
-            "nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.21.13-1-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.21.13-1-nanoserver-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-windowsservercore-ltsc2022": {},
-            "1.21-fips-windowsservercore-ltsc2022": {},
-            "1.21.13-1-fips-windowsservercore-ltsc2022": {},
-            "1.21.13-fips-windowsservercore-ltsc2022": {},
-            "fips-windowsservercore-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-windowsservercore-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/fips/windowsservercore-ltsc2022",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2022",
-              "tags": {
-                "1.21.13-1-fips-windowsservercore-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-windowsservercore-1809": {},
-            "1.21-fips-windowsservercore-1809": {},
-            "1.21.13-1-fips-windowsservercore-1809": {},
-            "1.21.13-fips-windowsservercore-1809": {},
-            "fips-windowsservercore-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-windowsservercore-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/fips/windowsservercore-1809",
-              "os": "windows",
-              "osVersion": "windowsservercore-1809",
-              "tags": {
-                "1.21.13-1-fips-windowsservercore-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-nanoserver-ltsc2022": {},
-            "1.21-fips-nanoserver-ltsc2022": {},
-            "1.21.13-1-fips-nanoserver-ltsc2022": {},
-            "1.21.13-fips-nanoserver-ltsc2022": {},
-            "fips-nanoserver-ltsc2022": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-nanoserver-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/fips/nanoserver-ltsc2022",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2022",
-              "tags": {
-                "1.21.13-1-fips-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.21",
-          "sharedTags": {
-            "1-fips-nanoserver-1809": {},
-            "1.21-fips-nanoserver-1809": {},
-            "1.21.13-1-fips-nanoserver-1809": {},
-            "1.21.13-fips-nanoserver-1809": {},
-            "fips-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.21.13-1-nanoserver-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.21/windows/fips/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.21.13-1-fips-nanoserver-1809-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.22",
-          "sharedTags": {
             "1.22": {},
             "1.22-bookworm": {},
             "1.22.6": {},
             "1.22.6-1": {},
             "1.22.6-1-bookworm": {},
-            "1.22.6-bookworm": {}
+            "1.22.6-bookworm": {},
+            "bookworm": {},
+            "latest": {}
           },
           "platforms": [
             {
@@ -510,9 +59,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-bullseye": {},
             "1.22-bullseye": {},
             "1.22.6-1-bullseye": {},
-            "1.22.6-bullseye": {}
+            "1.22.6-bullseye": {},
+            "bullseye": {}
           },
           "platforms": [
             {
@@ -549,9 +100,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-cbl-mariner2.0": {},
             "1.22-cbl-mariner2.0": {},
             "1.22.6-1-cbl-mariner2.0": {},
-            "1.22.6-cbl-mariner2.0": {}
+            "1.22.6-cbl-mariner2.0": {},
+            "cbl-mariner2.0": {}
           },
           "platforms": [
             {
@@ -578,9 +131,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-bookworm": {},
             "1.22-fips-bookworm": {},
             "1.22.6-1-fips-bookworm": {},
-            "1.22.6-fips-bookworm": {}
+            "1.22.6-fips-bookworm": {},
+            "fips-bookworm": {}
           },
           "platforms": [
             {
@@ -629,9 +184,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-bullseye": {},
             "1.22-fips-bullseye": {},
             "1.22.6-1-fips-bullseye": {},
-            "1.22.6-fips-bullseye": {}
+            "1.22.6-fips-bullseye": {},
+            "fips-bullseye": {}
           },
           "platforms": [
             {
@@ -680,9 +237,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-cbl-mariner2.0": {},
             "1.22-fips-cbl-mariner2.0": {},
             "1.22.6-1-fips-cbl-mariner2.0": {},
-            "1.22.6-fips-cbl-mariner2.0": {}
+            "1.22.6-fips-cbl-mariner2.0": {},
+            "fips-cbl-mariner2.0": {}
           },
           "platforms": [
             {
@@ -717,9 +276,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-windowsservercore-ltsc2022": {},
             "1.22-windowsservercore-ltsc2022": {},
             "1.22.6-1-windowsservercore-ltsc2022": {},
-            "1.22.6-windowsservercore-ltsc2022": {}
+            "1.22.6-windowsservercore-ltsc2022": {},
+            "windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
@@ -736,9 +297,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-windowsservercore-1809": {},
             "1.22-windowsservercore-1809": {},
             "1.22.6-1-windowsservercore-1809": {},
-            "1.22.6-windowsservercore-1809": {}
+            "1.22.6-windowsservercore-1809": {},
+            "windowsservercore-1809": {}
           },
           "platforms": [
             {
@@ -755,9 +318,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-nanoserver-ltsc2022": {},
             "1.22-nanoserver-ltsc2022": {},
             "1.22.6-1-nanoserver-ltsc2022": {},
-            "1.22.6-nanoserver-ltsc2022": {}
+            "1.22.6-nanoserver-ltsc2022": {},
+            "nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
@@ -778,9 +343,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-nanoserver-1809": {},
             "1.22-nanoserver-1809": {},
             "1.22.6-1-nanoserver-1809": {},
-            "1.22.6-nanoserver-1809": {}
+            "1.22.6-nanoserver-1809": {},
+            "nanoserver-1809": {}
           },
           "platforms": [
             {
@@ -801,9 +368,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-windowsservercore-ltsc2022": {},
             "1.22-fips-windowsservercore-ltsc2022": {},
             "1.22.6-1-fips-windowsservercore-ltsc2022": {},
-            "1.22.6-fips-windowsservercore-ltsc2022": {}
+            "1.22.6-fips-windowsservercore-ltsc2022": {},
+            "fips-windowsservercore-ltsc2022": {}
           },
           "platforms": [
             {
@@ -824,9 +393,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-windowsservercore-1809": {},
             "1.22-fips-windowsservercore-1809": {},
             "1.22.6-1-fips-windowsservercore-1809": {},
-            "1.22.6-fips-windowsservercore-1809": {}
+            "1.22.6-fips-windowsservercore-1809": {},
+            "fips-windowsservercore-1809": {}
           },
           "platforms": [
             {
@@ -847,9 +418,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-nanoserver-ltsc2022": {},
             "1.22-fips-nanoserver-ltsc2022": {},
             "1.22.6-1-fips-nanoserver-ltsc2022": {},
-            "1.22.6-fips-nanoserver-ltsc2022": {}
+            "1.22.6-fips-nanoserver-ltsc2022": {},
+            "fips-nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
@@ -870,9 +443,11 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-fips-nanoserver-1809": {},
             "1.22-fips-nanoserver-1809": {},
             "1.22.6-1-fips-nanoserver-1809": {},
-            "1.22.6-fips-nanoserver-1809": {}
+            "1.22.6-fips-nanoserver-1809": {},
+            "fips-nanoserver-1809": {}
           },
           "platforms": [
             {
