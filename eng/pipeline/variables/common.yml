@@ -59,6 +59,21 @@ variables:
 - name: acr.servicePrincipalPassword
   value: $(GolangDockerBuild)
 
+- name: test.serviceConnectionName
+  value: $(acr.serviceConnectionName)
+- name: internal-mirror.serviceConnectionName
+  value: $(acr.serviceConnectionName)
+- name: build.serviceConnectionName
+  value: $(acr.serviceConnectionName)
+- name: publish.serviceConnectionName
+  value: $(acr.serviceConnectionName)
+- name: marStatus.serviceConnectionName
+  value: ''
+- name: kusto.serviceConnectionName
+  value: ''
+- name: acr-staging.server
+  value: $(acr.server)
+
 # Configuration for publishing the image-info JSON file.
 - name: commonVersionsImageInfoPath
   value: build-info/microsoft/go-images
