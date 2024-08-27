@@ -59,6 +59,14 @@ variables:
 - name: acr.servicePrincipalPassword
   value: $(GolangDockerBuild)
 
+# We don't use a different ACR for staging vs. non-staging images.
+- name: acr-staging.server
+  value: $(acr.server)
+# We don't host a public mirror. Note: an empty string is necessary so the
+# variable is defined and .NET Docker logic works.
+- name: public-mirror.server
+  value: ''
+
 - name: test.serviceConnectionName
   value: $(acr.serviceConnectionName)
 - name: internal-mirror.serviceConnectionName
@@ -71,8 +79,6 @@ variables:
   value: ''
 - name: kusto.serviceConnectionName
   value: ''
-- name: acr-staging.server
-  value: $(acr.server)
 
 # Configuration for publishing the image-info JSON file.
 - name: commonVersionsImageInfoPath
