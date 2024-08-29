@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS build
+FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS build
 
 # Dependencies needed to get the Go tarball. We never build Go from source in this Dockerfile.
 RUN set -eux; \
@@ -101,7 +101,7 @@ RUN set -eux; \
 	epoch="$(stat -c '%Y' /target/usr/local/go)"; \
 	[ "$SOURCE_DATE_EPOCH" = "$epoch" ]
 
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN set -eux; \
 # Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating

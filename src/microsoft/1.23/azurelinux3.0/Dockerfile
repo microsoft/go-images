@@ -4,7 +4,7 @@
 # PLEASE DO NOT EDIT IT DIRECTLY.
 #
 
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0 AS build
+FROM mcr.microsoft.com/azurelinux/base/core:3.0 AS build
 
 # Dependencies needed to get the Go tarball. We never build Go from source in this Dockerfile.
 RUN set -eux; \
@@ -21,7 +21,7 @@ RUN set -eux; \
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.22.6
+ENV GOLANG_VERSION 1.23.0
 
 RUN set -eux; \
 	now="$(date '+%s')"; \
@@ -30,19 +30,19 @@ RUN set -eux; \
 	urlSig=; \
 	case "$arch" in \
 		'x86_64') \
-			url='https://download.visualstudio.microsoft.com/download/pr/f8a79935-ceae-4766-9ddc-c578a48189d3/1f280eb4eb6580d63fe44f02ec7e8b40/go1.22.6-20240806.4.linux-amd64.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/f8a79935-ceae-4766-9ddc-c578a48189d3/07449fa5f21cc543418d37e1db00df70/go1.22.6-20240806.4.linux-amd64.tar.gz.sig'; \
-			sha256='d49fda9363d5a4a0d0d7060447c25b197ebe57574d80892efef2e2768705a59d'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/f348728d-8bff-41f6-af0a-6ed0138cd848/ceb5c69a57705dfed4fd61b552c39a5d/go1.23.0-20240814.2.linux-amd64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/f348728d-8bff-41f6-af0a-6ed0138cd848/92e4ddb0655df5096d4d79d16996f91f/go1.23.0-20240814.2.linux-amd64.tar.gz.sig'; \
+			sha256='b7255b3d4daab96863f4d678db9b1415cb3a1abab2755b8bc630d16aba6c763b'; \
 			;; \
 		'armv7') \
-			url='https://download.visualstudio.microsoft.com/download/pr/f8a79935-ceae-4766-9ddc-c578a48189d3/9264aa4eadba6857b4ad0a3b9cb1d4de/go1.22.6-20240806.4.linux-armv6l.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/f8a79935-ceae-4766-9ddc-c578a48189d3/8e8060fd83223f3618d8434b2f92e955/go1.22.6-20240806.4.linux-armv6l.tar.gz.sig'; \
-			sha256='8f622cf1062095db07fb224471c75c8a8c8e7c138f29a53fd838a2a105bbbf39'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/f348728d-8bff-41f6-af0a-6ed0138cd848/1b9e15217b07da018fba99ece14fcffb/go1.23.0-20240814.2.linux-armv6l.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/f348728d-8bff-41f6-af0a-6ed0138cd848/07340ef239d161b84df775a6e1d348c8/go1.23.0-20240814.2.linux-armv6l.tar.gz.sig'; \
+			sha256='1ff0837a61f094dabde817a1387b7c48b22673ab24e44d2dade3fd5e26324b7c'; \
 			;; \
 		'aarch64') \
-			url='https://download.visualstudio.microsoft.com/download/pr/f8a79935-ceae-4766-9ddc-c578a48189d3/65716d7d39cac1f90895ba4d0048ca84/go1.22.6-20240806.4.linux-arm64.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/f8a79935-ceae-4766-9ddc-c578a48189d3/c98813f11144fb46f83c42ad50d32e63/go1.22.6-20240806.4.linux-arm64.tar.gz.sig'; \
-			sha256='2e7164a1be4b90982568ac5bf94050a3384271bc0341c08783a668e74073f2fb'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/f348728d-8bff-41f6-af0a-6ed0138cd848/785ace49221185dcca49733d1872f62c/go1.23.0-20240814.2.linux-arm64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/f348728d-8bff-41f6-af0a-6ed0138cd848/10cee6198df9b04789c9de574e73f5df/go1.23.0-20240814.2.linux-arm64.tar.gz.sig'; \
+			sha256='b3e5d1bc55b26c5bae66dc484577ba55c45dd1752699d0f8683a9b6eb982454b'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -101,7 +101,7 @@ RUN set -eux; \
 	epoch="$(stat -c '%Y' /target/usr/local/go)"; \
 	[ "$SOURCE_DATE_EPOCH" = "$epoch" ]
 
-FROM mcr.microsoft.com/cbl-mariner/base/core:2.0
+FROM mcr.microsoft.com/azurelinux/base/core:3.0
 
 RUN set -eux; \
 # Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating
@@ -134,7 +134,7 @@ RUN set -eux; \
 	tdnf clean all
 
 
-ENV GOLANG_VERSION 1.22.6
+ENV GOLANG_VERSION 1.23.0
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472

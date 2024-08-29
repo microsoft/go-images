@@ -48,16 +48,18 @@ RUN set -eux; \
 	esac; \
 	\
 	wget -O go.tgz.asc "$urlSig"; \
-	wget -O go.tgz "$url" --progress=dot:giga; \
+# GNU Wget2 used by Azure Linux 3.0 no longer supports "--progress=dot:giga" and errors out. https://github.com/rockdaboot/wget2/issues/317
+# We don't use it for any Azure Linux version for simplicity. (It worked in Azure Linux 2.0.)
+	wget -O go.tgz "$url"; \
 	echo "$sha256 *go.tgz" | sha256sum -c -; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
+# Azure Linux doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
 # import. In microsoft/go-images, we use a manually imported key anyway.
-# See https://github.com/microsoft/CBL-Mariner/issues/3142
+# See https://github.com/microsoft/azurelinux/issues/3142
 	gpg --batch --verify go.tgz.asc go.tgz; \
 	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" go.tgz.asc; \
