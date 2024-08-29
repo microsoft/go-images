@@ -37,8 +37,13 @@ For Microsoft teams building containers, more guidance is available at [Containe
 See [What is `-fips`?](docs/tags.md#what-is--fips) for more details about the meaning of `fips` in a tag name.
 
 > [!IMPORTANT]
-> Our `1.22-fips-bullseye` (Debian) tag is capable of building a FIPS compliant Go app, but it contains a copy of OpenSSL that is **not** FIPS certified.
-> It is suitable for a `build` stage, but not for FIPS-compliant deployment.
+> Our `azurelinux3.0` tags can't be used to to run (deploy) a FIPS-compliant Go app.
+> See [https://aka.ms/azurelinux3 (internal Microsoft link)](https://aka.ms/azurelinux3) for current information about Azure Linux 3.0 and the implications for FIPS compliance.
+> (Last update: 2024-08-29.)
+
+> [!IMPORTANT]
+> Our `1.22-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
+> These tags are suitable for a `build` stage, but not for FIPS-compliant deployment.
 
 ## Tag organization
 
