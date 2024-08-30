@@ -156,16 +156,6 @@
               "tags": {
                 "1.22.6-1-azurelinux3.0-arm64v8": {}
               }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.22/azurelinux3.0",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "1.22.6-1-azurelinux3.0-arm32v7": {}
-              }
             }
           ]
         },
@@ -349,20 +339,6 @@
               "osVersion": "azurelinux3.0",
               "tags": {
                 "1.22.6-1-fips-azurelinux3.0-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.22.6-1-azurelinux3.0-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.22/fips/azurelinux3.0",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "1.22.6-1-fips-azurelinux3.0-arm32v7": {}
               }
             }
           ]
@@ -695,16 +671,6 @@
               "tags": {
                 "1.23.0-1-azurelinux3.0-arm64v8": {}
               }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.23/azurelinux3.0",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "1.23.0-1-azurelinux3.0-arm32v7": {}
-              }
             }
           ]
         },
@@ -880,20 +846,6 @@
               "osVersion": "azurelinux3.0",
               "tags": {
                 "1.23.0-1-fips-azurelinux3.0-arm64v8": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.23.0-1-azurelinux3.0-arm32v7",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.23/fips/azurelinux3.0",
-              "os": "linux",
-              "osVersion": "azurelinux3.0",
-              "tags": {
-                "1.23.0-1-fips-azurelinux3.0-arm32v7": {}
               }
             }
           ]
