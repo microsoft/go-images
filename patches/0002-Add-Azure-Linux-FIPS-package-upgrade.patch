@@ -1,26 +1,32 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
 Date: Fri, 11 Feb 2022 18:07:18 -0600
-Subject: [PATCH] Add Mariner, FIPS, package upgrade
+Subject: [PATCH] Add Azure Linux, FIPS, package upgrade
 
 ---
- Dockerfile-linux.template | 91 +++++++++++++++++++++++++++++++++++++++
- 1 file changed, 91 insertions(+)
+ Dockerfile-linux.template | 103 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 102 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 80154991b9f163..14dc75fe6f8d72 100644
+index 80154991b9f163..72cebf1a7256eb 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -4,9 +4,34 @@
+@@ -4,9 +4,40 @@
  	;
  	def alpine_version:
  		env.variant | ltrimstr("alpine")
 +	;
-+	def is_cbl_mariner:
++	def is_azurelinux_2:
 +		env.variant | startswith("cbl-mariner")
 +	;
-+	def cbl_mariner_version:
-+		env.variant | ltrimstr("cbl-mariner")
++	def is_azurelinux:
++		(env.variant | startswith("azurelinux")) or is_azurelinux_2
++	;
++	def azurelinux_version:
++		env.variant | ltrimstr("cbl-mariner") | ltrimstr("azurelinux")
++	;
++	def azurelinux_repo:
++		if is_azurelinux_2 then ("cbl-mariner") else ("azurelinux") end
 +	;
 +
 +	def is_fips:
@@ -28,8 +34,8 @@ index 80154991b9f163..14dc75fe6f8d72 100644
  -}}
  {{ if is_alpine then ( -}}
  FROM alpine:{{ alpine_version }} AS build
-+{{ ) elif is_cbl_mariner then ( -}}
-+FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }} AS build
++{{ ) elif is_azurelinux then ( -}}
++FROM mcr.microsoft.com/{{ azurelinux_repo }}/base/core:{{ azurelinux_version }} AS build
 +
 +# Dependencies needed to get the Go tarball. We never build Go from source in this Dockerfile.
 +RUN set -eux; \
@@ -46,11 +52,11 @@ index 80154991b9f163..14dc75fe6f8d72 100644
  {{ ) else ( -}}
  FROM buildpack-deps:{{ env.variant }}-scm AS build
  {{ ) end -}}
-@@ -30,6 +55,13 @@ ENV GOLANG_VERSION {{ .version }}
+@@ -30,6 +61,13 @@ ENV GOLANG_VERSION {{ .version }}
  				riscv64: "riscv64",
  				s390x: "s390x",
  			}
-+		elif is_cbl_mariner then
++		elif is_azurelinux then
 +			{
 +				amd64: "x86_64",
 +				arm32v6: "armhf",
@@ -60,23 +66,35 @@ index 80154991b9f163..14dc75fe6f8d72 100644
  		else
  			{
  				# https://salsa.debian.org/dpkg-team/dpkg/-/blob/main/data/cputable
-@@ -60,6 +92,8 @@ RUN set -eux; \
+@@ -60,6 +98,8 @@ RUN set -eux; \
  		tar \
  	; \
  	arch="$(apk --print-arch)"; \
-+{{ ) elif is_cbl_mariner then ( -}}
++{{ ) elif is_azurelinux then ( -}}
 +	arch="$(uname -m)"; \
  {{ ) else ( -}}
  	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
  {{ ) end -}}
-@@ -98,10 +132,16 @@ RUN set -eux; \
+@@ -91,17 +131,27 @@ RUN set -eux; \
+ 	esac; \
+ 	\
+ 	wget -O go.tgz.asc "$urlSig"; \
+-	wget -O go.tgz "$url"{{ if is_alpine then "" else " --progress=dot:giga" end }}; \
++{{ if is_azurelinux then ( -}}
++# GNU Wget2 used by Azure Linux 3.0 no longer supports "--progress=dot:giga" and errors out. https://github.com/rockdaboot/wget2/issues/317
++# We don't use it for any Azure Linux version for simplicity. (It worked in Azure Linux 2.0.)
++{{ ) else ("") end -}}
++	wget -O go.tgz "$url"{{ if (is_alpine or is_azurelinux) then "" else " --progress=dot:giga" end }}; \
+ 	echo "$sha256 *go.tgz" | sha256sum -c -; \
+ 	\
+ # https://github.com/golang/go/issues/14739#issuecomment-324767697
  	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
  	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
  	gpg --batch --import microsoft-managed-lang-compiler.asc; \
-+{{ if is_cbl_mariner then ( -}}
-+# Mariner 2.0 doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
++{{ if is_azurelinux then ( -}}
++# Azure Linux doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
 +# import. In microsoft/go-images, we use a manually imported key anyway.
-+# See https://github.com/microsoft/CBL-Mariner/issues/3142
++# See https://github.com/microsoft/azurelinux/issues/3142
 +{{ ) else ( -}}
  # https://www.google.com/linuxrepositories/
  	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
@@ -86,12 +104,12 @@ index 80154991b9f163..14dc75fe6f8d72 100644
  	gpg --batch --verify go.tgz.asc go.tgz; \
  	gpgconf --kill all; \
  	rm -rf "$GNUPGHOME" go.tgz.asc; \
-@@ -154,18 +194,69 @@ RUN set -eux; \
+@@ -154,18 +204,69 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates
-+{{ ) elif is_cbl_mariner then ( -}}
-+FROM mcr.microsoft.com/cbl-mariner/base/core:{{ cbl_mariner_version }}
++{{ ) elif is_azurelinux then ( -}}
++FROM mcr.microsoft.com/{{ azurelinux_repo }}/base/core:{{ azurelinux_version }}
 +
 +RUN set -eux; \
 +# Upgrade all packages per https://eng.ms/docs/more/containers-secure-supply-chain/updating

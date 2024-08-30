@@ -131,6 +131,37 @@
         {
           "productVersion": "1.22",
           "sharedTags": {
+            "1-azurelinux3.0": {},
+            "1.22-azurelinux3.0": {},
+            "1.22.6-1-azurelinux3.0": {},
+            "1.22.6-azurelinux3.0": {},
+            "azurelinux3.0": {}
+          },
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.22/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.22.6-1-azurelinux3.0-amd64": {}
+              }
+            },
+            {
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.22/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.22.6-1-azurelinux3.0-arm64v8": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.22",
+          "sharedTags": {
             "1-fips-bookworm": {},
             "1.22-fips-bookworm": {},
             "1.22.6-1-fips-bookworm": {},
@@ -269,6 +300,45 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "1.22.6-1-fips-cbl-mariner2.0-arm64v8": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.22",
+          "sharedTags": {
+            "1-fips-azurelinux3.0": {},
+            "1.22-fips-azurelinux3.0": {},
+            "1.22.6-1-fips-azurelinux3.0": {},
+            "1.22.6-fips-azurelinux3.0": {},
+            "fips-azurelinux3.0": {}
+          },
+          "platforms": [
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.22.6-1-azurelinux3.0-amd64",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.22/fips/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.22.6-1-fips-azurelinux3.0-amd64": {}
+              }
+            },
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.22.6-1-azurelinux3.0-arm64v8",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.22/fips/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.22.6-1-fips-azurelinux3.0-arm64v8": {}
               }
             }
           ]
@@ -578,6 +648,35 @@
         {
           "productVersion": "1.23",
           "sharedTags": {
+            "1.23-azurelinux3.0": {},
+            "1.23.0-1-azurelinux3.0": {},
+            "1.23.0-azurelinux3.0": {}
+          },
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.23/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.23.0-1-azurelinux3.0-amd64": {}
+              }
+            },
+            {
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.23/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.23.0-1-azurelinux3.0-arm64v8": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.23",
+          "sharedTags": {
             "1.23-fips-bookworm": {},
             "1.23.0-1-fips-bookworm": {},
             "1.23.0-fips-bookworm": {}
@@ -710,6 +809,43 @@
               "osVersion": "cbl-mariner2.0",
               "tags": {
                 "1.23.0-1-fips-cbl-mariner2.0-arm64v8": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.23",
+          "sharedTags": {
+            "1.23-fips-azurelinux3.0": {},
+            "1.23.0-1-fips-azurelinux3.0": {},
+            "1.23.0-fips-azurelinux3.0": {}
+          },
+          "platforms": [
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.23.0-1-azurelinux3.0-amd64",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.23/fips/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.23.0-1-fips-azurelinux3.0-amd64": {}
+              }
+            },
+            {
+              "buildArgs": {
+                "FROM_TAG": "1.23.0-1-azurelinux3.0-arm64v8",
+                "REPO": "$(Repo:golang)"
+              },
+              "architecture": "arm64",
+              "variant": "v8",
+              "dockerfile": "src/microsoft/1.23/fips/azurelinux3.0",
+              "os": "linux",
+              "osVersion": "azurelinux3.0",
+              "tags": {
+                "1.23.0-1-fips-azurelinux3.0-arm64v8": {}
               }
             }
           ]
