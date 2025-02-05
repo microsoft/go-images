@@ -14,6 +14,10 @@ stages:
       customPublishInitSteps:
         - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
 
+      # Windows builds often take almost exactly 60 minutes, which is the default timeout.
+      # This causes flakiness. Extend the timeout for leeway.
+      windowsAmdBuildJobTimeout: 90 # minutes
+
       # Linux AMD64
       linuxAmd64Pool:
         ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
