@@ -13,7 +13,7 @@ infrastructure isn't set up to take advantage of this.
 
 Remove a related check that detects whether any file or directory in Go
 is newer than the expected reproducible timestamp. Extracting a
-Microsoft Go 1.21 tar.gz file results in directories that appear new
+Microsoft build of Go 1.21 tar.gz file results in directories that appear new
 because the entries are in an unexpected order. This isn't important in
 our case because we don't use "--link".
 

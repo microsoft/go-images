@@ -24,7 +24,7 @@ variables:
     # In the nightly branch, publish to ACR only. The prefix doesn't need to match MAR expectations.
     value: nightly/
 
-# Don't publish readme: Microsoft Go images aren't on Docker Hub.
+# Don't publish readme: Microsoft images aren't on Docker Hub.
 - name: publishReadme
   value: false
 # Publish image info to https://github.com/dotnet/versions/tree/main/build-info

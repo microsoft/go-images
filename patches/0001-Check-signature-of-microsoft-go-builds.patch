@@ -3,9 +3,9 @@ From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
 Date: Fri, 11 Feb 2022 18:03:46 -0600
 Subject: [PATCH] Check signature of microsoft/go builds
 
-Microsoft Go artifacts on download.visualstudio.microsoft.com don't
+Microsoft build of Go artifacts on download.visualstudio.microsoft.com don't
 support ".sig" suffix: the base URL also changes. Use the
-pgpSignatureUrl entry present in the Microsoft Go versions.json instead.
+pgpSignatureUrl entry present in the Microsoft build of Go versions.json instead.
 ---
  Dockerfile-linux.template | 6 +++++-
  1 file changed, 5 insertions(+), 1 deletion(-)

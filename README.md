@@ -4,11 +4,11 @@ This repository creates Docker images that contain the Microsoft build of Go pro
 
 The images produced by this repository are for general use within Microsoft and to help produce FIPS-compliant Go apps. For other purposes, we recommend using the [Docker Hub golang official images](https://hub.docker.com/_/golang).
 
-For more information about building FIPS-compatible Go apps with the Microsoft Go tools, visit the [FIPS readme] and [user guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
+For more information about building FIPS-compatible Go apps with the Microsoft build of Go tools, visit the [FIPS readme] and [user guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
 
 ## Support
 
-GitHub issues for microsoft/go-images are maintained in the [microsoft/go](https://github.com/microsoft/go) project. For help and questions about the Microsoft Go images, please [file an issue in microsoft/go](https://github.com/microsoft/go/issues/new/choose).
+GitHub issues for microsoft/go-images are maintained in the [microsoft/go](https://github.com/microsoft/go) project. For help and questions about the Microsoft build of Go images, please [file an issue in microsoft/go](https://github.com/microsoft/go/issues/new/choose).
 
 The supported tags in this repository are rebuilt approximately twice a week to update base image and distro package dependencies.
 
