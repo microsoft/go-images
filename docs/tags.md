@@ -1,8 +1,8 @@
 # Tags of microsoft/go-images
 
-This repository's build infrastructure is based on the .NET Docker tooling. The Microsoft Go tagging practices are largely the same as .NET Docker's, and we both strive to align with the official Docker image tagging practices.
+This repository's build infrastructure is based on the .NET Docker tooling. The Microsoft build of Go tagging practices are largely the same as .NET Docker's, and we both strive to align with the official Docker image tagging practices.
 
-See [.NET Supported Tags](https://github.com/dotnet/dotnet-docker/blob/main/documentation/supported-tags.md) for .NET Docker's description of this tagging strategy. This document is based on .NET's, but describes the Microsoft Go tags.
+See [.NET Supported Tags](https://github.com/dotnet/dotnet-docker/blob/main/documentation/supported-tags.md) for .NET Docker's description of this tagging strategy. This document is based on .NET's, but describes the Microsoft build of Go tags.
 
 # Simple tags
 
@@ -15,7 +15,7 @@ Examples:
 * `1.20.0-1-bullseye-amd64`
 * `1.20.0-1-fips-cbl-mariner2.0-amd64`
 
-> This document uses `1.20.0-1` as a placeholder for *the most recent release of Microsoft Go*. Check MAR for the actual latest tag versions and available OS/Distros.
+> This document uses `1.20.0-1` as a placeholder for *the most recent release of the Microsoft build of Go*. Check MAR for the actual latest tag versions and available OS/Distros.
 
 # Shared tags
 
@@ -63,7 +63,7 @@ The microsoft/go-images repository has two active branches:
 
 * `microsoft/main`
   * Tags produced by this branch are published to MAR.
-  * This branch is built when there is a new, stable release of microsoft/go, the underlying OS has a change that is important to users of the Microsoft Go images, or the Dockerfile itself is updated. When it's feasible, we only publish tag updates when the image content needs to be updated, to avoid unnecessary build churn downstream.
+  * This branch is built when there is a new, stable release of microsoft/go, the underlying OS has a change that is important to users of the Microsoft build of Go images, or the Dockerfile itself is updated. When it's feasible, we only publish tag updates when the image content needs to be updated, to avoid unnecessary build churn downstream.
   * The Dockerfiles in this branch will normally match the images available on MAR, but this may not always the case. Before a release, we need to check in changes to `microsoft/main` before we can officially build them. We also may check in changes further in advance of a release so they are included when the next release eventually happens.
 * `microsoft/nightly`
   * Tags produced by this branch are published to an ACR we maintain, not MAR.
