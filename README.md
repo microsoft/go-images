@@ -19,7 +19,7 @@ In general, the microsoft/go-images tag names match those available for the offi
 This tag is recommended for general build scenarios where FIPS compliance is not required:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.22-cbl-mariner2.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.23-azurelinux3.0
 ```
 
 To build a FIPS-compliant app, we recommend writing a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/) that uses a `fips` tag in the `build` stage and copies the built Go app into the final stage. We recommend using a minimal CBL-Mariner container for the final stage.
@@ -27,7 +27,7 @@ To build a FIPS-compliant app, we recommend writing a [multi-stage Dockerfile](h
 This Azure Linux (Mariner) `fips` tag is recommended for the `build` stage of a Dockerfile:
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.22-fips-cbl-mariner2.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.23-fips-azurelinux3.0
 ```
 
 For the final stage of the multi-stage Dockerfile, an image with a FIPS certified OpenSSL library is necessary. The right image to use may depend on your organization or need to be assembled.
@@ -39,7 +39,7 @@ See [What is `-fips`?](docs/tags.md#what-is--fips) for more details about the me
 > [!IMPORTANT]
 > Our `azurelinux3.0` tags can't be used to to run (deploy) a FIPS-compliant Go app.
 > See [https://aka.ms/azurelinux3 (internal Microsoft link)](https://aka.ms/azurelinux3) for current information about Azure Linux 3.0 and the implications for FIPS compliance.
-> (Last update: 2024-08-29.)
+> (Last update: 2025-02-12.)
 
 > [!IMPORTANT]
 > Our `1.22-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
