@@ -43,13 +43,16 @@ Examples:
     * This is incremented when Microsoft needs to release a new microsoft/go build but upstream hasn't released a new version yet.
     * This is *not* incremented when there are Dockerfile-specific changes, base images change, or when platforms are added and removed.
   * `extra` is optional, indicating the image is specialized for a particular scenario.
-    * `-fips` is the only `extra` as of writing.
+    * `-fips` is the only `extra`.
   * `os/distro` is the OS or Linux distribution of the base image.
   * `architecture` is the platform architecture of the image, e.g. `amd64`.
 
 ## What is `-fips`?
 
-If a tag includes `-fips`, that indicates that Go build commands inside the container will set the `GOEXPERIMENT` environment variable to use a FIPS-compatible crypto backend by default. Be careful: this isn't the only step necessary to build a FIPS-compliant app. See the [FIPS readme] for more information about `GOEXPERIMENT` and FIPS.
+If a tag includes `-fips`, that indicates that `GOEXPERIMENT=systemcrypto` is set and will apply to Go build commands run inside the container.
+This instructs Go to build an app that uses a FIPS-compatible crypto backend by default.
+Be careful: this isn't the only step necessary to build a FIPS-compliant app.
+See the [FIPS readme] for more information about `GOEXPERIMENT` and FIPS.
 
 You don't need to use a `-fips` tag to build a FIPS-compliant app: you can use the non`-fips` image and set `GOEXPERIMENT` yourself. The Go toolset is the same in both images. We provide a `-fips` tag to minimize the changes necessary to make an existing Dockerfile build a FIPS-compliant app.
 
