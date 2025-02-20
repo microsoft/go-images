@@ -14,35 +14,25 @@ The supported tags in this repository are rebuilt approximately twice a week to 
 
 ## Recommended tags
 
-In general, the microsoft/go-images tag names match those available for the official images. To switch from the official image to one on MCR, it may be possible to simply prepend `mcr.microsoft.com/oss/go/microsoft/` to the official image you would normally use.
-
-This tag is recommended for general build scenarios where FIPS compliance is not required:
-
-```
-mcr.microsoft.com/oss/go/microsoft/golang:1.23-azurelinux3.0
-```
-
-To build a FIPS-compliant app, we recommend writing a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/) that uses a `fips` tag in the `build` stage and copies the built Go app into the final stage. We recommend using a minimal CBL-Mariner container for the final stage.
-
-This Azure Linux (Mariner) `fips` tag is recommended for the `build` stage of a Dockerfile:
+The tag we recommend for use inside Microsoft is the Azure Linux 3.0 tag with the `fips` helper enabled.
+This sets the `GOEXPERIMENT` environment variable to `systemcrypto`.
+(See [What is `-fips`?](docs/tags.md#what-is--fips))
 
 ```
 mcr.microsoft.com/oss/go/microsoft/golang:1.23-fips-azurelinux3.0
 ```
 
-For the final stage of the multi-stage Dockerfile, an image with a FIPS certified OpenSSL library is necessary. The right image to use may depend on your organization or need to be assembled.
+We recommend using this tag in the `build` stage of a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/).
+The final stage should be based on a minimal image.
+This avoids unnecessarily deploying build-time dependencies to production.
+However, it doesn't necessarily break compliance to use this tag in the final (or only) stage.
 
-For Microsoft teams building containers, more guidance is available at [Containers Secure Supply Chain - Selecting base images (internal Microsoft link)](https://eng.ms/docs/more/containers-secure-supply-chain/images).
-
-See [What is `-fips`?](docs/tags.md#what-is--fips) for more details about the meaning of `fips` in a tag name.
-
-> [!IMPORTANT]
-> Our `azurelinux3.0` tags can't be used to to run (deploy) a FIPS-compliant Go app.
-> See [https://aka.ms/azurelinux3 (internal Microsoft link)](https://aka.ms/azurelinux3) for current information about Azure Linux 3.0 and the implications for FIPS compliance.
-> (Last update: 2025-02-12.)
+To comply with internal Microsoft cryptography policy, a Linux Go app must run in a container with a system-wide OpenSSL library.
+The right image to use may depend on your organization or it may need to be custom-built to include product-specific runtime dependencies.
+More guidance is available at [Containers Secure Supply Chain - Selecting base images (internal Microsoft link)](https://eng.ms/docs/more/containers-secure-supply-chain/images).
 
 > [!IMPORTANT]
-> Our `1.22-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
+> Our `1.23-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
 > These tags are suitable for a `build` stage, but not for FIPS-compliant deployment.
 
 ## Tag organization
