@@ -72,7 +72,7 @@ extends:
             steps:
               - task: GoTool@0
                 inputs:
-                  version: 1.22.1
+                  version: 1.24.0
 
               - script: |
                   cd eng\ci-tools

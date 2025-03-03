@@ -8,7 +8,7 @@ Subject: [PATCH] Add Azure Linux, FIPS, package upgrade
  1 file changed, 102 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 80154991b9f163..72cebf1a7256eb 100644
+index 19d45e2048b326..e73b2d947ce64a 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,9 +4,40 @@
@@ -52,7 +52,7 @@ index 80154991b9f163..72cebf1a7256eb 100644
  {{ ) else ( -}}
  FROM buildpack-deps:{{ env.variant }}-scm AS build
  {{ ) end -}}
-@@ -30,6 +61,13 @@ ENV GOLANG_VERSION {{ .version }}
+@@ -38,6 +69,13 @@ ENV GOLANG_COMMIT $GOLANG_COMMIT
  				riscv64: "riscv64",
  				s390x: "s390x",
  			}
@@ -66,8 +66,8 @@ index 80154991b9f163..72cebf1a7256eb 100644
  		else
  			{
  				# https://salsa.debian.org/dpkg-team/dpkg/-/blob/main/data/cputable
-@@ -60,6 +98,8 @@ RUN set -eux; \
- 		tar \
+@@ -73,6 +111,8 @@ RUN set -eux; \
+ {{ ) end -}}
  	; \
  	arch="$(apk --print-arch)"; \
 +{{ ) elif is_azurelinux then ( -}}
@@ -75,9 +75,9 @@ index 80154991b9f163..72cebf1a7256eb 100644
  {{ ) else ( -}}
  	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
  {{ ) end -}}
-@@ -91,17 +131,27 @@ RUN set -eux; \
- 	esac; \
+@@ -111,17 +151,27 @@ RUN set -eux; \
  	\
+ {{ if env.version != "tip" then ( -}}
  	wget -O go.tgz.asc "$urlSig"; \
 -	wget -O go.tgz "$url"{{ if is_alpine then "" else " --progress=dot:giga" end }}; \
 +{{ if is_azurelinux then ( -}}
@@ -104,7 +104,7 @@ index 80154991b9f163..72cebf1a7256eb 100644
  	gpg --batch --verify go.tgz.asc go.tgz; \
  	gpgconf --kill all; \
  	rm -rf "$GNUPGHOME" go.tgz.asc; \
-@@ -154,18 +204,69 @@ RUN set -eux; \
+@@ -216,18 +266,69 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates
