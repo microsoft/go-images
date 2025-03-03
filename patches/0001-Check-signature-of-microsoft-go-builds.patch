@@ -11,29 +11,29 @@ pgpSignatureUrl entry present in the Microsoft build of Go versions.json instead
  1 file changed, 5 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 9c2fb247d2311b..80154991b9f163 100644
+index a2a8db8d6fa7e7..19d45e2048b326 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -64,6 +64,7 @@ RUN set -eux; \
- 	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
+@@ -78,6 +78,7 @@ RUN set -eux; \
  {{ ) end -}}
+ {{ if env.version != "tip" then ( -}}
  	url=; \
 +	urlSig=; \
+ {{ ) else "" end -}}
  	case "$arch" in \
  {{
- 	[
-@@ -79,6 +80,7 @@ RUN set -eux; \
- -}}
+@@ -95,6 +96,7 @@ RUN set -eux; \
  		{{ $osArch | @sh }}) \
+ {{ if env.version != "tip" then ( -}}
  			url={{ .url | @sh }}; \
 +			urlSig={{ .pgpSignatureUrl | @sh }}; \
  			sha256={{ .sha256 | @sh }}; \
- 			;; \
- {{
-@@ -88,12 +90,14 @@ RUN set -eux; \
- 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
+ {{ ) else ( -}}
+ 			export {{ .env | to_entries | sort_by(.key) | map(.key + "=" + (.value | @sh)) | join(" ") }}; \
+@@ -108,12 +110,14 @@ RUN set -eux; \
  	esac; \
  	\
+ {{ if env.version != "tip" then ( -}}
 -	wget -O go.tgz.asc "$url.asc"; \
 +	wget -O go.tgz.asc "$urlSig"; \
  	wget -O go.tgz "$url"{{ if is_alpine then "" else " --progress=dot:giga" end }}; \
