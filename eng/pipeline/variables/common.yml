@@ -29,7 +29,7 @@ variables:
   value: false
 # Publish image info to https://github.com/dotnet/versions/tree/main/build-info
 - name: publishImageInfo
-  value: true
+  value: false # true # Authentication stopped working ~2025-03-05. See https://github.com/microsoft/go-lab/issues/180
 # https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
 - name: ingestKustoImageInfo
   value: false
