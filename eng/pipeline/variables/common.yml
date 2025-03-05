@@ -49,7 +49,7 @@ variables:
     - group: go-docker-common
   - ${{ if eq(parameters.nightly, true) }}:
     - group: go-docker-common-nightly
-  - group: Dotnet-Docker-Secrets-WIF
+  - group: Microsoft-GoLang-bot
 
 - name: acr.password
   ${{ if eq(parameters.nightly, false) }}:
@@ -99,7 +99,7 @@ variables:
 - name: gitHubVersionsRepoInfo.path
   value: ${{ variables.commonVersionsImageInfoPath }}
 - name: gitHubVersionsRepoInfo.accessToken
-  value: $(BotAccount-dotnet-docker-bot-PAT)
+  value: $(BotAccount-microsoft-golang-bot-PAT)
 - name: gitHubVersionsRepoInfo.userName
   value: $(dotnetDockerBot.userName)
 - name: gitHubVersionsRepoInfo.email
