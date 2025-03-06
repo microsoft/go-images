@@ -82,7 +82,7 @@ variables:
 
 # Configuration for publishing the image-info JSON file.
 - name: commonVersionsImageInfoPath
-  value: build-info/microsoft/go-images
+  value: go-images
 
 # Configure image-info publishing.
 # Copied from /eng/common/templates/variables/dotnet/build-test-publish.yml
@@ -91,9 +91,9 @@ variables:
 - name: azdoVersionsRepoInfo.path
   value: ${{ variables.commonVersionsImageInfoPath }}
 - name: gitHubVersionsRepoInfo.org
-  value: dotnet
+  value: microsoft
 - name: gitHubVersionsRepoInfo.repo
-  value: versions
+  value: go-images-versions
 - name: gitHubVersionsRepoInfo.branch
   value: main
 - name: gitHubVersionsRepoInfo.path
