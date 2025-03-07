@@ -79,9 +79,9 @@
         },
         "sha256": "b0ca85ecc435a93e2ddb626dd9ef7fb6689700a0847b0392eb3e146345a8dea0",
         "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/22c15eae18e90a5a995dee497c3486b9/go1.24.1-20250304.4.linux-amd64.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/6e02b8b42a4b2e4c3754a01c15f2d6c0/go1.24.1-20250304.4.linux-amd64.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/3702e2d01734aec84415886cba06f21a/go1.24.1-20250304.4.linux-amd64.tar.gz.sig"
+        "url": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/7f418d70e52f60abfec481381988492e/go1.24.1-20250306.2.linux-amd64.tar.gz",
+        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/05ebca56d84516f8b0fcfc0e02e64a73/go1.24.1-20250306.2.linux-amd64.tar.gz.sha256",
+        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/fcd917ffd1f1619411caf0c3ec01f8a5/go1.24.1-20250306.2.linux-amd64.tar.gz.sig"
       },
       "arm32v7": {
         "env": {
@@ -91,9 +91,9 @@
         },
         "sha256": "43d42297694b849f4266d6a91cfe50d3a59e958c2ffc1bb4527095bbeb6bd90b",
         "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/69812aac073f39ac638f18c8bee61d1e/go1.24.1-20250304.4.linux-armv6l.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/466a0f372a2ac63ba1c9d71e8fc0c068/go1.24.1-20250304.4.linux-armv6l.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/f111a5545f6bf6e8b3731f50cf088638/go1.24.1-20250304.4.linux-armv6l.tar.gz.sig"
+        "url": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/dc24acaff98372aa56698802c3f7ed90/go1.24.1-20250306.2.linux-armv6l.tar.gz",
+        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/9b5996f46296655413bcff54cac6cc3d/go1.24.1-20250306.2.linux-armv6l.tar.gz.sha256",
+        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/b2f6087a447e34eb1ca5fb4c9ca89783/go1.24.1-20250306.2.linux-armv6l.tar.gz.sig"
       },
       "arm64v8": {
         "env": {
@@ -102,42 +102,42 @@
         },
         "sha256": "73b1befea457d5967632b2b0b93f8d2c0d899d5b6fbd1396c55d0a015292608b",
         "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/e256ca0c885e677ad7b8fc233798b579/go1.24.1-20250304.4.linux-arm64.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/e8f8c8fe93778c1dc690c052499ecd7e/go1.24.1-20250304.4.linux-arm64.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/b261dc1ab73d94ed7d4876e3a24d73eb/go1.24.1-20250304.4.linux-arm64.tar.gz.sig"
+        "url": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/4919d5bd6bc9784de7dc9fad86966fd5/go1.24.1-20250306.2.linux-arm64.tar.gz",
+        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/ac3ee7ec54f0773694d76d115746a884/go1.24.1-20250306.2.linux-arm64.tar.gz.sha256",
+        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/10577ce4a7c9cd87c29019c14a31aa60/go1.24.1-20250306.2.linux-arm64.tar.gz.sig"
       },
       "darwin-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "darwin"
         },
-        "sha256": "fa5a2d74488d99d75cd8cbd4fa8f2d892932078e92728b0b580468c95488a7c0",
+        "sha256": "9e0da2018ec0ef6801ffe7434697407c5d4a8f5c999f9252d3d80c2f8fa59916",
         "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/f139d53d3fce534c6deb63e58e5b7be1/go1.24.1-20250304.4.darwin-amd64.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/1c0e8a93da8c0d2df7def2cba1c8febb/go1.24.1-20250304.4.darwin-amd64.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/fec39455d455ee13687750acf0bbe63f/go1.24.1-20250304.4.darwin-amd64.tar.gz.sig"
+        "url": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/dff08c3ab6867b1adeba2daa9ddf01a8/go1.24.1-20250306.2.darwin-amd64.tar.gz",
+        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/3d7ea0803041577a36fdb275e8b6b001/go1.24.1-20250306.2.darwin-amd64.tar.gz.sha256",
+        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/439c60e58454418beb7b61cd4e37dc61/go1.24.1-20250306.2.darwin-amd64.tar.gz.sig"
       },
       "darwin-arm64v8": {
         "env": {
           "GOARCH": "arm64",
           "GOOS": "darwin"
         },
-        "sha256": "fe669bea5d0b4a45b135f00ff83e57fb3dc61bc9f96e9d9f001f918d938fbc54",
+        "sha256": "2e54f0450794c2be2c7350f409dc2a21af3cc296acf78f803e143cd9a1f877ff",
         "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/5798ae818c617e0f8bb8b4b221555997/go1.24.1-20250304.4.darwin-arm64.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/da65549c1454e5e9a4ffbd8b3189d682/go1.24.1-20250304.4.darwin-arm64.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/afdd438fb94a0ab230de356f0866ed6b/go1.24.1-20250304.4.darwin-arm64.tar.gz.sig"
+        "url": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/0b8f7b940f4805f984c3e7ec0e6c3ecf/go1.24.1-20250306.2.darwin-arm64.tar.gz",
+        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/f1150b993aa918c0d19415d7b05a00dc/go1.24.1-20250306.2.darwin-arm64.tar.gz.sha256",
+        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/b5ada03ff39724f6dc9cb75fef436867/go1.24.1-20250306.2.darwin-arm64.tar.gz.sig"
       },
       "windows-amd64": {
         "env": {
           "GOARCH": "amd64",
           "GOOS": "windows"
         },
-        "sha256": "48feae5afe4ff7f4068e0b6424a848de9ce013309b2e24a5102796aa8bd68b6f",
+        "sha256": "07763e0fc6dabf06178c1b15d31660c236c1fd6310da59c1b112f617c8b0e9a1",
         "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/2f01ada1ec2ac21be6625bd67ffabf61/go1.24.1-20250304.4.windows-amd64.zip",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/213c41031b89b90c294fb8ea4c8f6acc/go1.24.1-20250304.4.windows-amd64.zip.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/f3428561-0ec5-4554-8c3e-f77ccc696490/bfd8bf968395cb9c88773b21287bbcc7/go1.24.1-20250304.4.windows-amd64.zip.sig"
+        "url": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/851968cdc9eaf855f6e9e412c92f9a8a/go1.24.1-20250306.2.windows-amd64.zip",
+        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/3a4b3360065d1cb557916ec312b94d0d/go1.24.1-20250306.2.windows-amd64.zip.sha256",
+        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/753e92d2-bc0b-409d-95dd-712fa177b254/8a3a4091b25fc11d2a6f2b870251d628/go1.24.1-20250306.2.windows-amd64.zip.sig"
       }
     },
     "variants": [
@@ -159,7 +159,7 @@
       "windows/fips/nanoserver-1809"
     ],
     "version": "1.24.1",
-    "revision": "1",
+    "revision": "2",
     "preferredVariant": "bookworm"
   }
 }
