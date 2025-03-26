@@ -3,7 +3,7 @@ parameters:
   extraParameters: {}
 
 stages:
-  - template: /eng/common/templates/stages/build-test-publish-repo.yml@self
+  - template: /eng/common/templates/stages/build-and-test.yml@self
     parameters:
       buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
       noCache: true
@@ -73,5 +73,10 @@ stages:
           image: 1es-windows-2022
           os: windows
 
+      ${{ each pair in parameters.extraParameters }}:
+        ${{ pair.key }}: ${{ pair.value }}
+
+  - template: /eng/common/templates/stages/publish.yml@self
+    parameters:
       ${{ each pair in parameters.extraParameters }}:
         ${{ pair.key }}: ${{ pair.value }}
