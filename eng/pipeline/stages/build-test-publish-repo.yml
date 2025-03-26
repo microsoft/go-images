@@ -8,6 +8,8 @@ stages:
       buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
       noCache: true
       # Template paths must be relative to the YAML job that executes them
+      customGenerateMatrixInitSteps:
+        - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
       customBuildInitSteps:
         - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
         - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
