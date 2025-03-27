@@ -37,23 +37,23 @@ $DotnetInstallScriptPath = Join-Path -Path $InstallPath -ChildPath $DotnetInstal
 
 if (!(Test-Path $DotnetInstallScriptPath)) {
     [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12;
-    & "$PSScriptRoot/Invoke-WithRetry.ps1" "Invoke-WebRequest 'https://dot.net/v1/$DotnetInstallScript' -OutFile $DotnetInstallScriptPath"
+    & "$PSScriptRoot/Invoke-WithRetry.ps1" "Invoke-WebRequest 'https://builds.dotnet.microsoft.com/dotnet/scripts/v1/$DotnetInstallScript' -OutFile $DotnetInstallScriptPath"
 }
 
-$DotnetChannel = "8.0"
+$DotnetChannel = "9.0"
 
 $InstallFailed = $false
 if ($IsRunningOnUnix) {
     & chmod +x $DotnetInstallScriptPath
-    & $DotnetInstallScriptPath --channel $DotnetChannel --install-dir $InstallPath
+    & "$PSScriptRoot/Invoke-WithRetry.ps1" "$DotnetInstallScriptPath --channel $DotnetChannel --install-dir $InstallPath" -Retries 5
     $InstallFailed = ($LASTEXITCODE -ne 0)
 }
 else {
-    & $DotnetInstallScriptPath -Channel $DotnetChannel -InstallDir $InstallPath
+    & "$PSScriptRoot/Invoke-WithRetry.ps1" "$DotnetInstallScriptPath -Channel $DotnetChannel -InstallDir $InstallPath" -Retries 5
     $InstallFailed = (-not $?)
 }
 
 # See https://github.com/NuGet/NuGet.Client/pull/4259
-$Env:NUGET_EXPERIMENTAL_CHAIN_BUILD_RETRY_POLICY = "3,1000"
+$Env:NUGET_EXPERIMENTAL_CHAIN_BUILD_RETRY_POLICY = "6,1500"
 
 if ($InstallFailed) { throw "Failed to install the .NET Core SDK" }
