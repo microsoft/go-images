@@ -13,8 +13,6 @@ stages:
       customBuildInitSteps:
         - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
         - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
-      customPublishInitSteps:
-        - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
 
       # Windows builds often take almost exactly 60 minutes, which is the default timeout.
       # This causes flakiness. Extend the timeout for leeway.
@@ -101,6 +99,9 @@ stages:
           name: $(linuxAmd64InternalPoolName)
           image: $(linuxAmd64InternalPoolImage)
           os: linux
+
+      customPublishInitSteps:
+        - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
 
       ${{ each pair in parameters.extraParameters }}:
         ${{ pair.key }}: ${{ pair.value }}
