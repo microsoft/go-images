@@ -53,14 +53,14 @@ RUN $newPath = ('{0}\bin;C:\Program Files\Go\bin;{1}' -f $env:GOPATH, $env:PATH)
 	[Environment]::SetEnvironmentVariable('PATH', $newPath, [EnvironmentVariableTarget]::Machine);
 # doing this first to share cache across versions more aggressively
 
-ENV GOLANG_VERSION 1.23.7
+ENV GOLANG_VERSION 1.23.8
 
-RUN $url = 'https://download.visualstudio.microsoft.com/download/pr/7aae5053-b83d-415d-a0a2-d1438effd694/193bffc7137156d580f11f4d5e8500d1/go1.23.7-20250304.2.windows-amd64.zip'; \
+RUN $url = 'https://download.visualstudio.microsoft.com/download/pr/4e8cc2b3-53c0-4b0e-9fb6-5d62d5cca90c/3b67efc8d2bd39a4c18db45267512233/go1.23.8-20250401.2.windows-amd64.zip'; \
 	Write-Host ('Downloading {0} ...' -f $url); \
 	[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12; \
 	Invoke-WebRequest -Uri $url -OutFile 'go.zip'; \
 	\
-	$sha256 = 'eaa90e5c158501611df23a1635eb46d81d2706a440351f48e2f523ca773bcd41'; \
+	$sha256 = '2a3340a260dcc389213d23985c7477646561df67bb056bb8f668388f47253532'; \
 	Write-Host ('Verifying sha256 ({0}) ...' -f $sha256); \
 	if ((Get-FileHash go.zip -Algorithm sha256).Hash -ne $sha256) { \
 		Write-Host 'FAILED!'; \
