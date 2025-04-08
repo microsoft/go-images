@@ -2,7 +2,10 @@ module ci-tools
 
 go 1.22.0
 
-require github.com/microsoft/go-infra v0.0.6
+require (
+	github.com/golang-jwt/jwt/v5 v5.2.2
+	github.com/microsoft/go-infra v0.0.6
+)
 
 require (
 	github.com/google/uuid v1.6.0 // indirect
