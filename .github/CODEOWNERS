@@ -6,3 +6,4 @@
 # auto-merge flow without human intervention.
 /go
 /manifest.json
+/src/microsoft/
