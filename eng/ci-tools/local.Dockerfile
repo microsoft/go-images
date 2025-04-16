@@ -19,6 +19,7 @@ WORKDIR /go-images
 
 RUN cd eng/ci-tools \
 	&& go install github.com/microsoft/go-infra/cmd/dockerupdate \
-	&& git config --global --add safe.directory /go-images
+	&& git config --global --add safe.directory /go-images \
+	&& git config --global --add safe.directory /go-images/go
 
 ENTRYPOINT ["/go/bin/dockerupdate"]
