@@ -98,12 +98,16 @@ variables:
   value: main
 - name: gitHubVersionsRepoInfo.path
   value: ${{ variables.commonVersionsImageInfoPath }}
-- name: gitHubVersionsRepoInfo.accessToken
-  value: $(BotAccount-microsoft-golang-bot-PAT)
+- name: gitHubVersionsRepoInfo.authArgs
+  value: >-
+    --gh-private-key '$(BotAccount-bot-for-go-private-key)'
+    --gh-app-client-id '$(BotAccount-bot-for-go-client-id)'
+    --gh-app-installation-id '$(BotAccount-bot-for-go-installation)'
 - name: gitHubVersionsRepoInfo.userName
-  value: $(dotnetDockerBot.userName)
+  value: bot-for-go[bot]
 - name: gitHubVersionsRepoInfo.email
-  value: $(dotnetDockerBot.email)
+  # App's user id: https://api.github.com/users/bot-for-go%5Bbot%5D
+  value: 199222863+$(gitHubVersionsRepoInfo.userName)@users.noreply.github.com
 
 # Pool/image configuration.
 # Copied from /eng/common/templates/variables/dotnet/common.yml
