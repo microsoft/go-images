@@ -4,11 +4,11 @@ Date: Fri, 11 Feb 2022 18:07:18 -0600
 Subject: [PATCH] Add Azure Linux, FIPS, package upgrade
 
 ---
- Dockerfile-linux.template | 103 +++++++++++++++++++++++++++++++++++++-
- 1 file changed, 102 insertions(+), 1 deletion(-)
+ Dockerfile-linux.template | 104 +++++++++++++++++++++++++++++++++++++-
+ 1 file changed, 103 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 19d45e2048b326..e73b2d947ce64a 100644
+index 19d45e2048b326..7bb576fc025c47 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,9 +4,40 @@
@@ -104,7 +104,7 @@ index 19d45e2048b326..e73b2d947ce64a 100644
  	gpg --batch --verify go.tgz.asc go.tgz; \
  	gpgconf --kill all; \
  	rm -rf "$GNUPGHOME" go.tgz.asc; \
-@@ -216,18 +266,69 @@ RUN set -eux; \
+@@ -216,18 +266,70 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates
@@ -136,6 +136,7 @@ index 19d45e2048b326..e73b2d947ce64a 100644
 +		# The mcr.microsoft.com/cbl-mariner/base/core images are optimized for size to make them suitable for deployment, so many development tools aren't included.
 +		# There isn't a buildpack-deps analog for Azure Linux: https://github.com/microsoft/azurelinux/issues/8964 (https://devdiv.visualstudio.com/DevDiv/_workitems/edit/2055698)
 +		git \
++		make \
 +		shadow-utils \
 +		util-linux \
 +{{
