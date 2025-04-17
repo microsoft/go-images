@@ -131,6 +131,7 @@ RUN set -eux; \
 		make \
 		shadow-utils \
 		util-linux \
+		which \
 	; \
 	tdnf clean all
 
