@@ -128,6 +128,7 @@ RUN set -eux; \
 		# The mcr.microsoft.com/cbl-mariner/base/core images are optimized for size to make them suitable for deployment, so many development tools aren't included.
 		# There isn't a buildpack-deps analog for Azure Linux: https://github.com/microsoft/azurelinux/issues/8964 (https://devdiv.visualstudio.com/DevDiv/_workitems/edit/2055698)
 		git \
+		make \
 		shadow-utils \
 		util-linux \
 	; \
