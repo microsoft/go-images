@@ -8,7 +8,7 @@ FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm AS buil
 
 ENV PATH /usr/local/go/bin:$PATH
 
-ENV GOLANG_VERSION 1.24.3
+ENV GOLANG_VERSION 1.24.4
 
 RUN set -eux; \
 	now="$(date '+%s')"; \
@@ -17,19 +17,19 @@ RUN set -eux; \
 	urlSig=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://download.visualstudio.microsoft.com/download/pr/18982fcf-1155-40cc-bf0e-4b7564f22251/dfb7c8bd6b64c9fa9debd6efa724c609/go1.24.3-20250506.3.linux-amd64.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/18982fcf-1155-40cc-bf0e-4b7564f22251/266c14fd5f2240c509b1f715f0b6279e/go1.24.3-20250506.3.linux-amd64.tar.gz.sig'; \
-			sha256='d1e9e4465951816b556f648dfebc1cf20fdef4832d7d3f01f1ef35a259375286'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/1a9a3f50-f9f9-4a06-a5b6-30e4922ba01d/b20104f34e94fab7ff1bcde2c2ecd5f0/go1.24.4-20250605.5.linux-amd64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/1a9a3f50-f9f9-4a06-a5b6-30e4922ba01d/a96a6cd4388b974509c59b3d006c92b3/go1.24.4-20250605.5.linux-amd64.tar.gz.sig'; \
+			sha256='f21ddf7c3b029cf67615f6b2ca68e5aa83a50b2e2ea5952a5ea7bf9fa17e3358'; \
 			;; \
 		'armhf') \
-			url='https://download.visualstudio.microsoft.com/download/pr/18982fcf-1155-40cc-bf0e-4b7564f22251/3d149b264ff7d7718ee3d27a04518d70/go1.24.3-20250506.3.linux-armv6l.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/18982fcf-1155-40cc-bf0e-4b7564f22251/e620f6d22e280562c0c0a9bbca6c0a2a/go1.24.3-20250506.3.linux-armv6l.tar.gz.sig'; \
-			sha256='5c20018efd13d7c66f2e49ce78f4e35d6277cf61a95de7d8a46b7a91e2642b86'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/1a9a3f50-f9f9-4a06-a5b6-30e4922ba01d/905f3fd3607fca8f9f8bf4f8dc67a1ff/go1.24.4-20250605.5.linux-armv6l.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/1a9a3f50-f9f9-4a06-a5b6-30e4922ba01d/80be845f061f5ccf1a9c8fba67cc694d/go1.24.4-20250605.5.linux-armv6l.tar.gz.sig'; \
+			sha256='51cdaa2fbf6fce79a69c66a0ecfb9b837d56d634545230dde88f144248342769'; \
 			;; \
 		'arm64') \
-			url='https://download.visualstudio.microsoft.com/download/pr/18982fcf-1155-40cc-bf0e-4b7564f22251/e4d43c57efd1a31cf8673bf43aa69412/go1.24.3-20250506.3.linux-arm64.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/18982fcf-1155-40cc-bf0e-4b7564f22251/12b934cca6435f6dfec66ad778bc874c/go1.24.3-20250506.3.linux-arm64.tar.gz.sig'; \
-			sha256='6d4232da7ca7d2bd19e0b6b69524448de8e5480f49e5d39f7a5507cef682a9ea'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/1a9a3f50-f9f9-4a06-a5b6-30e4922ba01d/a33f0da754f734626e4e84a409e21ca2/go1.24.4-20250605.5.linux-arm64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/1a9a3f50-f9f9-4a06-a5b6-30e4922ba01d/fcd392a27df005c0e0320b79412e6bfb/go1.24.4-20250605.5.linux-arm64.tar.gz.sig'; \
+			sha256='44b769dd398f8fc5f381812c2eb323b4bc6cb11010d59efdba3244184e29b3fd'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
@@ -103,7 +103,7 @@ RUN set -eux; \
 	; \
 	rm -rf /var/lib/apt/lists/*
 
-ENV GOLANG_VERSION 1.24.3
+ENV GOLANG_VERSION 1.24.4
 
 # don't auto-upgrade the gotoolchain
 # https://github.com/docker-library/golang/issues/472
