@@ -8,8 +8,18 @@ schedules:
         - microsoft/main
     always: true
 
+parameters:
+  - name: sourceBuildPipelineRunId
+    displayName: >
+      The build ID of this pipeline to publish images from.
+      Use the default value when building new images.
+    type: string
+    default: '$(Build.BuildId)'
+
 variables:
   - template: variables/common.yml
+    parameters:
+      sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
 
 resources:
   repositories:
@@ -39,3 +49,4 @@ extends:
             # stage template, it returns an empty string. So, evaluate it here and pass it through.
             internalProjectName: ${{ variables.internalProjectName }}
             publicProjectName: ${{ variables.publicProjectName }}
+            sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}

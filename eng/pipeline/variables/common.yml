@@ -1,8 +1,19 @@
 parameters:
-  nightly: false
+  - name: nightly
+    type: boolean
+    default: false
+
+  - name: sourceBuildPipelineRunId
+    type: string
+    default: ""
 
 variables:
 - template: ../../common/templates/variables/common.yml
+  parameters:
+    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+
+- name: sourceBuildPipelineRunId
+  value: ${{ parameters.sourceBuildPipelineRunId }}
 
 - name: publicProjectName
   value: public
