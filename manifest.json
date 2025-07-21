@@ -346,6 +346,27 @@
         {
           "productVersion": "1.23",
           "sharedTags": {
+            "1-windowsservercore-ltsc2025": {},
+            "1.23-windowsservercore-ltsc2025": {},
+            "1.23.11-1-windowsservercore-ltsc2025": {},
+            "1.23.11-windowsservercore-ltsc2025": {},
+            "windowsservercore-ltsc2025": {}
+          },
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.23/windows/windowsservercore-ltsc2025",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2025",
+              "tags": {
+                "1.23.11-1-windowsservercore-ltsc2025-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.23",
+          "sharedTags": {
             "1-windowsservercore-ltsc2022": {},
             "1.23-windowsservercore-ltsc2022": {},
             "1.23.11-1-windowsservercore-ltsc2022": {},
@@ -367,20 +388,24 @@
         {
           "productVersion": "1.23",
           "sharedTags": {
-            "1-windowsservercore-1809": {},
-            "1.23-windowsservercore-1809": {},
-            "1.23.11-1-windowsservercore-1809": {},
-            "1.23.11-windowsservercore-1809": {},
-            "windowsservercore-1809": {}
+            "1-nanoserver-ltsc2025": {},
+            "1.23-nanoserver-ltsc2025": {},
+            "1.23.11-1-nanoserver-ltsc2025": {},
+            "1.23.11-nanoserver-ltsc2025": {},
+            "nanoserver-ltsc2025": {}
           },
           "platforms": [
             {
+              "buildArgs": {
+                "DOWNLOADER_TAG": "1.23.11-1-windowsservercore-ltsc2025-amd64",
+                "REPO": "$(Repo:golang)"
+              },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.23/windows/windowsservercore-1809",
+              "dockerfile": "src/microsoft/1.23/windows/nanoserver-ltsc2025",
               "os": "windows",
-              "osVersion": "windowsservercore-1809",
+              "osVersion": "nanoserver-ltsc2025",
               "tags": {
-                "1.23.11-1-windowsservercore-1809-amd64": {}
+                "1.23.11-1-nanoserver-ltsc2025-amd64": {}
               }
             }
           ]
@@ -413,24 +438,24 @@
         {
           "productVersion": "1.23",
           "sharedTags": {
-            "1-nanoserver-1809": {},
-            "1.23-nanoserver-1809": {},
-            "1.23.11-1-nanoserver-1809": {},
-            "1.23.11-nanoserver-1809": {},
-            "nanoserver-1809": {}
+            "1-fips-windowsservercore-ltsc2025": {},
+            "1.23-fips-windowsservercore-ltsc2025": {},
+            "1.23.11-1-fips-windowsservercore-ltsc2025": {},
+            "1.23.11-fips-windowsservercore-ltsc2025": {},
+            "fips-windowsservercore-ltsc2025": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.23.11-1-windowsservercore-1809-amd64",
+                "FROM_TAG": "1.23.11-1-windowsservercore-ltsc2025-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.23/windows/nanoserver-1809",
+              "dockerfile": "src/microsoft/1.23/windows/fips/windowsservercore-ltsc2025",
               "os": "windows",
-              "osVersion": "nanoserver-1809",
+              "osVersion": "windowsservercore-ltsc2025",
               "tags": {
-                "1.23.11-1-nanoserver-1809-amd64": {}
+                "1.23.11-1-fips-windowsservercore-ltsc2025-amd64": {}
               }
             }
           ]
@@ -463,24 +488,24 @@
         {
           "productVersion": "1.23",
           "sharedTags": {
-            "1-fips-windowsservercore-1809": {},
-            "1.23-fips-windowsservercore-1809": {},
-            "1.23.11-1-fips-windowsservercore-1809": {},
-            "1.23.11-fips-windowsservercore-1809": {},
-            "fips-windowsservercore-1809": {}
+            "1-fips-nanoserver-ltsc2025": {},
+            "1.23-fips-nanoserver-ltsc2025": {},
+            "1.23.11-1-fips-nanoserver-ltsc2025": {},
+            "1.23.11-fips-nanoserver-ltsc2025": {},
+            "fips-nanoserver-ltsc2025": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.23.11-1-windowsservercore-1809-amd64",
+                "FROM_TAG": "1.23.11-1-nanoserver-ltsc2025-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.23/windows/fips/windowsservercore-1809",
+              "dockerfile": "src/microsoft/1.23/windows/fips/nanoserver-ltsc2025",
               "os": "windows",
-              "osVersion": "windowsservercore-1809",
+              "osVersion": "nanoserver-ltsc2025",
               "tags": {
-                "1.23.11-1-fips-windowsservercore-1809-amd64": {}
+                "1.23.11-1-fips-nanoserver-ltsc2025-amd64": {}
               }
             }
           ]
@@ -506,31 +531,6 @@
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
                 "1.23.11-1-fips-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.23",
-          "sharedTags": {
-            "1-fips-nanoserver-1809": {},
-            "1.23-fips-nanoserver-1809": {},
-            "1.23.11-1-fips-nanoserver-1809": {},
-            "1.23.11-fips-nanoserver-1809": {},
-            "fips-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.23.11-1-nanoserver-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.23/windows/fips/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.23.11-1-fips-nanoserver-1809-amd64": {}
               }
             }
           ]
@@ -853,6 +853,25 @@
         {
           "productVersion": "1.24",
           "sharedTags": {
+            "1.24-windowsservercore-ltsc2025": {},
+            "1.24.5-1-windowsservercore-ltsc2025": {},
+            "1.24.5-windowsservercore-ltsc2025": {}
+          },
+          "platforms": [
+            {
+              "architecture": "amd64",
+              "dockerfile": "src/microsoft/1.24/windows/windowsservercore-ltsc2025",
+              "os": "windows",
+              "osVersion": "windowsservercore-ltsc2025",
+              "tags": {
+                "1.24.5-1-windowsservercore-ltsc2025-amd64": {}
+              }
+            }
+          ]
+        },
+        {
+          "productVersion": "1.24",
+          "sharedTags": {
             "1.24-windowsservercore-ltsc2022": {},
             "1.24.5-1-windowsservercore-ltsc2022": {},
             "1.24.5-windowsservercore-ltsc2022": {}
@@ -872,18 +891,22 @@
         {
           "productVersion": "1.24",
           "sharedTags": {
-            "1.24-windowsservercore-1809": {},
-            "1.24.5-1-windowsservercore-1809": {},
-            "1.24.5-windowsservercore-1809": {}
+            "1.24-nanoserver-ltsc2025": {},
+            "1.24.5-1-nanoserver-ltsc2025": {},
+            "1.24.5-nanoserver-ltsc2025": {}
           },
           "platforms": [
             {
+              "buildArgs": {
+                "DOWNLOADER_TAG": "1.24.5-1-windowsservercore-ltsc2025-amd64",
+                "REPO": "$(Repo:golang)"
+              },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.24/windows/windowsservercore-1809",
+              "dockerfile": "src/microsoft/1.24/windows/nanoserver-ltsc2025",
               "os": "windows",
-              "osVersion": "windowsservercore-1809",
+              "osVersion": "nanoserver-ltsc2025",
               "tags": {
-                "1.24.5-1-windowsservercore-1809-amd64": {}
+                "1.24.5-1-nanoserver-ltsc2025-amd64": {}
               }
             }
           ]
@@ -914,22 +937,22 @@
         {
           "productVersion": "1.24",
           "sharedTags": {
-            "1.24-nanoserver-1809": {},
-            "1.24.5-1-nanoserver-1809": {},
-            "1.24.5-nanoserver-1809": {}
+            "1.24-fips-windowsservercore-ltsc2025": {},
+            "1.24.5-1-fips-windowsservercore-ltsc2025": {},
+            "1.24.5-fips-windowsservercore-ltsc2025": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.24.5-1-windowsservercore-1809-amd64",
+                "FROM_TAG": "1.24.5-1-windowsservercore-ltsc2025-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.24/windows/nanoserver-1809",
+              "dockerfile": "src/microsoft/1.24/windows/fips/windowsservercore-ltsc2025",
               "os": "windows",
-              "osVersion": "nanoserver-1809",
+              "osVersion": "windowsservercore-ltsc2025",
               "tags": {
-                "1.24.5-1-nanoserver-1809-amd64": {}
+                "1.24.5-1-fips-windowsservercore-ltsc2025-amd64": {}
               }
             }
           ]
@@ -960,22 +983,22 @@
         {
           "productVersion": "1.24",
           "sharedTags": {
-            "1.24-fips-windowsservercore-1809": {},
-            "1.24.5-1-fips-windowsservercore-1809": {},
-            "1.24.5-fips-windowsservercore-1809": {}
+            "1.24-fips-nanoserver-ltsc2025": {},
+            "1.24.5-1-fips-nanoserver-ltsc2025": {},
+            "1.24.5-fips-nanoserver-ltsc2025": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "FROM_TAG": "1.24.5-1-windowsservercore-1809-amd64",
+                "FROM_TAG": "1.24.5-1-nanoserver-ltsc2025-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.24/windows/fips/windowsservercore-1809",
+              "dockerfile": "src/microsoft/1.24/windows/fips/nanoserver-ltsc2025",
               "os": "windows",
-              "osVersion": "windowsservercore-1809",
+              "osVersion": "nanoserver-ltsc2025",
               "tags": {
-                "1.24.5-1-fips-windowsservercore-1809-amd64": {}
+                "1.24.5-1-fips-nanoserver-ltsc2025-amd64": {}
               }
             }
           ]
@@ -999,29 +1022,6 @@
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
                 "1.24.5-1-fips-nanoserver-ltsc2022-amd64": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.24",
-          "sharedTags": {
-            "1.24-fips-nanoserver-1809": {},
-            "1.24.5-1-fips-nanoserver-1809": {},
-            "1.24.5-fips-nanoserver-1809": {}
-          },
-          "platforms": [
-            {
-              "buildArgs": {
-                "FROM_TAG": "1.24.5-1-nanoserver-1809-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.24/windows/fips/nanoserver-1809",
-              "os": "windows",
-              "osVersion": "nanoserver-1809",
-              "tags": {
-                "1.24.5-1-fips-nanoserver-1809-amd64": {}
               }
             }
           ]
