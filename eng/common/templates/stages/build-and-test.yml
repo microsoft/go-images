@@ -7,6 +7,7 @@ parameters:
   customGenerateMatrixInitSteps: []
   customBuildInitSteps: []
   customTestInitSteps: []
+  sourceBuildPipelineRunId: ""
 
   linuxAmdBuildJobTimeout: 60
   linuxArmBuildJobTimeout: 60
@@ -48,7 +49,9 @@ parameters:
 stages:
 - stage: Build
   condition: and(succeeded(), contains(variables['stages'], 'build'))
+  dependsOn: []
   jobs:
+
   - template: /eng/common/templates/jobs/test-images-linux-client.yml@self
     parameters:
       name: PreBuildValidation
@@ -67,12 +70,14 @@ stages:
             echo "##vso[task.setvariable variable=osVersions]"
             echo "##vso[task.setvariable variable=architecture]"
           displayName: Initialize Test Variables
+
   - template: /eng/common/templates/jobs/copy-base-images-staging.yml@self
     parameters:
       name: CopyBaseImages
       pool: ${{ parameters.linuxAmd64Pool }}
       additionalOptions: "--manifest '$(manifest)' $(imageBuilder.pathArgs) $(manifestVariables)"
       customInitSteps: ${{ parameters.customCopyBaseImagesInitSteps }}
+
   - template: /eng/common/templates/jobs/generate-matrix.yml@self
     parameters:
       matrixType: ${{ parameters.buildMatrixType }}
@@ -88,7 +93,7 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
+
   - template: /eng/common/templates/jobs/build-images.yml@self
     parameters:
       name: Linux_amd64
@@ -102,7 +107,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -121,7 +125,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -140,7 +143,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -159,7 +161,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -178,7 +179,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -197,7 +197,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -218,7 +217,6 @@ stages:
           noCache: ${{ parameters.noCache }}
           internalVersionsRepoRef: ${{ parameters.internalVersionsRepoRef }}
           publicVersionsRepoRef: ${{ parameters.publicVersionsRepoRef }}
-          isInternalServicingValidation: ${{ parameters.isInternalServicingValidation }}
       customInitSteps: ${{ parameters.customBuildInitSteps }}
       noCache: ${{ parameters.noCache }}
       internalProjectName: ${{ parameters.internalProjectName }}
@@ -241,7 +239,7 @@ stages:
 ################################################################################
 # Test Images
 ################################################################################
-- ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest'), eq(parameters.isInternalServicingValidation, 'false')) }}:
+- ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
   - stage: Test
     dependsOn: Post_Build
     condition: "
@@ -266,6 +264,7 @@ stages:
         internalProjectName: ${{ parameters.internalProjectName }}
         publicProjectName: ${{ parameters.publicProjectName }}
         customInitSteps: ${{ parameters.customGenerateMatrixInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
         commonInitStepsForMatrixAndBuild:
         - template: /eng/common/templates/steps/common-init-for-matrix-and-build.yml@self
           parameters:
@@ -280,6 +279,7 @@ stages:
         testJobTimeout: ${{ parameters.linuxAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     - template: /eng/common/templates/jobs/test-images-linux-client.yml@self
       parameters:
         name: Linux_arm64
@@ -288,6 +288,7 @@ stages:
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     - template: /eng/common/templates/jobs/test-images-linux-client.yml@self
       parameters:
         name: Linux_arm32
@@ -296,6 +297,7 @@ stages:
         testJobTimeout: ${{ parameters.linuxArmTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     - template: /eng/common/templates/jobs/test-images-windows-client.yml@self
       parameters:
         name: Windows1809_amd64
@@ -304,6 +306,7 @@ stages:
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     - template: /eng/common/templates/jobs/test-images-windows-client.yml@self
       parameters:
         name: Windows2022_amd64
@@ -312,6 +315,7 @@ stages:
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     - template: /eng/common/templates/jobs/test-images-windows-client.yml@self
       parameters:
         name: Windows2025_amd64
@@ -320,6 +324,7 @@ stages:
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
     - template: /eng/common/templates/jobs/test-images-windows-client.yml@self
       parameters:
         name: WindowsLtsc2016_amd64
@@ -328,3 +333,4 @@ stages:
         testJobTimeout: ${{ parameters.windowsAmdTestJobTimeout }}
         internalProjectName: ${{ parameters.internalProjectName }}
         customInitSteps: ${{ parameters.customTestInitSteps }}
+        sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
