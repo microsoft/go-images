@@ -6,6 +6,16 @@
 
 FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bullseye-scm AS build
 
+# Remove optional packages that are marked as vulnerable and that don't have fixes available.
+# Then try to install up-to-date versions, so that if the distro makes them available in the future,
+# our next build will automatically include them.
+RUN set -eux; \
+	apt-get autoremove -y \
+		subversion \
+	; \
+	apt-get satisfy -y 'subversion (>= 1.14.5)' || echo 'patched subversion not available' ; \
+	rm -rf /var/lib/apt/lists/*
+
 ENV PATH /usr/local/go/bin:$PATH
 
 ENV GOLANG_VERSION 1.23.11
