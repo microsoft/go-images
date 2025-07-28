@@ -57,7 +57,7 @@ variables:
 
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - ${{ if eq(parameters.nightly, false) }}:
-    - group: go-docker-common
+    - group: go-docker-common-2
   - ${{ if eq(parameters.nightly, true) }}:
     - group: go-docker-common-nightly
   - group: Microsoft-GoLang-bot
@@ -76,19 +76,6 @@ variables:
 # We don't host a public mirror. Note: an empty string is necessary so the
 # variable is defined and .NET Docker logic works.
 - name: public-mirror.server
-  value: ''
-
-- name: test.serviceConnectionName
-  value: $(acr.serviceConnectionName)
-- name: internal-mirror.serviceConnectionName
-  value: $(acr.serviceConnectionName)
-- name: build.serviceConnectionName
-  value: $(acr.serviceConnectionName)
-- name: publish.serviceConnectionName
-  value: $(acr.serviceConnectionName)
-- name: marStatus.serviceConnectionName
-  value: ''
-- name: kusto.serviceConnectionName
   value: ''
 
 # Configuration for publishing the image-info JSON file.
