@@ -26,6 +26,8 @@ variables:
 
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
+- name: publishEolAnnotations
+  value: true
 - name: officialRepoPrefixes
   ${{ if eq(parameters.nightly, false) }}:
     # Publish to "public/" or "private/internal/". Tags under these repo prefixes will be detected
