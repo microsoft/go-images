@@ -26,8 +26,6 @@ variables:
 
 - name: publicGitRepoUri
   value: https://github.com/microsoft/go
-- name: publishEolAnnotations
-  value: true
 - name: officialRepoPrefixes
   ${{ if eq(parameters.nightly, false) }}:
     # Publish to "public/" or "private/internal/". Tags under these repo prefixes will be detected
@@ -42,6 +40,9 @@ variables:
   value: false
 # Publish image info to https://github.com/dotnet/versions/tree/main/build-info
 - name: publishImageInfo
+  value: true
+# Publish EOL annotations for MAR/MCR.
+- name: publishEolAnnotations
   value: true
 # https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
 - name: ingestKustoImageInfo
