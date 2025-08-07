@@ -19,6 +19,8 @@ parameters:
     default: false
 
 variables:
+  - template: variables/pipeline.yml
+
   - name: Codeql.PublishDatabase
     value: true
   - name: Codeql.PublishDatabaseLog
@@ -35,7 +37,7 @@ variables:
 resources:
   pipelines:
     - pipeline: build
-      source: microsoft-go-images
+      source: microsoft-go-images (official)
       trigger:
         branches:
           include:
@@ -47,7 +49,10 @@ resources:
       ref: refs/tags/release
 
 extends:
-  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  ${{ if variables['Go1ESOfficial'] }}:
+    template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  ${{ else }}:
+    template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     pool:
       name: NetCore1ESPool-Svc-Internal
