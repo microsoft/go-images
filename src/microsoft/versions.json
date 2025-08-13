@@ -1,75 +1,4 @@
 {
-  "1.23": {
-    "arches": {
-      "amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "linux"
-        },
-        "sha256": "3090e3e16cb95801205562c794d27cfa4bcaf8c6e763a5b0c7de90f886715fb0",
-        "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/a5f41bbc8c45b6f38c1a2377237484d3/go1.23.12-20250806.6.linux-amd64.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/db342a4dfb8708ae383c5f4af0dc1af1/go1.23.12-20250806.6.linux-amd64.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/d897bfc94997274bf4fe345a15440d33/go1.23.12-20250806.6.linux-amd64.tar.gz.sig"
-      },
-      "arm32v7": {
-        "env": {
-          "GOARCH": "arm",
-          "GOARM": "7",
-          "GOOS": "linux"
-        },
-        "sha256": "8ef53400cd95432204d7bd1cca4e80cd5dfaed550c4478fbbad63ed112d89d1b",
-        "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/7618ca6f14431d33290a81201eb55e8d/go1.23.12-20250806.6.linux-armv6l.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/11f5baf8eaf8d689afd634afe829e8a3/go1.23.12-20250806.6.linux-armv6l.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/5452de2213e7f5ef94325dc62510fffb/go1.23.12-20250806.6.linux-armv6l.tar.gz.sig"
-      },
-      "arm64v8": {
-        "env": {
-          "GOARCH": "arm64",
-          "GOOS": "linux"
-        },
-        "sha256": "87276beccb47a4f57deb57e2ce17935d11b458e1e569be581f24457873f82708",
-        "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/15ca41df53d10b71fe387811f7cc9075/go1.23.12-20250806.6.linux-arm64.tar.gz",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/03ac93808fce945a5d07d51321567d91/go1.23.12-20250806.6.linux-arm64.tar.gz.sha256",
-        "pgpSignatureUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/7c0683871a2bbb8349964b2474aeb549/go1.23.12-20250806.6.linux-arm64.tar.gz.sig"
-      },
-      "windows-amd64": {
-        "env": {
-          "GOARCH": "amd64",
-          "GOOS": "windows"
-        },
-        "sha256": "926628fc8cff3db5e80c6f1c5063545420b1adfc742cd68bc1227a1352ab00c1",
-        "supported": true,
-        "url": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/351263d7ea5527cc0c11e7d39793b305/go1.23.12-20250806.6.windows-amd64.zip",
-        "sha256ChecksumUrl": "https://download.visualstudio.microsoft.com/download/pr/4561a92e-5ea8-4523-9985-279a84947032/9b9073bd244a896d394ec27390a7488b/go1.23.12-20250806.6.windows-amd64.zip.sha256"
-      }
-    },
-    "variants": [
-      "bookworm",
-      "bullseye",
-      "cbl-mariner2.0",
-      "azurelinux3.0",
-      "fips/bookworm",
-      "fips/bullseye",
-      "fips/cbl-mariner2.0",
-      "fips/azurelinux3.0",
-      "windows/windowsservercore-ltsc2025",
-      "windows/windowsservercore-ltsc2022",
-      "windows/nanoserver-ltsc2025",
-      "windows/nanoserver-ltsc2022",
-      "windows/fips/windowsservercore-ltsc2025",
-      "windows/fips/windowsservercore-ltsc2022",
-      "windows/fips/nanoserver-ltsc2025",
-      "windows/fips/nanoserver-ltsc2022"
-    ],
-    "version": "1.23.12",
-    "revision": "1",
-    "preferredMajor": true,
-    "preferredMinor": true,
-    "preferredVariant": "bookworm"
-  },
   "1.24": {
     "arches": {
       "amd64": {
@@ -160,6 +89,8 @@
     ],
     "version": "1.24.6",
     "revision": "1",
+    "preferredMajor": true,
+    "preferredMinor": true,
     "preferredVariant": "bookworm"
   },
   "1.25": {
@@ -237,18 +168,10 @@
       "bullseye",
       "cbl-mariner2.0",
       "azurelinux3.0",
-      "fips/bookworm",
-      "fips/bullseye",
-      "fips/cbl-mariner2.0",
-      "fips/azurelinux3.0",
       "windows/windowsservercore-ltsc2025",
       "windows/windowsservercore-ltsc2022",
       "windows/nanoserver-ltsc2025",
-      "windows/nanoserver-ltsc2022",
-      "windows/fips/windowsservercore-ltsc2025",
-      "windows/fips/windowsservercore-ltsc2022",
-      "windows/fips/nanoserver-ltsc2025",
-      "windows/fips/nanoserver-ltsc2022"
+      "windows/nanoserver-ltsc2022"
     ],
     "version": "1.25.0",
     "revision": "1",
