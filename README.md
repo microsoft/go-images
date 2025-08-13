@@ -14,15 +14,18 @@ The supported tags in this repository are rebuilt approximately twice a week to 
 
 ## Recommended tags
 
-The tag we recommend for use inside Microsoft is the Azure Linux 3.0 tag with the `fips` helper enabled.
+The tag we recommend for use inside Microsoft is the Go 1.24 Azure Linux 3.0 tag with the `fips` helper enabled.
 This sets the `GOEXPERIMENT` environment variable to `systemcrypto`.
 (See [What is `-fips`?](docs/tags.md#what-is--fips))
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.23-fips-azurelinux3.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.24-fips-azurelinux3.0
 ```
 
-We recommend using this tag in the `build` stage of a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/).
+The 1.25 tags no longer support a `-fips` variant, because `systemcrypto` is enabled by default in the Microsoft build of Go as of Go 1.25.
+For more background information about this change, see [Microsoft build of Go 1.25 crypto backend changes](https://devblogs.microsoft.com/go/microsoft-go-defaults-to-system-crypto/).
+
+We recommend using these tags in the `build` stage of a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/).
 The final stage should be based on a minimal image.
 This avoids unnecessarily deploying build-time dependencies to production.
 However, it doesn't necessarily break compliance to use this tag in the final (or only) stage.
@@ -32,7 +35,7 @@ The right image to use may depend on your organization or it may need to be cust
 More guidance is available at [Containers Secure Supply Chain - Selecting base images (internal Microsoft link)](https://eng.ms/docs/more/containers-secure-supply-chain/images).
 
 > [!IMPORTANT]
-> Our `1.23-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
+> Our `1.24-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
 > These tags are suitable for a `build` stage, but not for FIPS-compliant deployment.
 
 ## Tag organization

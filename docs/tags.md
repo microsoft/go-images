@@ -58,6 +58,9 @@ You don't need to use a `-fips` tag to build a FIPS-compliant app: you can use t
 
 A tag that includes `-fips` does not necessarily contain a FIPS certified cryptographic module. That is: the container can build a FIPS-compliant app, but may not be able to run it in a FIPS compliant manner.
 
+The `-fips` tags are only provided for Go versions prior to 1.25.
+In the Microsoft build of Go, `systemcrypto` is enabled by default as of Go 1.25, so it isn't necessary to set `GOEXPERIMENT`.
+
 # Tag lifecycle
 
 The Go versions supported by this repo follow the support lifecycle of [microsoft/go](https://github.com/microsoft/go), which generates the Go binaries used in this repository. OS versions are supported until the OS is EOL. When a tag's Go support or OS support ends, the tag is no longer supported and we delete the Dockerfile when it's convenient to do so.
