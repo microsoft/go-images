@@ -1,5 +1,5 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
+From: bot-for-go[bot] <199222863+bot-for-go[bot]@users.noreply.github.com>
 Date: Fri, 11 Feb 2022 18:03:46 -0600
 Subject: [PATCH] Check signature of microsoft/go builds
 

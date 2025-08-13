@@ -1,5 +1,5 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: microsoft-golang-bot <microsoft-golang-bot@users.noreply.github.com>
+From: bot-for-go[bot] <199222863+bot-for-go[bot]@users.noreply.github.com>
 Date: Fri, 3 Jun 2022 12:26:05 -0500
 Subject: [PATCH] Use MCR mirror for buildpack-deps
 
@@ -8,10 +8,10 @@ Subject: [PATCH] Use MCR mirror for buildpack-deps
  1 file changed, 2 insertions(+), 2 deletions(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index b8849cc2142d76..d71d53dde7565e 100644
+index e14bb6a6bf3344..0e18cc03ae5a63 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -30,7 +30,7 @@ RUN set -eux; \
+@@ -39,7 +39,7 @@ RUN set -eux; \
  	; \
  	tdnf clean all
  {{ ) else ( -}}
@@ -20,7 +20,7 @@ index b8849cc2142d76..d71d53dde7565e 100644
  {{ ) end -}}
  
  ENV PATH /usr/local/go/bin:$PATH
-@@ -209,7 +209,7 @@ RUN set -eux; \
+@@ -310,7 +310,7 @@ RUN set -eux; \
  	tdnf clean all
  
  {{ ) else ( -}}

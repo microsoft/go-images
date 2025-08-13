@@ -9,7 +9,7 @@ parameters:
 jobs:
 - job: Publish
   pool: ${{ parameters.pool }}
-  timeoutInMinutes: 90
+  timeoutInMinutes: 180
 
   variables:
   - name: imageBuilder.commonCmdArgs
