@@ -1,5 +1,5 @@
 From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
-From: Davis Goodin <dagood@microsoft.com>
+From: bot-for-go[bot] <199222863+bot-for-go[bot]@users.noreply.github.com>
 Date: Thu, 4 Apr 2024 10:57:18 -0500
 Subject: [PATCH] Remove "--link" not known by builder
 
@@ -24,10 +24,10 @@ about the 1.21 tar.gz bug.
  1 file changed, 2 insertions(+), 3 deletions(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 9f0b6ae099a74e..9b8b5ec9eadf63 100644
+index 0e18cc03ae5a63..bfa9b58f6558b3 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -182,8 +182,7 @@ RUN set -eux; \
+@@ -259,8 +259,7 @@ RUN set -eux; \
  	go version; \
  # make sure our reproducibile timestamp is probably still correct (best-effort inline reproducibility test)
  	epoch="$(stat -c '%Y' /target/usr/local/go)"; \
@@ -37,7 +37,7 @@ index 9f0b6ae099a74e..9b8b5ec9eadf63 100644
  
  {{ if is_alpine then ( -}}
  FROM alpine:{{ alpine_version }}
-@@ -265,6 +264,6 @@ ENV GOTOOLCHAIN=local
+@@ -346,6 +345,6 @@ ENV GOTOOLCHAIN=local
  ENV GOPATH /go
  ENV PATH $GOPATH/bin:/usr/local/go/bin:$PATH
  # (see notes above about "COPY --link")
