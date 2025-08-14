@@ -8,23 +8,23 @@ Subject: [PATCH] Remove packages marked vulnerable
  1 file changed, 10 insertions(+)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index bfa9b58f6558b3..dbbf8dad9be147 100644
+index bfa9b58f6558b3..f4a1f33dadb9e7 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
-@@ -40,6 +40,16 @@ RUN set -eux; \
- 	tdnf clean all
+@@ -311,6 +311,16 @@ RUN set -eux; \
  {{ ) else ( -}}
- FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:{{ env.variant }}-scm AS build
-+
-+# Remove optional packages that are marked as vulnerable and that don't have fixes available.
-+# Then try to install up-to-date versions, so that if the distro makes them available in the future,
-+# our next build will automatically include them.
-+RUN set -eux; \
-+	apt-get autoremove -y \
+ FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:{{ env.variant }}-scm
+
++ # Remove optional packages that are marked as vulnerable and that don't have fixes available.
++ # Then try to install up-to-date versions, so that if the distro makes them available in the future,
++ # our next build will automatically include them.
++ RUN set -eux; \
++ 	apt-get autoremove -y \
 +		subversion \
-+	; \
-+	apt-get satisfy -y 'subversion (>= 1.14.5)' || echo 'patched subversion not available' ; \
-+	rm -rf /var/lib/apt/lists/*
- {{ ) end -}}
- 
- ENV PATH /usr/local/go/bin:$PATH
++ 	; \
++ 	apt-get satisfy -y 'subversion (>= 1.14.5)' || echo 'patched subversion not available' ; \
++ 	rm -rf /var/lib/apt/lists/*
++
+ # install cgo-related dependencies
+ RUN set -eux; \
+ 	apt-get update; \
