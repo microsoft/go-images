@@ -94,7 +94,7 @@ FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bookworm-scm
 # our next build will automatically include them.
 RUN set -eux; \
 	apt-get autoremove -y \
-	subversion \
+		subversion \
 	; \
 	apt-get satisfy -y 'subversion (>= 1.14.5)' || echo 'patched subversion not available' ; \
 	rm -rf /var/lib/apt/lists/*
