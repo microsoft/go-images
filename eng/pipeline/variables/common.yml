@@ -76,8 +76,12 @@ variables:
   value: $(GolangDockerBuild)
 
 # We don't use a different ACR for staging vs. non-staging images.
+- name: acr-staging.resourceGroup
+  value: $(acr.resourceGroup)
 - name: acr-staging.server
   value: $(acr.server)
+- name: acr-staging.subscription
+  value: $(acr.subscription)
 # We don't host a public mirror. Note: an empty string is necessary so the
 # variable is defined and .NET Docker logic works.
 - name: public-mirror.server
