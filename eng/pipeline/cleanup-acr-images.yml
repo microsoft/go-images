@@ -9,7 +9,7 @@ schedules:
   displayName: Nightly build
   branches:
     include:
-    - main
+    - microsoft/main
   always: true
 
 variables:
