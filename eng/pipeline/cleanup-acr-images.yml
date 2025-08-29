@@ -1,3 +1,6 @@
+# This pipeline is used to clean up old images in our Azure Container Registries.
+# It's derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
+
 trigger: none
 pr: none
 
