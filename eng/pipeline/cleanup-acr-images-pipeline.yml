@@ -1,0 +1,113 @@
+# This pipeline is used to clean up old images in our Azure Container Registries.
+# It's derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
+
+trigger: none
+pr: none
+
+# For info about runtime parameters, see https://github.com/microsoft/go-infra/blob/main/docs/pipeline-yml-style.md#runtime-parameters
+parameters:
+  - name: disableTSA
+    displayName: "[Debug input] Disable TSA reporting. Use to try modifications in dev branches."
+    type: boolean
+    default: false
+
+schedules:
+  - cron: "0 5 * * *"
+    displayName: Nightly build
+    branches:
+      include:
+        - microsoft/main
+    always: true
+
+variables:
+  - template: variables/pipeline.yml
+  - template: variables/common.yml
+
+resources:
+  repositories:
+    - repository: 1ESPipelineTemplates
+      type: git
+      name: 1ESPipelineTemplates/1ESPipelineTemplates
+      ref: refs/tags/release
+
+extends:
+  ${{ if variables['Go1ESOfficial'] }}:
+    template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  ${{ else }}:
+    template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
+  parameters:
+    sdl:
+      sourceAnalysisPool:
+        name: NetCore1ESPool-Internal
+        image: 1es-windows-2022
+        os: windows
+      credscan:
+        suppressionsFile: $(Build.SourcesDirectory)/.config/CredScanSuppressions.json
+      tsa:
+        enabled: ${{ not(parameters.disableTSA) }}
+        configFile: $(Build.SourcesDirectory)/.config/tsa/tsaoptions.json
+    stages:
+      - template: /eng/common/templates/stages/setup-service-connections.yml@self
+        parameters:
+          pool:
+            name: $(default1ESInternalPoolName)
+            image: $(default1ESInternalPoolImage)
+            os: linux
+          serviceConnections:
+            - name: $(clean.serviceConnectionName)
+      - stage: Build
+        dependsOn: []
+        jobs:
+          - job: Build
+            pool:
+              name: $(default1ESInternalPoolName)
+              image: $(default1ESInternalPoolImage)
+              os: linux
+            steps:
+              - template: /eng/common/templates/steps/init-docker-linux.yml@self
+              - template: /eng/common/templates/steps/clean-acr-images.yml@self
+                parameters:
+                  internalProjectName: ${{ variables.internalProjectName }}
+                  repo: "build-staging/*"
+                  subscription: $(acr-staging.subscription)
+                  resourceGroup: $(acr-staging.resourceGroup)
+                  acr: $(acr-staging.server)
+                  action: delete
+                  age: 15
+              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
+              #     repo: "public/dotnet/*"
+              #     subscription: $(acr.subscription)
+              #     resourceGroup: $(acr.resourceGroup)
+              #     acr: $(acr.server)
+              #     action: pruneEol
+              #     age: 15
+              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
+              #     repo: "test/*"
+              #     subscription: $(acr.subscription)
+              #     resourceGroup: $(acr.resourceGroup)
+              #     acr: $(acr.server)
+              #     action: pruneAll
+              #     age: 7
+              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
+              #     repo: "public/dotnet-buildtools/*"
+              #     subscription: $(acr.subscription)
+              #     resourceGroup: $(acr.resourceGroup)
+              #     acr: $(acr.server)
+              #     action: pruneEol
+              #     age: 15
+              #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
+              # # Disabled due to https://github.com/dotnet/docker-tools/issues/797
+              # - template: ../common/templates/steps/clean-acr-images.yml
+              #   parameters:
+              #     repo: "mirror/*"
+              #     subscription: $(acr-staging.subscription)
+              #     resourceGroup: $(acr-staging.resourceGroup)
+              #     arc: $(acr-staging.server)
+              #     action: pruneDangling
+              #     age: 0
