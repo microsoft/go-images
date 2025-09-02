@@ -60,8 +60,8 @@ extends:
         jobs:
           - job: Build
             pool:
-              name: NetCore1ESPool-Internal
-              image: 1es-ubuntu-2204
+              name: $(default1ESInternalPoolName)
+              image: $(default1ESInternalPoolImage)
               os: linux
             steps:
               - template: /eng/common/templates/steps/init-docker-linux.yml@self
@@ -74,40 +74,40 @@ extends:
                   acr: $(acr-staging.server)
                   action: delete
                   age: 15
-          # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-          #   parameters:
-          #     internalProjectName: ${{ variables.internalProjectName }}
-          #     repo: "public/dotnet/*"
-          #     subscription: $(acr.subscription)
-          #     resourceGroup: $(acr.resourceGroup)
-          #     acr: $(acr.server)
-          #     action: pruneEol
-          #     age: 15
-          # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-          #   parameters:
-          #     internalProjectName: ${{ variables.internalProjectName }}
-          #     repo: "test/*"
-          #     subscription: $(acr.subscription)
-          #     resourceGroup: $(acr.resourceGroup)
-          #     acr: $(acr.server)
-          #     action: pruneAll
-          #     age: 7
-          # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-          #   parameters:
-          #     internalProjectName: ${{ variables.internalProjectName }}
-          #     repo: "public/dotnet-buildtools/*"
-          #     subscription: $(acr.subscription)
-          #     resourceGroup: $(acr.resourceGroup)
-          #     acr: $(acr.server)
-          #     action: pruneEol
-          #     age: 15
-          #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
-          # Disabled due to https://github.com/dotnet/docker-tools/issues/797
-          # - template: ../common/templates/steps/clean-acr-images.yml
-          #   parameters:
-          #     repo: "mirror/*"
-          #     subscription: $(acr-staging.subscription)
-          #     resourceGroup: $(acr-staging.resourceGroup)
-          #     arc: $(acr-staging.server)
-          #     action: pruneDangling
-          #     age: 0
+              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
+              #     repo: "public/dotnet/*"
+              #     subscription: $(acr.subscription)
+              #     resourceGroup: $(acr.resourceGroup)
+              #     acr: $(acr.server)
+              #     action: pruneEol
+              #     age: 15
+              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
+              #     repo: "test/*"
+              #     subscription: $(acr.subscription)
+              #     resourceGroup: $(acr.resourceGroup)
+              #     acr: $(acr.server)
+              #     action: pruneAll
+              #     age: 7
+              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
+              #     repo: "public/dotnet-buildtools/*"
+              #     subscription: $(acr.subscription)
+              #     resourceGroup: $(acr.resourceGroup)
+              #     acr: $(acr.server)
+              #     action: pruneEol
+              #     age: 15
+              #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
+              # # Disabled due to https://github.com/dotnet/docker-tools/issues/797
+              # - template: ../common/templates/steps/clean-acr-images.yml
+              #   parameters:
+              #     repo: "mirror/*"
+              #     subscription: $(acr-staging.subscription)
+              #     resourceGroup: $(acr-staging.resourceGroup)
+              #     arc: $(acr-staging.server)
+              #     action: pruneDangling
+              #     age: 0
