@@ -8,7 +8,7 @@ Subject: [PATCH] Add Azure Linux, FIPS, package upgrade
  1 file changed, 104 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 19d45e2048b326..e14bb6a6bf3344 100644
+index efec1b701b447d..e02fca3ddde5ea 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,9 +4,40 @@
@@ -174,5 +174,5 @@ index 19d45e2048b326..e14bb6a6bf3344 100644
 +	) else "" end
 +-}}
  	; \
- 	rm -rf /var/lib/apt/lists/*
- {{ ) end -}}
+ # go depends on "gold" explicitly on arm64
+ # https://github.com/docker-library/golang/issues/570 (go depends on "gold" explicitly on arm64)
