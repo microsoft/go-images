@@ -73,40 +73,41 @@ extends:
                   resourceGroup: $(acr-staging.resourceGroup)
                   acr: $(acr-staging.server)
                   action: delete
-                  age: 15  # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-      #   parameters:
-      #     internalProjectName: ${{ variables.internalProjectName }}
-      #     repo: "public/dotnet/*"
-      #     subscription: $(acr.subscription)
-      #     resourceGroup: $(acr.resourceGroup)
-      #     acr: $(acr.server)
-      #     action: pruneEol
-      #     age: 15
-      # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-      #   parameters:
-      #     internalProjectName: ${{ variables.internalProjectName }}
-      #     repo: "test/*"
-      #     subscription: $(acr.subscription)
-      #     resourceGroup: $(acr.resourceGroup)
-      #     acr: $(acr.server)
-      #     action: pruneAll
-      #     age: 7
-      # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-      #   parameters:
-      #     internalProjectName: ${{ variables.internalProjectName }}
-      #     repo: "public/dotnet-buildtools/*"
-      #     subscription: $(acr.subscription)
-      #     resourceGroup: $(acr.resourceGroup)
-      #     acr: $(acr.server)
-      #     action: pruneEol
-      #     age: 15
-      #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
-      # Disabled due to https://github.com/dotnet/docker-tools/issues/797
-      # - template: ../common/templates/steps/clean-acr-images.yml
-      #   parameters:
-      #     repo: "mirror/*"
-      #     subscription: $(acr-staging.subscription)
-      #     resourceGroup: $(acr-staging.resourceGroup)
-      #     arc: $(acr-staging.server)
-      #     action: pruneDangling
-      #     age: 0
+                  age: 15
+          # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+          #   parameters:
+          #     internalProjectName: ${{ variables.internalProjectName }}
+          #     repo: "public/dotnet/*"
+          #     subscription: $(acr.subscription)
+          #     resourceGroup: $(acr.resourceGroup)
+          #     acr: $(acr.server)
+          #     action: pruneEol
+          #     age: 15
+          # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+          #   parameters:
+          #     internalProjectName: ${{ variables.internalProjectName }}
+          #     repo: "test/*"
+          #     subscription: $(acr.subscription)
+          #     resourceGroup: $(acr.resourceGroup)
+          #     acr: $(acr.server)
+          #     action: pruneAll
+          #     age: 7
+          # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+          #   parameters:
+          #     internalProjectName: ${{ variables.internalProjectName }}
+          #     repo: "public/dotnet-buildtools/*"
+          #     subscription: $(acr.subscription)
+          #     resourceGroup: $(acr.resourceGroup)
+          #     acr: $(acr.server)
+          #     action: pruneEol
+          #     age: 15
+          #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
+          # Disabled due to https://github.com/dotnet/docker-tools/issues/797
+          # - template: ../common/templates/steps/clean-acr-images.yml
+          #   parameters:
+          #     repo: "mirror/*"
+          #     subscription: $(acr-staging.subscription)
+          #     resourceGroup: $(acr-staging.resourceGroup)
+          #     arc: $(acr-staging.server)
+          #     action: pruneDangling
+          #     age: 0
