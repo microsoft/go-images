@@ -32,6 +32,6 @@ jobs:
         languages: go
 
     - name: Perform CodeQL Analysis
-      uses: github/codeql-action/analyze@2d92b76c45b91eb80fc44c74ce3fce0ee94e8f9d # v3.29.5
+      uses: github/codeql-action/analyze@2d92b76c45b91eb80fc44c74ce3fce0ee94e8f9d # v3.30.0
       with:
         category: "/language:go"
