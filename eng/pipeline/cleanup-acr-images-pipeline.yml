@@ -1,6 +1,9 @@
 # This pipeline is used to clean up old images in our Azure Container Registries.
 # It's derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
 
+# official: https://dev.azure.com/dnceng/internal/_build?definitionId=1521
+# unofficial: https://dev.azure.com/dnceng/internal/_build?definitionId=1522
+
 trigger: none
 pr: none
 
@@ -20,7 +23,6 @@ schedules:
     always: true
 
 variables:
-  - template: variables/pipeline.yml
   - template: variables/common.yml
 
 resources:
@@ -74,35 +76,17 @@ extends:
                   acr: $(acr-staging.server)
                   action: delete
                   age: 15
+              # Disabled until we've worked out https://github.com/microsoft/go-lab/issues/245
               # - template: /eng/common/templates/steps/clean-acr-images.yml@self
               #   parameters:
               #     internalProjectName: ${{ variables.internalProjectName }}
-              #     repo: "public/dotnet/*"
+              #     repo: "public/oss/go/*"
               #     subscription: $(acr.subscription)
               #     resourceGroup: $(acr.resourceGroup)
               #     acr: $(acr.server)
               #     action: pruneEol
               #     age: 15
-              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-              #   parameters:
-              #     internalProjectName: ${{ variables.internalProjectName }}
-              #     repo: "test/*"
-              #     subscription: $(acr.subscription)
-              #     resourceGroup: $(acr.resourceGroup)
-              #     acr: $(acr.server)
-              #     action: pruneAll
-              #     age: 7
-              # - template: /eng/common/templates/steps/clean-acr-images.yml@self
-              #   parameters:
-              #     internalProjectName: ${{ variables.internalProjectName }}
-              #     repo: "public/dotnet-buildtools/*"
-              #     subscription: $(acr.subscription)
-              #     resourceGroup: $(acr.resourceGroup)
-              #     acr: $(acr.server)
-              #     action: pruneEol
-              #     age: 15
-              #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
-              # # Disabled due to https://github.com/dotnet/docker-tools/issues/797
+              # Disabled due to https://github.com/dotnet/docker-tools/issues/797
               # - template: ../common/templates/steps/clean-acr-images.yml
               #   parameters:
               #     repo: "mirror/*"
