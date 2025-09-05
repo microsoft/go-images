@@ -16,6 +16,13 @@ parameters:
     type: string
     default: '$(Build.BuildId)'
 
+  - name: publishRepoPrefix
+    displayName: >
+      Publish repo prefix to use when publishing images.
+      Switch to "dev/" for an unofficial branch.
+    type: string
+    default: 'public/'
+
 variables:
   - template: variables/common.yml
     parameters:
@@ -57,11 +64,20 @@ extends:
             - name: $(publish.serviceConnectionName)
             - name: $(marStatus.serviceConnectionName)
             - name: $(kusto.serviceConnectionName)
-      - template: stages/build-test-publish-repo.yml
+
+      - template: /eng/common/templates/stages/dotnet/publish-config-prod.yml@self
         parameters:
-          extraParameters:
-            # "variables.x" template expression only gets the correct value in this pipeline file. In a
-            # stage template, it returns an empty string. So, evaluate it here and pass it through.
-            internalProjectName: ${{ variables.internalProjectName }}
-            publicProjectName: ${{ variables.publicProjectName }}
+          sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+          publishRepoPrefix: "test/"
+          stagesTemplate: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
+          stagesTemplateParameters:
             sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+            buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
+            noCache: true
+            customGenerateMatrixInitSteps:
+              - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+            customBuildInitSteps:
+              - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
+              - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+            customPublishInitSteps:
+              - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self

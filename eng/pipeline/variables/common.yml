@@ -82,10 +82,12 @@ variables:
   value: $(acr.server)
 - name: acr-staging.subscription
   value: $(acr.subscription)
-# We don't host a public mirror. Note: an empty string is necessary so the
-# variable is defined and .NET Docker logic works.
-- name: public-mirror.server
-  value: ''
+
+- ${{ if ne(variables['System.TeamProject'], 'internal') }}:
+  # We don't host a public mirror. Note: an empty string is necessary so the
+  # variable is defined and .NET Docker logic works.
+  - name: public-mirror.server
+    value: ''
 
 # Configuration for publishing the image-info JSON file.
 - name: commonVersionsImageInfoPath
