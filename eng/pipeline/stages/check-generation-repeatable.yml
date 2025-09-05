@@ -2,21 +2,15 @@
 # apply to the current submodule commit, the manifest.json file is up to date, versions.json is
 # valid, and the Dockerfiles are generated correctly, all using a known version of "dockerupdate".
 parameters:
-  extraParameters: {}
+  - name: pool
+    type: object
 
 stages:
   - stage: Repeatability
     dependsOn: []
     jobs:
       - job: Test
-        pool:
-          # This is a utility job: use generic recent LTS.
-          ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.publicProjectName) }}:
-            name: NetCore-Public
-            demands: ImageOverride -equals 1es-ubuntu-2004-open
-          ${{ if eq(variables['System.TeamProject'], parameters.extraParameters.internalProjectName) }}:
-            name: NetCore1ESPool-Internal
-            demands: ImageOverride -equals 1es-ubuntu-2004
+        pool: ${{ parameters.pool }}
         workspace:
           clean: all
         steps:

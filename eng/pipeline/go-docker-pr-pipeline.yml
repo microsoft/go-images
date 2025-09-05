@@ -8,16 +8,23 @@ variables:
   - template: variables/common.yml
 
 stages:
-  - template: stages/build-test-publish-repo.yml
+  - template: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
     parameters:
-      extraParameters:
-        # "variables.x" template expression only gets the correct value in this pipeline file. In a
-        # stage template, it returns an empty string. So, evaluate it here and pass it through.
-        internalProjectName: ${{ variables.internalProjectName }}
-        publicProjectName: ${{ variables.publicProjectName }}
+      sourceBuildPipelineRunId: $(Build.BuildId)
+      stagesTemplate: /eng/common/templates/stages/dotnet/build-and-test.yml@self
+      stagesTemplateParameters:
+        sourceBuildPipelineRunId: $(Build.BuildId)
+        buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
+        noCache: true
+        customGenerateMatrixInitSteps:
+          - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+        customBuildInitSteps:
+          - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
+          - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
         buildMatrixType: platformVersionedOs
+
   - template: stages/check-generation-repeatable.yml
     parameters:
-      extraParameters:
-        internalProjectName: ${{ variables.internalProjectName }}
-        publicProjectName: ${{ variables.publicProjectName }}
+      pool:
+        name: NetCore-Public
+        demands: ImageOverride -equals 1es-ubuntu-2004-open
