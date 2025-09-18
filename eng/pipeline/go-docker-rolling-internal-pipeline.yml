@@ -76,7 +76,7 @@ extends:
       - template: /eng/common/templates/stages/dotnet/publish-config-prod.yml@self
         parameters:
           sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
-          publishRepoPrefix: "test/"
+          publishRepoPrefix: ${{ parameters.publishRepoPrefix }}
           stagesTemplate: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
           stagesTemplateParameters:
             sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
