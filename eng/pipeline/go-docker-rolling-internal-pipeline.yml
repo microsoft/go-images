@@ -16,6 +16,13 @@ parameters:
     type: string
     default: '$(Build.BuildId)'
 
+  - name: publishRepoPrefix
+    displayName: >
+      Publish repo prefix to use when publishing images.
+      Switch to "dev/" for an unofficial branch.
+    type: string
+    default: 'public/'
+
 variables:
   - template: variables/common.yml
     parameters:
@@ -28,6 +35,11 @@ resources:
       name: 1ESPipelineTemplates/1ESPipelineTemplates
       ref: refs/tags/release
 
+    - repository: VersionsRepo
+      type: git
+      name: microsoft-go-images-versions
+      ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
+
 extends:
   ${{ if variables['Go1ESOfficial'] }}:
     template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
@@ -39,11 +51,14 @@ extends:
         name: NetCore1ESPool-Svc-Internal
         image: 1es-windows-2022
         os: windows
+      sourceRepositoriesToScan:
+        include:
+          - repository: VersionsRepo
       credscan:
-        suppressionsFile: $(Build.SourcesDirectory)/.config/CredScanSuppressions.json
+        suppressionsFile: $(SDLConfigFileDir)/CredScanSuppressions.json
       tsa:
         enabled: true
-        configFile: $(Build.SourcesDirectory)/.config/tsa/tsaoptions.json
+        configFile: $(SDLConfigFileDir)/tsa/tsaoptions.json
     stages:
       - template: /eng/common/templates/stages/setup-service-connections.yml@self
         parameters:
@@ -57,11 +72,23 @@ extends:
             - name: $(publish.serviceConnectionName)
             - name: $(marStatus.serviceConnectionName)
             - name: $(kusto.serviceConnectionName)
-      - template: stages/build-test-publish-repo.yml
+
+      - template: /eng/common/templates/stages/dotnet/publish-config-prod.yml@self
         parameters:
-          extraParameters:
-            # "variables.x" template expression only gets the correct value in this pipeline file. In a
-            # stage template, it returns an empty string. So, evaluate it here and pass it through.
-            internalProjectName: ${{ variables.internalProjectName }}
-            publicProjectName: ${{ variables.publicProjectName }}
+          sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+          publishRepoPrefix: "test/"
+          stagesTemplate: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
+          stagesTemplateParameters:
             sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+            buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
+            versionsRepoRef: VersionsRepo
+            noCache: true
+            customGenerateMatrixInitSteps:
+              - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+            customBuildInitSteps:
+              - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
+              - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+            customPublishInitSteps:
+              - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
+              - pwsh: echo "##vso[task.setvariable variable=SDLConfigFileDir]$(SDLConfigFileMultiRepoDir)"
+                displayName: 'Set SDLConfigFileDir for multi-checkout'
