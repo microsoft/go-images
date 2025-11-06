@@ -17,19 +17,19 @@ RUN set -eux; \
 	urlSig=; \
 	case "$arch" in \
 		'amd64') \
-			url='https://download.visualstudio.microsoft.com/download/pr/db7adc7a-2fc2-4613-88de-a0a0b59cc636/76553284b63a7a29a54db5dc4160e2be/go1.25.4-20251105.5.linux-amd64.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/db7adc7a-2fc2-4613-88de-a0a0b59cc636/45f1136b85ebd44f7c670fe43eaffda6/go1.25.4-20251105.5.linux-amd64.tar.gz.sig'; \
-			sha256='c728dc46225d7a73e90414097015eeecce8fa63643d0c28be6a98d511e04e60d'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/a95f333f-4441-43a8-aa1c-7eb364a31011/71a87bbcd1fb4054787995152cd20f31/go1.25.4-20251106.4.linux-amd64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/a95f333f-4441-43a8-aa1c-7eb364a31011/cc17c2997c7f5934fdb80591d4a0c1f5/go1.25.4-20251106.4.linux-amd64.tar.gz.sig'; \
+			sha256='602b5ff65678b7a9f88a9ed27ceb40182768fc3565aa3ec58dd0be56867a375f'; \
 			;; \
 		'armhf') \
-			url='https://download.visualstudio.microsoft.com/download/pr/db7adc7a-2fc2-4613-88de-a0a0b59cc636/5eb61cb895a92c2ec2185fe30a9a5158/go1.25.4-20251105.5.linux-armv6l.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/db7adc7a-2fc2-4613-88de-a0a0b59cc636/63cbf6fe896ecaa3e2788db55a6d3083/go1.25.4-20251105.5.linux-armv6l.tar.gz.sig'; \
-			sha256='eb9675861ecd6f83b9de294bd2f9702bb3a0dce264328314a63b5b04ca33d6b2'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/a95f333f-4441-43a8-aa1c-7eb364a31011/b0280aa1d32c83e4b4e2d53d16e1ec50/go1.25.4-20251106.4.linux-armv6l.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/a95f333f-4441-43a8-aa1c-7eb364a31011/6660e7ad1a8e7b7e7d2cb9c042a4cd8d/go1.25.4-20251106.4.linux-armv6l.tar.gz.sig'; \
+			sha256='81c0a8df7e182afa2916df160a7037062549177dc463c1bf3eaac8b084066709'; \
 			;; \
 		'arm64') \
-			url='https://download.visualstudio.microsoft.com/download/pr/db7adc7a-2fc2-4613-88de-a0a0b59cc636/0a27d8f2dddb2ba580ff977ae42a6a8b/go1.25.4-20251105.5.linux-arm64.tar.gz'; \
-			urlSig='https://download.visualstudio.microsoft.com/download/pr/db7adc7a-2fc2-4613-88de-a0a0b59cc636/8e2c0608156edf9d4bf38922c387ee18/go1.25.4-20251105.5.linux-arm64.tar.gz.sig'; \
-			sha256='dcba9ab5fb79f25d4da993dc9b8116b7c0f9e10fc243623637e84b4c8d6d03d0'; \
+			url='https://download.visualstudio.microsoft.com/download/pr/a95f333f-4441-43a8-aa1c-7eb364a31011/ea33ba23b5ffbeee2ecdd566ef81d775/go1.25.4-20251106.4.linux-arm64.tar.gz'; \
+			urlSig='https://download.visualstudio.microsoft.com/download/pr/a95f333f-4441-43a8-aa1c-7eb364a31011/2bd72030fd9b7ef3b2c0f4d0b5f5bc3a/go1.25.4-20251106.4.linux-arm64.tar.gz.sig'; \
+			sha256='93dbb86f7e50058f8168113ce99cbe601e8c1485cbd2f89840eb002d9f6170c1'; \
 			;; \
 		*) echo >&2 "error: unsupported architecture '$arch' (likely packaging update needed)"; exit 1 ;; \
 	esac; \
