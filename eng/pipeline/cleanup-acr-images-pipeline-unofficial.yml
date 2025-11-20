@@ -18,14 +18,8 @@ parameters:
   - name: disableTSA
     displayName: "[Debug input] Disable TSA reporting. Use to try modifications in dev branches."
     type: boolean
-    default: false
-schedules:
-  - cron: "0 5 * * *"
-    displayName: Nightly build
-    branches:
-      include:
-        - microsoft/main
-    always: true
+    default: true
+schedules: []
 variables:
   - template: variables/common.yml
 resources:
@@ -35,7 +29,7 @@ resources:
       name: 1ESPipelineTemplates/1ESPipelineTemplates
       ref: refs/tags/release
 extends:
-  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     sdl:
       sourceAnalysisPool:

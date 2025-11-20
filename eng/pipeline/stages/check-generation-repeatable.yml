@@ -18,7 +18,12 @@ stages:
 
           - task: GoTool@0
             inputs:
-              version: 1.24.0
+              version: 1.25.4
+
+          - script: |
+              cd eng/ci-tools
+              go test ./...
+            displayName: Run ci-tools tests
 
           # Install the update command with the version in eng/ci-tools.
           - script: go install github.com/microsoft/go-infra/cmd/dockerupdate
