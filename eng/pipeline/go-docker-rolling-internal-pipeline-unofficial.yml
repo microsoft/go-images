@@ -7,13 +7,7 @@
 
 trigger: none
 pr: none
-schedules:
-  - cron: '0 10 * * Mon,Wed'
-    displayName: Periodic build to refresh dependencies
-    branches:
-      include:
-        - microsoft/main
-    always: true
+schedules: []
 parameters:
   - name: sourceBuildPipelineRunId
     displayName: >
@@ -26,7 +20,7 @@ parameters:
       Publish repo prefix to use when publishing images. Switch to "dev/" for an unofficial branch.
 
     type: string
-    default: public/
+    default: dev/
 variables:
   - template: variables/common.yml
     parameters:
@@ -42,7 +36,7 @@ resources:
       name: microsoft-go-images-versions
       ref: ${{ variables['gitHubVersionsRepoInfo.branch'] }}
 extends:
-  template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
+  template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     sdl:
       sourceAnalysisPool:
