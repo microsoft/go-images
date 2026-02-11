@@ -6,6 +6,8 @@ The images produced by this repository are for general use within Microsoft and 
 
 For more information about building FIPS-compatible Go apps with the Microsoft build of Go tools, visit the [FIPS readme] and [user guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/fips/UserGuide.md) in the microsoft/go repository.
 
+The [Migration Guide](https://github.com/microsoft/go/blob/microsoft/main/eng/doc/MigrationGuide.md) contains more general information about migrating from official Go to the Microsoft build of Go.
+
 ## Support
 
 GitHub issues for microsoft/go-images are maintained in the [microsoft/go](https://github.com/microsoft/go) project. For help and questions about the Microsoft build of Go images, please [file an issue in microsoft/go](https://github.com/microsoft/go/issues/new/choose).
@@ -14,28 +16,33 @@ The supported tags in this repository are rebuilt approximately twice a week to 
 
 ## Recommended tags
 
-The tag we recommend for use inside Microsoft is the Go 1.24 Azure Linux 3.0 tag with the `fips` helper enabled.
-This sets the `GOEXPERIMENT` environment variable to `systemcrypto`.
-(See [What is `-fips`?](docs/tags.md#what-is--fips))
+The tag we recommend for use inside Microsoft is the Go 1.25 Azure Linux 3.0 tag.
 
 ```
-mcr.microsoft.com/oss/go/microsoft/golang:1.24-fips-azurelinux3.0
+mcr.microsoft.com/oss/go/microsoft/golang:1.25-azurelinux3.0
 ```
 
-The 1.25 tags no longer support a `-fips` variant, because `systemcrypto` is enabled by default in the Microsoft build of Go as of Go 1.25.
-For more background information about this change, see [Microsoft build of Go 1.25 crypto backend changes](https://devblogs.microsoft.com/go/microsoft-go-defaults-to-system-crypto/).
+> [!NOTE]
+> If you've used our 1.24 or earlier images, you may expect to see a `-fips` variant.
+> As of 1.25, we no longer produce `-fips` tags, because `systemcrypto` is enabled by default in the Microsoft build of Go as of Go 1.25.
+> Basically: the change that was previously in the `-fips` images is now present in all of our ordinary images.
+>
+> For more background information about this change, see [Microsoft build of Go 1.25 crypto backend changes](https://devblogs.microsoft.com/go/microsoft-go-defaults-to-system-crypto/).
 
-We recommend using these tags in the `build` stage of a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/).
-The final stage should be based on a minimal image.
+If you use a Dockerfile, we recommend using `golang` tags in the `build` stage of a [multi-stage Dockerfile](https://docs.docker.com/develop/develop-images/multistage-build/).
+The final stage in the Dockerfile should be based on a minimal image.
 This avoids unnecessarily deploying build-time dependencies to production.
-However, it doesn't necessarily break compliance to use this tag in the final (or only) stage.
 
+These tags are also suitable for use in an Azure Pipelines job that builds a Go project.
+
+The tags may not be suitable for deployment.
 To comply with internal Microsoft cryptography policy, a Linux Go app must run in a container with a system-wide OpenSSL library.
-The right image to use may depend on your organization or it may need to be custom-built to include product-specific runtime dependencies.
+If you need FIPS compliance, there are additional requirements.
+The right image to use may depend on your organization, or it may need to be custom-built to include product-specific runtime dependencies.
 More guidance is available at [Containers Secure Supply Chain - Selecting base images (internal Microsoft link)](https://eng.ms/docs/more/containers-secure-supply-chain/images).
 
 > [!IMPORTANT]
-> Our `1.24-fips-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but contain a copy of OpenSSL that is **not** FIPS certified.
+> Our `1.25-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS compliant Go app, but they contain a copy of OpenSSL that is **not** FIPS certified.
 > These tags are suitable for a `build` stage, but not for FIPS-compliant deployment.
 
 ## Tag organization
