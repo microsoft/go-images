@@ -18,7 +18,7 @@ stages:
 
           - task: GoTool@0
             inputs:
-              version: 1.25.4
+              version: '1.25'
 
           - script: |
               cd eng/ci-tools
