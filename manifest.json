@@ -100,37 +100,6 @@
         {
           "productVersion": "1.25",
           "sharedTags": {
-            "1-cbl-mariner2.0": {},
-            "1.25-cbl-mariner2.0": {},
-            "1.25.7-1-cbl-mariner2.0": {},
-            "1.25.7-cbl-mariner2.0": {},
-            "cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.25/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.25.7-1-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.25/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.25.7-1-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.25",
-          "sharedTags": {
             "1-azurelinux3.0": {},
             "1.25-azurelinux3.0": {},
             "1.25.7-1-azurelinux3.0": {},
@@ -328,35 +297,6 @@
               "osVersion": "bullseye",
               "tags": {
                 "1.26.0-1-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.26",
-          "sharedTags": {
-            "1.26-cbl-mariner2.0": {},
-            "1.26.0-1-cbl-mariner2.0": {},
-            "1.26.0-cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.26/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.26.0-1-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.26.0-1-cbl-mariner2.0-arm64v8": {}
               }
             }
           ]
