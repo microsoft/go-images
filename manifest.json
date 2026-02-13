@@ -100,37 +100,6 @@
         {
           "productVersion": "1.25",
           "sharedTags": {
-            "1-cbl-mariner2.0": {},
-            "1.25-cbl-mariner2.0": {},
-            "1.25.7-1-cbl-mariner2.0": {},
-            "1.25.7-cbl-mariner2.0": {},
-            "cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.25/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.25.7-1-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.25/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.25.7-1-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.25",
-          "sharedTags": {
             "1-azurelinux3.0": {},
             "1.25-azurelinux3.0": {},
             "1.25.7-1-azurelinux3.0": {},
@@ -335,35 +304,6 @@
         {
           "productVersion": "1.26",
           "sharedTags": {
-            "1.26-cbl-mariner2.0": {},
-            "1.26.0-1-cbl-mariner2.0": {},
-            "1.26.0-cbl-mariner2.0": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.26/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.26.0-1-cbl-mariner2.0-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/cbl-mariner2.0",
-              "os": "linux",
-              "osVersion": "cbl-mariner2.0",
-              "tags": {
-                "1.26.0-1-cbl-mariner2.0-arm64v8": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.26",
-          "sharedTags": {
             "1.26-azurelinux3.0": {},
             "1.26.0-1-azurelinux3.0": {},
             "1.26.0-azurelinux3.0": {}
@@ -406,16 +346,6 @@
               "tags": {
                 "1.26.0-1-windowsservercore-ltsc2025-amd64": {}
               }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/windows/windowsservercore-ltsc2025",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2025",
-              "tags": {
-                "1.26.0-1-windowsservercore-ltsc2025-arm64v8": {}
-              }
             }
           ]
         },
@@ -434,16 +364,6 @@
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
                 "1.26.0-1-windowsservercore-ltsc2022-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/windows/windowsservercore-ltsc2022",
-              "os": "windows",
-              "osVersion": "windowsservercore-ltsc2022",
-              "tags": {
-                "1.26.0-1-windowsservercore-ltsc2022-arm64v8": {}
               }
             }
           ]
@@ -468,20 +388,6 @@
               "tags": {
                 "1.26.0-1-nanoserver-ltsc2025-amd64": {}
               }
-            },
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.26.0-1-windowsservercore-ltsc2025-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/windows/nanoserver-ltsc2025",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2025",
-              "tags": {
-                "1.26.0-1-nanoserver-ltsc2025-arm64v8": {}
-              }
             }
           ]
         },
@@ -504,20 +410,6 @@
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
                 "1.26.0-1-nanoserver-ltsc2022-amd64": {}
-              }
-            },
-            {
-              "buildArgs": {
-                "DOWNLOADER_TAG": "1.26.0-1-windowsservercore-ltsc2022-amd64",
-                "REPO": "$(Repo:golang)"
-              },
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/windows/nanoserver-ltsc2022",
-              "os": "windows",
-              "osVersion": "nanoserver-ltsc2022",
-              "tags": {
-                "1.26.0-1-nanoserver-ltsc2022-arm64v8": {}
               }
             }
           ]
