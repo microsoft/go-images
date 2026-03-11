@@ -14,6 +14,12 @@ variables:
 - name: manifest
   value: manifest.json
 
+# No pre-build tests. Set to "" to skip the PreBuildValidation job entirely.
+# (It must be set at compile time, so the default in
+# eng/docker-tools/templates/variables/common-paths.yml doesn't work.)
+- name: preBuildTestScriptPath
+  value: ''
+
 # We don't use a different ACR for staging vs. non-staging images.
 - name: acr-staging.resourceGroup
   value: $(acr.resourceGroup)
