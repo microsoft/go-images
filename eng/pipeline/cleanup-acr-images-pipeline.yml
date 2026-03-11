@@ -66,24 +66,24 @@ extends:
               image: $(default1ESInternalPoolImage)
               os: linux
             steps:
-              - template: /eng/common/templates/steps/init-docker-linux.yml@self
-              - template: /eng/common/templates/steps/clean-acr-images.yml@self
+              - template: /eng/docker-tools/templates/steps/init-common.yml@self
+                parameters:
+                  dockerClientOS: linux
+              - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
                 parameters:
                   internalProjectName: ${{ variables.internalProjectName }}
                   repo: "build-staging/*"
-                  subscription: $(acr-staging.subscription)
-                  resourceGroup: $(acr-staging.resourceGroup)
-                  acr: $(acr-staging.server)
+                  acr:
+                    server: $(acr-staging.server)
                   action: delete
                   age: 15
             # Disabled until we've worked out https://github.com/microsoft/go-lab/issues/245
-            # - template: /eng/common/templates/steps/clean-acr-images.yml@self
+            # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
             #   parameters:
             #     internalProjectName: ${{ variables.internalProjectName }}
             #     repo: "public/oss/go/*"
-            #     subscription: $(acr.subscription)
-            #     resourceGroup: $(acr.resourceGroup)
-            #     acr: $(acr.server)
+            #     acr:
+            #       server: $(acr.server)
             #     action: pruneEol
             #     age: 15
             # Disabled due to https://github.com/dotnet/docker-tools/issues/797
