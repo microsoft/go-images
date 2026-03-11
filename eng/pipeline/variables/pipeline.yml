@@ -1,6 +1,11 @@
 # Variables that are evaluated the same way by all pipelines.
 
 variables:
+  # Always use debug mode for diagnosable outputs.
+  # https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml#systemdebug
+  - name: System.Debug
+    value: 'true'
+
   # Go1ESOfficial compile-time variable. Indicates that this is in the official
   # pipeline. For example, image usage may be restricted, and the artifacts may
   # be signed by a followup step, if this is the rolling build.
