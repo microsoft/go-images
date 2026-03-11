@@ -25,6 +25,8 @@ variables:
 - ${{ if ne(variables['System.TeamProject'], 'internal') }}:
   # We don't host a public mirror. Note: an empty string is necessary so the
   # variable is defined and .NET Docker logic works.
+  - name: public-mirror.resourceGroup
+    value: ''
   - name: public-mirror.server
     value: ''
 
