@@ -27,7 +27,8 @@ schedules:
         - microsoft/main
     always: true
 variables:
-  - template: variables/common.yml
+  - template: /eng/pipeline/variables/go-common.yml@self
+  - template: /eng/pipeline/variables/secrets.yml@self
 resources:
   repositories:
     - repository: 1ESPipelineTemplates

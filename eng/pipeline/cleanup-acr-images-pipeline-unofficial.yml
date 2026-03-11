@@ -21,7 +21,8 @@ parameters:
     default: true
 schedules: []
 variables:
-  - template: variables/common.yml
+  - template: /eng/pipeline/variables/go-common.yml@self
+  - template: /eng/pipeline/variables/secrets.yml@self
 resources:
   repositories:
     - repository: 1ESPipelineTemplates

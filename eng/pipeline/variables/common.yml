@@ -1,52 +1,26 @@
 parameters:
   - name: nightly
     type: boolean
-    default: false
-
-  - name: sourceBuildPipelineRunId
-    type: string
-    default: ""
 
 variables:
-- template: ../../common/templates/variables/common.yml
-  parameters:
-    sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+- template: /eng/docker-tools/templates/variables/common.yml@self
 
-- template: pipeline.yml
+- template: /eng/pipeline/variables/pipeline.yml@self
 
-- name: sourceBuildPipelineRunId
-  value: ${{ parameters.sourceBuildPipelineRunId }}
+# Publish EOL annotations for MAR/MCR.
+# (.NET Docker uses an Azure Pipelines UI variable.)
+- name: publishEolAnnotations
+  value: true
 
-- name: publicProjectName
-  value: public
-- name: internalProjectName
-  value: internal
+# Configure the build, test (N/A), and publish process.
+# Only necessary variables, in order of presentation in .NET Docker Tools.
 
-# Credentials for pulling base images from Docker Hub.
-- name: dockerHubRegistryCreds
-  value: --registry-creds 'docker.io=$(dotnetDockerHubBot.userName);$(BotAccount-dotnet-dockerhub-bot-PAT)'
-
-- name: publicGitRepoUri
-  value: https://github.com/microsoft/go
-- name: officialRepoPrefixes
-  ${{ if eq(parameters.nightly, false) }}:
-    # Publish to "public/" or "private/internal/". Tags under these repo prefixes will be detected
-    # by MAR triggers and publish our images on the associated registry.
-    value: public/,private/internal/
-  ${{ else }}:
-    # In the nightly branch, publish to ACR only. The prefix doesn't need to match MAR expectations.
-    value: nightly/
+## General config. Overrides: eng/docker-tools/templates/variables/common.yml
 
 # Don't publish readme: Microsoft images aren't on Docker Hub.
 - name: publishReadme
   value: false
-# Publish image info to https://github.com/dotnet/versions/tree/main/build-info
-- name: publishImageInfo
-  value: true
-# Publish EOL annotations for MAR/MCR.
-- name: publishEolAnnotations
-  value: true
-# https://github.com/microsoft/go/issues/192 tracks enabling ingestKustoImageInfo.
+# No Kusto ingestion. Requires more auth: https://github.com/microsoft/go/issues/192
 - name: ingestKustoImageInfo
   value: false
 
@@ -57,57 +31,26 @@ variables:
   ${{ if eq(parameters.nightly, true) }}:
     value: microsoft/nightly
 
-- name: manifest
-  value: manifest.json
-
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - ${{ if eq(parameters.nightly, false) }}:
     - group: go-docker-common-2
   - ${{ if eq(parameters.nightly, true) }}:
     - group: go-docker-common-nightly
-  - group: Microsoft-GoLang-bot
 
-# By default, point to a SDL config files in the current repo. However, in some
-# cases with multi-repo checkout, this variable needs to be overridden by steps
-# inside that specific job to point at the correct repo. Then, SDL inside that
-# job picks it up.
-- name: SDLConfigFileDir
-  value: $(Build.Repository.LocalPath)/.config
-- name: SDLConfigFileMultiRepoDir
-  value: $(Build.Repository.LocalPath)/microsoft-go-images/.config
+# Overrides based on: eng/docker-tools/templates/variables/dotnet/build-test-publish.yml
 
-- name: acr.password
+- name: publicGitRepoUri
+  value: https://github.com/microsoft/go
+
+- name: officialRepoPrefixes
   ${{ if eq(parameters.nightly, false) }}:
-    value: $(BotAccount-golang-docker-acr-bot-password)
-  ${{ if eq(parameters.nightly, true) }}:
-    value: $(BotAccount-golang-docker-acr-public-bot-password)
-- name: acr.servicePrincipalPassword
-  value: $(GolangDockerBuild)
+    # Publish to "public/" or "private/internal/". Tags under these repo prefixes will be detected
+    # by MAR triggers and publish our images on the associated registry.
+    value: public/,private/internal/
+  ${{ else }}:
+    # In the nightly branch, publish to ACR only. The prefix doesn't need to match MAR expectations.
+    value: nightly/
 
-# We don't use a different ACR for staging vs. non-staging images.
-- name: acr-staging.resourceGroup
-  value: $(acr.resourceGroup)
-- name: acr-staging.server
-  value: $(acr.server)
-- name: acr-staging.subscription
-  value: $(acr.subscription)
-
-- ${{ if ne(variables['System.TeamProject'], 'internal') }}:
-  # We don't host a public mirror. Note: an empty string is necessary so the
-  # variable is defined and .NET Docker logic works.
-  - name: public-mirror.server
-    value: ''
-
-# Configuration for publishing the image-info JSON file.
-- name: commonVersionsImageInfoPath
-  value: go-images
-
-# Configure image-info publishing.
-# Copied from /eng/common/templates/variables/dotnet/build-test-publish.yml
-- name: gitHubVersionsRepoInfo.path
-  value: ${{ variables.commonVersionsImageInfoPath }}
-- name: azdoVersionsRepoInfo.path
-  value: ${{ variables.commonVersionsImageInfoPath }}
 - name: gitHubVersionsRepoInfo.org
   value: microsoft
 - name: gitHubVersionsRepoInfo.repo
@@ -115,63 +58,9 @@ variables:
 - name: gitHubVersionsRepoInfo.branch
   value: main
 - name: gitHubVersionsRepoInfo.path
-  value: ${{ variables.commonVersionsImageInfoPath }}
-- name: gitHubVersionsRepoInfo.authArgs
-  value: >-
-    --gh-private-key '$(BotAccount-bot-for-go-private-key)'
-    --gh-app-client-id '$(BotAccount-bot-for-go-client-id)'
-    --gh-app-installation-id '$(BotAccount-bot-for-go-installation)'
+  value: go-images
 - name: gitHubVersionsRepoInfo.userName
   value: bot-for-go[bot]
 - name: gitHubVersionsRepoInfo.email
   # App's user id: https://api.github.com/users/bot-for-go%5Bbot%5D
   value: 199222863+$(gitHubVersionsRepoInfo.userName)@users.noreply.github.com
-
-# Pool/image configuration.
-# Copied from /eng/common/templates/variables/dotnet/common.yml
-- name: linuxAmd64InternalPoolImage
-  value: 1es-ubuntu-2204
-- name: linuxAmd64InternalPoolName
-  value: NetCore1ESPool-Internal
-
-- name: linuxArm64PoolImage
-  value: Mariner-2-Docker-ARM64
-- name: linuxArm64PublicPoolName
-  value: Docker-Linux-Arm-Public
-- name: linuxArm64InternalPoolName
-  value: Docker-Linux-Arm-Internal
-
-- name: linuxArm32PoolImage
-  value: Mariner-2-Docker-ARM64
-- name: linuxArm32PublicPoolName
-  value: Docker-Linux-Arm-Public
-- name: linuxArm32InternalPoolName
-  value: Docker-Linux-Arm-Internal
-
-- name: windowsServer2016PublicPoolImage
-  value: Server2016-NESDockerBuilds
-- name: windowsServer2016InternalPoolImage
-  value: Server2016-NESDockerBuilds-1ESPT
-- name: windowsServer2016PoolName
-  value: Docker-2016-${{ variables['System.TeamProject'] }}
-
-- name: windowsServer2019PublicPoolImage
-  value: Server2019-1809-NESDockerBuilds
-- name: windowsServer2019InternalPoolImage
-  value: Server2019-1809-NESDockerBuilds-1ESPT
-- name: windowsServer2019PoolName
-  value: Docker-1809-${{ variables['System.TeamProject'] }}
-
-- name: windowsServer2022PublicPoolImage
-  value: Server2022-NESDockerBuilds
-- name: windowsServer2022InternalPoolImage
-  value: Server2022-NESDockerBuilds-1ESPT
-- name: windowsServer2022PoolName
-  value: Docker-2022-${{ variables['System.TeamProject'] }}
-
-- name: windowsServer2025PublicPoolImage
-  value: Server2025-NESDockerBuilds
-- name: windowsServer2025InternalPoolImage
-  value: Server2025-NESDockerBuilds-1ESPT
-- name: windowsServer2025PoolName
-  value: Docker-2025-${{ variables['System.TeamProject'] }}

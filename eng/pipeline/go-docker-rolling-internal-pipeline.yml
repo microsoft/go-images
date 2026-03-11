@@ -28,9 +28,8 @@ parameters:
     type: string
     default: public/
 variables:
-  - template: variables/common.yml
-    parameters:
-      sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
+  - template: /eng/pipeline/variables/go-common.yml@self
+  - template: /eng/pipeline/variables/secrets.yml@self
 resources:
   repositories:
     - repository: 1ESPipelineTemplates
