@@ -57,7 +57,7 @@ extends:
         enabled: true
         configFile: $(SDLConfigFileDir)/tsa/tsaoptions.json
     stages:
-      - template: /eng/common/templates/stages/setup-service-connections.yml@self
+      - template: /eng/docker-tools/templates/stages/setup-service-connections.yml@self
         parameters:
           pool:
             name: $(default1ESInternalPoolName)
@@ -69,11 +69,11 @@ extends:
             - name: $(publish.serviceConnectionName)
             - name: $(marStatus.serviceConnectionName)
             - name: $(kusto.serviceConnectionName)
-      - template: /eng/common/templates/stages/dotnet/publish-config-prod.yml@self
+      - template: /eng/docker-tools/templates/stages/dotnet/publish-config-prod.yml@self
         parameters:
           sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
           publishRepoPrefix: ${{ parameters.publishRepoPrefix }}
-          stagesTemplate: /eng/common/templates/stages/dotnet/build-test-publish-repo.yml@self
+          stagesTemplate: /eng/docker-tools/templates/stages/dotnet/build-test-publish-repo.yml@self
           stagesTemplateParameters:
             sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
             buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build

@@ -49,7 +49,7 @@ extends:
         enabled: ${{ not(parameters.disableTSA) }}
         configFile: $(Build.SourcesDirectory)/.config/tsa/tsaoptions.json
     stages:
-      - template: /eng/common/templates/stages/setup-service-connections.yml@self
+      - template: /eng/docker-tools/templates/stages/setup-service-connections.yml@self
         parameters:
           pool:
             name: $(default1ESInternalPoolName)
