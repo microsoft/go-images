@@ -30,6 +30,14 @@ variables:
   value: ''
 - name: public-mirror.subscription
   value: ''
+- name: public-mirror.serviceConnectionName
+  value: ''
+- name: public-mirror.serviceConnection.id
+  value: ''
+- name: public-mirror.serviceConnection.tenantId
+  value: ''
+- name: public-mirror.serviceConnection.clientId
+  value: ''
 
 # Pool/image configuration.
 # Copied from eng/docker-tools/templates/variables/dotnet/common.yml
