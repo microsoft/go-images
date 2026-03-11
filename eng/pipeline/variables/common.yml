@@ -25,8 +25,8 @@ variables:
   value: false
 
 # Our primary official branches.
-# List multiple branches as "'branch1', 'branch2', etc."
-- name: officialBranch
+# List multiple branches as "branch1,branch2,etc."
+- name: officialBranches
   ${{ if eq(parameters.nightly, false) }}:
     value: microsoft/main
   ${{ if eq(parameters.nightly, true) }}:
