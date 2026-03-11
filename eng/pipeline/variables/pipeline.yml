@@ -1,6 +1,11 @@
 # Variables that are evaluated the same way by all pipelines.
 
 variables:
+  # Always use debug mode for diagnosable outputs.
+  # https://learn.microsoft.com/en-us/azure/devops/pipelines/build/variables?view=azure-devops&tabs=yaml#systemdebug
+  - name: System.Debug
+    value: 'true'
+
   # Go1ESOfficial compile-time variable. Indicates that this is in the official
   # pipeline. For example, image usage may be restricted, and the artifacts may
   # be signed by a followup step, if this is the rolling build.
@@ -15,3 +20,12 @@ variables:
   - ${{ if not(endsWith(variables['Build.DefinitionName'], '(unofficial)')) }}:
     - name: Go1ESOfficial
       value: 'true'
+
+  # By default, point to a SDL config files in the current repo. However, in some
+  # cases with multi-repo checkout, this variable needs to be overridden by steps
+  # inside that specific job to point at the correct repo. Then, SDL inside that
+  # job picks it up.
+  - name: SDLConfigFileDir
+    value: $(Build.Repository.LocalPath)/.config
+  - name: SDLConfigFileMultiRepoDir
+    value: $(Build.Repository.LocalPath)/microsoft-go-images/.config
