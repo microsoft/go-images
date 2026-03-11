@@ -103,11 +103,11 @@ extends:
               #     action: pruneEol
               #     age: 15
               # Disabled due to https://github.com/dotnet/docker-tools/issues/797
-              # - template: ../common/templates/steps/clean-acr-images.yml
+              # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
               #   parameters:
+              #     internalProjectName: ${{ variables.internalProjectName }}
               #     repo: "mirror/*"
-              #     subscription: $(acr-staging.subscription)
-              #     resourceGroup: $(acr-staging.resourceGroup)
-              #     arc: $(acr-staging.server)
+              #     acr:
+              #       server: $(acr-staging.server)
               #     action: pruneDangling
               #     age: 0
