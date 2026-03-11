@@ -24,12 +24,17 @@ variables:
 - name: ingestKustoImageInfo
   value: false
 
-- name: officialBranches
-  # list multiple branches as "'branch1', 'branch2', etc."
+# Our primary official branches.
+# List multiple branches as "'branch1', 'branch2', etc."
+- name: officialBranch
   ${{ if eq(parameters.nightly, false) }}:
     value: microsoft/main
   ${{ if eq(parameters.nightly, true) }}:
     value: microsoft/nightly
+# A prefix that, if matched, allows other branches to be official.
+# Copy from https://github.com/dotnet/dotnet-docker/blob/5f767344c8/eng/pipelines/variables/core-official.yml
+- name: officialBranchPrefixes
+  value: internal/release/
 
 - ${{ if eq(variables['System.TeamProject'], 'internal') }}:
   - ${{ if eq(parameters.nightly, false) }}:
