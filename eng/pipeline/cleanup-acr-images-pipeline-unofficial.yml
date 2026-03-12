@@ -43,14 +43,6 @@ extends:
         enabled: ${{ not(parameters.disableTSA) }}
         configFile: $(Build.SourcesDirectory)/.config/tsa/tsaoptions.json
     stages:
-      - template: /eng/docker-tools/templates/stages/setup-service-connections.yml@self
-        parameters:
-          pool:
-            name: $(default1ESInternalPoolName)
-            image: $(default1ESInternalPoolImage)
-            os: linux
-          serviceConnections:
-            - name: $(clean.serviceConnectionName)
       - stage: Build
         dependsOn: []
         jobs:
@@ -63,6 +55,10 @@ extends:
               - template: /eng/docker-tools/templates/steps/init-common.yml@self
                 parameters:
                   dockerClientOS: linux
+              - template: /eng/docker-tools/templates/steps/reference-service-connections.yml@self
+                parameters:
+                  serviceConnections:
+                    - name: $(clean.serviceConnectionName)
               - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
                 parameters:
                   internalProjectName: ${{ variables.internalProjectName }}

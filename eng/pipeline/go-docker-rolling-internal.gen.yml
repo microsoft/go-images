@@ -76,19 +76,6 @@ extends:
         enabled: true
         configFile: $(SDLConfigFileDir)/tsa/tsaoptions.json
     stages:
-      - template: /eng/docker-tools/templates/stages/setup-service-connections.yml@self
-        parameters:
-          pool:
-            name: $(default1ESInternalPoolName)
-            image: $(default1ESInternalPoolImage)
-            os: linux
-          serviceConnections:
-            - name: $(internal-mirror.serviceConnectionName)
-            - name: $(build.serviceConnectionName)
-            - name: $(publish.serviceConnectionName)
-            - name: $(marStatus.serviceConnectionName)
-            - name: $(kusto.serviceConnectionName)
-
       - template: /eng/docker-tools/templates/stages/dotnet/publish-config-prod.yml@self
         parameters:
           sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
@@ -98,6 +85,9 @@ extends:
             sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
             buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
             versionsRepoRef: VersionsRepo
+            additionalServiceConnections:
+              - name: $(marStatus.serviceConnectionName)
+              - name: $(kusto.serviceConnectionName)
             noCache: true
             customGenerateMatrixInitSteps:
               - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
