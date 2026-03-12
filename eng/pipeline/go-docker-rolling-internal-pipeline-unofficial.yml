@@ -60,9 +60,6 @@ extends:
             sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
             buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
             versionsRepoRef: VersionsRepo
-            additionalServiceConnections:
-              - name: $(marStatus.serviceConnectionName)
-              - name: $(kusto.serviceConnectionName)
             noCache: true
             customGenerateMatrixInitSteps:
               - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
