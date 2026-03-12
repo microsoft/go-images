@@ -8,7 +8,7 @@ variables:
   - template: /eng/pipeline/variables/go-common.yml@self
 
 stages:
-  - template: /eng/docker-tools/templates/stages/dotnet/publish-config-nonprod.yml@self
+  - template: /eng/pipeline/stages/publish-config-nonprod.yml@self
     parameters:
       sourceBuildPipelineRunId: $(Build.BuildId)
       stagesTemplate: /eng/docker-tools/templates/stages/dotnet/build-and-test.yml@self

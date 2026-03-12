@@ -76,7 +76,7 @@ extends:
         enabled: true
         configFile: $(SDLConfigFileDir)/tsa/tsaoptions.json
     stages:
-      - template: /eng/docker-tools/templates/stages/dotnet/publish-config-prod.yml@self
+      - template: /eng/pipeline/stages/publish-config-prod.yml@self
         parameters:
           sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
           publishRepoPrefix: ${{ parameters.publishRepoPrefix }}
