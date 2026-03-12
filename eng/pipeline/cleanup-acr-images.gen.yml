@@ -89,6 +89,7 @@ extends:
                     server: $(acr-staging.server)
                   action: delete
                   age: 15
+                  customArgs: "--dry-run" # Dry run is the default, but make it explicit.
               # Disabled until we've worked out https://github.com/microsoft/go-lab/issues/245
               # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
               #   parameters:
@@ -98,6 +99,7 @@ extends:
               #       server: $(acr.server)
               #     action: pruneEol
               #     age: 15
+              #     customArgs: "--dry-run" # Dry run is the default, but make it explicit.
               # Disabled due to https://github.com/dotnet/docker-tools/issues/797
               # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
               #   parameters:
@@ -107,3 +109,4 @@ extends:
               #       server: $(acr-staging.server)
               #     action: pruneDangling
               #     age: 0
+              #     customArgs: "--dry-run" # Dry run is the default, but make it explicit.
