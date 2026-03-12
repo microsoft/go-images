@@ -43,6 +43,8 @@ parameters:
 
 steps:
 - ${{ if and(eq(variables['System.TeamProject'], parameters.internalProjectName), ne(variables['Build.Reason'], 'PullRequest')) }}:
+  # Guard on .name: null parameters passed through template layers can become
+  # empty objects that are truthy, so check the concrete property instead.
   - ${{ each serviceConnection in parameters.serviceConnections }}:
     - ${{ if serviceConnection.name }}:
       - task: AzureCLI@2
@@ -56,6 +58,7 @@ steps:
           scriptLocation: inlineScript
           inlineScript: Write-Host "Service connection referenced for OIDC"
   - ${{ each auth in parameters.publishConfig.RegistryAuthentication }}:
+    # Also guard on .name here for the same reason as the serviceConnections loop above.
     - ${{ if and(containsValue(parameters.usesRegistries, auth.server), auth.serviceConnection.name) }}:
       - task: AzureCLI@2
         displayName: Reference ${{ auth.serviceConnection.name }}
