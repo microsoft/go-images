@@ -68,7 +68,9 @@ stages:
     # This will get converted to JSON and placed in appsettings.json to be loaded by ImageBuilder at runtime.
     publishConfig:
       InternalMirrorRegistry:
-        server: ${ ternary "$(acr-staging.server)" "$(acr-staging-test.server)" .prod }
+        server:
+          ${ inlineif .prod }: $(acr-staging.server)
+          ${ inlineelse }: $(acr-staging-test.server)
         repoPrefix: $(internalMirrorRepoPrefix)
 
       PublicMirrorRegistry:
@@ -76,48 +78,102 @@ stages:
         repoPrefix: $(publicMirrorRepoPrefix)
 
       BuildRegistry:
-        server: ${ ternary "$(acr-staging.server)" "$(acr-staging-test.server)" .prod }
+        server:
+          ${ inlineif .prod }: $(acr-staging.server)
+          ${ inlineelse }: $(acr-staging-test.server)
         repoPrefix: "${{ parameters.stagingRepoPrefix }}${{ parameters.sourceBuildPipelineRunId }}/"
 
       PublishRegistry:
-        server: ${ ternary "$(acr.server)" "$(acr-test.server)" .prod }
+        server:
+          ${ inlineif .prod }: $(acr.server)
+          ${ inlineelse }: $(acr-test.server)
         repoPrefix: "${{ parameters.publishRepoPrefix }}"
 
       RegistryAuthentication:
-        - server: ${ ternary "$(acr-staging.server)" "$(acr-staging-test.server)" .prod }
-          resourceGroup: ${ ternary "$(acr-staging.resourceGroup)" "$(testResourceGroup)" .prod }
-          subscription: ${ ternary "$(acr-staging.subscription)" "$(testSubscription)" .prod }
+        - server:
+            ${ inlineif .prod }: $(acr-staging.server)
+            ${ inlineelse }: $(acr-staging-test.server)
+          resourceGroup:
+            ${ inlineif .prod }: $(acr-staging.resourceGroup)
+            ${ inlineelse }: $(testResourceGroup)
+          subscription:
+            ${ inlineif .prod }: $(acr-staging.subscription)
+            ${ inlineelse }: $(testSubscription)
           serviceConnection:
-            name: ${ ternary "$(build.serviceConnectionName)" "$(build-test.serviceConnectionName)" .prod }
-            id: ${ ternary "$(build.serviceConnection.id)" "$(build-test.serviceConnection.id)" .prod }
-            clientId: ${ ternary "$(build.serviceConnection.clientId)" "$(build-test.serviceConnection.clientId)" .prod }
-            tenantId: ${ ternary "$(build.serviceConnection.tenantId)" "$(testTenant)" .prod }
-        - server: ${ ternary "$(acr.server)" "$(acr-test.server)" .prod }
-          resourceGroup: ${ ternary "$(acr.resourceGroup)" "$(testResourceGroup)" .prod }
-          subscription: ${ ternary "$(acr.subscription)" "$(testSubscription)" .prod }
+            name:
+              ${ inlineif .prod }: $(build.serviceConnectionName)
+              ${ inlineelse }: $(build-test.serviceConnectionName)
+            id:
+              ${ inlineif .prod }: $(build.serviceConnection.id)
+              ${ inlineelse }: $(build-test.serviceConnection.id)
+            clientId:
+              ${ inlineif .prod }: $(build.serviceConnection.clientId)
+              ${ inlineelse }: $(build-test.serviceConnection.clientId)
+            tenantId:
+              ${ inlineif .prod }: $(build.serviceConnection.tenantId)
+              ${ inlineelse }: $(testTenant)
+        - server:
+            ${ inlineif .prod }: $(acr.server)
+            ${ inlineelse }: $(acr-test.server)
+          resourceGroup:
+            ${ inlineif .prod }: $(acr.resourceGroup)
+            ${ inlineelse }: $(testResourceGroup)
+          subscription:
+            ${ inlineif .prod }: $(acr.subscription)
+            ${ inlineelse }: $(testSubscription)
           serviceConnection:
-            name: ${ ternary "$(publish.serviceConnectionName)" "$(publish-test.serviceConnectionName)" .prod }
-            id: ${ ternary "$(publish.serviceConnection.id)" "$(publish-test.serviceConnection.id)" .prod }
-            clientId: ${ ternary "$(publish.serviceConnection.clientId)" "$(publish-test.serviceConnection.clientId)" .prod }
-            tenantId: ${ ternary "$(publish.serviceConnection.tenantId)" "$(testTenant)" .prod }
+            name:
+              ${ inlineif .prod }: $(publish.serviceConnectionName)
+              ${ inlineelse }: $(publish-test.serviceConnectionName)
+            id:
+              ${ inlineif .prod }: $(publish.serviceConnection.id)
+              ${ inlineelse }: $(publish-test.serviceConnection.id)
+            clientId:
+              ${ inlineif .prod }: $(publish.serviceConnection.clientId)
+              ${ inlineelse }: $(publish-test.serviceConnection.clientId)
+            tenantId:
+              ${ inlineif .prod }: $(publish.serviceConnection.tenantId)
+              ${ inlineelse }: $(testTenant)
 
       cleanServiceConnection:
-        name: ${ ternary "$(clean.serviceConnectionName)" "$(clean-test.serviceConnectionName)" .prod }
-        id: ${ ternary "$(clean.serviceConnection.id)" "$(clean-test.serviceConnection.id)" .prod }
-        clientId: ${ ternary "$(clean.serviceConnection.clientId)" "$(clean-test.serviceConnection.clientId)" .prod }
-        tenantId: ${ ternary "$(clean.serviceConnection.tenantId)" "$(testTenant)" .prod }
+        name:
+          ${ inlineif .prod }: $(clean.serviceConnectionName)
+          ${ inlineelse }: $(clean-test.serviceConnectionName)
+        id:
+          ${ inlineif .prod }: $(clean.serviceConnection.id)
+          ${ inlineelse }: $(clean-test.serviceConnection.id)
+        clientId:
+          ${ inlineif .prod }: $(clean.serviceConnection.clientId)
+          ${ inlineelse }: $(clean-test.serviceConnection.clientId)
+        tenantId:
+          ${ inlineif .prod }: $(clean.serviceConnection.tenantId)
+          ${ inlineelse }: $(testTenant)
 
       testServiceConnection:
-        name: ${ ternary "$(test.serviceConnectionName)" "$(test-nonprod.serviceConnectionName)" .prod }
-        id: ${ ternary "$(test.serviceConnection.id)" "$(test-nonprod.serviceConnection.id)" .prod }
-        clientId: ${ ternary "$(test.serviceConnection.clientId)" "$(test-nonprod.serviceConnection.clientId)" .prod }
-        tenantId: ${ ternary "$(test.serviceConnection.tenantId)" "$(testTenant)" .prod }
+        name:
+          ${ inlineif .prod }: $(test.serviceConnectionName)
+          ${ inlineelse }: $(test-nonprod.serviceConnectionName)
+        id:
+          ${ inlineif .prod }: $(test.serviceConnection.id)
+          ${ inlineelse }: $(test-nonprod.serviceConnection.id)
+        clientId:
+          ${ inlineif .prod }: $(test.serviceConnection.clientId)
+          ${ inlineelse }: $(test-nonprod.serviceConnection.clientId)
+        tenantId:
+          ${ inlineif .prod }: $(test.serviceConnection.tenantId)
+          ${ inlineelse }: $(testTenant)
 
       Signing:
         Enabled: ${{ parameters.enableSigning }}
-        ImageSigningKeyCode: ${ ternary "$(microBuildSigningKeyCode.containers)" "$(microBuildSigningKeyCode.testing)" .prod }
-        ReferrerSigningKeyCode: ${ ternary "$(microBuildSigningKeyCode.attestations)" "$(microBuildSigningKeyCode.testing)" .prod }
+        ImageSigningKeyCode:
+          ${ inlineif .prod }: $(microBuildSigningKeyCode.containers)
+          ${ inlineelse }: $(microBuildSigningKeyCode.testing)
+        ReferrerSigningKeyCode:
+          ${ inlineif .prod }: $(microBuildSigningKeyCode.attestations)
+          ${ inlineelse }: $(microBuildSigningKeyCode.testing)
         # Use signType 'real' even for non-prod to actually sign with the test certificate.
         # The 'test' signType skips signing entirely on linux; the test keycode provides a non-production certificate.
         SignType: real
-        TrustStoreName: ${ ternary "supplychain" "test" .prod }
+        TrustStoreName:
+          ${ inlineif .prod }: supplychain
+          ${ inlineelse }: test
