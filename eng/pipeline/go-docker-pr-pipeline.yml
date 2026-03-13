@@ -5,13 +5,13 @@ pr:
       - microsoft/main
 
 variables:
-  - template: variables/common.yml
+  - template: /eng/pipeline/variables/go-common.yml@self
 
 stages:
-  - template: /eng/common/templates/stages/dotnet/publish-config-nonprod.yml@self
+  - template: /eng/pipeline/stages/publish-config-nonprod.yml@self
     parameters:
       sourceBuildPipelineRunId: $(Build.BuildId)
-      stagesTemplate: /eng/common/templates/stages/dotnet/build-and-test.yml@self
+      stagesTemplate: /eng/docker-tools/templates/stages/dotnet/build-and-test.yml@self
       stagesTemplateParameters:
         sourceBuildPipelineRunId: $(Build.BuildId)
         buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
@@ -23,7 +23,7 @@ stages:
           - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
         buildMatrixType: platformVersionedOs
 
-  - template: stages/check-generation-repeatable.yml
+  - template: /eng/pipeline/stages/check-generation-repeatable.yml@self
     parameters:
       pool:
         name: NetCore-Public
