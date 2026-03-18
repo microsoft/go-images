@@ -1,0 +1,43 @@
+pipelineymlgen:
+  data:
+    source:
+      ${ inlinetemplate "../../docker-tools/templates/variables/dotnet/common.yml" }
+  output: self
+---
+# This template reads dotnet/common.yml and copies every entry that we wish to
+# use for our build. For example, we currently don't have any reason to use a
+# different AzDO instance name and agent pool/images, so we copy them from
+# dotnet/common.yml.
+#
+# By using a generator, we get a CI failure when the .NET Docker Tooling
+# templates change in a way that affects these variables, letting us know that
+# we need to update them. This generator also provides the means to perform the
+# update with a single command that won't make a copy paste mistake.
+#
+# One element we specifically exclude is the variable group.
+# ("group: DotNet-Docker-Common-2" as of writing.) That group would cause our
+# build to attempt to access values that are truly .NET-specific, which could
+# cause confusing build errors, and at worst, cause our build to attempt to put
+# our outputs in .NET's resources.
+#
+# Note: TeamName is excluded because it seems like we should use own once
+# signing is introduced.
+- ${ inlinerange "v" .source.variables }:
+    ? ${ inlineif
+        (and
+          (and
+            (hasKey .v "name")
+            (hasKey .v "value")
+          )
+          (or
+            (eq .v.name "publicProjectName")
+            (eq .v.name "internalProjectName")
+            (hasSuffix "PoolImage" .v.name)
+            (hasSuffix "PoolName" .v.name)
+            (eq .v.name "MicroBuildFeedSource")
+            (eq .v.name "MicroBuildPluginVersion")
+          )
+        )
+      }
+    :
+      ${ yml .v }
