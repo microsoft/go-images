@@ -15,6 +15,10 @@ trigger: none
 pr: none
 # For info about runtime parameters, see https://github.com/microsoft/go-infra/blob/main/docs/pipeline-yml-style.md#runtime-parameters
 parameters:
+  - name: enableDryRun
+    displayName: Enable Dry Run
+    default: false
+    type: boolean
   - name: disableTSA
     displayName: "[Debug input] Disable TSA reporting. Use to try modifications in dev branches."
     type: boolean
@@ -28,7 +32,6 @@ schedules:
     always: true
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
-  - template: /eng/pipeline/variables/secrets.yml@self
 resources:
   repositories:
     - repository: 1ESPipelineTemplates
@@ -49,48 +52,8 @@ extends:
         enabled: ${{ not(parameters.disableTSA) }}
         configFile: $(Build.SourcesDirectory)/.config/tsa/tsaoptions.json
     stages:
-      - stage: Build
-        dependsOn: []
-        jobs:
-          - job: Build
-            pool:
-              name: $(default1ESInternalPoolName)
-              image: $(default1ESInternalPoolImage)
-              os: linux
-            steps:
-              - template: /eng/docker-tools/templates/steps/init-common.yml@self
-                parameters:
-                  dockerClientOS: linux
-              - template: /eng/docker-tools/templates/steps/reference-service-connections.yml@self
-                parameters:
-                  serviceConnections:
-                    - name: $(clean.serviceConnectionName)
-              - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
-                parameters:
-                  internalProjectName: ${{ variables.internalProjectName }}
-                  repo: "build-staging/*"
-                  acr:
-                    server: $(acr-staging.server)
-                  action: delete
-                  age: 15
-                  customArgs: "--dry-run" # Dry run is the default, but make it explicit.
-            # Disabled until we've worked out https://github.com/microsoft/go-lab/issues/245
-            # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
-            #   parameters:
-            #     internalProjectName: ${{ variables.internalProjectName }}
-            #     repo: "public/oss/go/*"
-            #     acr:
-            #       server: $(acr.server)
-            #     action: pruneEol
-            #     age: 15
-            #     customArgs: "--dry-run" # Dry run is the default, but make it explicit.
-            # Disabled due to https://github.com/dotnet/docker-tools/issues/797
-            # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
-            #   parameters:
-            #     internalProjectName: ${{ variables.internalProjectName }}
-            #     repo: "mirror/*"
-            #     acr:
-            #       server: $(acr-staging.server)
-            #     action: pruneDangling
-            #     age: 0
-            #     customArgs: "--dry-run" # Dry run is the default, but make it explicit.
+      - template: /eng/pipeline/stages/publish-config-prod.yml@self
+        parameters:
+          stagesTemplate: /eng/pipeline/stages/go-cleanup-acr-images.yml@self
+          stagesTemplateParameters:
+            enableDryRun: ${{ parameters.enableDryRun }}
