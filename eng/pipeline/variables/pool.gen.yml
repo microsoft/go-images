@@ -20,7 +20,7 @@ pipelineymlgen:
 # cause confusing build errors, and at worst, cause our build to attempt to put
 # our outputs in .NET's resources.
 #
-# Note: TeamName is excluded because it seems like we should use own once
+# Note: TeamName is excluded because it seems like we should use our own once
 # signing is introduced.
 - ${ inlinerange "v" .source.variables }:
     ? ${ inlineif
