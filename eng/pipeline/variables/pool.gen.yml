@@ -36,6 +36,7 @@ pipelineymlgen:
             (hasSuffix "PoolName" .v.name)
             (eq .v.name "MicroBuildFeedSource")
             (eq .v.name "MicroBuildPluginVersion")
+            (eq .v.name "dockerHubRegistryCreds")
           )
         )
       }
