@@ -1,0 +1,58 @@
+parameters:
+- name: publishConfig
+  type: object
+  default: null
+- name: enableDryRun
+  type: boolean
+  default: false
+- name: internalProjectName
+  type: string
+  default: null
+- name: publicProjectName
+  type: string
+  default: null
+
+stages:
+  - stage: Execute
+    dependsOn: []
+    jobs:
+      - job: Clean
+        pool:
+          name: $(default1ESInternalPoolName)
+          image: $(default1ESInternalPoolImage)
+          os: linux
+        variables:
+          dryRunArg: ${{ iif(parameters.enableDryRun, '--dry-run', '') }}
+        steps:
+          - template: /eng/docker-tools/templates/steps/init-common.yml@self
+            parameters:
+              dockerClientOS: linux
+              publishConfig: ${{ parameters.publishConfig }}
+          - template: /eng/docker-tools/templates/steps/reference-service-connections.yml@self
+            parameters:
+              publishConfig: ${{ parameters.publishConfig }}
+              serviceConnections:
+                - ${{ parameters.publishConfig.cleanServiceConnection }}
+          - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
+            parameters:
+              internalProjectName: ${{ parameters.internalProjectName }}
+              repo: "build-staging/*"
+              acr: ${{ parameters.publishConfig.BuildRegistry }}
+              action: delete
+              age: 15
+          # Disabled until we've worked out https://github.com/microsoft/go-lab/issues/245
+          # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
+          #   parameters:
+          #     internalProjectName: ${{ parameters.internalProjectName }}
+          #     repo: "public/oss/go/*"
+          #     acr: ${{ parameters.publishConfig.PublishRegistry }}
+          #     action: pruneEol
+          #     age: 15
+          #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
+          # Disabled due to https://github.com/dotnet/docker-tools/issues/797
+          # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
+          #   parameters:
+          #     repo: "mirror/*"
+          #     acr: ${{ parameters.publishConfig.BuildRegistry }}
+          #     action: pruneDangling
+          #     age: 0
