@@ -5,6 +5,8 @@
   value: public
 - name: internalProjectName
   value: internal
+- name: dockerHubRegistryCreds
+  value: --registry-creds 'docker.io=placeholder;placeholder'
 - name: linuxAmd64InternalPoolImage
   value: build.azurelinux.3.amd64
 - name: linuxAmd64PublicPoolImage
