@@ -34,7 +34,7 @@ parameters:
     default: ${ yml (not .official) }
 
   - name: age
-    displayName: Age (in days) of images to clean up
+    displayName: Minimum age (in days) of images to clean up; reduce if necessary to clear s360
     type: number
     default: 15
 
