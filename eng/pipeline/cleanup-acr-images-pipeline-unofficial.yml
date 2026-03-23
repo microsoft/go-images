@@ -23,6 +23,10 @@ parameters:
     displayName: "[Debug input] Disable TSA reporting. Use to try modifications in dev branches."
     type: boolean
     default: true
+  - name: age
+    displayName: Age (in days) of images to clean up
+    type: number
+    default: 15
 schedules: []
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
@@ -51,3 +55,4 @@ extends:
           stagesTemplate: /eng/pipeline/stages/go-cleanup-acr-images.yml@self
           stagesTemplateParameters:
             enableDryRun: ${{ parameters.enableDryRun }}
+            age: ${{ parameters.age }}
