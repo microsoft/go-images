@@ -20,6 +20,7 @@ stages:
     dependsOn: []
     jobs:
       - job: Clean
+        timeoutInMinutes: 180
         pool:
           name: $(default1ESInternalPoolName)
           image: $(default1ESInternalPoolImage)
@@ -47,7 +48,7 @@ stages:
             parameters:
               internalProjectName: ${{ parameters.internalProjectName }}
               repo: "public/oss/go/*"
-              acr: ${{ parameters.publishConfig.BuildRegistry }}
+              acr: ${{ parameters.publishConfig.PublishRegistry }}
               action: pruneEol
               age: ${{ parameters.age }}
           # Disabled due to https://github.com/dotnet/docker-tools/issues/797
