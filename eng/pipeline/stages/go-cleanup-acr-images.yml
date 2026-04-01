@@ -11,12 +11,16 @@ parameters:
 - name: publicProjectName
   type: string
   default: null
+- name: age
+  type: number
+  default: 15
 
 stages:
   - stage: Execute
     dependsOn: []
     jobs:
       - job: Clean
+        timeoutInMinutes: 180
         pool:
           name: $(default1ESInternalPoolName)
           image: $(default1ESInternalPoolImage)
@@ -39,16 +43,14 @@ stages:
               repo: "build-staging/*"
               acr: ${{ parameters.publishConfig.BuildRegistry }}
               action: delete
-              age: 15
-          # Disabled until we've worked out https://github.com/microsoft/go-lab/issues/245
-          # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
-          #   parameters:
-          #     internalProjectName: ${{ parameters.internalProjectName }}
-          #     repo: "public/oss/go/*"
-          #     acr: ${{ parameters.publishConfig.PublishRegistry }}
-          #     action: pruneEol
-          #     age: 15
-          #     customArgs: $(excludedBuildToolsPrereqsImagesArgs)
+              age: ${{ parameters.age }}
+          - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
+            parameters:
+              internalProjectName: ${{ parameters.internalProjectName }}
+              repo: "public/oss/go/*"
+              acr: ${{ parameters.publishConfig.PublishRegistry }}
+              action: pruneEol
+              age: ${{ parameters.age }}
           # Disabled due to https://github.com/dotnet/docker-tools/issues/797
           # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
           #   parameters:

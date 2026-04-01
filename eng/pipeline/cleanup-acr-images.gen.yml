@@ -33,6 +33,11 @@ parameters:
     type: boolean
     default: ${ yml (not .official) }
 
+  - name: age
+    displayName: Minimum age (in days) of images to clean up; reduce if necessary to clear s360
+    type: number
+    default: 15
+
 schedules:
   - ${ inlineif .official }:
     - cron: "0 5 * * *"
@@ -74,3 +79,4 @@ extends:
           stagesTemplate: /eng/pipeline/stages/go-cleanup-acr-images.yml@self
           stagesTemplateParameters:
             enableDryRun: ${{ parameters.enableDryRun }}
+            age: ${{ parameters.age }}
