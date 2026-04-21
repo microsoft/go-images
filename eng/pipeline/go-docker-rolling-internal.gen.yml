@@ -78,7 +78,9 @@ extends:
     stages:
       - template: /eng/pipeline/stages/publish-config-prod.yml@self
         parameters:
-          enableSigning: true
+          enableSigning:
+            ${ inlineif .official }: true
+            ${ inlineelse }: false
           sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
           publishRepoPrefix: ${{ parameters.publishRepoPrefix }}
           stagesTemplate: /eng/docker-tools/templates/stages/dotnet/build-test-publish-repo.yml@self
