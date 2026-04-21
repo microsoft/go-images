@@ -51,9 +51,9 @@ extends:
         enabled: true
         configFile: $(SDLConfigFileDir)/tsa/tsaoptions.json
     stages:
-      - template: /eng/pipeline/stages/publish-config-prod.yml@self
+      - template: /eng/pipeline/stages/publish-config-nonprod.yml@self
         parameters:
-          enableSigning: false
+          enableSigning: true
           sourceBuildPipelineRunId: ${{ parameters.sourceBuildPipelineRunId }}
           publishRepoPrefix: ${{ parameters.publishRepoPrefix }}
           stagesTemplate: /eng/docker-tools/templates/stages/dotnet/build-test-publish-repo.yml@self
