@@ -6,3 +6,5 @@
 # was checked out on Windows but is being used within WSL or a container.
 *.patch     -text
 Dockerfile* -text
+
+.github/workflows/*.lock.yml linguist-generated=true merge=ours
