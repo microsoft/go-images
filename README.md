@@ -23,6 +23,14 @@ mcr.microsoft.com/oss/go/microsoft/golang:1.25-azurelinux3.0
 ```
 
 > [!NOTE]
+> Why 1.25 and not the latest 1.26?
+> By the time a Go major has been out long enough to be the N-1 major version, it has had several patch releases that fix compatibility regressions found in the `.0` release, so it tends to be a less disruptive default for build pipelines than the brand-new N.
+>
+> Both N and N-1 are fully supported in MAR — if you want N, pin to its major tag explicitly.
+> We recommend moving from N-1 to N **before** N+1 ships, because the old N-1 reaches end of support when N+1 releases.
+> Staying on the recommended tag past that point would mean upgrading two majors at once.
+
+> [!NOTE]
 > If you've used our 1.24 or earlier images, you may expect to see a `-fips` variant.
 > As of 1.25, we no longer produce `-fips` tags, because `systemcrypto` is enabled by default in the Microsoft build of Go as of Go 1.25.
 > Basically: the change that was previously in the `-fips` images is now present in all of our ordinary images.
