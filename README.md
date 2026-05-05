@@ -23,12 +23,16 @@ mcr.microsoft.com/oss/go/microsoft/golang:1.25-azurelinux3.0
 ```
 
 > [!NOTE]
-> Why 1.25 and not the latest 1.26?
-> By the time a Go major has been out long enough to be the N-1 major version, it has had several patch releases that fix compatibility regressions found in the `.0` release, so it tends to be a less disruptive default for build pipelines than the brand-new N.
+> Why 1.25 (N-1) and not the latest, 1.26 (N)?
+> By the time a Go major version has been out long enough to be N-1, it has had several patch releases that may fix bugs found in the `.0` release and other early patch versions.
+> We recommend starting with N-1 rather than N so this timing-specific nuance doesn't come up.
 >
-> Both N and N-1 tags are currently supported, rebuilt by this repo, and published to MAR — if you want N, pin to its major tag explicitly.
-> We recommend moving from N-1 to N **before** N+1 ships, because the old N-1 reaches end of support when N+1 releases.
-> Staying on the recommended tag past that point would mean upgrading two majors at once.
+> Both N and N-1 tags are currently supported.
+> If you want or need to use the latest, N, simply increment the major version number in the tag you use.
+>
+> To continue using Go without a support continuity gap, you must move from N-1 to N **before** N+1 ships, because the old N-1 reaches end of support immediately when N+1 releases.
+> Ideally, we recommend moving from N-1 to N as soon as possible. This way, you can detect bugs that have to do with the new Go version as soon as possible and maximize the time remaining to address them.
+> This may seem to contradict our image recommendation; however, we *do* recommend starting with N-1 and upgrading to N as soon as you can feasibly do so for the most incremental and safe migration.
 
 > [!NOTE]
 > If you've used our 1.24 or earlier images, you may expect to see a `-fips` variant.
