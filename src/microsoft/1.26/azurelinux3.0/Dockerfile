@@ -59,7 +59,7 @@ RUN set -eux; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
 # Azure Linux doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
 # import. In microsoft/go-images, we use a manually imported key anyway.
-# See https://github.com/microsoft/azurelinux/issues/3142
+# See https://microsoft.visualstudio.com/OS/_workitems/edit/62225284
 	gpg --batch --verify go.tgz.asc go.tgz; \
 	gpgconf --kill all; \
 	rm -rf "$GNUPGHOME" go.tgz.asc; \
