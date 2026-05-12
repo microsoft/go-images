@@ -8,7 +8,7 @@ Subject: [PATCH] Add Azure Linux, FIPS, package upgrade
  1 file changed, 104 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index efec1b701b447d..e02fca3ddde5ea 100644
+index efec1b701b447d..46c947e7cfbe24 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,9 +4,40 @@
@@ -94,7 +94,7 @@ index efec1b701b447d..e02fca3ddde5ea 100644
 +{{ if is_azurelinux then ( -}}
 +# Azure Linux doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
 +# import. In microsoft/go-images, we use a manually imported key anyway.
-+# See https://github.com/microsoft/azurelinux/issues/3142
++# See https://microsoft.visualstudio.com/OS/_workitems/edit/62225284
 +{{ ) else ( -}}
  # https://www.google.com/linuxrepositories/
  	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
