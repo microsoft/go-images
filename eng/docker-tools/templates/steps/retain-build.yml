@@ -1,9 +1,25 @@
+# Pins the current build forever via the releasego retain-build subcommand
+# (PATCHes AzDO build/builds/{id} with keepForever=true). Gated on
+# variables.retainBuild == 'true' so non-release runs are unaffected.
+#
+# The release pipeline that triggered this build cannot pin from the outside
+# because go-images / go-infra-images self-trigger to production on their own
+# schedule, so retention is decided here.
 steps:
-- powershell: >
-    $(engDockerToolsPath)/Retain-Build.ps1
-    -BuildId $(Build.BuildId)
-    -AzdoOrgUri '$(System.CollectionUri)'
-    -AzdoProject '$(System.TeamProject)'
-    -Token '$(System.AccessToken)'
+- task: GoTool@0
+  inputs:
+    version: '1.25'
+  displayName: Install Go (for releasego retain-build)
+  condition: and(succeeded(), eq(variables.retainBuild, 'true'))
+
+- script: go install github.com/microsoft/go-infra/cmd/releasego
+  displayName: Install releasego
+  workingDirectory: $(Build.SourcesDirectory)/eng/ci-tools
+  condition: and(succeeded(), eq(variables.retainBuild, 'true'))
+
+- pwsh: |
+    & "$(go env GOPATH)/bin/releasego" retain-build -azdopat $env:SYSTEM_ACCESSTOKEN
+  env:
+    SYSTEM_ACCESSTOKEN: $(System.AccessToken)
   displayName: Enable permanent build retention
   condition: and(succeeded(), eq(variables.retainBuild, 'true'))

@@ -14,15 +14,15 @@ require (
 	github.com/google/uuid v1.6.0 // indirect
 	github.com/huandu/xstrings v1.5.0 // indirect
 	github.com/microsoft/azure-devops-go-api/azuredevops v1.0.0-b5 // indirect
-	github.com/microsoft/go-infra v0.0.9-0.20260212192436-47a6b123481b // indirect
+	github.com/microsoft/go-infra v0.0.12-0.20260513232200-4da3b7a8edfe // indirect
 	github.com/mitchellh/copystructure v1.2.0 // indirect
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/shopspring/decimal v1.4.0 // indirect
 	github.com/spf13/cast v1.7.0 // indirect
 	go.yaml.in/yaml/v4 v4.0.0-rc.4 // indirect
-	golang.org/x/crypto v0.48.0 // indirect
-	golang.org/x/oauth2 v0.35.0 // indirect
-	golang.org/x/text v0.34.0 // indirect
+	golang.org/x/crypto v0.51.0 // indirect
+	golang.org/x/oauth2 v0.36.0 // indirect
+	golang.org/x/text v0.37.0 // indirect
 )
 
 tool (
