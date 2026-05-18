@@ -33,6 +33,18 @@ jobs:
       usesRegistries:
         - ${{ parameters.publishConfig.BuildRegistry.server }}
   - ${{ parameters.customGenerateMatrixInitSteps }}
+  # Install Go + releasego at the job level (rather than inside the retain-build
+  # step template) so the toolchain setup is visible at the job level per review
+  # feedback. Gated on retainBuild so non-release runs are unaffected.
+  - task: GoTool@0
+    inputs:
+      version: '1.25'
+    displayName: Install Go (for releasego retain-build)
+    condition: and(succeeded(), eq(variables.retainBuild, 'true'))
+  - script: go install github.com/microsoft/go-infra/cmd/releasego
+    displayName: Install releasego
+    workingDirectory: $(Build.SourcesDirectory)/eng/ci-tools
+    condition: and(succeeded(), eq(variables.retainBuild, 'true'))
   - template: /eng/docker-tools/templates/steps/retain-build.yml@self
   - template: /eng/docker-tools/templates/steps/validate-branch.yml@self
     parameters:

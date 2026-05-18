@@ -5,18 +5,12 @@
 # The release pipeline that triggered this build cannot pin from the outside
 # because go-images / go-infra-images self-trigger to production on their own
 # schedule, so retention is decided here.
+#
+# This template assumes the Go toolchain and releasego have already been
+# installed earlier in the job. Consumers must add `GoTool@0` and
+# `go install github.com/microsoft/go-infra/cmd/releasego` at the job level
+# (gated on retainBuild) before invoking this template.
 steps:
-- task: GoTool@0
-  inputs:
-    version: '1.25'
-  displayName: Install Go (for releasego retain-build)
-  condition: and(succeeded(), eq(variables.retainBuild, 'true'))
-
-- script: go install github.com/microsoft/go-infra/cmd/releasego
-  displayName: Install releasego
-  workingDirectory: $(Build.SourcesDirectory)/eng/ci-tools
-  condition: and(succeeded(), eq(variables.retainBuild, 'true'))
-
 - pwsh: |
     & "$(go env GOPATH)/bin/releasego" retain-build -azdopat $env:SYSTEM_ACCESSTOKEN
   env:
