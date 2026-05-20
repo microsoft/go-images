@@ -6,4 +6,6 @@ steps:
     -AzdoProject '$(System.TeamProject)'
     -Token '$(System.AccessToken)'
   displayName: Enable permanent build retention
-  condition: and(succeeded(), eq(variables.retainBuild, 'true'))
+  # Retain builds explicitly requested by callers, and also all official branch
+  # builds by default (e.g., scheduled official runs).
+  condition: and(succeeded(), or(eq(variables.retainBuild, 'true'), and(not(endsWith(variables['Build.DefinitionName'], '(unofficial)')), contains(concat(',', variables['officialBranches'], ','), concat(',', variables['sourceBranch'], ',')))))
