@@ -14,10 +14,9 @@ steps:
       }
     }
     
-    # INVERTED FOR TESTING: retain dev/ builds instead of official builds
-    $shouldRetain = ($isOfficialDefinition -and $sourceBranch.StartsWith("dev/"))
+    $shouldRetain = ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix))
     echo "##vso[task.setvariable variable=shouldRetainBuild]$shouldRetain"
-    Write-Host "shouldRetainBuild set to: $shouldRetain (inverted test mode: retain dev/ branches)"
+    Write-Host "shouldRetainBuild set to: $shouldRetain (official def: $isOfficialDefinition, official branch: $isOfficialBranch, has prefix: $hasOfficialPrefix)"
   displayName: Compute retention decision
   condition: succeeded()
 
