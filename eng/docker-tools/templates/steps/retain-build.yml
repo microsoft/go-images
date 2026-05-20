@@ -14,12 +14,12 @@ steps:
       }
     }
     
-    $explicitRetain = "$(retainBuild)" -eq "true"
+    $callerRetainBuild = "$(retainBuild)" -eq "true"
     $policyRetain = ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix))
-    $effectiveRetainBuild = ($explicitRetain -or $policyRetain)
+    $retainBuild = ($callerRetainBuild -or $policyRetain)
 
-    echo "##vso[task.setvariable variable=effectiveRetainBuild]$effectiveRetainBuild"
-    Write-Host "effectiveRetainBuild set to: $effectiveRetainBuild (explicit: $explicitRetain, policy: $policyRetain, official def: $isOfficialDefinition, official branch: $isOfficialBranch, has prefix: $hasOfficialPrefix)"
+    echo "##vso[task.setvariable variable=retainBuild]$retainBuild"
+    Write-Host "retainBuild set to: $retainBuild (caller requested: $callerRetainBuild, policy: $policyRetain, official def: $isOfficialDefinition, official branch: $isOfficialBranch, has prefix: $hasOfficialPrefix)"
   displayName: Compute retention decision
   condition: succeeded()
 
@@ -32,4 +32,4 @@ steps:
   displayName: Enable permanent build retention
   # Retain builds explicitly requested by callers, and also all official branch
   # builds by default (e.g., scheduled official runs).
-  condition: and(succeeded(), eq(variables.effectiveRetainBuild, 'true'))
+  condition: and(succeeded(), eq(variables.retainBuild, 'true'))
