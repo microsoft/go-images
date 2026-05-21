@@ -14,9 +14,9 @@ steps:
       }
     }
     
-    # Invert the logic for testing purposes
+      # Retain when explicitly requested or when this is an official branch build.
     $retainBuildOverride = $env:RETAIN_BUILD_OVERRIDE
-    $retainBuild = -not ( ($retainBuildOverride -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix)) )
+      $retainBuild = ($retainBuildOverride -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix))
 
     echo "##vso[task.setvariable variable=retainBuild]$retainBuild"
     Write-Host "retainBuild set to: $retainBuild (official def: $isOfficialDefinition, official branch: $isOfficialBranch, has prefix: $hasOfficialPrefix)"
