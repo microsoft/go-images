@@ -63,6 +63,7 @@ extends:
             versionsRepoRef: VersionsRepo
             noCache: true
             customGenerateMatrixInitSteps:
+              - template: /eng/pipeline/steps/set-retain-build-var.yml@self
               - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
             customBuildInitSteps:
               - template: /eng/pipeline/steps/set-imagebuilder-build-args-var.yml@self
