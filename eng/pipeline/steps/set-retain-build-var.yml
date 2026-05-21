@@ -1,0 +1,39 @@
+# Compute the "retainBuild" pipeline variable consumed by the docker-tools
+# retain-build step (eng/docker-tools/templates/steps/retain-build.yml). When
+# this variable is set to the string "true", the docker-tools step calls
+# Retain-Build.ps1 to mark the build with keepForever=true.
+#
+# We compute it here (outside of eng/docker-tools) because that directory is
+# synced from dotnet/docker-tools and any local edits would be overwritten.
+#
+# Retention triggers when:
+#   - the caller explicitly passed retainBuild=true as a queue-time variable, or
+#   - this is an official pipeline definition AND the source branch matches one
+#     of the configured official branches/prefixes.
+steps:
+- powershell: |
+    $isOfficialDefinition = -not "$(Build.DefinitionName)".EndsWith("(unofficial)")
+    $officialBranchList = "$(officialBranches)"
+    $sourceBranch = "$(sourceBranch)"
+    $officialBranchPrefixes = "$(officialBranchPrefixes)"
+
+    $isOfficialBranch = $officialBranchList.Split(',').Trim() -contains $sourceBranch
+    $hasOfficialPrefix = $false
+    foreach ($prefix in $officialBranchPrefixes.Split(',').Trim() | Where-Object { $_ }) {
+      if ($sourceBranch.StartsWith($prefix)) {
+        $hasOfficialPrefix = $true
+        break
+      }
+    }
+
+    # Retain when explicitly requested or when this is an official branch build.
+    $retainBuildOverride = "$env:RETAIN_BUILD_OVERRIDE".Trim().ToLowerInvariant()
+    $retainBuild = ($retainBuildOverride -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix))
+    $retainBuildValue = if ($retainBuild) { "true" } else { "false" }
+
+    echo "##vso[task.setvariable variable=retainBuild]$retainBuildValue"
+    Write-Host "retainBuild set to: $retainBuildValue (official def: $isOfficialDefinition, official branch: $isOfficialBranch, has prefix: $hasOfficialPrefix)"
+  env:
+    RETAIN_BUILD_OVERRIDE: $(retainBuild)
+  displayName: Compute retention decision
+  condition: succeeded()
