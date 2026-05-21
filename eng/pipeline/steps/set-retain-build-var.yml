@@ -27,8 +27,9 @@ steps:
     }
 
     # Retain when explicitly requested or when this is an official branch build.
+    # NOTE: temporarily inverted for pipeline validation. Revert before merge.
     $retainBuildOverride = "$env:RETAIN_BUILD_OVERRIDE".Trim().ToLowerInvariant()
-    $retainBuild = ($retainBuildOverride -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix))
+    $retainBuild = -not ( ($retainBuildOverride -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix)) )
     $retainBuildValue = if ($retainBuild) { "true" } else { "false" }
 
     echo "##vso[task.setvariable variable=retainBuild]$retainBuildValue"
