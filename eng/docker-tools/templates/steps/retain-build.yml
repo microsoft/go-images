@@ -15,10 +15,13 @@ steps:
     }
     
     # Invert the logic for testing purposes
-    $retainBuild = -not ( ("$(retainBuild)" -ne "") -and ("$(retainBuild)" -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix)) )
+    $retainBuildOverride = $env:RETAIN_BUILD_OVERRIDE
+    $retainBuild = -not ( ($retainBuildOverride -eq "true") -or ($isOfficialDefinition -and ($isOfficialBranch -or $hasOfficialPrefix)) )
 
     echo "##vso[task.setvariable variable=retainBuild]$retainBuild"
     Write-Host "retainBuild set to: $retainBuild (official def: $isOfficialDefinition, official branch: $isOfficialBranch, has prefix: $hasOfficialPrefix)"
+  env:
+    RETAIN_BUILD_OVERRIDE: $(retainBuild)
   displayName: Compute retention decision
   condition: succeeded()
 
