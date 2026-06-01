@@ -12,7 +12,12 @@
 #     of the configured official branches/prefixes.
 steps:
 - powershell: |
-    $isOfficialDefinition = -not "$(Build.DefinitionName)".EndsWith("(unofficial)")
+    # Use the 1ESPT-provided ONEESPT_BUILDTYPE env var as the source of truth
+    # for official vs unofficial, matching how docker-tools' validate-branch.yml
+    # and set-dry-run.yml decide. The Build.DefinitionName suffix convention is
+    # human-set and case-sensitive, so relying on it can permanently retain
+    # builds from an unofficial pipeline with a non-conforming name.
+    $isOfficialDefinition = "$env:ONEESPT_BUILDTYPE" -ne "Unofficial"
     $officialBranchList = "$(officialBranches)"
     $sourceBranch = "$(sourceBranch)"
     $officialBranchPrefixes = "$(officialBranchPrefixes)"
