@@ -8,9 +8,12 @@ variables:
 - template: /eng/pipeline/variables/pipeline.yml@self
 
 # Publish EOL annotations for MAR/MCR.
-# (.NET Docker uses an Azure Pipelines UI variable.)
 - name: publishEolAnnotations
-  value: true
+  # Temporarily disable EOL annotation generation due to
+  # https://github.com/dotnet/docker-tools/issues/2066
+  # as well as https://github.com/dotnet/docker-tools/issues/2056.
+  # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/1658
+  value: false
 
 # Configure the build, test (N/A), and publish process.
 # Only necessary variables, in order of presentation in .NET Docker Tools.
