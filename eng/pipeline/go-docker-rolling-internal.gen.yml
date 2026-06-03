@@ -7,15 +7,17 @@ pipelineymlgen:
     - file: go-docker-rolling-internal-pipeline-unofficial.yml
       data:
         official: false
+        schedule: false
     - file: go-docker-rolling-internal-pipeline.yml
       data:
         official: true
+        schedule: false
 ---
 
 trigger: none
 pr: none
 schedules:
-  - ${ inlineif .official }:
+  - ${ inlineif (and .official .schedule) }:
     - cron: '0 10 * * Mon,Wed'
       displayName: Periodic build to refresh dependencies
       branches:
