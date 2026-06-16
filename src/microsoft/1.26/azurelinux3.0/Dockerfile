@@ -55,7 +55,7 @@ RUN set -eux; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
-# Vendor the Microsoft build of Go signature. See https://github.com/microsoft/go-lab/issues/423
+# Vendor the Microsoft build of Go public key. See https://github.com/microsoft/go-lab/issues/423
 	printf '%s\n' \
 		'-----BEGIN PGP PUBLIC KEY BLOCK-----' \
 		'Version: BSN Pgp v1.1.0.0' \
@@ -77,11 +77,12 @@ RUN set -eux; \
 		'=EZkZ' \
 		'-----END PGP PUBLIC KEY BLOCK-----' \
 		> microsoft-managed-lang-compiler.asc; \
-	gpg --batch --show-keys --with-colons microsoft-managed-lang-compiler.asc \
+	gpg --batch --show-keys --with-colons --with-fingerprint microsoft-managed-lang-compiler.asc \
 		| grep -q '^fpr:::::::::B035FAC203AB9A45AAC802B4811005347B8E732C:$'; \
-	gpg --batch --show-keys --with-colons microsoft-managed-lang-compiler.asc \
+	gpg --batch --show-keys --with-colons --with-fingerprint microsoft-managed-lang-compiler.asc \
 		| grep -q '^uid:.*:Managed Languages Compiler Dev Team <mlangcompdev@microsoft.com>:'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
+	rm microsoft-managed-lang-compiler.asc; \
 # Azure Linux doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
 # import. In microsoft/go-images, we use a manually imported key anyway.
 # See https://microsoft.visualstudio.com/OS/_workitems/edit/62225284

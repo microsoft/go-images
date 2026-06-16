@@ -46,7 +46,7 @@ RUN set -eux; \
 	\
 # https://github.com/golang/go/issues/14739#issuecomment-324767697
 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
-# Vendor the Microsoft build of Go signature. See https://github.com/microsoft/go-lab/issues/423
+# Vendor the Microsoft build of Go public key. See https://github.com/microsoft/go-lab/issues/423
 	printf '%s\n' \
 		'-----BEGIN PGP PUBLIC KEY BLOCK-----' \
 		'Version: BSN Pgp v1.1.0.0' \
@@ -68,11 +68,12 @@ RUN set -eux; \
 		'=EZkZ' \
 		'-----END PGP PUBLIC KEY BLOCK-----' \
 		> microsoft-managed-lang-compiler.asc; \
-	gpg --batch --show-keys --with-colons microsoft-managed-lang-compiler.asc \
+	gpg --batch --show-keys --with-colons --with-fingerprint microsoft-managed-lang-compiler.asc \
 		| grep -q '^fpr:::::::::B035FAC203AB9A45AAC802B4811005347B8E732C:$'; \
-	gpg --batch --show-keys --with-colons microsoft-managed-lang-compiler.asc \
+	gpg --batch --show-keys --with-colons --with-fingerprint microsoft-managed-lang-compiler.asc \
 		| grep -q '^uid:.*:Managed Languages Compiler Dev Team <mlangcompdev@microsoft.com>:'; \
 	gpg --batch --import microsoft-managed-lang-compiler.asc; \
+	rm microsoft-managed-lang-compiler.asc; \
 # https://www.google.com/linuxrepositories/
 	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
 # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it

@@ -3,8 +3,8 @@ From: bot-for-go[bot] <199222863+bot-for-go[bot]@users.noreply.github.com>
 Date: Fri, 11 Feb 2022 18:03:46 -0600
 Subject: [PATCH] Check signature of microsoft/go builds
 
-Import the Microsoft build of Go signature (vendored) to use to verify
-the Go artifacts.
+Import the Microsoft build of Go public key (vendored)
+to use to verify the Go artifacts.
 
 Wire in the signature files for the Microsoft build of Go. Unlike
 upstream's endpoint, the artifacts on
@@ -13,11 +13,11 @@ to the main tar.gz file URL. Other parts of the URL are random strings
 that are unique for each file. So, use the pgpSignatureUrl entry present
 in the Microsoft build of Go versions.json.
 ---
- Dockerfile-linux.template | 31 ++++++++++++++++++++++++++++++-
- 1 file changed, 30 insertions(+), 1 deletion(-)
+ Dockerfile-linux.template | 32 +++++++++++++++++++++++++++++++-
+ 1 file changed, 31 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index 6af4ce94203d7b..603f1e33d2f51a 100644
+index 6af4ce94203d7b..e6c70a00b82f3b 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -78,6 +78,7 @@ RUN set -eux; \
@@ -36,7 +36,7 @@ index 6af4ce94203d7b..603f1e33d2f51a 100644
  			sha256={{ .sha256 | @sh }}; \
  {{ ) else ( -}}
  			export {{ .env | to_entries | sort_by(.key) | map(.key + "=" + (.value | @sh)) | join(" ") }}; \
-@@ -108,12 +110,39 @@ RUN set -eux; \
+@@ -108,12 +110,40 @@ RUN set -eux; \
  	esac; \
  	\
  {{ if env.version != "tip" then ( -}}
@@ -47,7 +47,7 @@ index 6af4ce94203d7b..603f1e33d2f51a 100644
  	\
  # https://github.com/golang/go/issues/14739#issuecomment-324767697
  	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
-+# Vendor the Microsoft build of Go signature. See https://github.com/microsoft/go-lab/issues/423
++# Vendor the Microsoft build of Go public key. See https://github.com/microsoft/go-lab/issues/423
 +	printf '%s\n' \
 +		'-----BEGIN PGP PUBLIC KEY BLOCK-----' \
 +		'Version: BSN Pgp v1.1.0.0' \
@@ -69,11 +69,12 @@ index 6af4ce94203d7b..603f1e33d2f51a 100644
 +		'=EZkZ' \
 +		'-----END PGP PUBLIC KEY BLOCK-----' \
 +		> microsoft-managed-lang-compiler.asc; \
-+	gpg --batch --show-keys --with-colons microsoft-managed-lang-compiler.asc \
++	gpg --batch --show-keys --with-colons --with-fingerprint microsoft-managed-lang-compiler.asc \
 +		| grep -q '^fpr:::::::::B035FAC203AB9A45AAC802B4811005347B8E732C:$'; \
-+	gpg --batch --show-keys --with-colons microsoft-managed-lang-compiler.asc \
++	gpg --batch --show-keys --with-colons --with-fingerprint microsoft-managed-lang-compiler.asc \
 +		| grep -q '^uid:.*:Managed Languages Compiler Dev Team <mlangcompdev@microsoft.com>:'; \
 +	gpg --batch --import microsoft-managed-lang-compiler.asc; \
++	rm microsoft-managed-lang-compiler.asc; \
  # https://www.google.com/linuxrepositories/
  	gpg --batch --keyserver keyserver.ubuntu.com --recv-keys 'EB4C 1BFD 4F04 2F6D DDCC  EC91 7721 F63B D38B 4796'; \
  # let's also fetch the specific subkey of that key explicitly that we expect "go.tgz.asc" to be signed by, just to make sure we definitely have it
