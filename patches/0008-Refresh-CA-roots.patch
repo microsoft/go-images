@@ -1,0 +1,30 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: bot-for-go[bot] <199222863+bot-for-go[bot]@users.noreply.github.com>
+Date: Mon, 15 Jun 2026 15:12:21 -0700
+Subject: [PATCH] Refresh CA roots
+
+Out of date CA roots in the build stage may cause download.microsoft.com to not
+be trusted, making Microsoft build of Go related downloads fail.
+
+This problem surfaced as flakiness in arm builds: https://github.com/microsoft/go-lab/issues/423
+---
+ Dockerfile-linux.template | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
+index dac1b87022f002..f47c01ea1c23ac 100644
+--- a/Dockerfile-linux.template
++++ b/Dockerfile-linux.template
+@@ -40,6 +40,12 @@ RUN set -eux; \
+ 	tdnf clean all
+ {{ ) else ( -}}
+ FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:{{ env.variant }}-scm AS build
++
++# Refresh CA roots before fetching Microsoft-hosted Go artifacts.
++RUN set -eux; \
++	apt-get update; \
++	apt-get install -y --no-install-recommends ca-certificates; \
++	rm -rf /var/lib/apt/lists/*
+ {{ ) end -}}
+ 
+ ENV PATH /usr/local/go/bin:$PATH

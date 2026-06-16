@@ -6,6 +6,12 @@
 
 FROM mcr.microsoft.com/mirror/docker/library/buildpack-deps:bookworm-scm AS build
 
+# Refresh CA roots before fetching Microsoft-hosted Go artifacts.
+RUN set -eux; \
+	apt-get update; \
+	apt-get install -y --no-install-recommends ca-certificates; \
+	rm -rf /var/lib/apt/lists/*
+
 ENV PATH /usr/local/go/bin:$PATH
 
 ENV GOLANG_VERSION 1.26.4
