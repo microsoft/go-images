@@ -8,7 +8,7 @@ Subject: [PATCH] Add Azure Linux, FIPS, package upgrade
  1 file changed, 104 insertions(+), 1 deletion(-)
 
 diff --git a/Dockerfile-linux.template b/Dockerfile-linux.template
-index efec1b701b447d..46c947e7cfbe24 100644
+index e6c70a00b82f3b..b35f48860f584d 100644
 --- a/Dockerfile-linux.template
 +++ b/Dockerfile-linux.template
 @@ -4,9 +4,40 @@
@@ -75,7 +75,7 @@ index efec1b701b447d..46c947e7cfbe24 100644
  {{ ) else ( -}}
  	arch="$(dpkg --print-architecture)"; arch="${arch##*-}"; \
  {{ ) end -}}
-@@ -111,17 +151,27 @@ RUN set -eux; \
+@@ -111,7 +151,11 @@ RUN set -eux; \
  	\
  {{ if env.version != "tip" then ( -}}
  	wget -O go.tgz.asc "$urlSig"; \
@@ -88,9 +88,10 @@ index efec1b701b447d..46c947e7cfbe24 100644
  	echo "$sha256 *go.tgz" | sha256sum -c -; \
  	\
  # https://github.com/golang/go/issues/14739#issuecomment-324767697
- 	GNUPGHOME="$(mktemp -d)"; export GNUPGHOME; \
- 	wget -O microsoft-managed-lang-compiler.asc 'https://download.microsoft.com/download/f/a/2/fa2420dd-3f08-4621-82cf-5a22abcbc8f9/microsoft-managed-lang-compiler.asc'; \
+@@ -144,10 +188,16 @@ RUN set -eux; \
+ 		| grep -q '^uid:.*:Managed Languages Compiler Dev Team <mlangcompdev@microsoft.com>:'; \
  	gpg --batch --import microsoft-managed-lang-compiler.asc; \
+ 	rm microsoft-managed-lang-compiler.asc; \
 +{{ if is_azurelinux then ( -}}
 +# Azure Linux doesn't include dirmngr, which is required for keyserver import. Skipping keyserver
 +# import. In microsoft/go-images, we use a manually imported key anyway.
@@ -104,7 +105,7 @@ index efec1b701b447d..46c947e7cfbe24 100644
  	gpg --batch --verify go.tgz.asc go.tgz; \
  	gpgconf --kill all; \
  	rm -rf "$GNUPGHOME" go.tgz.asc; \
-@@ -216,18 +266,71 @@ RUN set -eux; \
+@@ -242,18 +292,71 @@ RUN set -eux; \
  FROM alpine:{{ alpine_version }}
  
  RUN apk add --no-cache ca-certificates
