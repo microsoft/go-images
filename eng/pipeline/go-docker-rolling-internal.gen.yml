@@ -11,7 +11,7 @@ pipelineymlgen:
     - file: go-docker-rolling-internal-pipeline.yml
       data:
         official: true
-        schedule: false
+        schedule: true
 ---
 
 trigger: none
