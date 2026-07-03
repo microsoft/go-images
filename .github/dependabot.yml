@@ -4,15 +4,19 @@
 
 version: 2
 updates:
-- package-ecosystem: gomod
-  directory: "eng/ci-tools"
-  schedule:
-    interval: daily
-  open-pull-requests-limit: 10
-- package-ecosystem: github-actions
-  directory: "/"
-  schedule:
-    interval: daily
-  ignore:
-    - dependency-name: "github/gh-aw-actions"
-  open-pull-requests-limit: 10
+  - package-ecosystem: gomod
+    directory: "eng/ci-tools"
+    schedule:
+      interval: daily
+    open-pull-requests-limit: 10
+  - package-ecosystem: github-actions
+    directory: "/"
+    schedule:
+      interval: daily
+    ignore:
+      - dependency-name: "github/gh-aw-actions"
+    open-pull-requests-limit: 10
+    groups:
+      codeql-action:
+        patterns:
+          - "github/codeql-action/*"
