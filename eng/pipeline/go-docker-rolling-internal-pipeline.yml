@@ -19,19 +19,19 @@ schedules:
     always: true
 parameters:
   - name: _info
-    displayName: ℹ️ This pipeline builds and publishes the Microsoft build of Go images on MAR.
+    displayName: ℹ️ This pipeline builds and publishes the Microsoft build of Go images.
     type: string
     values:
       - "\U0001F535  go-docker-rolling-internal-pipeline.yml  \U0001F535 \U0001F535"
   - name: sourceBuildPipelineRunId
     displayName: >
-      Enter the build ID of this pipeline to publish images from. Use the default value (representing self) to build new images.
+      The run ID (build ID) that produced the images that this run should publish. Use the default value to build and publish new images during this run.
 
     type: string
     default: '$(Build.BuildId)'
   - name: publishRepoPrefix
     displayName: >
-      Enter the repo prefix to use when publishing images to the intermediate ACR. Use the default value (public/) when building an official branch. Switch to "dev/" when building an unofficial or custom branch. (If you forget, your custom branch build will fail, for safety.)
+      The repo prefix to use when publishing images to the intermediate ACR. Use "public/" when building an official branch. Use "dev/" when building an unofficial or custom branch that shouldn't be published to MAR.
 
     type: string
     default: public/
