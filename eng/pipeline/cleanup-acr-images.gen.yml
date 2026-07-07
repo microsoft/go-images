@@ -22,7 +22,7 @@ parameters:
   - name: _info
     displayName: ℹ️ This pipeline cleans up old images in our Azure Container Registries.
     type: string
-    values: 
+    values:
       - ${ cat "🔵 " .output " 🔵 🔵" }
 
   - name: enableDryRun

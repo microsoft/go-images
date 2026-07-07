@@ -22,7 +22,7 @@ parameters:
   - name: _info
     displayName: ℹ️ This pipeline runs rolling validation, like CodeQL.
     type: string
-    values: 
+    values:
       - ${ cat "🔵 " .output " 🔵 🔵" }
 
   - name: enableCodeQL

@@ -32,7 +32,7 @@ parameters:
   - name: _info
     displayName: ℹ️ This pipeline builds and publishes the Microsoft build of Go images.
     type: string
-    values: 
+    values:
       - ${ cat "🔵 " .output " 🔵 🔵" }
 
   - name: sourceBuildPipelineRunId
