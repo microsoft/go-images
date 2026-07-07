@@ -5,12 +5,17 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-# This pipeline runs rolling validation, like CodeQL.
+# official: https://dev.azure.com/dnceng/internal/_build?definitionId=1355
+# unofficial: https://dev.azure.com/dnceng/internal/_build?definitionId=1493
 
 trigger: none
 pr: none
-# For info about runtime parameters, see https://github.com/microsoft/go-infra/blob/main/docs/pipeline-yml-style.md#runtime-parameters
 parameters:
+  - name: _info
+    displayName: ℹ️ This pipeline runs rolling validation, like CodeQL.
+    type: string
+    values:
+      - "\U0001F535  rolling-internal-validation-pipeline-unofficial.yml  \U0001F535 \U0001F535"
   - name: enableCodeQL
     displayName: '[Debug input] Enable CodeQL, ignoring cadence. Use to try modifications in dev branches.'
     type: boolean

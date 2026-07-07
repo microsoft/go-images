@@ -5,28 +5,29 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-# This pipeline is used to clean up old images in our Azure Container Registries.
-# It's derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
-
 # official: https://dev.azure.com/dnceng/internal/_build?definitionId=1521
 # unofficial: https://dev.azure.com/dnceng/internal/_build?definitionId=1522
 
 trigger: none
 pr: none
-# For info about runtime parameters, see https://github.com/microsoft/go-infra/blob/main/docs/pipeline-yml-style.md#runtime-parameters
 parameters:
+  - name: _info
+    displayName: ℹ️ This pipeline cleans up old images in our Azure Container Registries.
+    type: string
+    values:
+      - "\U0001F535  cleanup-acr-images-pipeline.yml  \U0001F535 \U0001F535"
   - name: enableDryRun
-    displayName: Enable Dry Run
+    displayName: Enable to perform Dry Run
     default: false
     type: boolean
-  - name: disableTSA
-    displayName: "[Debug input] Disable TSA reporting. Use to try modifications in dev branches."
-    type: boolean
-    default: false
   - name: age
-    displayName: Minimum age (in days) of images to clean up; reduce if necessary to clear s360
+    displayName: Provide the minimum age (in days) of images to clean up. Reduce if necessary to clear an s360 alert.
     type: number
     default: 15
+  - name: disableTSA
+    displayName: "[Debug input] Enable to skip TSA reporting. May be useful for dev branch builds."
+    type: boolean
+    default: false
 schedules:
   - cron: "0 5 * * *"
     displayName: Nightly build
@@ -42,6 +43,7 @@ resources:
       type: git
       name: 1ESPipelineTemplates/1ESPipelineTemplates
       ref: refs/tags/release
+# This pipeline is derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
 extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:

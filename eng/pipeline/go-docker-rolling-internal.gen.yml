@@ -2,6 +2,9 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
+# official: https://dev.azure.com/dnceng/internal/_build?definitionId=1023
+# unofficial: https://dev.azure.com/dnceng/internal/_build?definitionId=1492
+
 pipelineymlgen:
   output:
     - file: go-docker-rolling-internal-pipeline-unofficial.yml
@@ -26,17 +29,25 @@ schedules:
       always: true
 
 parameters:
+  - name: _info
+    displayName: ℹ️ This pipeline builds and publishes the Microsoft build of Go images on MAR.
+    type: string
+    values: 
+      - ${ cat "🔵 " .output " 🔵 🔵" }
+
   - name: sourceBuildPipelineRunId
     displayName: >
-      The build ID of this pipeline to publish images from.
-      Use the default value when building new images.
+      Enter the build ID of this pipeline to publish images from.
+      Use the default value (representing self) to build new images.
     type: string
     default: '$(Build.BuildId)'
 
   - name: publishRepoPrefix
     displayName: >
-      Publish repo prefix to use when publishing images.
-      Switch to "dev/" for an unofficial branch.
+      Enter the repo prefix to use when publishing images to the intermediate ACR.
+      Use the default value (public/) when building an official branch.
+      Switch to "dev/" when building an unofficial or custom branch.
+      (If you forget, your custom branch build will fail, for safety.)
     type: string
     default:
       ${ inlineif .official }: 'public/'
