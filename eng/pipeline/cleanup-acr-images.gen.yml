@@ -2,9 +2,6 @@
 # Use of this source code is governed by a BSD-style
 # license that can be found in the LICENSE file.
 
-# This pipeline is used to clean up old images in our Azure Container Registries.
-# It's derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
-
 # official: https://dev.azure.com/dnceng/internal/_build?definitionId=1521
 # unofficial: https://dev.azure.com/dnceng/internal/_build?definitionId=1522
 
@@ -21,22 +18,31 @@ pipelineymlgen:
 trigger: none
 pr: none
 
-# For info about runtime parameters, see https://github.com/microsoft/go-infra/blob/main/docs/pipeline-yml-style.md#runtime-parameters
 parameters:
-  - name: enableDryRun
-    displayName: Enable Dry Run
-    default: ${ yml (not .official) }
-    type: boolean
+  - name: _info
+    displayName: ℹ️ This pipeline cleans up old images in our Azure Container Registries.
+    type: string
+    values:
+      - ${ cat "🔵 " .output " 🔵 🔵" }
 
-  - name: disableTSA
-    displayName: "[Debug input] Disable TSA reporting. Use to try modifications in dev branches."
-    type: boolean
+  - name: enableDryRun
+    displayName: Dry run. Use this to see what would be deleted without performing the deletion.
     default: ${ yml (not .official) }
+    type: boolean
 
   - name: age
-    displayName: Minimum age (in days) of images to clean up; reduce if necessary to clear s360
+    displayName: >
+      Minimum age (in days) of images to clean up. Reduce if you need to clean up young images. For
+      example, reducing it may be necessary to clear an unusually aggressive s360 alert.
     type: number
     default: 15
+
+  - name: disableTSA
+    displayName: >
+      [Debug input] Skip TSA reporting. Use when running a dev branch. This lets you avoid
+      triggering false positive TSA notifications when testing out new modifications.
+    type: boolean
+    default: ${ yml (not .official) }
 
 schedules:
   - ${ inlineif .official }:
@@ -57,6 +63,7 @@ resources:
       name: 1ESPipelineTemplates/1ESPipelineTemplates
       ref: refs/tags/release
 
+# This pipeline is derived from https://github.com/dotnet/docker-tools/blob/main/eng/pipelines/cleanup-acr-images.yml
 extends:
   ${ inlineif .official }:
     template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
