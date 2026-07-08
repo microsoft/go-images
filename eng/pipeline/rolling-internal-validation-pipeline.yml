@@ -16,6 +16,7 @@ parameters:
     type: string
     values:
       - "\U0001F535  rolling-internal-validation-pipeline.yml  \U0001F535 \U0001F535"
+    default: "\U0001F535  rolling-internal-validation-pipeline.yml  \U0001F535 \U0001F535"
   - name: enableCodeQL
     displayName: >
       [Debug input] Force CodeQL to run, ignoring its built-in skip cadence. Use this to try modifications in dev branches.

@@ -19,11 +19,8 @@ trigger: none
 pr: none
 
 parameters:
-  - name: _info
-    displayName: ℹ️ This pipeline runs rolling validation, like CodeQL.
-    type: string
-    values:
-      - ${ cat "🔵 " .output " 🔵 🔵" }
+  - ${ inlinetemplate "util/info.gen.yml" }:
+      desc: This pipeline runs rolling validation, like CodeQL.
 
   - name: enableCodeQL
     displayName: >

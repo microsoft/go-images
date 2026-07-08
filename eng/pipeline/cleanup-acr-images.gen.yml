@@ -19,11 +19,8 @@ trigger: none
 pr: none
 
 parameters:
-  - name: _info
-    displayName: ℹ️ This pipeline cleans up old images in our Azure Container Registries.
-    type: string
-    values:
-      - ${ cat "🔵 " .output " 🔵 🔵" }
+  - ${ inlinetemplate "util/info.gen.yml" }:
+      desc: This pipeline cleans up old images in our Azure Container Registries.
 
   - name: enableDryRun
     displayName: Dry run. Use this to see what would be deleted without performing the deletion.
