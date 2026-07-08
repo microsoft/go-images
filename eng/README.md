@@ -8,6 +8,8 @@ it matches the engineering directory used in microsoft/go, and also because
 auto-updates to the "eng/common" directory only work with this absolute
 location.
 
+The Azure DevOps pipelines are described in the [`/eng/pipeline` README](/eng/pipeline/README.md).
+
 ## Prerequisites
 
 * [PowerShell 6+](https://docs.microsoft.com/en-us/powershell/scripting/install/installing-powershell)
