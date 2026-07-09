@@ -29,11 +29,8 @@ schedules:
       always: true
 
 parameters:
-  - name: _info
-    displayName: ℹ️ This pipeline builds and publishes the Microsoft build of Go images.
-    type: string
-    values:
-      - ${ cat "🔵 " .output " 🔵 🔵" }
+  - ${ inlinetemplate "util/info.gen.yml" }:
+      desc: This pipeline builds and publishes the Microsoft build of Go images.
 
   - name: sourceBuildPipelineRunId
     displayName: >

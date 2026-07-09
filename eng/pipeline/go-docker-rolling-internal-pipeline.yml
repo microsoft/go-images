@@ -23,6 +23,7 @@ parameters:
     type: string
     values:
       - "\U0001F535  go-docker-rolling-internal-pipeline.yml  \U0001F535 \U0001F535"
+    default: "\U0001F535  go-docker-rolling-internal-pipeline.yml  \U0001F535 \U0001F535"
   - name: sourceBuildPipelineRunId
     displayName: >
       The run ID (build ID) that produced the images that this run should publish. Use the default value to build and publish new images during this run.
