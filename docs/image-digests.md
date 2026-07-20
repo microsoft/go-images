@@ -5,10 +5,11 @@ This document describes how to find the digests and how to use them to roll back
 
 ## Current digests
 
-To find the digest for the current Microsoft build of Go tag, use a command mentioned in the ["Image digests" documentation](https://docs.docker.com/dhi/core-concepts/digests/), or this direct command:
+To find the digest for the current Microsoft build of Go tag, use a command mentioned in the ["Image digests" documentation](https://docs.docker.com/dhi/core-concepts/digests/), or these direct commands, where `<tag>` is the tag you want to find the digest for:
 
-```sh
-docker image inspect --format '{{index .RepoDigests 0}}' mcr.microsoft.com/oss/go/microsoft/golang:1.26-azurelinux3.0
+```
+docker pull mcr.microsoft.com/oss/go/microsoft/golang:<tag>
+docker image inspect --format '{{index .RepoDigests 0}}' mcr.microsoft.com/oss/go/microsoft/golang:<tag>
 ```
 
 Then, use the output in your Dockerfile, Azure Pipelines job, or elsewhere.
