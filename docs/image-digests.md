@@ -23,7 +23,7 @@ mcr.microsoft.com/oss/go/microsoft/golang@sha256:<digest>
 If you encounter a problem with a new build of the Microsoft build of Go images, you can perform a rollback by pinning to a previous image digest.
 The microsoft/go-images-versions [image-info JSON file][image-info] tracks the build output history using Git source control.
 
-If you encounter a problem, [look for an existing open issue or contact us first](./SUPPORT.md).
+If you encounter a problem, [look for an existing open issue or contact us first](/SUPPORT.md).
 We can provide the image digest to use to roll back to a working dependency.
 
 The steps to roll back are:
