@@ -1,7 +1,7 @@
 # Docker images containing the Microsoft build of Go
 
 This project maintains [`mcr.microsoft.com/oss/go/microsoft/golang`](https://mcr.microsoft.com/artifact/mar/oss/go/microsoft/golang/about), a repository of Docker images that contain the [Microsoft build of Go](https://github.com/microsoft/go).
-This repository is hosted by the [Microsoft Artifact Registry (MAR, formerly MCR)](https://mcr.microsoft.com/), a public container registry for Microsoft projects.
+These images are hosted on the [Microsoft Artifact Registry (MAR, formerly MCR)](https://mcr.microsoft.com/), a public container registry for Microsoft projects.
 
 The images produced by this repository are intended for general use within Microsoft and to help produce FIPS-compliant Go apps.
 For other purposes, we recommend using the [Docker Official Image `golang`](https://hub.docker.com/_/golang).

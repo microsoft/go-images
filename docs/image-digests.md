@@ -39,4 +39,4 @@ The steps to roll back are:
 1. Verify that the replacement pulls the expected platform-specific image and fixes the problem.
     1. If not, repeat these steps with a different version.
 
-[image-info]: https://github.com/microsoft/go-images-versions/blob/main/go-images/image-info.microsoft-go-images-main.json 
+[image-info]: https://github.com/microsoft/go-images-versions/blob/main/go-images/image-info.microsoft-go-images-main.json
