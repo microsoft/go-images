@@ -4,7 +4,7 @@ For help and questions about the Go programming language and tools, visit the of
 
 ## How to file issues and get help
 
-This project uses GitHub Issues in the [microsoft/go repository][microsoft/go] to track bugs and feature requests.
+This project uses GitHub Issues in the [microsoft/go repository][microsoft/go] to track bugs, feature requests, and answer questions.
 Please search the existing issues before filing new issues to avoid duplicates.
 For new issues, [file your bug or feature request as a new Issue in microsoft/go][file].
 
