@@ -97,16 +97,16 @@ See [Image digests](docs/image-digests.md) for information about using image dig
 This page contains two ways to get digests, and how to use digests to roll back to a previous image version.
 
 Unfortunately, there are currently a few feature gaps in the infrastructure that lead us to not consider image digests feasible for everyday use.
-Tracking issue: [microsoft/go-lab#440](https://github.com/microsoft/go-lab/issues/440).
 Fixing some combination of these limitations would let us recommend using digests in more situations:
 
-* Dependabot is unable to upgrade a digest outside of Dockerfiles.
+* Dependabot is unable to upgrade a digest outside of Dockerfiles. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/479))
   * For example, it can't update Azure Pipelines container job image references.
-* Azure Pipelines container jobs can't use a Dockerfile as the dependency of a container job.
-* Microsoft internal Dependabot is unable to upgrade a dependency on our container images to a new digest.
+* Azure Pipelines container jobs can't use a Dockerfile as the dependency of a container job. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/477))
+* Microsoft internal Dependabot is unable to upgrade a dependency on our container images to a new digest. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/476))
   * There appears to be an allowlist that doesn't include our tags.
 
 There are alternative dependency upgrade tools without the limitations mentioned above, but they don't seem to be widely used inside Microsoft.
+([Internal tracking issue](https://github.com/microsoft/go-lab/issues/478))
 
 ## Tag organization
 
