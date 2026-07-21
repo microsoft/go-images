@@ -1,8 +1,6 @@
 ---
 description: Reviews PRs that modify eng/docker-tools/ to ensure the rest of the repository remains compatible with the upgraded docker-tools
 tracker-id: docker-tools-upgrade-review
-features:
-   copilot-requests: true
 on:
    roles: all
    pull_request:
@@ -19,6 +17,7 @@ permissions:
    contents: read
    pull-requests: read
    issues: read
+   copilot-requests: write
 tools:
    github:
       toolsets: [default]
