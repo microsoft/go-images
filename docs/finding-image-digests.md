@@ -1,7 +1,7 @@
-# Image digests
+# Finding image digests
 
-See the [README's description of Docker image digests](/README.md#using-image-digests-to-pin-a-specific-image) for an overview of what image digests are and why you might want to use them.
-This document describes how to find the digests and how to use them to roll back to a previous version of the Microsoft build of Go images.
+See the [README's description of Docker image digests](/README.md#tag-mutability) for an overview of what image digests are and why you might want to use them.
+This document describes how to find the digests of Microsoft build of Go images.
 
 ## Current digests
 
@@ -19,18 +19,15 @@ It should look like this:
 mcr.microsoft.com/oss/go/microsoft/golang@sha256:<digest>
 ```
 
-## Rolling back to a previous image version
+## Historical digests
 
-If you encounter a problem with a new build of the Microsoft build of Go images, you can perform a rollback by pinning to a previous image digest.
 The microsoft/go-images-versions [image-info JSON file][image-info] tracks the build output history using Git source control.
 
-If you encounter a problem, [look for an existing open issue or contact us first](/SUPPORT.md).
-We can provide the image digest to use to roll back to a working dependency.
-
-The steps to roll back are:
+The steps to find a historical digest that's suitable for a [rollback](/README.md#using-image-digests-to-roll-back-from-a-broken-image) are:
 
 1. Use the Git history of the [image-info JSON file][image-info] to find older versions of the containers.
-    * Consider finding a commit timestamp before the problem started happening. Using a known good version helps confirm that the image is truly the root cause of the problem.
+    * Find a commit timestamp before the problem started happening. Using a known good version helps confirm that the image is truly the root cause of the problem.
+    * For deeper investigation, consider finding the last known good and first known bad versions and performing a binary search to narrow down the problem.
 1. Look for the correct `productVersion` in the JSON.
 1. Grab the `manifest` object's `digest` property value.
     * Use the manifest's digest rather than a specific platform's digest to ensure the digest has multi-architecture support.

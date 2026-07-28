@@ -29,32 +29,19 @@ This occurs even when the Microsoft build of Go has not been updated.
 
 ## Recommended tags
 
-The tag we recommend for Go projects inside Microsoft that are migrating to the Microsoft build of Go is [the 1.25 Azure Linux 3.0 tag](https://mcr.microsoft.com/en-us/artifact/mar/oss/go/microsoft/golang/tag/1.25).
+The tags we recommend for Go projects inside Microsoft that are migrating to the Microsoft build of Go are:
 
-```
-mcr.microsoft.com/oss/go/microsoft/golang:1.25-azurelinux3.0
-```
+* The [1.26 Azure Linux 3.0 tag](https://mcr.microsoft.com/en-us/artifact/mar/oss/go/microsoft/golang/tag/1.26-azurelinux3.0)
+  ```
+  mcr.microsoft.com/oss/go/microsoft/golang:1.26-azurelinux3.0
+  ```
 
-We also recommend moving from 1.25 to 1.26 as soon as possible.
-This way, you can detect bugs that have to do with the new Go version as soon as possible and maximize the time remaining to address them before 1.25 is out of support.
+* The [1.25 Azure Linux 3.0 tag](https://mcr.microsoft.com/en-us/artifact/mar/oss/go/microsoft/golang/tag/1.25-azurelinux3.0)
+  ```
+  mcr.microsoft.com/oss/go/microsoft/golang:1.25-azurelinux3.0
+  ```
 
-If your project is already using 1.26, use the 1.26 tag.
-
-A `1.X` tag contains the latest version of the Microsoft build of Go for that `X` version.
-
-> [!NOTE]
-> Both the N (1.26) and N-1 (1.25) releases of Go are supported, so why do we recommend starting with the N-1 release?
->
-> A new version of Go may have breaking changes that require you to change your project.
-> Also, when a new Go version N just comes out (1.26.0), it may have some initial bugs that will be fixed in the next handful of patches.
-> Therefore, we recommend that if you don't have a reason to pick a specific version, start with N-1 to avoid compatibility issues that might delay your migration to the Microsoft build of Go.
->
-> We also encourage upgrading from N-1 to N as soon as possible, so that any compatibility issues can be detected and addressed before N-1 is out of support.
-> Otherwise, compatibility issues may compound with security issues, causing delays in your project's ability to address security vulnerabilities.
-
-> [!NOTE]
-> Go libraries should be compatible with both N-1 and N to leave the choice up to the library's users.
-> Testing against both N-1 and N is recommended.
+For additional guidance, see the [Migration Guide][Migration Guide].
 
 ## Usage
 
@@ -81,32 +68,48 @@ The right image to use may depend on your organization, or it may need to be cus
 > Our `1.25-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS-compliant Go app, but they contain a copy of OpenSSL that is **not** FIPS certified.
 > These tags may be suitable for a `build` stage, but not for FIPS-compliant deployment.
 
-### Using image digests to pin a specific image
-
-You can use a digest to pin a container image dependency to a specific immutable version.
-See the ["Image digests" Docker documentation](https://docs.docker.com/dhi/core-concepts/digests/).
+## Tag mutability
 
 Docker container image tags are mutable, meaning that the same tag may point to different image versions over time.
-Even a tag with a fully specified Go version may change, e.g. when we build a new version with updated OS dependencies.
+Even a tag with a fully specified Go version may change.
+For example, we build new images roughly twice a week (to get the latest OS and package updates), and the tags always point to the latest of those builds.
+
 Unlike image tags, image digests are immutable.
+See the ["Image digests" Docker documentation](https://docs.docker.com/dhi/core-concepts/digests/).
 
-In general, pinning dependencies is good, and Docker container tags are no exception.
-It has security benefits, and it means problems show up in dependency upgrade PRs rather than breaking a production build.
+See [Finding image digests](docs/finding-image-digests.md) for details on how to find current and historical digests that correspond with Microsoft build of Go container images.
 
-See [Image digests](docs/image-digests.md) for information about using image digests with the Microsoft build of Go.
-This page contains two ways to get digests, and how to use digests to roll back to a previous image version.
+### Using image digests to pin a specific image
 
-Unfortunately, there are currently a few feature gaps in the infrastructure that lead us to not consider image digests feasible for everyday use.
-Fixing some combination of these limitations would let us recommend using digests in more situations:
+There are many benefits to committing an immutable version of a dependency to source control rather than a mutable reference.
+The ["Image digests" Docker documentation](https://docs.docker.com/dhi/core-concepts/digests/) describes several security and consistency benefits in detail.
+A workflow benefit is that problems show up in dependency upgrade PRs, isolated from other changes, rather than interrupting CI or breaking a production build.
 
-* Dependabot is unable to upgrade a digest outside of Dockerfiles. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/479))
+Unfortunately, there are feature gaps in the current dependency update infrastructure available to some projects that may make it infeasible to use image digests for dependency pinning.
+These are the limitations we've identified:
+
+* GitHub Dependabot is unable to upgrade a digest outside of Dockerfiles. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/479))
   * For example, it can't update Azure Pipelines container job image references.
 * Azure Pipelines container jobs can't use a Dockerfile as the dependency of a container job. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/477))
-* Microsoft internal Dependabot is unable to upgrade a dependency on our container images to a new digest. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/476))
+* Microsoft's internal version of Dependabot is unable to upgrade a dependency on our container images to a new digest. ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/476))
+  * This limitation applies to all targets, even Dockerfiles.
   * There appears to be an allowlist that doesn't include our tags.
 
-There are alternative dependency upgrade tools without the limitations mentioned above, but they don't seem to be widely used inside Microsoft.
-([Internal tracking issue](https://github.com/microsoft/go-lab/issues/478))
+> [!TIP]
+> We're evaluating alternative dependency upgrade tools that may not have the limitations mentioned above.
+> ([Internal tracking issue](https://github.com/microsoft/go-lab/issues/478))
+
+### Using image digests to roll back from a broken image
+
+If you encounter a problem with a new build of the Microsoft build of Go images, you can perform a rollback by pinning to a previous image digest.
+See [Finding image digests](docs/finding-image-digests.md) for details on how to find the old digest to use.
+
+Please [report the problem to us](SUPPORT.md).
+We can help find the digest to use for a rollback and investigate the root cause of the problem.
+
+> [!WARNING]
+> Make sure to revert the rollback when the issue is fixed!
+> Leaving a rollback in place may prevent you from getting important security updates and other fixes.
 
 ## Tag organization
 
@@ -175,5 +178,6 @@ our privacy statement. Your use of the software operates as your consent to
 these practices.
 
 [Migration Guide]: https://github.com/microsoft/go/blob/microsoft/main/eng/doc/MigrationGuide.md
+[Migration Guide version]: https://github.com/microsoft/go/blob/microsoft/main/eng/doc/MigrationGuide.md#what-version-should-i-use
 [FIPS readme]: https://github.com/microsoft/go/tree/microsoft/main/eng/doc/fips
 [MAR]: https://mcr.microsoft.com/product/oss/go/microsoft/golang/about
