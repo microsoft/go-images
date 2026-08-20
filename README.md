@@ -31,14 +31,14 @@ This occurs even when the Microsoft build of Go has not been updated.
 
 The tags we recommend for Go projects inside Microsoft that are migrating to the Microsoft build of Go are:
 
+* The [1.27 Azure Linux 3.0 tag](https://mcr.microsoft.com/en-us/artifact/mar/oss/go/microsoft/golang/tag/1.27-azurelinux3.0)
+  ```
+  mcr.microsoft.com/oss/go/microsoft/golang:1.27-azurelinux3.0
+  ```
+
 * The [1.26 Azure Linux 3.0 tag](https://mcr.microsoft.com/en-us/artifact/mar/oss/go/microsoft/golang/tag/1.26-azurelinux3.0)
   ```
   mcr.microsoft.com/oss/go/microsoft/golang:1.26-azurelinux3.0
-  ```
-
-* The [1.25 Azure Linux 3.0 tag](https://mcr.microsoft.com/en-us/artifact/mar/oss/go/microsoft/golang/tag/1.25-azurelinux3.0)
-  ```
-  mcr.microsoft.com/oss/go/microsoft/golang:1.25-azurelinux3.0
   ```
 
 For additional guidance, see the [Migration Guide][Migration Guide].
@@ -65,7 +65,7 @@ See the [Migration Guide][Migration Guide].
 The right image to use may depend on your organization, or it may need to be custom-built to include product-specific runtime dependencies.
 
 > [!IMPORTANT]
-> Our `1.25-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS-compliant Go app, but they contain a copy of OpenSSL that is **not** FIPS certified.
+> Our `1.26-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS-compliant Go app, but they contain a copy of OpenSSL that is **not** FIPS certified.
 > These tags may be suitable for a `build` stage, but not for FIPS-compliant deployment.
 
 ## Tag mutability
