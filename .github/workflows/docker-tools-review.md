@@ -13,6 +13,8 @@ on:
             description: "PR number to review"
             required: true
             type: string
+concurrency:
+   job-discriminator: ${{ github.run_id }}
 permissions:
    contents: read
    pull-requests: read
