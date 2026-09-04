@@ -59,47 +59,6 @@
         {
           "productVersion": "1.26",
           "sharedTags": {
-            "1-bullseye": {},
-            "1.26-bullseye": {},
-            "1.26.8-1-bullseye": {},
-            "1.26.8-bullseye": {},
-            "bullseye": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.26/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.26.8-1-bullseye-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.26/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.26.8-1-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.26/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.26.8-1-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.26",
-          "sharedTags": {
             "1-azurelinux3.0": {},
             "1.26-azurelinux3.0": {},
             "1.26.8-1-azurelinux3.0": {},
@@ -258,45 +217,6 @@
               "osVersion": "bookworm",
               "tags": {
                 "1.27.1-1-bookworm-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.27",
-          "sharedTags": {
-            "1.27-bullseye": {},
-            "1.27.1-1-bullseye": {},
-            "1.27.1-bullseye": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.27/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.27.1-1-bullseye-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.27/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.27.1-1-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.27/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.27.1-1-bullseye-arm32v7": {}
               }
             }
           ]

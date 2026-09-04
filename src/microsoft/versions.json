@@ -71,7 +71,6 @@
     },
     "variants": [
       "bookworm",
-      "bullseye",
       "azurelinux3.0",
       "windows/windowsservercore-ltsc2025",
       "windows/windowsservercore-ltsc2022",
@@ -156,7 +155,6 @@
     },
     "variants": [
       "bookworm",
-      "bullseye",
       "azurelinux3.0",
       "windows/windowsservercore-ltsc2025",
       "windows/windowsservercore-ltsc2022",
