@@ -65,7 +65,7 @@ See the [Migration Guide][Migration Guide].
 The right image to use may depend on your organization, or it may need to be custom-built to include product-specific runtime dependencies.
 
 > [!IMPORTANT]
-> Our `1.26-bullseye` (Debian) tag and other Debian tags are capable of building a FIPS-compliant Go app, but they contain a copy of OpenSSL that is **not** FIPS certified.
+> Our `1.26-bookworm` (Debian) tag and other Debian tags are capable of building a FIPS-compliant Go app, but they contain a copy of OpenSSL that is **not** FIPS certified.
 > These tags may be suitable for a `build` stage, but not for FIPS-compliant deployment.
 
 ## Tag mutability

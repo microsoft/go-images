@@ -12,7 +12,7 @@ In general, we don't recommend using these in Dockerfile `FROM` statements. It p
 
 Examples:
 
-* `1.20.0-1-bullseye-amd64`
+* `1.20.0-1-bookworm-amd64`
 * `1.20.0-1-fips-cbl-mariner2.0-amd64`
 
 > This document uses `1.20.0-1` as a placeholder for *the most recent release of the Microsoft build of Go*. Check MAR for the actual latest tag versions and available OS/Distros.
@@ -21,7 +21,7 @@ Examples:
 
 A *shared tag* references images for multiple platforms. When used in a Dockerfile or a Docker command, Docker downloads the correct image for the current platform from the list of images pointed to by the shared tag. Shared tags are generally manifest tags.
 
-In some cases there is no single correct choice: the `1.20` tag could download a CBL-Mariner image or a Debian Bullseye image. The shared tags represent our recommendation for that particular tag name.
+In some cases there is no single correct choice: the `1.20` tag could download a CBL-Mariner image or a Debian Bookworm image. The shared tags represent our recommendation for that particular tag name.
 
 The Go shared tags have these characteristics:
 
@@ -31,7 +31,7 @@ The Go shared tags have these characteristics:
 
 Examples:
 
-* `1.20-bullseye`
+* `1.20-bookworm`
 * `1.20-fips-cbl-mariner2.0`
 * `1`
 
