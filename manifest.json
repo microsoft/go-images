@@ -185,8 +185,8 @@
             "1.27": {},
             "1.27-bookworm": {},
             "1.27.1": {},
-            "1.27.1-1": {},
-            "1.27.1-1-bookworm": {},
+            "1.27.1-2": {},
+            "1.27.1-2-bookworm": {},
             "1.27.1-bookworm": {}
           },
           "platforms": [
@@ -196,7 +196,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.27.1-1-bookworm-amd64": {}
+                "1.27.1-2-bookworm-amd64": {}
               }
             },
             {
@@ -206,7 +206,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.27.1-1-bookworm-arm64v8": {}
+                "1.27.1-2-bookworm-arm64v8": {}
               }
             },
             {
@@ -216,7 +216,7 @@
               "os": "linux",
               "osVersion": "bookworm",
               "tags": {
-                "1.27.1-1-bookworm-arm32v7": {}
+                "1.27.1-2-bookworm-arm32v7": {}
               }
             }
           ]
@@ -225,7 +225,7 @@
           "productVersion": "1.27",
           "sharedTags": {
             "1.27-azurelinux3.0": {},
-            "1.27.1-1-azurelinux3.0": {},
+            "1.27.1-2-azurelinux3.0": {},
             "1.27.1-azurelinux3.0": {}
           },
           "platforms": [
@@ -235,7 +235,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "1.27.1-1-azurelinux3.0-amd64": {}
+                "1.27.1-2-azurelinux3.0-amd64": {}
               }
             },
             {
@@ -245,7 +245,7 @@
               "os": "linux",
               "osVersion": "azurelinux3.0",
               "tags": {
-                "1.27.1-1-azurelinux3.0-arm64v8": {}
+                "1.27.1-2-azurelinux3.0-arm64v8": {}
               }
             }
           ]
@@ -254,7 +254,7 @@
           "productVersion": "1.27",
           "sharedTags": {
             "1.27-windowsservercore-ltsc2025": {},
-            "1.27.1-1-windowsservercore-ltsc2025": {},
+            "1.27.1-2-windowsservercore-ltsc2025": {},
             "1.27.1-windowsservercore-ltsc2025": {}
           },
           "platforms": [
@@ -264,7 +264,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2025",
               "tags": {
-                "1.27.1-1-windowsservercore-ltsc2025-amd64": {}
+                "1.27.1-2-windowsservercore-ltsc2025-amd64": {}
               }
             }
           ]
@@ -273,7 +273,7 @@
           "productVersion": "1.27",
           "sharedTags": {
             "1.27-windowsservercore-ltsc2022": {},
-            "1.27.1-1-windowsservercore-ltsc2022": {},
+            "1.27.1-2-windowsservercore-ltsc2022": {},
             "1.27.1-windowsservercore-ltsc2022": {}
           },
           "platforms": [
@@ -283,7 +283,7 @@
               "os": "windows",
               "osVersion": "windowsservercore-ltsc2022",
               "tags": {
-                "1.27.1-1-windowsservercore-ltsc2022-amd64": {}
+                "1.27.1-2-windowsservercore-ltsc2022-amd64": {}
               }
             }
           ]
@@ -292,13 +292,13 @@
           "productVersion": "1.27",
           "sharedTags": {
             "1.27-nanoserver-ltsc2025": {},
-            "1.27.1-1-nanoserver-ltsc2025": {},
+            "1.27.1-2-nanoserver-ltsc2025": {},
             "1.27.1-nanoserver-ltsc2025": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.27.1-1-windowsservercore-ltsc2025-amd64",
+                "DOWNLOADER_TAG": "1.27.1-2-windowsservercore-ltsc2025-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -306,7 +306,7 @@
               "os": "windows",
               "osVersion": "nanoserver-ltsc2025",
               "tags": {
-                "1.27.1-1-nanoserver-ltsc2025-amd64": {}
+                "1.27.1-2-nanoserver-ltsc2025-amd64": {}
               }
             }
           ]
@@ -315,13 +315,13 @@
           "productVersion": "1.27",
           "sharedTags": {
             "1.27-nanoserver-ltsc2022": {},
-            "1.27.1-1-nanoserver-ltsc2022": {},
+            "1.27.1-2-nanoserver-ltsc2022": {},
             "1.27.1-nanoserver-ltsc2022": {}
           },
           "platforms": [
             {
               "buildArgs": {
-                "DOWNLOADER_TAG": "1.27.1-1-windowsservercore-ltsc2022-amd64",
+                "DOWNLOADER_TAG": "1.27.1-2-windowsservercore-ltsc2022-amd64",
                 "REPO": "$(Repo:golang)"
               },
               "architecture": "amd64",
@@ -329,7 +329,7 @@
               "os": "windows",
               "osVersion": "nanoserver-ltsc2022",
               "tags": {
-                "1.27.1-1-nanoserver-ltsc2022-amd64": {}
+                "1.27.1-2-nanoserver-ltsc2022-amd64": {}
               }
             }
           ]
