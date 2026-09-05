@@ -20,6 +20,10 @@ permissions:
    pull-requests: read
    issues: read
    copilot-requests: write
+network:
+  allowed:
+    - defaults
+    - "github"
 tools:
    github:
       toolsets: [default]
