@@ -13,11 +13,17 @@ on:
             description: "PR number to review"
             required: true
             type: string
+concurrency:
+   job-discriminator: ${{ github.run_id }}
 permissions:
    contents: read
    pull-requests: read
    issues: read
    copilot-requests: write
+network:
+  allowed:
+    - defaults
+    - "github"
 tools:
    github:
       toolsets: [default]
