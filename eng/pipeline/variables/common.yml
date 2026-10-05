@@ -59,6 +59,13 @@ variables:
     # In the nightly branch, publish to ACR only. The prefix doesn't need to match MAR expectations.
     value: nightly/
 
+# GitHub App client and installation IDs are public identifiers. Keep the
+# private key in the Microsoft-GoLang-bot Key Vault-backed variable group.
+- name: GitHubApp-bot-for-go-client-id
+  value: 'Iv23ctc1C0P0qEaXMUVk'
+- name: GitHubApp-bot-for-go-microsoft-installation-id
+  value: '61276299'
+
 - name: gitHubVersionsRepoInfo.org
   value: microsoft
 - name: gitHubVersionsRepoInfo.repo
