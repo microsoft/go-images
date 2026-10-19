@@ -7,13 +7,9 @@ variables:
 
 - template: /eng/pipeline/variables/pipeline.yml@self
 
-# Publish EOL annotations for MAR/MCR.
+# Publish EOL annotations for unsupported published images in MAR/MCR.
 - name: publishEolAnnotations
-  # Temporarily disable EOL annotation generation due to
-  # https://github.com/dotnet/docker-tools/issues/2066
-  # as well as https://github.com/dotnet/docker-tools/issues/2056.
-  # See https://github.com/dotnet/dotnet-buildtools-prereqs-docker/pull/1658
-  value: false
+  value: true
 
 # Configure the build, test (N/A), and publish process.
 # Only necessary variables, in order of presentation in .NET Docker Tools.
