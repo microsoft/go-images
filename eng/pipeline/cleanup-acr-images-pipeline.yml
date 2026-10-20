@@ -42,6 +42,10 @@ schedules:
     always: true
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
+  # Temporarily disabled due to https://github.com/dotnet/docker-tools/issues/2056.
+  - name: publishEolAnnotations
+    value: false
+    readonly: true
 resources:
   repositories:
     - repository: 1ESPipelineTemplates
