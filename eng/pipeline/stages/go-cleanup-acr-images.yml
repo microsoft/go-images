@@ -58,3 +58,32 @@ stages:
           #     acr: ${{ parameters.publishConfig.BuildRegistry }}
           #     action: pruneDangling
           #     age: 0
+
+      - job: Annotations
+        timeoutInMinutes: 120
+        pool:
+          name: $(default1ESInternalPoolName)
+          image: $(default1ESInternalPoolImage)
+          os: linux
+        variables:
+          dryRunArg: ${{ iif(parameters.enableDryRun, '--dry-run', '') }}
+        # EOL annotation generation temporarily disabled due to https://github.com/dotnet/docker-tools/issues/2056.
+        # Until the system is cleaned up and improved/redesigned, stop generating additional lifecycle artifacts.
+        condition: false
+        steps:
+          - template: /eng/docker-tools/templates/steps/init-common.yml@self
+            parameters:
+              dockerClientOS: linux
+              publishConfig: ${{ parameters.publishConfig }}
+          - template: /eng/docker-tools/templates/steps/reference-service-connections.yml@self
+            parameters:
+              publishConfig: ${{ parameters.publishConfig }}
+              usesRegistries:
+                - ${{ parameters.publishConfig.BuildRegistry.server }}
+                - ${{ parameters.publishConfig.PublicMirrorRegistry.server }}
+          - template: /eng/pipeline/steps/set-eol-annotations.yml@self
+            parameters:
+              acr: ${{ parameters.publishConfig.BuildRegistry }}
+          - template: /eng/pipeline/steps/set-eol-annotations.yml@self
+            parameters:
+              acr: ${{ parameters.publishConfig.PublicMirrorRegistry }}
