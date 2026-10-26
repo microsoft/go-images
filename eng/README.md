@@ -91,3 +91,8 @@ https://github.com/microsoft/go-infra/blob/main/eng/pipelines/go-update.yml
 This repository uses patch files in the `patches` directory, like microsoft/go.
 For more information:
 https://github.com/microsoft/go/blob/microsoft/main/eng/README.md#patch-files
+
+The [MinGit security patch](../patches/0009-Update-MinGit-for-Brotli-security-fix.patch)
+temporarily updates the Windows Server Core dependency to fix CVE-2026-111497.
+Remove it once the upstream template includes a fixed MinGit release, then
+regenerate the Dockerfiles.
