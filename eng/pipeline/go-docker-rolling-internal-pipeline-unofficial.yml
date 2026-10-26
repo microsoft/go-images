@@ -47,6 +47,9 @@ extends:
   template: v1/1ES.Unofficial.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     sdl:
+      # Container-image SBOMs are generated separately; these artifacts contain metadata.
+      sbom:
+        enabled: false
       sourceAnalysisPool:
         name: NetCore1ESPool-Svc-Internal
         image: 1es-windows-2022
