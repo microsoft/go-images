@@ -51,6 +51,13 @@ stages:
               acr: ${{ parameters.publishConfig.PublishRegistry }}
               action: pruneEol
               age: ${{ parameters.age }}
+          - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
+            parameters:
+              internalProjectName: ${{ parameters.internalProjectName }}
+              repo: "unlisted/microsoft-go/infra-images"
+              acr: ${{ parameters.publishConfig.PublishRegistry }}
+              action: pruneEol
+              age: ${{ parameters.age }}
           # Disabled due to https://github.com/dotnet/docker-tools/issues/797
           # - template: /eng/docker-tools/templates/steps/clean-acr-images.yml@self
           #   parameters:
