@@ -53,7 +53,9 @@ extends:
   template: v1/1ES.Official.PipelineTemplate.yml@1ESPipelineTemplates
   parameters:
     sdl:
-      # Container-image SBOMs are generated separately; these artifacts contain metadata.
+      # Container-image SBOMs are generated in the build jobs and consolidated during
+      # Post_Build. Disable automatic 1ES SBOM generation for pipeline artifacts because
+      # they contain image metadata and already-generated SBOMs, not shipped binaries.
       sbom:
         enabled: false
       sourceAnalysisPool:
