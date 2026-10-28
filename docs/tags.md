@@ -17,6 +17,15 @@ Examples:
 
 > This document uses `1.20.0-1` as a placeholder for *the most recent release of the Microsoft build of Go*. Check MAR for the actual latest tag versions and available OS/Distros.
 
+## Architecture-specific naming differs from upstream
+
+Our architecture-specific images use an architecture suffix in the tag, such as `mcr.microsoft.com/oss/go/microsoft/golang:1.20.0-1-bookworm-amd64`.
+Upstream instead provides architecture-specific repositories, such as [`amd64/golang`](https://hub.docker.com/r/amd64/golang/) with the tag `1.20.0-bookworm`.
+
+This is intentional: MCR's convention is to keep all architectures in a single repository (`oss/go/microsoft/golang`), rather than separate repositories such as `amd64/golang`.
+The .NET Docker ImageBuilder tooling we use also requires this layout: its [`manifest.json`](../manifest.json) schema only allows a shared tag to reference images within a single repository.
+Keeping architecture-specific images in the same repository lets ImageBuilder produce the multi-architecture shared tags described below.
+
 # Shared tags
 
 A *shared tag* references images for multiple platforms. When used in a Dockerfile or a Docker command, Docker downloads the correct image for the current platform from the list of images pointed to by the shared tag. Shared tags are generally manifest tags.
