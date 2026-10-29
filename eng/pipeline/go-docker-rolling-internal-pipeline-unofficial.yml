@@ -33,6 +33,8 @@ parameters:
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
   - template: /eng/pipeline/variables/secrets.yml@self
+  - name: waitForIngestionEnabled
+    value: false
 resources:
   repositories:
     - repository: 1ESPipelineTemplates

@@ -52,6 +52,11 @@ parameters:
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
   - template: /eng/pipeline/variables/secrets.yml@self
+  - name: waitForIngestionEnabled
+    ${ inlineif .official }:
+      value: ${{ and(eq(variables['System.TeamProject'], 'internal'), in(parameters.publishRepoPrefix, 'public/', 'private/internal/'), containsValue(split(variables['officialRepoPrefixes'], ','), parameters.publishRepoPrefix)) }}
+    ${ inlineelse }:
+      value: false
 
 resources:
   repositories:
@@ -98,6 +103,10 @@ extends:
             buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
             versionsRepoRef: VersionsRepo
             noCache: true
+            ${ inlineif .official }:
+              ${{ if eq(variables['waitForIngestionEnabled'], 'true') }}:
+                additionalServiceConnections:
+                  - name: $(marStatus.serviceConnectionName)
             customGenerateMatrixInitSteps:
               - template: /eng/pipeline/steps/set-retain-build-var.yml@self
               - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
