@@ -39,8 +39,9 @@ parameters:
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
   - template: /eng/pipeline/variables/secrets.yml@self
+  # Only official internal public/ publishes reach public MAR; skip private and ACR-only publishes.
   - name: waitForIngestionEnabled
-    value: ${{ and(eq(variables['System.TeamProject'], 'internal'), eq(parameters.publishRepoPrefix, 'public/'), containsValue(split(variables['officialRepoPrefixes'], ','), parameters.publishRepoPrefix)) }}
+    value: ${{ and(eq(variables['System.TeamProject'], 'internal'), eq(parameters.publishRepoPrefix, 'public/')) }}
 resources:
   repositories:
     - repository: 1ESPipelineTemplates
