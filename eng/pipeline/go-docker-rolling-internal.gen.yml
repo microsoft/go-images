@@ -54,7 +54,7 @@ variables:
   - template: /eng/pipeline/variables/secrets.yml@self
   - name: waitForIngestionEnabled
     ${ inlineif .official }:
-      value: ${{ and(eq(variables['System.TeamProject'], 'internal'), in(parameters.publishRepoPrefix, 'public/', 'private/internal/'), containsValue(split(variables['officialRepoPrefixes'], ','), parameters.publishRepoPrefix)) }}
+      value: ${{ and(eq(variables['System.TeamProject'], 'internal'), eq(parameters.publishRepoPrefix, 'public/'), containsValue(split(variables['officialRepoPrefixes'], ','), parameters.publishRepoPrefix)) }}
     ${ inlineelse }:
       value: false
 
