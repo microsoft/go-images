@@ -39,6 +39,9 @@ parameters:
 variables:
   - template: /eng/pipeline/variables/go-common.yml@self
   - template: /eng/pipeline/variables/secrets.yml@self
+  # Only official internal public/ publishes reach public MAR; skip private and ACR-only publishes.
+  - name: waitForIngestionEnabled
+    value: ${{ and(eq(variables['System.TeamProject'], 'internal'), eq(parameters.publishRepoPrefix, 'public/')) }}
 resources:
   repositories:
     - repository: 1ESPipelineTemplates
@@ -82,6 +85,9 @@ extends:
             buildMatrixCustomBuildLegGroupArgs: --custom-build-leg-group build
             versionsRepoRef: VersionsRepo
             noCache: true
+            ${{ if eq(variables['waitForIngestionEnabled'], 'true') }}:
+              additionalServiceConnections:
+                - name: $(marStatus.serviceConnectionName)
             customGenerateMatrixInitSteps:
               - template: /eng/pipeline/steps/set-retain-build-var.yml@self
               - template: /eng/pipeline/steps/set-public-source-branch-var.yml@self
