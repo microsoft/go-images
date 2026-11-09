@@ -55,45 +55,6 @@
         {
           "productVersion": "1.25",
           "sharedTags": {
-            "1.25-bullseye": {},
-            "1.25.14-2-bullseye": {},
-            "1.25.14-bullseye": {}
-          },
-          "platforms": [
-            {
-              "architecture": "amd64",
-              "dockerfile": "src/microsoft/1.25/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.25.14-2-bullseye-amd64": {}
-              }
-            },
-            {
-              "architecture": "arm64",
-              "variant": "v8",
-              "dockerfile": "src/microsoft/1.25/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.25.14-2-bullseye-arm64v8": {}
-              }
-            },
-            {
-              "architecture": "arm",
-              "variant": "v7",
-              "dockerfile": "src/microsoft/1.25/bullseye",
-              "os": "linux",
-              "osVersion": "bullseye",
-              "tags": {
-                "1.25.14-2-bullseye-arm32v7": {}
-              }
-            }
-          ]
-        },
-        {
-          "productVersion": "1.25",
-          "sharedTags": {
             "1.25-azurelinux3.0": {},
             "1.25.14-2-azurelinux3.0": {},
             "1.25.14-azurelinux3.0": {}
