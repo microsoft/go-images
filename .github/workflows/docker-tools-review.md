@@ -16,11 +16,11 @@ on:
    workflow_call:
       inputs:
          pr_number:
-            description: "PR number to review in the calling repository"
+            description: "PR number to review in the calling repository (overrides the triggering PR)"
             required: true
             type: string
 concurrency:
-   group: gh-aw-docker-tools-review-${{ github.repository }}-${{ github.event.pull_request.number || inputs.pr_number || github.ref }}
+   group: gh-aw-docker-tools-review-${{ github.repository }}-${{ inputs.pr_number || github.event.pull_request.number || github.ref }}
    cancel-in-progress: true
    job-discriminator: ${{ github.run_id }}
 inlined-imports: true
@@ -39,10 +39,10 @@ tools:
 safe-outputs:
    create-pull-request-review-comment:
       max: 15
-      target: ${{ github.event.pull_request.number || inputs.pr_number }}
+      target: ${{ inputs.pr_number || github.event.pull_request.number }}
    add-comment:
       max: 1
-      target: ${{ github.event.pull_request.number || inputs.pr_number }}
+      target: ${{ inputs.pr_number || github.event.pull_request.number }}
       hide-older-comments: true
       allowed-reasons: [outdated]
 timeout-minutes: 20
@@ -55,7 +55,7 @@ You are an AI code reviewer specialized in verifying that the repository identif
 ## Project Context
 
 - Repository: `${{ github.repository }}`
-- PR number: `${{ github.event.pull_request.number || inputs.pr_number }}`
+- PR number: `${{ inputs.pr_number || github.event.pull_request.number }}`
 - Upstream source: [dotnet/docker-tools](https://github.com/dotnet/docker-tools)
 - Modified files: Use GitHub tools to fetch the list of changed files
 
